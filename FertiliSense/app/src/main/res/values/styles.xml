@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <!-- Base application theme -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here -->
+        <item name="colorPrimary">@color/violet</item>
+        <item name="colorPrimaryDark">@color/violet</item>
+        <item name="colorAccent">@color/violet</item>
+    </style>
+
+    <!-- Custom Bottom Navigation View text appearance -->
+    <style name="BottomNavigationTextAppearance" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">14sp</item> <!-- Adjust the text size as needed -->
+        <item name="android:textColor">@color/violet</item> <!-- Ensure the text color is violet -->
+        <item name="android:fontFamily">@font/inter_medium</item>
+    </style>
+
+    <style name="BottomNavigationTextAppearanceInactive" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textSize">14sp</item> <!-- Adjust the text size for inactive items as needed -->
+        <item name="android:textColor">@color/violet</item> <!-- Ensure the text color is violet -->
+    </style>
+</resources>

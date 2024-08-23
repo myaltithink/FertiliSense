@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "821925291832",
+    "project_id": "fertilisense-f1335",
+    "storage_bucket": "fertilisense-f1335.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:821925291832:android:b6a2f5de6363a3989a83cd",
+        "android_client_info": {
+          "package_name": "com.example.fertilisense"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA68mnioelTOFl_LDtOu_9eIZwIWzw_fFw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

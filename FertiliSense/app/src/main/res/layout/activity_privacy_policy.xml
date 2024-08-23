@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".PrivacyPolicyActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        app:titleTextColor="@color/violet"
+        android:background="@drawable/top_navigation_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+   <ScrollView
+       android:layout_width="0dp"
+       android:layout_height="0dp"
+       android:id="@+id/scroll_view"
+       app:layout_constraintTop_toBottomOf="@id/toolbar"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintBottom_toTopOf="@id/toggle_scroll_button">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:padding="16dp">
+
+           <TextView
+               android:id="@+id/textView1"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Privacy Policy"
+               android:textSize="20sp"
+               android:textStyle="bold"/>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/sub_desc1"
+               android:text="We value the personal privacy of all users of personal data. It is important for you to know that you can maintain and protect your privacy. We therefore recommend that you read this privacy policy carefully."
+               android:layout_marginTop="20dp"
+               android:textSize="16sp"/>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/sub_desc2"
+               android:text="The Policy explains how we collect, process, maintain, protect and disclose information collected from you. We also use helpful examples to inform you of your rights and where you can control your information on the Service. This is to inform you that by using the Service, you consent to the collection and processing of information in accordance with this policy."
+               android:layout_marginTop="20dp"
+               android:textSize="16sp"/>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/title"
+               android:text="I. General principles of personal data protection"
+               android:textStyle="bold"
+               android:layout_marginTop="20dp"
+               android:textSize="16sp"/>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/subtitle1"
+               android:text="1. Interpretation and Definition"
+               android:layout_marginTop="20dp"/>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/principle1"
+               android:text="\nInterpretation\nSimply put, each capitalized word has a specific meaning explained here. Also, these meanings remain the same whether the word is used in the singular or the plural.\n\nDefinition\n•	Application means a software program provided by us that you have downloaded onto an electronic device.\n•	Data Deletion The process of permanently removing user information from application systems upon receipt of a valid request from the user or otherwise as provided by applicable laws and regulations.\n•	Data Storage Duration: Refers to the period during which user information is stored in the application's systems before being permanently removed.\n•	Regulatory Compliance: Ensuring adherence to relevant laws, regulations, legal processes, and requests from government entities regarding the gathering, utilization, and disclosure of user information.\n•	Health Information Data: Information supplied by the user concerning menstrual cycles, fertility forecasts, symptoms, or any other health-related data inputted into the App.\n•	Third-party Social Media Platform: Any website or social network platform that allows users to log in or create an account to utilize the Service.\n•	Device any device that can access the system such as cellphone." />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/subtitle2"
+               android:text="2. What data is gathered by us?"
+               android:layout_marginTop="20dp"/>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/principle2"
+               android:text="\nTo enable specific features, certain data is necessary. For instance, to assist you in monitoring your menstrual cycle, the dates of your most recent menstrual cycle are essential. Some other data might be voluntary, but your user experience might suffer without it.\n\nThe data actively shared by you while using our application\n\nIn our application, you have the option to share data necessary for using our features, such as tracking periods, cycles, ovulation, and more. This data may contain health information, which is entirely at your discretion to provide, like menstrual cycle details, weight, body temperature, and other relevant information that you choose to share. Anything you engage with in our application is referred to as 'your activity.' We do not gather your activity and details unless you choose to share or configure the information.\n\nData obtained from third-party social media platforms\n\nIf you opt to utilize the login service (for our backup function) through a third-party social network account (like Google), we may automatically collect certain data from third-party sources, such as your account name, email address, and public profile linked to that account." />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/subtitle3"
+               android:text="3. How can we distribute the data?"
+               android:layout_marginTop="20dp"/>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/principle3"
+               android:text="\nWe value your privacy and the security of your information. Here's how we manage the data you provide through our period tracker app:\n\n• Internal Use Only:Your information is strictly utilized within our app and internal systems. We do not disclose your information to any third parties under any circumstances.\n\n• Aggregate Analysis:We may examine aggregated, anonymous data to identify patterns, enhance our services, and conduct internal research.\n\n• Legal Compliance:In exceptional circumstances, we may be required to share your information to enforce Laws and Regulations, comply with legal procedures, or respond to governmental requests. However, such sharing will only take place when mandated by the law, when deemed necessary, and as required.\n\n•	User Consent: We will seek your explicit consent before sharing your personally identifiable information for purposes not outlined in this policy. You have the option to opt out of such sharing activities at any time."/>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/subtitle4"
+               android:text="4. How We Use the Information: "
+               android:layout_marginTop="20dp"/>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/principle4"
+               android:text="\nWe utilize the information we gather about you to offer a tailored experience, providing health tips, recommended content, and more. We greatly value your experience with our app and continuously strive to enhance existing features and incorporate new ones requested by users. The data we collect aids us in understanding areas for improvement and how to enhance the app. This information may be used for the following purposes:\n\n• We may make changes to improve our service.\n\n" />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/subtitle5"
+               android:text="5. Retention of the Information"
+               android:layout_marginTop="20dp"/>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/principle5"
+               android:text="\nWe prioritize the privacy and security of your data. Here's how we handle data retention in our period tracking app:\n\n• User Account Data: Your personal information stored in your user account will only be kept as long as your account is active. If you choose to delete your account, all associated personal data will be immediately removed from our systems.\n\n• Health Data: Any health-related information you input, such as menstrual cycle data or symptom logs, will only be stored within our app for as long as you use our services. If you decide to delete specific health data or your entire account, this information will be instantly deleted from our app upon your request.\n\n• Limited Retention: We don't keep backups of your data or store any user information outside of our app. Your data is solely stored within the secure environment of our application, and we won't retain any record of it longer than necessary for the app to function properly.\n\n• Data Deletion: Once you delete your account or any specific data from our application, please note that this information will be permanently deleted from all our systems and cannot be recovered. We also do not keep any backup copies of your information.\n\n• Legal Compliance: We will observe with all relevant laws, regulations, or legal procedures that require us to either retain or delete data. If there is any information that these laws require us to keep, we will handle it with proper protection." />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/subtitle6"
+               android:text="6. Why and How Do We Transfer the Information?"
+               android:layout_marginTop="20dp"/>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/principle6"
+               android:text="\nYour information may be accessed and processed by our team members at our offices or other locations where they are based. This could involve transferring the data to computers located outside of your jurisdiction with different data protection laws.\n\nThis means we may transfer and store your information on computers located outside of your area, where the data protection laws may be different. By providing this information, you are giving your consent for it to be transferred.\n\nWe promise to handle your data carefully and securely, following our Privacy Policy. We won't share your personal information with anyone or any country unless we're confident that they have strong security measures in place to protect it." />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/subtitle7"
+               android:text="7. How do we safeguard the security of your information?"
+               android:layout_marginTop="20dp"/>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/principle7"
+               android:text="\n• We use a combination of rules, technology, and physical safeguards to keep your information safe.System vulnerability scanning and penetration testing;\n\n• Protect data integrity;\n\n• Organizational and legal measures.\n\nSecurity of information is taken seriously by us; however, remember that no methodology for transmission or data storing is completely safe. Any meaningful transmission of your information has certain inherent risks involved in it. While We support constant development of additional techniques to protect your information, it is hard for Us to guarantee the absolute security of the Internet.\n\nWe do not store any of your data on the server in general; your data only goes to your local device and the Google server."/>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/subtitle8"
+               android:text="8. Children's Privacy "
+               android:layout_marginTop="20dp"/>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/principle8"
+               android:text="\nOur services do no longer observe to every person underneath the age of 13. If you are a discern or parent and recognize that your child has provided us with their information, we do not knowingly collect your statistics from all people beneath the age of thirteen. Please do contact us."/>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/subtitle9"
+               android:text="9. How do we change this Privacy Policy "
+               android:layout_marginTop="20dp"/>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/principle9"
+               android:text="\nWe may update our Privacy Policy from time to time. We will notify you of any changes by:\n\n•	Posting a new Privacy Policy on this page.\n\n•	Sending you an email notification to update our Program with the latest key information (updated date) at the top of this Privacy Policy.\n\nYou may need to check the page from time to time as there may be changes to its policies. The Privacy Policy takes effect immediately upon uploading to."/>
+
+       </LinearLayout>
+
+   </ScrollView>
+
+    <Button
+        android:id="@+id/toggle_scroll_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Scroll to Bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

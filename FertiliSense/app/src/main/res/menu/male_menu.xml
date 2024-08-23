@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="Refresh"
+        android:icon="@drawable/ic_refresh"
+        android:id="@+id/male_menu_refresh"
+        android:alphabeticShortcut="r"
+        android:orderInCategory="1"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:title="Bladder"
+        android:id="@+id/male_menu_bladder"/>
+
+    <item
+        android:title="Seminal Vesicle"
+        android:id="@+id/male_menu_seminal_vesicle"/>
+
+    <item
+        android:title="Bulbourethral Gland"
+        android:id="@+id/male_menu_bulbourethral_gland"/>
+
+    <item
+        android:title="Testicles"
+        android:id="@+id/male_menu_testicles"/>
+
+    <item
+        android:title="Urethral Opening"
+        android:id="@+id/male_menu_urethral_opening"/>
+
+    <item
+        android:title="Epididymis"
+        android:id="@+id/male_menu_epididymis"/>
+
+    <item
+        android:title="Prostrate Gland"
+        android:id="@+id/male_menu_prostrate_gland"/>
+
+    <item
+        android:title="Ductus (Vas) Deferens"
+        android:id="@+id/male_menu_ductus_vas_deferens"/>
+
+    <item
+        android:title="Penis"
+        android:id="@+id/male_menu_penis"/>
+
+    <item
+        android:title="Glans"
+        android:id="@+id/male_menu_glans"/>
+
+</menu>

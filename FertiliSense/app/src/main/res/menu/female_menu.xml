@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="Refresh"
+        android:icon="@drawable/ic_refresh"
+        android:id="@+id/female_menu_refresh"
+        android:alphabeticShortcut="r"
+        android:orderInCategory="1"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:title="Developing Follicles"
+        android:id="@+id/female_menu_developing_follicles"/>
+
+    <item
+        android:title="Endometrium"
+        android:id="@+id/female_menu_endometrium"/>
+
+    <item
+        android:title="Isthmus of Uterine Tube"
+        android:id="@+id/female_menu_isthmus_of_uterine_tube"/>
+
+    <item
+        android:title="Ovarian Ligament"
+        android:id="@+id/female_menu_ovarian_ligament"/>
+
+    <item
+        android:title="Myometrium"
+        android:id="@+id/female_menu_myometrium"/>
+
+    <item
+        android:title="Fundus"
+        android:id="@+id/female_menu_fundus"/>
+
+    <item
+        android:title="Isthmus of Uterus"
+        android:id="@+id/female_menu_isthmus_of_uterus"/>
+
+    <item
+        android:title="Fallopian Tube"
+        android:id="@+id/female_menu_fallopian_tube"/>
+
+    <item
+        android:title="Infundibulum"
+        android:id="@+id/female_menu_infundibulum"/>
+
+    <item
+        android:title="Corpus Luteum"
+        android:id="@+id/female_menu_corpus_luteum"/>
+
+    <item
+        android:title="Fimbriae"
+        android:id="@+id/female_menu_fimbriae"/>
+
+    <item
+        android:title="Ampulla"
+        android:id="@+id/female_menu_ampulla"/>
+
+    <item
+        android:title="Uterus"
+        android:id="@+id/female_menu_uterus"/>
+
+    <item
+        android:title="Perimetrium"
+        android:id="@+id/female_menu_perimetrium"/>
+
+    <item
+        android:title="Ovary"
+        android:id="@+id/female_menu_ovary"/>
+
+    <item
+        android:title="Vagina"
+        android:id="@+id/female_menu_vagina"/>
+
+    <item
+        android:title="Cervix"
+        android:id="@+id/female_menu_cervix"/>
+</menu>

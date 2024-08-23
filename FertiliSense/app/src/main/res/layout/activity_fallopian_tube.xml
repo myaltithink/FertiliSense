@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FallopianTubeActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/top_navigation_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@color/white" />
+
+    <!-- Fallopian Tube Label -->
+    <TextView
+        android:id="@+id/fallopian_tube_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fallopian Tube"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <!-- Fallopian Tube Image -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintDimensionRatio="H,1:1.1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fallopian_tube_label"
+        app:srcCompat="@drawable/fallopian_tube" />
+
+    <!-- Description Text -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/repro_female_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="The Fallopian tubes, also known as the uterine tubes, are a pair of 4-inch (10 cm) long narrow tubes connecting the ovaries to the uterus. Ova (egg cells) are carried to the uterus through the fallopian tubes following ovulation. The ova may also be fertilized while in the Fallopian tubes if sperm is present following sexual intercourse. The Fallopian tubes are located in the pelvic cavity extending laterally from the corners of the superior edge of the uterus and passing superior to the ovaries.The broad ligament of the uterus and suspensory ligaments support the Fallopian tubes and hold them in place relative to the uterus and ovaries. Each Fallopian tube begins as a very narrow tube at the uterus and gradually widens as it extends towards the ovary. The isthmus of the Fallopian tubes is the narrowest and thickest walled region of the fallopian tube bordering on the uterus. From the isthmus the Fallopian tube widens into the ampulla, which makes up the bulk of its length. Finally, the Fallopian tube widens greatly into the funnel-shaped infundibulum before ending superior and lateral to the ovary. Many finger-like projections known as fimbriae extend from the infundibulum to reach the surface of the ovary. Being continuous with the uterus, the Fallopian tubes contain many of the same tissue layers as the womb. The thin, outermost covering of the Fallopian tubes, the serosa, is made of a serous membrane of simple squamous epithelial tissue supported by areolar connective tissue. Thin serous fluid secreted from the serosa lubricates the Fallopian tubes and protects them from friction with neighboring organs. Deep to the serosa is the muscularis layer that contains the visceral muscle tissue responsible for movement of the Fallopian tubes. The innermost layer, the mucosa, lines the hollow lumen and is mostly made of ciliated columnar epithelial tissue. The Fallopian tubes are far from passive tubes in the female reproductive system; on the contrary, they play an extremely active role in the process of fertilization. Just prior to ovulation, smooth muscle tissue in the fimbriae responds to the changing levels of female sex hormones and begins producing slow, steady contractions. These contractions result in the sweeping of the surface of the ovary by the fimbriae in anticipation of the release of the ova. Once the ovum is released, the fimbriae pick it up and carry it into the infundibulum. Next, cilia in the mucosal lining and peristaltic waves of the muscularis carry the ovum through the infundibulum, ampulla, and isthmus toward the uterus. Sperm deposited into the vagina during sexual intercourse may enter the Fallopian tubes from the uterus and fertilize the ovum as it travels toward the womb."
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </ScrollView>
+
+    <!-- Bottom Navigation View -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_navigation_background"
+        app:itemPaddingBottom="1dp"
+        app:itemIconSize="47dp"
+        app:itemTextColor="@color/violet"
+        app:itemIconTint="@color/violet"
+        app:itemTextAppearanceActive="@style/BottomNavigationTextAppearance"
+        app:itemTextAppearanceInactive="@style/BottomNavigationTextAppearanceInactive"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
