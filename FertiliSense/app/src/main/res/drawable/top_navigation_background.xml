@@ -1,0 +1,16 @@
+<!-- res/drawable/top_navigation_background.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Top border -->
+    <item android:top="0dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/gray" />
+            <size android:height="1dp" />
+        </shape>
+    </item>
+    <!-- Background color -->
+    <item android:bottom="1dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+</layer-list>

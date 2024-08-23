@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".DisclaimerContentActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        app:titleTextColor="@color/violet"
+        android:background="@drawable/top_navigation_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/scrollView"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/toggle_scroll_button">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Disclaimer Content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/content1"
+                android:text="There are some risks associated with our mobile tracking application. While we strive to make the application of maximum value by providing relevant and current information, at times, the information appearing on the app may not be in real time or may even prove inaccurate."
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/content2"
+                android:text="Our tracking application is data-driven and algorithm-driven. Information is, therefore, estimated and then displayed in the application. As such, the accuracy and reliability of the tracking facility shall be affected by aspects such as the network connectivity, GPS accuracy, and device limitations. Also, the app's accuracy might further be intervened by several external factors like weather conditions, obstructions, or even made changes in the infrastructure."
+                android:layout_marginTop="20dp"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/content3"
+                android:text="Hence, the application shall not be used to provide critical decisions or in emergency situations, but solely as a general guide and referral tool. In this regard, we always insist that our users exercise their independent judgment, followed by independent verification of the information through other sources, in addition to abiding by any official guidelines by the relevant authorities when using our tracking application."
+                android:layout_marginTop="20dp"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/content4"
+                android:text="Information provided by the app cannot be regarded as absolutely accurate, comprehensive, or reliable. By using our tracking app, you hereby acknowledge and accept that we shall never be held liable for any inaccuracies, errors, or damages arising from the use of the app or any reliance one may place upon the information derived therefrom."
+                android:layout_marginTop="20dp"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/content5"
+                android:text="We are constantly improving the accuracy and reliability of our tracking app and work to improve its performance based on user comments and suggestions submitted."
+                android:layout_marginTop="20dp"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/toggle_scroll_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Scroll to Bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
