@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -47,6 +48,9 @@ public class TermsAndConditionContentActivity extends AppCompatActivity {
 
     private static final String TAG = "TermsAndConditionContentActivity";
 
+    // Declare TextViews
+    private TextView titleTextView, subtitleTextView, rule1TextView, rule2TextView, rule3TextView, rule4TextView, rule5TextView, rule6TextView, rule7TextView, rule8TextView, rule9TextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +74,19 @@ public class TermsAndConditionContentActivity extends AppCompatActivity {
         scrollView = findViewById(R.id.scrollView);
         toggleScrollButton = findViewById(R.id.toggle_scroll_button);
         saveIcon = findViewById(R.id.ic_save);
+
+        // Initialize TextViews
+        titleTextView = findViewById(R.id.title);
+        subtitleTextView = findViewById(R.id.subtitle);
+        rule1TextView = findViewById(R.id.rule_1);
+        rule2TextView = findViewById(R.id.rule_2);
+        rule3TextView = findViewById(R.id.rule_3);
+        rule4TextView = findViewById(R.id.rule_4);
+        rule5TextView = findViewById(R.id.rule_5);
+        rule6TextView = findViewById(R.id.rule_6);
+        rule7TextView = findViewById(R.id.rule_7);
+        rule8TextView = findViewById(R.id.rule_8);
+        rule9TextView = findViewById(R.id.rule_9);
 
         toggleScrollButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,9 +132,32 @@ public class TermsAndConditionContentActivity extends AppCompatActivity {
             PdfDocument pdfDocument = new PdfDocument(pdfWriter);
             Document document = new Document(pdfDocument);
 
-            document.add(new Paragraph("Terms and Conditions Details")
+            // Add title and subtitle
+            document.add(new Paragraph(titleTextView.getText().toString())
                     .setFontSize(18)
                     .setBold());
+            document.add(new Paragraph(subtitleTextView.getText().toString())
+                    .setFontSize(16));
+
+            // Add each rule
+            document.add(new Paragraph(rule1TextView.getText().toString())
+                    .setFontSize(16));
+            document.add(new Paragraph(rule2TextView.getText().toString())
+                    .setFontSize(16));
+            document.add(new Paragraph(rule3TextView.getText().toString())
+                    .setFontSize(16));
+            document.add(new Paragraph(rule4TextView.getText().toString())
+                    .setFontSize(16));
+            document.add(new Paragraph(rule5TextView.getText().toString())
+                    .setFontSize(16));
+            document.add(new Paragraph(rule6TextView.getText().toString())
+                    .setFontSize(16));
+            document.add(new Paragraph(rule7TextView.getText().toString())
+                    .setFontSize(16));
+            document.add(new Paragraph(rule8TextView.getText().toString())
+                    .setFontSize(16));
+            document.add(new Paragraph(rule9TextView.getText().toString())
+                    .setFontSize(16));
 
             document.add(new Paragraph("Email: " + email));
             document.add(new Paragraph("Date and Time: " + dateTime));
