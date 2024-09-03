@@ -41,7 +41,17 @@ responses:
   utter_ask_cycle_duration:
     - text: "Please provide the duration of your cycle in days."
 
+  utter_goodbye:
+    - text: "Bye"
+
+  utter_iamabot:
+    - text: "I am a bot, powered by Rasa."
+
 actions:
   - action_log_menstrual_cycle
   - action_greet
   - action_goodbye
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

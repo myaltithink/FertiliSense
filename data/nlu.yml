@@ -1,20 +1,60 @@
 version: "3.1"
 
 nlu:
-- intent: greet
-  examples: |
-    - hello
-    - hi
-    - hey
+  - intent: greet
+    examples: |
+      - hey
+      - hello
+      - hi
+      - hello there
+      - good morning
+      - good evening
+      - moin
+      - hey there
+      - let's go
+      - hey dude
+      - goodmorning
+      - goodevening
+      - good afternoon
 
-- intent: log_menstrual_cycle
-  examples: |
-    - I want to log my menstrual cycle
-    - Log my menstrual cycle
-    - Record my period dates
+  - intent: log_menstrual_cycle
+    examples: |
+      - I want to log my menstrual cycle
+      - Log my menstrual cycle
+      - Record my period dates
 
-- intent: inform
-  examples: |
-    - start date 01/08/2024
-    - end date 05/08/2024
-    - cycle duration 28
+  - intent: inform
+    examples: |
+      - start date 01/08/2024
+      - end date 05/08/2024
+      - cycle duration 28
+
+  - intent: goodbye
+    examples: |
+      - cu
+      - good by
+      - cee you later
+      - good night
+      - bye
+      - goodbye
+      - have a nice day
+      - see you around
+      - bye bye
+      - see you later
+
+  - intent: mood_unhappy
+    examples: |
+      - my day was horrible
+      - I am sad
+      - I don't feel very well
+      - I am disappointed
+      - super sad
+      - I'm so sad
+      - sad
+      - very sad
+      - unhappy
+      - not good
+      - not very good
+      - extremly sad
+      - so saad
+      - so sad
