@@ -1,0 +1,20 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hello
+    - hi
+    - hey
+
+- intent: log_menstrual_cycle
+  examples: |
+    - I want to log my menstrual cycle
+    - Log my menstrual cycle
+    - Record my period dates
+
+- intent: inform
+  examples: |
+    - start date 01/08/2024
+    - end date 05/08/2024
+    - cycle duration 28

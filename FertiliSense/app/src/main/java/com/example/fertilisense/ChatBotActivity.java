@@ -6,13 +6,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,14 +43,21 @@ public class ChatBotActivity extends AppCompatActivity {
     ImageButton sendButton;
     List<Message> messageList;
     MessageAdapter messageAdapter;
-    public static final MediaType JSON
-            = MediaType.get("application/json; charset=utf-8");
+    public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     OkHttpClient client = new OkHttpClient();
+
+    // Firebase references
+    private FirebaseAuth auth;
+    private DatabaseReference chatReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat_bot); // Ensure this matches your XML layout file name
+        setContentView(R.layout.activity_chat_bot);
+
+        // Initialize Firebase Auth and Database
+        auth = FirebaseAuth.getInstance();
+        chatReference = FirebaseDatabase.getInstance().getReference("Chat");
 
         messageList = new ArrayList<>();
 
@@ -76,11 +89,20 @@ public class ChatBotActivity extends AppCompatActivity {
             messageList.add(new Message(message, sentBy));
             messageAdapter.notifyDataSetChanged();
             recyclerView.smoothScrollToPosition(messageAdapter.getItemCount());
+
+            // Save the message to Firebase Realtime Database
+            FirebaseUser currentUser = auth.getCurrentUser();
+            if (currentUser != null) {
+                String senderId = currentUser.getUid();
+                String senderName = currentUser.getDisplayName() != null ? currentUser.getDisplayName() : "Anonymous";
+
+                DatabaseReference newMessageRef = chatReference.push();
+                newMessageRef.setValue(new Message(message, sentBy, senderId, senderName));
+            }
         });
     }
 
     void addResponse(String response) {
-        // Removing "Typing..." message if present
         int index = messageList.size() - 1;
         if (index >= 0 && Message.SENT_BY_BOT.equals(messageList.get(index).getSentBy()) && "Typing...".equals(messageList.get(index).getMessage())) {
             messageList.remove(index);
@@ -89,25 +111,40 @@ public class ChatBotActivity extends AppCompatActivity {
     }
 
     void callAPI(String question) {
-        // Show typing indicator
         messageList.add(new Message("Typing...", Message.SENT_BY_BOT));
         messageAdapter.notifyItemInserted(messageList.size() - 1);
         recyclerView.smoothScrollToPosition(messageAdapter.getItemCount());
 
         JSONObject jsonBody = new JSONObject();
         try {
-            jsonBody.put("sender", "");
-            jsonBody.put("message", question);
+            FirebaseUser currentUser = auth.getCurrentUser();
+            if (currentUser != null) {
+                String senderId = currentUser.getUid();
+                String senderName = currentUser.getDisplayName() != null ? currentUser.getDisplayName() : "Anonymous";
+
+                jsonBody.put("sender", senderId);
+                jsonBody.put("sender_name", senderName);
+                jsonBody.put("message", question);
+            } else {
+                jsonBody.put("sender", "unknown");
+                jsonBody.put("message", question);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
+            addResponse("Failed to create JSON payload: " + e.getMessage());
+            return;
         }
+
         RequestBody body = RequestBody.create(jsonBody.toString(), JSON);
 
         Request request = new Request.Builder()
-                .url("https://cb36-2001-4452-409-cc00-59b6-9f20-6d8f-63fb.ngrok-free.app/webhooks/rest/webhook")
+                .url("https://e7e8-2001-4452-409-cc00-784a-f1c-c946-7897.ngrok-free.app/webhook")
                 .header("Content-Type", "application/json")
                 .post(body)
                 .build();
+
+        Log.d("ChatBotActivity", "Request URL: " + request.url());
+        Log.d("ChatBotActivity", "Request Body: " + body.toString());
 
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -119,32 +156,43 @@ public class ChatBotActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 if (response.isSuccessful()) {
                     try {
-                        // Initialize Gson object
+                        String responseBody = response.body() != null ? response.body().string() : "No response body";
+                        Log.d("ChatBotActivity", "Response: " + responseBody);
+
+                        // If response body is null or empty
+                        if (responseBody == null || responseBody.isEmpty()) {
+                            addResponse("No valid data received from the server.");
+                            return;
+                        }
+
                         Gson gson = new Gson();
+                        Type dataType = new TypeToken<List<ResponseModel>>() {}.getType();
+                        List<ResponseModel> data = gson.fromJson(responseBody, dataType);
 
-                        // Identify the "data type" for conversion
-                        Type dataType = new TypeToken<ArrayList<ResponseModel>>() {}.getType();
-
-                        // Convert the HTTP response into a list of ResponseModel (local class)
-                        List<ResponseModel> data = gson.fromJson(response.body().string(), dataType);
-
-                        // Display the response text/image
-                        // Iterate through the items of list (for-each)
-                        for (ResponseModel item : data) {
-                            // Check if the current response is an image
-                            if (item.getText() == null) {
-                                addResponse(item.getImage());
-                            } else {
-                                addResponse(item.getText());
+                        if (data != null && !data.isEmpty()) {
+                            for (ResponseModel item : data) {
+                                if (item.getText() != null) {
+                                    addResponse(item.getText());
+                                } else if (item.getImage() != null) {
+                                    addResponse(item.getImage());
+                                } else {
+                                    addResponse("Received an empty response.");
+                                }
                             }
+                        } else {
+                            Log.d("ChatBotActivity", "Response data is empty or null");
+                            addResponse("No valid data received from the server.");
                         }
                     } catch (Exception e) {
-                        addResponse("Failed to load response due to " + e.getMessage());
+                        Log.e("ChatBotActivity", "Error processing response: " + e.getMessage());
+                        addResponse("Failed to process response due to " + e.getMessage());
                     }
                 } else {
-                    addResponse("Failed to load response due to " + response.body().toString());
+                    Log.e("ChatBotActivity", "Failed to load response: " + response.message());
+                    addResponse("Failed to load response due to " + response.message());
                 }
             }
+
         });
     }
 }

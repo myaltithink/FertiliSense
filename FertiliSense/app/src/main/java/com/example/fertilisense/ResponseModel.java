@@ -3,9 +3,7 @@ package com.example.fertilisense;
 public class ResponseModel {
 
     private String recipient_id;
-
     private String text;
-
     private String image;
 
     public String getRecipient_id() {
