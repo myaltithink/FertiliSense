@@ -50,4 +50,7 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation ("com.prolificinteractive:material-calendarview:1.4.3")
 
+
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation ("com.google.code.gson:gson:2.11.0")
 }
