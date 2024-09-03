@@ -83,6 +83,7 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:id="@+id/principle1"
+               android:textColor="@color/black"
                android:text="\nInterpretation\nSimply put, each capitalized word has a specific meaning explained here. Also, these meanings remain the same whether the word is used in the singular or the plural.\n\nDefinition\n•	Application means a software program provided by us that you have downloaded onto an electronic device.\n•	Data Deletion The process of permanently removing user information from application systems upon receipt of a valid request from the user or otherwise as provided by applicable laws and regulations.\n•	Data Storage Duration: Refers to the period during which user information is stored in the application's systems before being permanently removed.\n•	Regulatory Compliance: Ensuring adherence to relevant laws, regulations, legal processes, and requests from government entities regarding the gathering, utilization, and disclosure of user information.\n•	Health Information Data: Information supplied by the user concerning menstrual cycles, fertility forecasts, symptoms, or any other health-related data inputted into the App.\n•	Third-party Social Media Platform: Any website or social network platform that allows users to log in or create an account to utilize the Service.\n•	Device any device that can access the system such as cellphone." />
 
            <TextView
