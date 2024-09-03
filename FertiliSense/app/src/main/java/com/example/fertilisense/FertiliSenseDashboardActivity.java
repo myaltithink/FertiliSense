@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -102,6 +103,20 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
 
         // Set "Home" as the default selected item
         bottomNavigationView.setSelectedItemId(R.id.home);
+
+        ImageView chatBot = findViewById(R.id.ic_chatbot);
+
+        // Set the onClickListener for the back button
+        chatBot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("FertiliSense", "Navigating to ChatBot");
+                Intent intent = new Intent(FertiliSenseDashboardActivity.this, ChatBotActivity.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                finish();
+            }
+        });
     }
 
     private void loadUserInformation() {
