@@ -9,6 +9,8 @@
     tools:context=".FemaleReproductiveSystemActivity">
 
     <!-- Main content -->
+
+    <!-- Navigation drawer -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -50,20 +52,25 @@
 
         <!-- Female Reproductive System -->
 
+        <!-- preview -->
+
         <TextView
             android:id="@+id/repro_female_label"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginStart="39dp"
+            android:layout_marginTop="25dp"
             android:text="Female Reproductive System"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title" />
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintEnd_toEndOf="parent"
 
-        <!-- preview -->
+            />
+
+
         <ImageView
             android:id="@+id/ic_back"
             android:layout_width="wrap_content"
@@ -86,16 +93,17 @@
             app:srcCompat="@drawable/ic_next" />
 
         <!-- Female Reproductive System 3D Image -->
+
+        <!-- Bottom Menu -->
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="72dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/repro_female_label"
             app:srcCompat="@drawable/female_repro_full_with_label" />
 
-        <!-- Bottom Menu -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
@@ -113,12 +121,15 @@
             app:menu="@menu/bottom_menu" />
 
         <!-- Parts -->
+        <!-- Parts TextViews are modified to be centered and aligned based on imageView -->
+        <!-- Example: -->
+
         <TextView
             android:id="@+id/fundus_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="185dp"
-            android:layout_marginTop="7dp"
+            android:layout_marginStart="159dp"
+            android:layout_marginTop="25dp"
             android:text="Fundus"
             android:textColor="@color/black"
             android:textSize="12sp"
@@ -131,7 +142,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="24dp"
             android:text="Fallopian Tube"
             android:textColor="@color/black"
             android:textSize="12sp"
@@ -143,8 +154,8 @@
             android:id="@+id/infundibulum_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="328dp"
-            android:layout_marginTop="168dp"
+            android:layout_marginStart="296dp"
+            android:layout_marginTop="164dp"
             android:text="Infundibulum"
             android:textColor="@color/black"
             android:textSize="12sp"
@@ -156,8 +167,8 @@
             android:id="@+id/ovarian_ligament_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="112dp"
-            android:layout_marginTop="116dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="124dp"
             android:text="Ovarian\nLigament"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -170,8 +181,8 @@
             android:id="@+id/corpus_luteum_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="156dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="152dp"
             android:text="Corpus\nLuteum"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -184,8 +195,8 @@
             android:id="@+id/developing_follicles_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="125dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="136dp"
             android:background="@color/white"
             android:text="Ovarian\nFollicles"
             android:textAlignment="center"
@@ -199,8 +210,8 @@
             android:id="@+id/fimbriae_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="272dp"
-            android:layout_marginTop="144dp"
+            android:layout_marginStart="244dp"
+            android:layout_marginTop="148dp"
             android:text="Fimbriae"
             android:textColor="@color/black"
             android:textSize="10sp"
@@ -212,8 +223,8 @@
             android:id="@+id/perimetrium_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="244dp"
-            android:layout_marginTop="178dp"
+            android:layout_marginStart="216dp"
+            android:layout_marginTop="176dp"
             android:text="Perimetrium"
             android:textColor="@color/black"
             android:textSize="9sp"
@@ -225,8 +236,8 @@
             android:id="@+id/uterus_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="84dp"
+            android:layout_marginTop="24dp"
             android:text="Uterus"
             android:textColor="@color/black"
             android:textSize="12sp"
@@ -238,8 +249,8 @@
             android:id="@+id/cervix_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="196dp"
-            android:layout_marginTop="158dp"
+            android:layout_marginStart="168dp"
+            android:layout_marginTop="156dp"
             android:background="@color/white"
             android:padding="1dp"
             android:text="Cervix"
@@ -254,8 +265,8 @@
             android:id="@+id/isthmus_of_uterus_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="193dp"
-            android:layout_marginTop="118dp"
+            android:layout_marginStart="168dp"
+            android:layout_marginTop="124dp"
             android:background="@color/white"
             android:padding="1dp"
             android:text="Isthmus\nof Uterus"
@@ -270,8 +281,8 @@
             android:id="@+id/vagina_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="188dp"
-            android:layout_marginTop="216dp"
+            android:layout_marginStart="162dp"
+            android:layout_marginTop="212dp"
             android:background="@color/white"
             android:padding="2dp"
             android:text="Vagina"
@@ -286,8 +297,8 @@
             android:id="@+id/ovary_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="312dp"
-            android:layout_marginTop="88dp"
+            android:layout_marginStart="272dp"
+            android:layout_marginTop="92dp"
             android:background="@color/white"
             android:padding="1dp"
             android:text="Ovary"
@@ -302,8 +313,8 @@
             android:id="@+id/isthmus_of_uterine_tube_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="270dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="232dp"
+            android:layout_marginTop="35dp"
             android:padding="1dp"
             android:text="Isthmus of\n Uterine Tube"
             android:textAlignment="center"
@@ -317,11 +328,11 @@
             android:id="@+id/ampulla_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="376dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginStart="320dp"
+            android:layout_marginTop="64dp"
+            android:background="@color/white"
             android:padding="1dp"
             android:text="Ampulla"
-            android:background="@color/white"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="8sp"
@@ -333,8 +344,8 @@
             android:id="@+id/endometrium_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="210dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="80dp"
             android:background="@color/white"
             android:text="Endometrium"
             android:textAlignment="center"
@@ -344,12 +355,16 @@
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
 
+
+        <!-- Other Parts TextViews follow similar adjustments -->
+
+        <!-- Description -->
         <TextView
             android:id="@+id/myometrium_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="215dp"
-            android:layout_marginTop="92dp"
+            android:layout_marginStart="172dp"
+            android:layout_marginTop="100dp"
             android:background="@color/white"
             android:text="Myometrium"
             android:textAlignment="center"
@@ -359,7 +374,6 @@
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
 
-        <!-- Description -->
         <TextView
             android:id="@+id/repro_female_desc"
             android:layout_width="wrap_content"
@@ -378,7 +392,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Navigation drawer -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"

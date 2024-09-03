@@ -49,20 +49,25 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Male Reproductive System -->
+
+        <!-- preview -->
+
         <TextView
             android:id="@+id/repro_male_label"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="63dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="16dp"
             android:text="Male Reproductive System"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title" />
 
-        <!-- preview -->
         <ImageView
             android:id="@+id/ic_back"
             android:layout_width="wrap_content"
@@ -85,19 +90,21 @@
             app:srcCompat="@drawable/ic_next" />
 
         <!-- Male Reproductive System 3D Image -->
+
+        <!-- Bottom Menu -->
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/repro_male_label"
+            android:layout_marginTop="44dp"
             app:layout_constraintDimensionRatio="1:1"
-        app:srcCompat="@drawable/male_repro_full_with_label" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/repro_male_label"
+            app:srcCompat="@drawable/male_repro_full_with_label" />
 
-
-        <!-- Bottom Menu -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
@@ -115,11 +122,12 @@
             app:menu="@menu/bottom_menu" />
 
         <!-- Parts -->
+
         <TextView
             android:id="@+id/prostrate_gland_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="150dp"
+            android:layout_marginStart="128dp"
             android:layout_marginTop="12dp"
             android:text="Prostrate Gland"
             android:textColor="@color/black"
@@ -132,35 +140,35 @@
             android:id="@+id/seminal_vesicle_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="363dp"
-            android:layout_marginTop="10dp"
-            android:textAlignment="center"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="12dp"
             android:text="Seminal\nVesicle"
+            android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="12sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/imageView"
+            app:layout_constraintEnd_toEndOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
 
         <TextView
             android:id="@+id/bladder_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="308dp"
-            android:layout_marginTop="14dp"
+            android:layout_marginStart="272dp"
+            android:layout_marginTop="28dp"
             android:text="Bladder"
             android:textColor="@color/black"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/repro_male_label" />
+            app:layout_constraintTop_toBottomOf="@id/repro_male_label" />
 
         <TextView
             android:id="@+id/ductus_vas_deferens_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="44dp"
             android:text="Ductus (Vas) Deferens"
             android:textColor="@color/black"
             android:textSize="12sp"
@@ -172,8 +180,8 @@
             android:id="@+id/penis_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="135dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="124dp"
             android:text="Penis"
             android:textColor="@color/black"
             android:textSize="12sp"
@@ -185,8 +193,8 @@
             android:id="@+id/urethral_opening_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="394dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="352dp"
             android:padding="2dp"
             android:text="Urethral Opening"
             android:textAlignment="center"
@@ -196,12 +204,14 @@
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
 
+        <!-- Description -->
+
         <TextView
             android:id="@+id/testicles_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="370dp"
+            android:layout_marginStart="164dp"
+            android:layout_marginTop="320dp"
             android:padding="2dp"
             android:text="Testicles"
             android:textAlignment="center"
@@ -215,8 +225,8 @@
             android:id="@+id/epididymis_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="290dp"
-            android:layout_marginTop="320dp"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="280dp"
             android:padding="2dp"
             android:text="Epididymis"
             android:textAlignment="center"
@@ -230,8 +240,8 @@
             android:id="@+id/bulbourethral_gland_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="250dp"
+            android:layout_marginStart="272dp"
+            android:layout_marginTop="216dp"
             android:padding="2dp"
             android:text="Bulbourethral Gland"
             android:textAlignment="center"
@@ -245,8 +255,8 @@
             android:id="@+id/glans_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="148dp"
-            android:layout_marginTop="408dp"
+            android:layout_marginStart="136dp"
+            android:layout_marginTop="352dp"
             android:padding="2dp"
             android:text="Glans"
             android:textAlignment="center"
@@ -256,20 +266,20 @@
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
 
-        <!-- Description -->
         <TextView
             android:id="@+id/repro_male_desc"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="12dp"
             android:padding="10dp"
             android:text="The male reproductive system includes the scrotum, testes, spermatic ducts, sex glands, and penis. These organs work together to produce sperm, the male gamete, and the other components of semen. These organs also work together to deliver semen out of the body and into the vagina where it can fertilize egg cells to produce offspring."
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageView" />
 
@@ -287,20 +297,20 @@
         app:itemTextColor="@color/violet"
         app:menu="@menu/main_menu">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <EditText
-            android:id="@+id/editTextTextPostalAddress"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter address"
-            android:inputType="textPostalAddress" />
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/editTextTextPostalAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter address"
+                android:inputType="textPostalAddress" />
+
+        </LinearLayout>
 
     </com.google.android.material.navigation.NavigationView>
 
