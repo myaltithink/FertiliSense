@@ -1,0 +1,2 @@
+model_checkpoint_path: "ted_policy.tf_model"
+last_preserved_timestamp: 0.0

@@ -1,21 +1,26 @@
 version: "3.1"
 
 stories:
-- story: greet and log cycle
-  steps:
-    - intent: greet
-    - action: utter_greet
-    - intent: log_menstrual_cycle
-    - action: utter_ask_start_date
-    - intent: inform
-      entities:
-        - start_date
-    - action: utter_ask_end_date
-    - intent: inform
-      entities:
-        - end_date
-    - action: utter_ask_cycle_duration
-    - intent: inform
-      entities:
-        - cycle_duration
-    - action: action_log_menstrual_cycle
+  - story: greet and log cycle
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: log_menstrual_cycle
+      - action: utter_ask_start_date
+      - intent: inform
+        entities:
+          - start_date
+      - action: utter_ask_end_date
+      - intent: inform
+        entities:
+          - end_date
+      - action: utter_ask_cycle_duration
+      - intent: inform
+        entities:
+          - cycle_duration
+      - action: action_log_menstrual_cycle
+
+  - story: happy path
+    steps:
+      - intent: greet
+      - action: utter_greet

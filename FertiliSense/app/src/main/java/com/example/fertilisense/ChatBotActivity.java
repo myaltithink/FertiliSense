@@ -50,6 +50,9 @@ public class ChatBotActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private DatabaseReference chatReference;
 
+    private final String chatUrl = "https://9739-120-29-72-196.ngrok-free.app/webhooks/rest/webhook";
+    //private final String actionUrl = "https://80cd-120-29-72-196.ngrok-free.app/webhook";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,7 +141,8 @@ public class ChatBotActivity extends AppCompatActivity {
         RequestBody body = RequestBody.create(jsonBody.toString(), JSON);
 
         Request request = new Request.Builder()
-                .url("https://e7e8-2001-4452-409-cc00-784a-f1c-c946-7897.ngrok-free.app/webhook")
+                //.url(question.charAt(0) == '/'? actionUrl : chatUrl)
+                .url(chatUrl)
                 .header("Content-Type", "application/json")
                 .post(body)
                 .build();
