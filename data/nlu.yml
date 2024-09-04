@@ -22,18 +22,23 @@ nlu:
       - I want to log my menstrual cycle
       - Log my menstrual cycle
       - Record my period dates
+      - I want to record my period
+      - I'd like to log my cycle dates
 
   - intent: inform
     examples: |
       - start date 01/08/2024
       - end date 05/08/2024
       - cycle duration 28
+      - start date 15/09/2024
+      - end date 19/09/2024
+      - duration is 30 days
 
   - intent: goodbye
     examples: |
       - cu
       - good by
-      - cee you later
+      - see you later
       - good night
       - bye
       - goodbye
@@ -55,6 +60,86 @@ nlu:
       - unhappy
       - not good
       - not very good
-      - extremly sad
-      - so saad
+      - extremely sad
       - so sad
+
+  - intent: bot_challenge
+    examples: |
+      - are you a bot?
+      - what are you?
+      - who made you?
+      - are you real?
+      - is this a bot?
+      - you're a bot, right?
+
+  - intent: ask_reproductive_health  # Added intent
+    examples: |
+      - Tell me about the male reproductive system
+      - What is the female reproductive system?
+      - Give me information on reproductive health
+      - Explain the reproductive system
+      - What are the parts of the male reproductive system?
+
+  - intent: day
+    examples: |
+      - less than 24 hours
+      - more than 24 hours
+      - less
+      - more
+      - l
+      - m
+
+  - intent: head_symptom
+    examples: |
+      - headache
+      - pain in head
+      - head ache
+      - head
+      - h
+
+  - intent: head_whole
+    examples: |
+      - whole
+      - w
+      - hole
+
+  - intent: head_sides
+    examples: |
+      - sides
+      - side
+      - s
+
+  - intent: head_crown
+    examples: |
+      - crown
+      - crowns
+      - c
+
+  - intent: head_eyes
+    examples: |
+      - eyes
+      - eye
+      - e
+
+  - intent: flu_symptom
+    examples: |
+      - flu
+      - cough
+      - cold
+      - fever
+      - f
+      - runny rose
+      - vomitting
+      - body ache
+
+  - intent: vision_symptom
+    examples: |
+      - vision
+      - v
+      
+  - intent: stomach_symptom
+    examples: |
+      - stomachache
+      - pain in stomach
+      - stomach ache
+      - stomach
