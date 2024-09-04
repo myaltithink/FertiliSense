@@ -17,6 +17,15 @@
         android:theme="@style/Theme.FertiliSense"
         tools:targetApi="31">
         <activity
+            android:name=".EventDecorator"
+            android:exported="false" />
+        <activity
+            android:name=".EditPeriodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CalendarActivity"
+            android:exported="false" />
+        <activity
             android:name=".ChatBotActivity"
             android:exported="false" />
         <activity

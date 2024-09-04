@@ -74,10 +74,10 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
                 } else if (id == R.id.calendar) {
                     Log.d("FertiliSense", "Calendar clicked");
                     // Uncomment and modify when CalendarActivity is ready
-                    // Intent intent = new Intent(FertiliSenseDashboardActivity.this, CalendarActivity.class);
-                    // startActivity(intent);
-                    // overridePendingTransition(0, 0);
-                    // finish();
+                     Intent intent = new Intent(FertiliSenseDashboardActivity.this, CalendarActivity.class);
+                     startActivity(intent);
+                     overridePendingTransition(0, 0);
+                     finish();
                 } else if (id == R.id.home) {
                     // Handle "Home" action
                     Log.d("FertiliSense", "Already on the Home screen");
