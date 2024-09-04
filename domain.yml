@@ -1,0 +1,57 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - log_menstrual_cycle
+  - inform
+
+entities:
+  - start_date
+  - end_date
+  - cycle_duration
+
+slots:
+  start_date:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: start_date
+  end_date:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: end_date
+  cycle_duration:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: cycle_duration
+
+responses:
+  utter_greet:
+    - text: "Hey! How are you?"
+
+  utter_ask_start_date:
+    - text: "Please provide the start date of your menstrual cycle (dd/mm/yyyy)."
+
+  utter_ask_end_date:
+    - text: "Please provide the end date of your menstrual cycle (dd/mm/yyyy)."
+
+  utter_ask_cycle_duration:
+    - text: "Please provide the duration of your cycle in days."
+
+  utter_goodbye:
+    - text: "Bye"
+
+  utter_iamabot:
+    - text: "I am a bot, powered by Rasa."
+
+actions:
+  - action_log_menstrual_cycle
+  - action_greet
+  - action_goodbye
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

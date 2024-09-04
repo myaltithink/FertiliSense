@@ -1,211 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:background="#FFFFFF"
     android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/white"
     tools:context=".UserProfileActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/top_navigation_background"
-        app:titleTextColor="@color/white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:textStyle="bold"
-        android:text="ACCOUNT PROFILE SETTINGS"
-        android:textColor="#BE29EC"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/top_navigation_background"
+            app:titleTextColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageView
-        android:id="@+id/profile_picture_settings"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/profile_picture_background"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/ic_profile"
-        app:layout_constraintTop_toBottomOf="@id/header"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:textStyle="bold"
+            android:text="ACCOUNT PROFILE SETTINGS"
+            android:textColor="#BE29EC"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-    <TextView
-        android:id="@+id/username_settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/inter_semibold"
-        android:text="Loading..."
-        android:textColor="#BE29EC"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/profile_picture_settings"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        <ImageView
+            android:id="@+id/profile_picture_settings"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/profile_picture_background"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_profile"
+            app:layout_constraintTop_toBottomOf="@id/header"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- username -->
-    <ImageView
-        android:id="@+id/ic_user"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:srcCompat="@drawable/ic_user"
-        app:layout_constraintTop_toBottomOf="@id/username_settings"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="30dp" />
+        <TextView
+            android:id="@+id/username_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Loading..."
+            android:textColor="#BE29EC"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/profile_picture_settings"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/show_username_settings"
-        android:layout_width="300dp"
-        android:layout_height="38dp"
-        android:background="@drawable/border_text"
-        android:text="Loading..."
-        android:textSize="15sp"
-        app:layout_constraintTop_toTopOf="@id/ic_user"
-        app:layout_constraintBottom_toBottomOf="@id/ic_user"
-        app:layout_constraintStart_toEndOf="@id/ic_user"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="16dp" />
+        <ImageView
+            android:id="@+id/ic_user"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="30dp"
+            app:srcCompat="@drawable/ic_user"
+            app:layout_constraintTop_toBottomOf="@id/username_settings"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- email -->
-    <ImageView
-        android:id="@+id/ic_email"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:srcCompat="@drawable/ic_email"
-        app:layout_constraintTop_toBottomOf="@id/ic_user"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="30dp" />
+        <TextView
+            android:id="@+id/show_username_settings"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:background="@drawable/border_text"
+            android:text="Loading..."
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toTopOf="@id/ic_user"
+            app:layout_constraintBottom_toBottomOf="@id/ic_user"
+            app:layout_constraintStart_toEndOf="@id/ic_user"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/show_email_settings"
-        android:layout_width="300dp"
-        android:layout_height="38dp"
-        android:background="@drawable/border_text"
-        android:text="Loading..."
-        android:textSize="15sp"
-        app:layout_constraintTop_toTopOf="@id/ic_email"
-        app:layout_constraintBottom_toBottomOf="@id/ic_email"
-        app:layout_constraintStart_toEndOf="@id/ic_email"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp" />
+        <ImageView
+            android:id="@+id/ic_email"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="30dp"
+            app:srcCompat="@drawable/ic_email"
+            app:layout_constraintTop_toBottomOf="@id/ic_user"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- gender -->
-    <ImageView
-        android:id="@+id/ic_gender"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:srcCompat="@drawable/ic_gender"
-        app:layout_constraintTop_toBottomOf="@id/ic_email"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="30dp" />
+        <TextView
+            android:id="@+id/show_email_settings"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:background="@drawable/border_text"
+            android:text="Loading..."
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toTopOf="@id/ic_email"
+            app:layout_constraintBottom_toBottomOf="@id/ic_email"
+            app:layout_constraintStart_toEndOf="@id/ic_email"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/show_gender_settings"
-        android:layout_width="300dp"
-        android:layout_height="38dp"
-        android:background="@drawable/border_text"
-        android:text="Loading..."
-        android:textSize="15sp"
-        app:layout_constraintTop_toTopOf="@id/ic_gender"
-        app:layout_constraintBottom_toBottomOf="@id/ic_gender"
-        app:layout_constraintStart_toEndOf="@id/ic_gender"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp" />
+        <ImageView
+            android:id="@+id/ic_gender"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="30dp"
+            app:srcCompat="@drawable/ic_gender"
+            app:layout_constraintTop_toBottomOf="@id/ic_email"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- age -->
-    <ImageView
-        android:id="@+id/ic_age"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:srcCompat="@drawable/ic_age"
-        app:layout_constraintTop_toBottomOf="@id/ic_gender"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="30dp" />
+        <TextView
+            android:id="@+id/show_gender_settings"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:background="@drawable/border_text"
+            android:text="Loading..."
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toTopOf="@id/ic_gender"
+            app:layout_constraintBottom_toBottomOf="@id/ic_gender"
+            app:layout_constraintStart_toEndOf="@id/ic_gender"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/show_age_settings"
-        android:layout_width="300dp"
-        android:layout_height="38dp"
-        android:background="@drawable/border_text"
-        android:text="Loading..."
-        android:textSize="15sp"
-        app:layout_constraintTop_toTopOf="@id/ic_age"
-        app:layout_constraintBottom_toBottomOf="@id/ic_age"
-        app:layout_constraintStart_toEndOf="@id/ic_age"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp" />
+        <ImageView
+            android:id="@+id/ic_age"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="30dp"
+            app:srcCompat="@drawable/ic_age"
+            app:layout_constraintTop_toBottomOf="@id/ic_gender"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- dob -->
-    <ImageView
-        android:id="@+id/ic_dob"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:srcCompat="@drawable/ic_dob"
-        app:layout_constraintTop_toBottomOf="@id/ic_age"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="30dp" />
+        <TextView
+            android:id="@+id/show_age_settings"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:background="@drawable/border_text"
+            android:text="Loading..."
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toTopOf="@id/ic_age"
+            app:layout_constraintBottom_toBottomOf="@id/ic_age"
+            app:layout_constraintStart_toEndOf="@id/ic_age"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/show_dob_settings"
-        android:layout_width="300dp"
-        android:layout_height="38dp"
-        android:background="@drawable/border_text"
-        android:text="Loading..."
-        android:textSize="15sp"
-        app:layout_constraintTop_toTopOf="@id/ic_dob"
-        app:layout_constraintBottom_toBottomOf="@id/ic_dob"
-        app:layout_constraintStart_toEndOf="@id/ic_dob"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp" />
+        <ImageView
+            android:id="@+id/ic_dob"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="30dp"
+            app:srcCompat="@drawable/ic_dob"
+            app:layout_constraintTop_toBottomOf="@id/ic_age"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- phone -->
-    <ImageView
-        android:id="@+id/ic_phone"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:srcCompat="@drawable/ic_phone"
-        app:layout_constraintTop_toBottomOf="@id/ic_dob"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="30dp" />
+        <TextView
+            android:id="@+id/show_dob_settings"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:background="@drawable/border_text"
+            android:text="Loading..."
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toTopOf="@id/ic_dob"
+            app:layout_constraintBottom_toBottomOf="@id/ic_dob"
+            app:layout_constraintStart_toEndOf="@id/ic_dob"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/show_phone_settings"
-        android:layout_width="300dp"
-        android:layout_height="38dp"
-        android:background="@drawable/border_text"
-        android:text="Loading..."
-        android:textSize="15sp"
-        app:layout_constraintTop_toTopOf="@id/ic_phone"
-        app:layout_constraintBottom_toBottomOf="@id/ic_phone"
-        app:layout_constraintStart_toEndOf="@id/ic_phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp" />
+        <ImageView
+            android:id="@+id/ic_phone"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="30dp"
+            app:srcCompat="@drawable/ic_phone"
+            app:layout_constraintTop_toBottomOf="@id/ic_dob"
+            app:layout_constraintStart_toStartOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/show_phone_settings"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:background="@drawable/border_text"
+            android:text="Loading..."
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toTopOf="@id/ic_phone"
+            app:layout_constraintBottom_toBottomOf="@id/ic_phone"
+            app:layout_constraintStart_toEndOf="@id/ic_phone"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

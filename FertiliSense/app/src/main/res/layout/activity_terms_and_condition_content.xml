@@ -58,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:text="Terms and Conditions"
                 android:textSize="20sp"
+                android:textColor="@color/black"
                 android:textStyle="bold"/>
 
             <TextView
@@ -65,6 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:textColor="@color/black"
                 android:text="         The following phrases and situations govern all use of the FertiliSense cell software by using FertiliSense. By gaining access to and installing the App, you acknowledge and comply with be sure via those Terms. If you do now not comply with the phrases and situations of these Terms, do now not perform the App."
                 android:textSize="16sp"/>
 
@@ -73,6 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:textColor="@color/black"
                 android:text="1. Acceptance of Terms The fact that you are the usage of the FertiliSense Application for cell gadgets means you compromise to and receive all conditions described in those Terms. You agree that the Company, at its sole discretion, may change these Terms in complete or in component at any time without or with notice, just by posting such adjustments on the Application. Your similarly use of the Application will be deemed as your attractiveness of modified Terms."
                 android:textSize="16sp"/>
 
@@ -81,6 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:textColor="@color/black"
                 android:text="2. Intended use the FertiliSense mobile application is designed to measure and monitor the menstrual cycle and time of ovulation, amongst different fitness-related symptoms, entirely for instructional use. It is not meant to replace any professional clinical advice, prognosis, or treatment. Any medical decisions are to be consulted with a certified fitness professional."
                 android:textSize="16sp"/>
 
@@ -89,6 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:textColor="@color/black"
                 android:text="3. User Content In to this point as administrative privileges is probably had to access the mobile app, recollect that it's far viable for FertiliSense to apply accumulated non-public information and any content material you could have uploaded as 'User Content' You maintain any possession rights that you can have for your User Content; but, by filing User Content to the App, you hereby furnish FertiliSense a international, non-extraordinary, royalty-unfastened, sub-licenseable, and transferrable license to use, reproduce, distribute, and put together by-product works of this User Content."
                 android:textSize="16sp"/>
 
@@ -97,6 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:textColor="@color/black"
                 android:text="4. Privacy FertiliSense is committed to protecting all of your non-public information. Please refer to our privateness coverage, which clarifies how we'd gather, use, or in all likelihood reveal your personal facts."
                 android:textSize="16sp"/>
 
@@ -105,6 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:textColor="@color/black"
                 android:text="5. Prohibited Conduct You agree that, when it comes to the FertiliSense cellular utility, you may no longer do both of the subsequent: \n - Either host or allow the advent or obvious affiliation or involvement of any 0.33 party through misrepresentation of the entity or individual;\n - Disrupt or purpose interference with the right operating of the App, or any individual server or network linked to the App. \n - Transmission of any type of virus, bug, illness, Trojan horse, or different form of malicious code. \n - Access to the App or to some other system or community which is illegal."
                 android:textSize="16sp"/>
 
@@ -113,6 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:textColor="@color/black"
                 android:text="6. Intellectual Property The FertiliSense cell software, as well as all of the content material, capabilities, and capability, either available on or thru the identical, belong to and are the belongings of FertiliSense, and beneath its safety by means of copyright, trademark, and different legal guidelines that protect the highbrow belongings thereto. You aren't allowed to reproduce, distribute, modify, make derivative works from, publicly show, publicly carry out, republish, download, store, or transmit any fabric on or through the Application, except to: You are not allowed to reproduce, distribute, modify, create spinoff works of, publicly display, publicly perform, republish, download, store, or transmit any of the fabric."
                 android:textSize="16sp"/>
 
@@ -121,6 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:textColor="@color/black"
                 android:text="7. Disclaimer of Warranties the FertiliSense cell utility is supplied 'as is' and 'as to be had,' without any representations or warranties, specific or implied. FertiliSense does not warrant that:  the App could be uninterrupted or errors-unfastened; there are defects to be corrected; the App or the server that makes it to be had is free of viruses or other dangerous additives."
                 android:textSize="16sp"/>
 
@@ -129,6 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:textColor="@color/black"
                 android:text="8. Limitation of Liability FertiliSense will not be held responsible for any direct, indirect, incidental, special, consequential, or punitive damages that may occur due to the use of this mobile application from FertiliSense, whether based on warranty, contract, tort (such as negligence), or any other legal theory, even if advised of the possibility of such damages."
                 android:textSize="16sp"/>
 
@@ -137,6 +147,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:textColor="@color/black"
                 android:text="9. Governing Law These Terms and any policies These Terms and any policies referred to herein shall be governed and construed in accordance with the laws of [insert location/country]. Any claim or dispute between you and FertiliSense arising under or in connection with these Terms or relating to your use of the FertiliSense mobile application shall be governed exclusively by the courts located in [insert location/country]."
                 android:textSize="16sp"/>
 
