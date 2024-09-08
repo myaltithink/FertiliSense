@@ -72,8 +72,7 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
                     overridePendingTransition(0, 0);
                     finish();
                 } else if (id == R.id.calendar) {
-                    Log.d("FertiliSense", "Calendar clicked");
-                    // Uncomment and modify when CalendarActivity is ready
+                    Log.d("FertiliSense", "Navigationg to CalendarActivity");
                      Intent intent = new Intent(FertiliSenseDashboardActivity.this, CalendarActivity.class);
                      startActivity(intent);
                      overridePendingTransition(0, 0);
@@ -82,15 +81,13 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
                     // Handle "Home" action
                     Log.d("FertiliSense", "Already on the Home screen");
                 } else if (id == R.id.search) {
-                    Log.d("FertiliSense", "Search clicked");
-                    // Uncomment and modify when SearchActivity is ready
+                    Log.d("FertiliSense", "Navigating to UserDataActivity");
                     // Intent intent = new Intent(FertiliSenseDashboardActivity.this, SearchActivity.class);
                     // startActivity(intent);
                     // overridePendingTransition(0, 0);
                     // finish();
                 } else if (id == R.id.symptoms) {
-                    Log.d("FertiliSense", "Symptoms clicked");
-                    // Uncomment and modify when SymptomsActivity is ready
+                    Log.d("FertiliSense", "Navigating to SymptomsActivity");
                     // Intent intent = new Intent(FertiliSenseDashboardActivity.this, SymptomsActivity.class);
                     // startActivity(intent);
                     // overridePendingTransition(0, 0);

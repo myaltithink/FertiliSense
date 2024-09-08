@@ -33,6 +33,7 @@ nlu:
       - start date 15/09/2024
       - end date 19/09/2024
       - duration is 30 days
+      - 01/08/2024
 
   - intent: goodbye
     examples: |
@@ -72,7 +73,7 @@ nlu:
       - is this a bot?
       - you're a bot, right?
 
-  - intent: ask_reproductive_health  # Added intent
+  - intent: ask_reproductive_health 
     examples: |
       - Tell me about the male reproductive system
       - What is the female reproductive system?
@@ -86,6 +87,8 @@ nlu:
       - more than 24 hours
       - less
       - more
+      - less than
+      - more than
       - l
       - m
 
@@ -136,6 +139,7 @@ nlu:
     examples: |
       - vision
       - v
+      - vis
       
   - intent: stomach_symptom
     examples: |
@@ -143,3 +147,4 @@ nlu:
       - pain in stomach
       - stomach ache
       - stomach
+      - stomach-ache

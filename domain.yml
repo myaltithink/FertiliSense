@@ -39,8 +39,9 @@ intents:
   - ask_medication
   - head_symptom
   - day
-  - affirm
   - deny
+  - affirm
+  - ask_menstruation_frequency
   - head_whole
   - head_sides
   - head_crown
@@ -56,6 +57,7 @@ entities:
   - start_date
   - end_date
   - cycle_duration
+  - period_duration
 
 slots:
   start_date:
@@ -73,10 +75,15 @@ slots:
     mappings:
       - type: from_entity
         entity: cycle_duration
+  period_duration:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: period_duration      
 
 responses:
   utter_greet:
-    - text: "Hi! How may I help you? Are you facing any of these problems: Headache | Stomach-ache | Flu | Vision"
+    - text: "Hi mate! How may I help you today? Are you looking to log your menstrual cycle, get information about the reproductive system, learn more about how a man's lifestyle impacts his fertility, discuss symptoms like headache, stomach-ache, flu, vision issues or any symptoms related to your reproductive system?"
 
   utter_ask_start_date:
     - text: "Please provide the start date of your menstrual cycle (dd/mm/yyyy)."
@@ -87,11 +94,14 @@ responses:
   utter_ask_cycle_duration:
     - text: "Please provide the duration of your cycle in days."
 
+  utter_ask_period_duration:
+    - text: "Please provide the number of days your period lasts."
+
   utter_goodbye:
-    - text: "Goodbye! Take care!"
+    - text: "Goodbye! Take care mate!"
 
   utter_iamabot:
-    - text: "I am a FertiliSense Bot."
+    - text: "I am your mate, powered by FertiliSense."
 
   utter_ask_mood:
     - text: "I'm sorry to hear that. Would you like to talk about it?"
@@ -114,48 +124,47 @@ responses:
   utter_day:
     - text: "Since when are you experiencing the pain? less than 24 hours | more than 24 hours"
 
-  utter_head_stomach_symptom:
-    - text: "Are you facing any stomach problems like acid reflux? Yes | No"
-
-  utter_head_stomach_response:
-    - text: "1. Drink buttermilk 2. Drink lukewarm water with lemon 3. Consume apple cider vinegar"
-
   utter_head_symptom:
     - text: "Which area of the head does it hurt the most? Whole | Sides | Crown | Around the eye"
 
   utter_head_whole_response:
-    - text: "This often indicates Stress, Daily Routine Change, or Acidity. Following are some remedies for the same: Stress – 1. Meditate and do breathing exercises 2. Soothe pain with cold compress 3. Take steams Daily Routine Change – 1. Get Adequate Sleep 2. Avoid direct exposure to sun 3. Stay Hydrated Acidity – 1. Avoid acidic food 2. Increase fiber intake 3. Have Regular meals"
+    - text: "This often indicates Stress, Daily Routine Change, or Acidity.\n\nFollowing are some remedies for the same:Stress\n\n1. Meditate and do breathing exercises\n2. Soothe pain with cold compress\n3. Take steams Daily Routine Change\n1. Get Adequate Sleep\n2. Avoid direct exposure to sun\n3. Stay Hydrated Acidity\n1. Avoid acidic food\n2. Increase fiber intake\n3. Have Regular meals"
 
   utter_head_sides_response:
-    - text: "This often indicates Migraine or Sinus. Following are some remedies for the same: Migraine - 1. Use essential Oils 2. Try acupressure 3. Avoid processed food, pickled food, or carbonated drinks. Sinus – 1. Take steam 2. Use eucalyptus oil 3. Intake Vitamin C"
+    - text: "This often indicates Migraine or Sinus.\n\nFollowing are some remedies for the same:\n\nMigraine:\n1. Use essential Oils\n2. Try acupressure\n3. Avoid processed food, pickled food, or carbonated drinks.\n\nSinus:\n1. Take steam\n2. Use eucalyptus oil\n3. Intake Vitamin C"
 
   utter_head_crown_response:
-    - text: "This often indicates Lack of Sleep, Brain freeze, or Tension. Following are some remedies for the same: Lack of Sleep - 1. Get adequate sleep 2. Avoid using Electronic devices before sleeping. Brain Freeze - 1. Be in warm environments 2. Cover your head before going out. Tension - 1. Relax with Yoga 2. Drink Water 3. Dim the lights"
+    - text: "This often indicates Lack of Sleep, Brain freeze, or Tension.\n\nFollowing are some remedies for the same:\n\nLack of Sleep:\n1. Get adequate sleep\n2. Avoid using Electronic devices before sleeping.\n\nBrain Freeze:\n1. Be in warm environments\n2. Cover your head before going out.\n\nTension:\n1. Relax with Yoga\n2. Drink Water\n3. Dim the lights"
 
   utter_head_eyes_response:
-    - text: "This often indicates Change in Eye number or Stress. Following are some remedies for the same: Change in Eye number - 1. Get your number checked again 2. Limit screen time 3. Take breaks every 30 minutes. Stress - 1. Sip Ginger tea 2. Get a massage 3. Apply Cold Compress"
+    - text: "This often indicates Change in Eye number or Stress.\n\nFollowing are some remedies for the same:\n\nChange in Eye number:\n1. Get your number checked again\n2. Limit screen time\n3. Take breaks every 30 minutes.\n\nStress:\n1. Sip Ginger tea\n2. Get a massage\n3. Apply Cold Compress"
 
   utter_flu_response:
-    - text: "This often is caused by high fever, headache, muscle aches, cough, runny nose, or vomiting sensation. Following are some remedies for the same: 1. Get lots of rest 2. Stay hydrated 3. Gargle with salt water for sore throat 4. Wash your hands often with soap and water"
+    - text: "This often is caused by high fever, headache, muscle aches, cough, runny nose, or vomiting sensation.\n\nFollowing are some remedies for the same:\n1. Get lots of rest\n2. Stay hydrated\n3. Gargle with salt water for sore throat\n4. Wash your hands often with soap and water"
 
   utter_vision_types:
-    - text: "1. Did you use contact lenses for a long time? 2. Had lack of sleep? 3. Have conditions like arthritis, diabetes, or pregnancy? Yes | No"
+    - text: "1. Did you use contact lenses for a long time?\n2. Had lack of sleep?\n3. Have conditions like arthritis, diabetes, or pregnancy?\n\nYes | No"
 
   utter_dry_eyes_response:
-    - text: "You have symptoms of Dry Eyes. It is a common condition that occurs when your tears aren't able to provide adequate lubrication for your eyes. Following are some remedies for the same: 1. Artificial tears or other lubricating eye drops 2. Apply warm compresses 3. Rest your eyes 4. Get more sleep"
+    - text: "You have symptoms of Dry Eyes. It is a common condition that occurs when your tears aren't able to provide adequate lubrication for your eyes.\n\nFollowing are some remedies for the same:\n1. Artificial tears or other lubricating eye drops\n2. Apply warm compresses\n3. Rest your eyes\n4. Get more sleep"
 
   utter_allergy_eyes_response:
-    - text: "You have symptoms of Eye Allergies. They occur when the eyes react to allergens such as dust, exposure to sun, bacteria or virus, pollen, smoke, or contact lens that irritates them. Following are some remedies for the same: 1. Wash your eyes 2. Apply cold compress 3. Stay indoors 4. Apply allergy eye drops"
+    - text: "You have symptoms of Eye Allergies. They occur when the eyes react to allergens such as dust, exposure to sun, bacteria or virus, pollen, smoke, or contact lens that irritates them.\n\nFollowing are some remedies for the same:\n1. Wash your eyes\n2. Apply cold compress\n3. Stay indoors\n4. Apply allergy eye drops"
 
   utter_stomach_types:
-    - text: "Are you facing any of the following issues: Bloating, Constipation, Gas? Yes | No"
+    - text: "Are you facing any of the following issues: Bloating, Constipation, Gas?\n\nYes | No"
 
   utter_gas_response:
-    - text: "Following are some remedies for the same: Bloating - 1. Eat at regular intervals 2. Replace sodas with water 3. Cut down on salt. Constipation - 1. Drink more water 2. Increase intake of soluble fibers like oat bran, barley, nuts, seeds, as well as some fruits and vegetables 3. Exercise more. Gas - 1. Sit down during each meal and eat slowly 2. Avoid soda and other carbonated beverages 3. Find ways to work exercise into your routine, such as taking a walk after a meal."
+    - text: "Following are some remedies for the same:\n\nBloating:\n1. Eat at regular intervals\n2. Replace sodas with water\n3. Cut down on salt.\n\nConstipation:\n1. Drink more water\n2. Increase intake of soluble fibers like oat bran, barley, nuts, seeds, as well as some fruits and vegetables\n3. Exercise more.\n\nGas:\n1. Sit down during each meal and eat slowly\n2. Avoid soda and other carbonated beverages\n3. Find ways to work exercise into your routine, such as taking a walk after a meal."
 
   utter_poison_response:
-    - text: "Following are the remedies for some other causes of Stomach-ache: Lower Abdomen Pain - 1. Use a heating bag 2. Reduce your intake of coffee, tea, and alcohol as these can make the pain worse 3. Get plenty of rest. Vomiting - 1. Eat light, bland foods 2. Avoid fried, greasy, or sweet foods 3. Eat slowly and eat smaller, more frequent meals. Loose Motions - 1. Drink ginger juice 2. Drink lemon and salt water 3. Eat pomegranate"
+    - text: "Following are the remedies for some other causes of Stomach-ache:\n\nLower Abdomen Pain:\n1. Use a heating bag\n2. Reduce your intake of coffee, tea, and alcohol as these can make the pain worse\n3. Get plenty of rest.\n\nVomiting:\n1. Eat light, bland foods\n2. Avoid fried, greasy, or sweet foods\n3. Eat slowly and eat smaller, more frequent meals.\n\nLoose Motions:\n1. Drink ginger juice\n2. Drink lemon and salt water\n3. Eat pomegranate"
 
+  utter_head_stomach_symptom:
+    - text: "Are you facing any stomach problems like acid reflux? Yes | No"
+
+  utter_head_stomach_response:
+    - text: "1. Drink buttermilk\n2. Drink lukewarm water with lemon\n3. Consume apple cider vinegar"
 
 session_config:
   session_expiration_time: 60

@@ -18,6 +18,10 @@ stories:
       - intent: inform
         entities:
           - cycle_duration
+      - action: utter_ask_period_duration
+      - intent: inform
+        entities:
+          - period_duration
       - action: action_log_menstrual_cycle
 
   - story: happy path
@@ -42,25 +46,13 @@ stories:
   - story: handle medication query
     steps:
       - intent: ask_medication
-
+  
+# handles head questions and answers
   - story: head main
     steps:
       - intent: head_symptom
       - action: utter_day
       - intent: day
-      - action: utter_head_stomach_symptom
-
-  - story: head stomach ache
-    steps:
-      - action: utter_head_stomach_symptom
-      - intent: affirm
-      - action: utter_head_stomach_response
-      - action: utter_did_that_help 
-
-  - story: headache area
-    steps:
-      - action: utter_head_stomach_symptom
-      - intent: deny
       - action: utter_head_symptom
 
   - story: headache whole
@@ -87,6 +79,7 @@ stories:
       - action: utter_head_eyes_response
       - action: utter_did_that_help
 
+# handles flu questions and answers
   - story: flu
     steps:
       - intent: flu_symptom
@@ -95,6 +88,7 @@ stories:
       - action: utter_flu_response
       - action: utter_did_that_help
 
+# handles vision questions and answers
   - story: dry vision
     steps:
       - intent: vision_symptom
@@ -115,11 +109,24 @@ stories:
       - action: utter_allergy_eyes_response
       - action: utter_did_that_help
 
-  - story: gas stomach
+# handles stomach-ache questions and answers
+  - story: stomach ache acid yes
     steps:
       - intent: stomach_symptom
       - action: utter_day
       - intent: day
+      - action: utter_head_stomach_symptom
+      - intent: affirm
+      - action: utter_head_stomach_response
+      - action: utter_did_that_help
+
+  - story: gas stomach no
+    steps:
+      - intent: stomach_symptom
+      - action: utter_day
+      - intent: day
+      - action: utter_head_stomach_symptom
+      - intent: deny
       - action: utter_stomach_types
       - intent: affirm
       - action: utter_gas_response
@@ -130,6 +137,8 @@ stories:
       - intent: stomach_symptom
       - action: utter_day
       - intent: day
+      - action: utter_head_stomach_symptom
+      - intent: deny
       - action: utter_stomach_types
       - intent: deny
       - action: utter_poison_response
