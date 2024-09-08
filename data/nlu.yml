@@ -148,3 +148,18 @@ nlu:
       - stomach ache
       - stomach
       - stomach-ache
+
+  - intent: affirm
+    examples: |
+      - yes
+      - Yes
+      - Y
+      - y
+  
+  - intent: deny
+    examples: |
+      - No
+      - NO
+      - N
+      - no
+      - n
