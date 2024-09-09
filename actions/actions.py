@@ -163,14 +163,19 @@ class ActionGoodbye(Action):
         dispatcher.utter_message(text="Goodbye! Have a great day!")
         return []
 
-class ActionHandleMood(Action):
-    def name(self) -> str:
+class ActionHandleMood(Action):    
+    def name(self) -> Text:
         return "action_handle_mood"
 
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
-        dispatcher.utter_message(text="It sounds like you're not feeling great. Do you want to talk about it?")
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(response="utter_ask_mood")
+
         return []
 
+# Action for getting info on Wikipedia
 class ActionQueryWikipedia(Action):
     def name(self) -> str:
         return "action_query_wikipedia"
@@ -189,6 +194,7 @@ class ActionQueryWikipedia(Action):
         dispatcher.utter_message(text=response)
         return []
 
+# Action for getting info on GPT-4
 class ActionQueryGPT4(Action):
     def name(self) -> str:
         return "action_query_gpt4"
@@ -210,6 +216,7 @@ class ActionQueryGPT4(Action):
         dispatcher.utter_message(text=result)
         return []
 
+# Action for asking user how is their day
 class ActionAskDay(Action):
     def name(self) -> Text:
         return "action_ask_day"
@@ -221,7 +228,8 @@ class ActionAskDay(Action):
         dispatcher.utter_message(response="utter_day")
 
         return []
-
+                
+# Action for Head Symptoms along with types
 class ActionHeadSymptom(Action):
     def name(self) -> Text:
         return "action_head_symptom"
@@ -282,6 +290,7 @@ class ActionHeadEyes(Action):
 
         return []
 
+# Action for Flu
 class ActionFluSymptom(Action):
     def name(self) -> Text:
         return "action_flu_symptom"
@@ -294,6 +303,7 @@ class ActionFluSymptom(Action):
 
         return []
 
+# Action for Vision
 class ActionVisionSymptom(Action):
     def name(self) -> Text:
         return "action_vision_symptom"
@@ -306,6 +316,7 @@ class ActionVisionSymptom(Action):
 
         return []
 
+# Action for Stomach
 class ActionStomachSymptom(Action):
     def name(self) -> Text:
         return "action_stomach_symptom"
