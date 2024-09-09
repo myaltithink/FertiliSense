@@ -83,18 +83,18 @@ public class PerimetriumActivity extends AppCompatActivity {
                     startActivity(intent);
                     overridePendingTransition(0,0);
                     finish();
-                } else if (id == R.id.search) {
-                    Log.d(TAG, "Search clicked");
-                    // Intent intent = new Intent(PerimetriumActivity.this, SearchActivity.class);
-                    // startActivity(intent);
-                    // overridePendingTransition(0,0);
-                    // finish();
-                } else if (id == R.id.symptoms) {
-                    Log.d(TAG, "Symptoms clicked");
-                    // Intent intent = new Intent(PerimetriumActivity.this, SymptomsActivity.class);
-                    // startActivity(intent);
-                    // overridePendingTransition(0,0);
-                    // finish();
+                } else if (id == R.id.chatbot) {
+                    Log.d("FertiliSense", "Chatbot clicked");
+                    Intent intent = new Intent(PerimetriumActivity.this, ChatBotActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    finish();
+                } else if (id == R.id.report) {
+                    Log.d("FertiliSense", "User report details clicked");
+//                    Intent intent = new Intent(ReportActivity.this, ChatBotActivity.class);
+//                    startActivity(intent);
+//                    overridePendingTransition(0, 0);
+//                    finish();
                 }
 
                 return true;

@@ -18,13 +18,13 @@
         android:icon="@drawable/ic_home" />
 
     <item
-        android:id="@+id/search"
-        android:title="Search"
-        android:icon="@drawable/ic_search" />
+        android:id="@+id/report"
+        android:title="Report"
+        android:icon="@drawable/ic_report" />
 
     <item
-        android:id="@+id/symptoms"
-        android:title="Symptoms"
-        android:icon="@drawable/ic_symptoms" />
+        android:id="@+id/chatbot"
+        android:title="Chatbot"
+        android:icon="@drawable/ic_chatbot" />
 
 </menu>

@@ -81,18 +81,18 @@ public class ProstrateGlandActivity extends AppCompatActivity {
                     Intent intent = new Intent(ProstrateGlandActivity.this, FertiliSenseDashboardActivity.class);
                     startActivity(intent);
                     finish();
-                } else if (id == R.id.search) {
-                    Log.d(TAG, "Search clicked");
-                    // Uncomment and complete as needed
-                    // Intent intent = new Intent(ProstrateGlandActivity.this, SearchActivity.class);
-                    // startActivity(intent);
-                    // finish();
-                } else if (id == R.id.symptoms) {
-                    Log.d(TAG, "Symptoms clicked");
-                    // Uncomment and complete as needed
-                    // Intent intent = new Intent(ProstrateGlandActivity.this, SymptomsActivity.class);
-                    // startActivity(intent);
-                    // finish();
+                } else if (id == R.id.chatbot) {
+                    Log.d("FertiliSense", "Chatbot clicked");
+                    Intent intent = new Intent(ProstrateGlandActivity.this, ChatBotActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    finish();
+                } else if (id == R.id.report) {
+                    Log.d("FertiliSense", "User report details clicked");
+//                    Intent intent = new Intent(ReportActivity.this, ChatBotActivity.class);
+//                    startActivity(intent);
+//                    overridePendingTransition(0, 0);
+//                    finish();
                 }
 
                 return true;

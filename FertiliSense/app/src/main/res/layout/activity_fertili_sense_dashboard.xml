@@ -26,16 +26,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_menu" />
 
-        <ImageView
-            android:id="@+id/ic_chatbot"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_chatbot" />
-
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -45,8 +35,8 @@
             android:textColor="@color/black"
             android:textSize="23sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/ic_chatbot"
-            app:layout_constraintHorizontal_bias="0.518"
+            app:layout_constraintEnd_toStartOf="@+id/nav_header_profile_picture"
+            app:layout_constraintHorizontal_bias="0.681"
             app:layout_constraintStart_toEndOf="@id/ic_menu"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -231,6 +221,17 @@
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="@+id/cycle_duration"
             app:layout_constraintTop_toTopOf="@+id/cycle_duration" />
+
+        <ImageView
+            android:id="@+id/nav_header_profile_picture"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_user" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

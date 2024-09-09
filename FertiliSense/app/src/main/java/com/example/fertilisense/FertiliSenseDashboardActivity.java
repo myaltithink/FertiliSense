@@ -80,18 +80,18 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
                 } else if (id == R.id.home) {
                     // Handle "Home" action
                     Log.d("FertiliSense", "Already on the Home screen");
-                } else if (id == R.id.search) {
-                    Log.d("FertiliSense", "Navigating to UserDataActivity");
-                    // Intent intent = new Intent(FertiliSenseDashboardActivity.this, SearchActivity.class);
-                    // startActivity(intent);
-                    // overridePendingTransition(0, 0);
-                    // finish();
-                } else if (id == R.id.symptoms) {
-                    Log.d("FertiliSense", "Navigating to SymptomsActivity");
-                    // Intent intent = new Intent(FertiliSenseDashboardActivity.this, SymptomsActivity.class);
-                    // startActivity(intent);
-                    // overridePendingTransition(0, 0);
-                    // finish();
+                } else if (id == R.id.chatbot) {
+                    Log.d("FertiliSense", "Chatbot clicked");
+                    Intent intent = new Intent(FertiliSenseDashboardActivity.this, ChatBotActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    finish();
+                } else if (id == R.id.report) {
+                    Log.d("FertiliSense", "User report details clicked");
+//                    Intent intent = new Intent(ReportActivity.this, ChatBotActivity.class);
+//                    startActivity(intent);
+//                    overridePendingTransition(0, 0);
+//                    finish();
                 }
 
                 return true;
@@ -100,20 +100,6 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
 
         // Set "Home" as the default selected item
         bottomNavigationView.setSelectedItemId(R.id.home);
-
-        ImageView chatBot = findViewById(R.id.ic_chatbot);
-
-        // Set the onClickListener for the back button
-        chatBot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("FertiliSense", "Navigating to ChatBot");
-                Intent intent = new Intent(FertiliSenseDashboardActivity.this, ChatBotActivity.class);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-                finish();
-            }
-        });
     }
 
     private void loadUserInformation() {
