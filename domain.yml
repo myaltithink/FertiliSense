@@ -83,7 +83,7 @@ slots:
 
 responses:
   utter_greet:
-    - text: "Hi mate! How may I help you today? Are you looking to log your menstrual cycle, get information about the reproductive system, learn more about how a man's lifestyle impacts his fertility, discuss symptoms like headache, stomach-ache, flu, vision issues or any symptoms related to your reproductive system?"
+    - text: "Hi mate! How may I help you today?\n\nAre you looking to log your menstrual cycle\n\nGet information about the reproductive system\n\nLearn more about how a man's lifestyle impacts his fertility\nDiscuss symptoms like: headache, stomach-ache, flu, vision issues or any symptoms related to your reproductive system?"
 
   utter_ask_start_date:
     - text: "Please provide the start date of your menstrual cycle (dd/mm/yyyy)."
