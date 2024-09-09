@@ -163,6 +163,7 @@ class ActionGoodbye(Action):
         dispatcher.utter_message(text="Goodbye! Have a great day!")
         return []
 
+# Actions handle the mood
 class ActionHandleMood(Action):    
     def name(self) -> Text:
         return "action_handle_mood"
