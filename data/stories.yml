@@ -29,10 +29,13 @@ stories:
       - intent: greet
       - action: utter_greet
 
+# Action for handling mood
   - story: handle mood unhappy
     steps:
       - intent: mood_unhappy
       - action: utter_ask_mood
+      - intent: affirm
+      - action: utter_inform_mood
       - intent: inform
       - action: utter_acknowledge_mood
 
