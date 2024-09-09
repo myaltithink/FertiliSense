@@ -39,6 +39,13 @@ stories:
       - intent: inform
       - action: utter_acknowledge_mood
 
+  - story: handle mood unhappy
+    steps:
+      - intent: mood_unhappy
+      - action: utter_ask_mood
+      - intent: deny
+      - action: utter_acknowledge_mood
+
   - story: handle reproductive health query
     steps:
       - intent: ask_reproductive_health
