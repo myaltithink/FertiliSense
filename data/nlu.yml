@@ -99,6 +99,7 @@ nlu:
       - head ache
       - head
       - h
+      - head-ache
 
   - intent: head_whole
     examples: |
@@ -120,6 +121,8 @@ nlu:
 
   - intent: head_eyes
     examples: |
+      - around the eyes
+      - around the eye
       - eyes
       - eye
       - e
@@ -130,7 +133,7 @@ nlu:
       - cough
       - cold
       - fever
-      - f
+      - high fever
       - runny rose
       - vomitting
       - body ache
@@ -138,6 +141,7 @@ nlu:
   - intent: vision_symptom
     examples: |
       - vision
+      - visions
       - v
       - vis
       
