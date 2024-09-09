@@ -106,8 +106,11 @@ responses:
   utter_ask_mood:
     - text: "I'm sorry to hear that. Would you like to talk about it?"
 
+  utter_inform_mood:
+    - text: "Okay, tell me what is wrong."
+
   utter_acknowledge_mood:
-    - text: "It's okay to feel that way. I'm here if you need to talk."
+    - text: "It's okay to feel that way. I'm always here if you need to talk."
 
   utter_ask_for_topic:
     - text: "What specific information about the reproductive system are you looking for? For example, 'male reproductive system' or 'female reproductive system'."
@@ -116,7 +119,7 @@ responses:
     - text: "{response}"
 
   utter_did_that_help:
-    - text: "I hope that this helps you. If you wish to continue, please select which problem: Headache | Stomach-ache | Flu | Vision. Otherwise, you can exit."
+    - text: "I hope this information is useful to you. If you’d like to continue, let me know how I can assist you further. Otherwise, feel free to exit."
 
   utter_happy:
     - text: "Great, carry on!"
