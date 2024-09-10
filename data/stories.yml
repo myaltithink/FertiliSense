@@ -36,7 +36,7 @@ stories:
       - action: utter_ask_mood
       - intent: affirm
       - action: utter_inform_mood
-      - intent: inform
+      - intent: mood_answer
       - action: utter_acknowledge_mood
 
   - story: handle mood unhappy
@@ -55,7 +55,7 @@ stories:
 
   - story: handle medication query
     steps:
-      - intent: ask_medication
+      - intent: ask_reproductive_health 
   
 # handles head questions and answers
   - story: head main
@@ -153,3 +153,32 @@ stories:
       - intent: deny
       - action: utter_poison_response
       - action: utter_did_that_help
+
+# handles lifestyles and fertility of men questions and answers
+
+  - story: lifestyle men yes
+    steps:
+      - intent: lifestyle_men
+      - action: utter_nine_life_style_men
+      - action: utter_explain_nine_life_style_men
+      - intent: affirm
+      - action: utter_explain_lose_excess_weight
+      - action: utter_explain_stop_smoking
+      - action: utter_explain_cut_back_alcohol
+      - action: utter_explain_avoid_recreational_drugs
+      - action: utter_explain_do_regular_exercise
+      - action: utter_explain_manage_stress
+      - action: utter_explain_keep_an_eye_on_temperature
+      - action: utter_explain_eat_healthy_diet
+      - action: utter_explain_talk_to_your_gp
+      - action: utter_did_that_help
+
+  - story: lifestyle men no
+    steps:
+      - intent: lifestyle_men
+      - action: utter_nine_life_style_men
+      - action: utter_explain_nine_life_style_men
+      - intent: deny
+      - action: utter_did_that_help
+
+# handles itchy testicles questions and answers

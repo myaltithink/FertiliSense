@@ -22,6 +22,7 @@ wiki_wiki = wikipediaapi.Wikipedia(
 # Set up OpenAI API key
 openai.api_key = 'your_key'
 
+# Actions of handling logging of cycles
 class ActionLogMenstrualCycle(Action):
     def name(self) -> str:
         return "action_log_menstrual_cycle"
@@ -182,17 +183,85 @@ class ActionQueryWikipedia(Action):
         return "action_query_wikipedia"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
-        topic = tracker.latest_message.get('text')
-        if 'male reproductive system' in topic.lower():
-            page = wiki_wiki.page('Male_reproductive_system')
-        elif 'female reproductive system' in topic.lower():
-            page = wiki_wiki.page('Female_reproductive_system')
+        topic = tracker.latest_message.get('text').lower()
+
+        # List of topics related to the male reproductive system (anatomy, physiology, diseases)
+        male_reproductive_topics = [
+            'male reproductive system', 'testosterone', 'spermatogenesis', 'testes', 
+            'epididymis', 'vas deferens', 'seminal vesicle', 'prostate', 'penis', 
+            'scrotum', 'bulbourethral glands', 'semen', 'sperm', 'ejaculation',
+            'erection', 'circumcision', 'foreskin', 'male infertility', 'erectile dysfunction', 
+            'prostate cancer', 'benign prostatic hyperplasia', 'varicocele', 'hydrocele', 
+            'testicular cancer', 'testicular torsion', 'hypogonadism', 'andropause',
+            'oligospermia', 'azoospermia', 'cryptorchidism'
+        ]
+
+        # List of topics related to the female reproductive system (anatomy, physiology, diseases)
+        female_reproductive_topics = [
+            'female reproductive system', 'estrogen', 'progesterone', 'ovulation', 'ovaries', 
+            'fallopian tubes', 'uterus', 'endometrium', 'myometrium', 'cervix', 'vagina', 
+            'labia', 'clitoris', 'hymen', 'bartholin glands', 'skene glands', 'menstruation', 
+            'menstrual cycle', 'follicular phase', 'luteal phase', 'menopause', 
+            'perimenopause', 'female infertility', 'polycystic ovary syndrome', 
+            'endometriosis', 'uterine fibroids', 'ovarian cysts', 'cervical cancer', 
+            'ovarian cancer', 'uterine cancer', 'vaginitis', 'pelvic inflammatory disease', 
+            'vulvodynia', 'dyspareunia', 'amenorrhea', 'dysmenorrhea', 'premenstrual syndrome (PMS)',
+            'premenstrual dysphoric disorder (PMDD)', 'ectopic pregnancy', 'miscarriage', 
+            'menorrhagia', 'polymenorrhea', 'oligomenorrhea'
+        ]
+
+        # Reproductive health and fertility-related topics
+        fertility_and_health_topics = [
+            'fertility', 'infertility', 'fertility treatments', 'IVF', 'artificial insemination',
+            'surrogacy', 'fertility preservation', 'egg freezing', 'sperm donation', 
+            'egg donation', 'ovarian reserve', 'fertility tests', 'hormonal tests', 
+            'semen analysis', 'ultrasound for fertility', 'assisted reproductive technology',
+            'contraception', 'birth control', 'condoms', 'oral contraceptives', 
+            'intrauterine device (IUD)', 'hormonal implants', 'sterilization', 'vasectomy', 
+            'tubal ligation', 'natural family planning', 'emergency contraception', 
+            'morning-after pill', 'fertility awareness', 'reproductive rights', 
+            'sexual health', 'sexually transmitted infections', 'HIV/AIDS', 'chlamydia', 
+            'gonorrhea', 'syphilis', 'herpes', 'human papillomavirus (HPV)', 'hepatitis B', 
+            'trichomoniasis', 'genital warts', 'infertility in men', 'infertility in women', 
+            'sex education', 'safe sex', 'fertility clinics', 'male contraceptives', 
+            'hormone replacement therapy', 'sexual dysfunction', 'libido', 'impotence', 
+            'premature ejaculation', 'delayed ejaculation', 'vaginismus', 'reproductive endocrinology',
+            'andrology', 'gynecology', 'urology', 'reproductive system'
+        ]
+
+        # Pregnancy and childbirth-related topics
+        pregnancy_and_childbirth_topics = [
+            'pregnancy', 'gestation', 'fertilization', 'zygote', 'embryo', 'fetus', 'prenatal care',
+            'antenatal care', 'obstetrics', 'midwifery', 'natural birth', 'cesarean section', 
+            'epidural', 'labor and delivery', 'childbirth', 'postpartum period', 'lactation', 
+            'breastfeeding', 'colostrum', 'miscarriage', 'stillbirth', 'ectopic pregnancy', 
+            'gestational diabetes', 'preeclampsia', 'placenta previa', 'placental abruption', 
+            'preterm birth', 'post-term pregnancy', 'in vitro fertilization', 'assisted delivery',
+            'home birth', 'water birth', 'doula', 'birth defects', 'genetic counseling', 
+            'amniocentesis', 'chorionic villus sampling', 'ultrasound in pregnancy', 'fetal monitoring'
+        ]
+
+        # Combine all topics in one list
+        reproductive_system_topics = (
+            male_reproductive_topics + 
+            female_reproductive_topics + 
+            fertility_and_health_topics + 
+            pregnancy_and_childbirth_topics
+        )
+
+        # Check if the topic is relevant to any of the reproductive system topics
+        matched_topic = next((t for t in reproductive_system_topics if t in topic), None)
+
+        if matched_topic:
+            page = wiki_wiki.page(matched_topic)
+            if page.exists():
+                response = page.summary[:500]  # Return a short summary of the page
+                dispatcher.utter_message(text=response)
+            else:
+                dispatcher.utter_message(text=f"Sorry, I couldn't find information on {matched_topic}.")
         else:
             dispatcher.utter_message(text="I'm sorry, I don't have information on that topic.")
-            return []
-
-        response = page.summary[:500]  # Return a short summary
-        dispatcher.utter_message(text=response)
+        
         return []
 
 # Action for getting info on GPT-4
@@ -329,5 +398,30 @@ class ActionStomachSymptom(Action):
         dispatcher.utter_message(response="utter_stomach_types")
 
         return []
+    
+# Actions for handling lifestyle of men
+class ActionLifestyleMen(Action):
+    def name(self) -> Text:
+        return "action_lifestyle_men"
 
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
+        dispatcher.utter_message(response="utter_nine_life_style_men")
+
+        return []
+    
+# Actions for handling itchy testicles
+class ActionItchyTesticles(Action):
+    def name(self) -> Text:
+        return "action_lifestyle_men"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(response="utter_nine_life_style_men")
+
+        return []
+    

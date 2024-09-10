@@ -81,6 +81,7 @@ nlu:
       - Explain the reproductive system
       - What are the parts of the male reproductive system?
 
+
   - intent: day
     examples: |
       - less than 24 hours
@@ -167,3 +168,36 @@ nlu:
       - N
       - no
       - n
+
+  - intent: mood_answer
+    examples: |
+      - I feel overwhelmed with everything going on
+      - I’m struggling with my self-esteem
+      - I've been feeling down ever since I lost my job
+      - I feel like I’m not good enough
+      - My friends don’t seem to care about me anymore
+      - I’ve been having a hard time coping with recent changes
+      - I feel like I’m always alone even when I’m with others
+      - I’m dealing with a lot of stress at work
+      - I’ve been missing my family a lot lately
+      - I feel disconnected from my goals and dreams
+      - I'm having trouble moving past a recent disappointment
+      - I feel like I’m stuck in a rut and nothing is changing
+      - I’ve been feeling anxious and it’s affecting my mood
+      - I’m struggling with a recent breakup and can’t seem to move on
+      - I feel like I’m not making any progress in my life
+      - I’m upset because I feel unsupported by the people around me
+      - My dog died 
+
+  - intent: lifestyle_men
+    examples: |
+      - lifestyle of men
+      - fertility of men
+      - men fertility
+      - men's lifestyle
+      - men's fertility
+      - men lifestyle
+      - lifestyle men
+      - fertility men
+      - men's fertility lifestyle
+      - men's lifestyle fertility

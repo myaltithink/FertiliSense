@@ -26,11 +26,17 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText emailFieldLogin, passwordFieldLogin;
     private FirebaseAuth authProfile;
+    private DatabaseReference userDatabaseReference;
     private static final String TAG = "LoginActivity";
     private boolean isNavigatingFromRegister = false; // Add this flag
 
@@ -47,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         emailFieldLogin = findViewById(R.id.email_field_login);
         passwordFieldLogin = findViewById(R.id.password_field_login);
         authProfile = FirebaseAuth.getInstance();
+        userDatabaseReference = FirebaseDatabase.getInstance().getReference("Registered Users");
 
         // Show hide password
         ImageView imageViewShowHidePassword = findViewById(R.id.imageView_show_hide_password);
@@ -125,15 +132,11 @@ public class LoginActivity extends AppCompatActivity {
                     // Check if email is verified
                     if (firebaseUser != null && firebaseUser.isEmailVerified()) {
                         Toast.makeText(LoginActivity.this, "You have successfully logged in", Toast.LENGTH_SHORT).show();
-
-                        // Start the user profile activity
-                        Intent intent = new Intent(LoginActivity.this, FertiliSenseDashboardActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                        overridePendingTransition(0,0);
-                        finish();
+                        fetchUserGenderAndNavigate(firebaseUser.getUid());
                     } else {
-                        firebaseUser.sendEmailVerification();
+                        if (firebaseUser != null) {
+                            firebaseUser.sendEmailVerification();
+                        }
                         authProfile.signOut();
                         showAlertDialog();
                     }
@@ -152,6 +155,41 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void fetchUserGenderAndNavigate(String uid) {
+        userDatabaseReference.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String gender = snapshot.child("gender").getValue(String.class);
+                    if (gender != null) {
+                        if (gender.equalsIgnoreCase("female")) {
+                            navigateToActivity(FertiliSenseDashboardActivity.class);
+                        } else if (gender.equalsIgnoreCase("male")) {
+                            navigateToActivity(ChatBotActivity.class);
+                        }
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Gender information is missing", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(LoginActivity.this, "User data is missing", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(LoginActivity.this, "Failed to retrieve user data", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void navigateToActivity(Class<?> activityClass) {
+        Intent intent = new Intent(LoginActivity.this, activityClass);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+        finish();
     }
 
     private void showAlertDialog() {
@@ -187,10 +225,7 @@ public class LoginActivity extends AppCompatActivity {
             FirebaseUser firebaseUser = authProfile.getCurrentUser();
             if (firebaseUser.isEmailVerified()) {
                 Toast.makeText(LoginActivity.this, "You are currently logged in", Toast.LENGTH_SHORT).show();
-
-                // Start the user profile activity
-                startActivity(new Intent(LoginActivity.this, FertiliSenseDashboardActivity.class));
-                finish();
+                fetchUserGenderAndNavigate(firebaseUser.getUid());
             } else {
                 // If the email is not verified, prompt them to verify their email
                 showAlertDialog();
