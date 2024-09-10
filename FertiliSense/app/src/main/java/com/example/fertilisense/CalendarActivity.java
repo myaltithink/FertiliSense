@@ -66,7 +66,7 @@ public class CalendarActivity extends AppCompatActivity {
             }
         });
 
-        // Fetch menstrual cycle data
+        // bading si albert
         fetchCycleData();
 
     }
