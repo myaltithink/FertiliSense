@@ -2,53 +2,43 @@ package com.example.fertilisense;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.content.Intent; // Add this import
+import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import java.util.Collections;
+import java.util.HashMap;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 public class EditPeriodActivity extends AppCompatActivity {
 
     private EditText startDateField, endDateField, periodDurationField, cycleDurationField;
     private Button saveButton;
     private TextView messageTextView;
-    private FirebaseAuth auth;
-    private DatabaseReference databaseReference;
-    private String userId;
+
+    private Calendar calendar = Calendar.getInstance();
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_period); // Updated layout file name
-
-        auth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference("MenstrualCycles");
-
-        if (auth.getCurrentUser() != null) {
-            userId = auth.getCurrentUser().getUid();
-        } else {
-            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
-            finish();
-            return; // Ensure code execution stops after finishing the activity
-        }
+        setContentView(R.layout.activity_edit_period);
 
         startDateField = findViewById(R.id.start_date_field);
         endDateField = findViewById(R.id.end_date_field);
@@ -57,97 +47,216 @@ public class EditPeriodActivity extends AppCompatActivity {
         saveButton = findViewById(R.id.save_button);
         messageTextView = findViewById(R.id.message_text_view);
 
+        // Initialize Firestore
+        db = FirebaseFirestore.getInstance();
+
+        // Fetch existing cycle data
+        fetchCycleData();
+
         startDateField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDatePickerDialog(startDateField);
+                showDatePicker(startDateField);
             }
         });
 
         endDateField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDatePickerDialog(endDateField);
+                showDatePicker(endDateField);
             }
         });
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveMenstrualCycle();
+                savePeriodData();
             }
         });
     }
 
-    private void showDatePickerDialog(final EditText dateField) {
-        final Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        int month = calendar.get(Calendar.MONTH);
-        int year = calendar.get(Calendar.YEAR);
-
-        DatePickerDialog picker = new DatePickerDialog(this,
+    private void showDatePicker(final EditText dateField) {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        dateField.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                    public void onDateSet(@NonNull DatePicker view, int year, int month, int dayOfMonth) {
+                        calendar.set(year, month, dayOfMonth);
+                        dateField.setText(dateFormat.format(calendar.getTime()));
                     }
-                }, year, month, day);
-        picker.show();
+                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.show();
     }
 
-    private void saveMenstrualCycle() {
+    private void fetchCycleData() {
+        // Replace "userId" with the actual user ID from your Firebase Authentication
+        String userId = "2xET5LlzYvNi7WooDcC1mpujyJ73";
+
+        db.collection("menstrual_cycles")
+                .document(userId)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                // Retrieve the first cycle from the cycles array
+                                if (document.contains("cycles")) {
+                                    // Assuming the first cycle is to be fetched
+                                    List<Map<String, Object>> cycles = (List<Map<String, Object>>) document.get("cycles");
+                                    if (cycles != null && !cycles.isEmpty()) {
+                                        Map<String, Object> cycle = cycles.get(0);
+
+                                        String startDate = (String) cycle.get("start_date");
+                                        String endDate = (String) cycle.get("end_date");
+                                        String periodDuration = (String) cycle.get("period_duration");
+                                        String cycleDuration = (String) cycle.get("cycle_duration");
+
+                                        startDateField.setText(startDate);
+                                        endDateField.setText(endDate);
+                                        periodDurationField.setText(periodDuration);
+                                        cycleDurationField.setText(cycleDuration);
+                                    }
+                                }
+                            } else {
+                                messageTextView.setText("No such document");
+                            }
+                        } else {
+                            messageTextView.setText("Error getting document: " + task.getException());
+                        }
+                    }
+                });
+    }
+
+    private void savePeriodData() {
         String startDate = startDateField.getText().toString();
         String endDate = endDateField.getText().toString();
         String periodDuration = periodDurationField.getText().toString();
         String cycleDuration = cycleDurationField.getText().toString();
 
-        if (TextUtils.isEmpty(startDate) || TextUtils.isEmpty(endDate) ||
-                TextUtils.isEmpty(periodDuration) || TextUtils.isEmpty(cycleDuration)) {
-            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+        if (startDate.isEmpty() || endDate.isEmpty() || periodDuration.isEmpty() || cycleDuration.isEmpty()) {
+            messageTextView.setText("Please fill in all fields.");
             return;
         }
 
-        DatabaseReference userCyclesRef = databaseReference.child(userId);
+        // Save cycle data
+        String userId = "2xET5LlzYvNi7WooDcC1mpujyJ73"; // Replace with actual user ID
 
-        // Retrieve existing data to save as previous data
-        userCyclesRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String prevStartDate = snapshot.child("startDate").getValue(String.class);
-                String prevEndDate = snapshot.child("endDate").getValue(String.class);
-                String prevPeriodDuration = snapshot.child("periodDuration").getValue(String.class);
-                String prevCycleDuration = snapshot.child("cycleDuration").getValue(String.class);
+        Map<String, Object> cycleData = new HashMap<>();
+        cycleData.put("start_date", startDate);
+        cycleData.put("end_date", endDate);
+        cycleData.put("period_duration", periodDuration);
+        cycleData.put("cycle_duration", cycleDuration);
 
-                // Save the current data to previous fields
-                userCyclesRef.child("previousStartDate").setValue(prevStartDate);
-                userCyclesRef.child("previousEndDate").setValue(prevEndDate);
-                userCyclesRef.child("previousPeriodDuration").setValue(prevPeriodDuration);
-                userCyclesRef.child("previousCycleDuration").setValue(prevCycleDuration);
-
-                // Save the new data to current fields
-                userCyclesRef.child("startDate").setValue(startDate);
-                userCyclesRef.child("endDate").setValue(endDate);
-                userCyclesRef.child("periodDuration").setValue(periodDuration);
-                userCyclesRef.child("cycleDuration").setValue(cycleDuration).addOnCompleteListener(new OnCompleteListener<Void>() {
+        db.collection("menstrual_cycles")
+                .document(userId)
+                .update("cycles", Collections.singletonList(cycleData))
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(EditPeriodActivity.this, "Menstrual cycle saved successfully", Toast.LENGTH_SHORT).show();
-                            Log.d("EditPeriodActivity", "Menstrual cycle saved successfully");
-                            finish(); // Close this activity and return to the previous one (Calendar Activity)
+                            // Calculate and update predictions
+                            updatePredictions(userId, startDate, endDate, cycleDuration);
                         } else {
-                            Log.e("EditPeriodActivity", "Failed to save menstrual cycle", task.getException());
-                            Toast.makeText(EditPeriodActivity.this, "Failed to save menstrual cycle", Toast.LENGTH_SHORT).show();
+                            messageTextView.setText("Error saving data: " + task.getException());
                         }
                     }
                 });
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("EditPeriodActivity", "Failed to retrieve data", error.toException());
-                Toast.makeText(EditPeriodActivity.this, "Failed to retrieve data", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
+
+    private void updatePredictions(String userId, String startDate, String endDate, String cycleDuration) {
+        // Convert date strings to Calendar objects
+        Calendar startCalendar = parseDate(startDate);
+        Calendar endCalendar = parseDate(endDate);
+        int cycleLength = Integer.parseInt(cycleDuration);
+
+        // Clear existing predictions
+        db.collection("menstrual_cycles")
+                .document(userId)
+                .update("predictions", new ArrayList<>())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            // List to hold predictions
+                            List<Map<String, Object>> predictions = new ArrayList<>();
+                            Calendar predictionStart = (Calendar) startCalendar.clone();
+                            Calendar predictionEnd = (Calendar) endCalendar.clone();
+
+                            for (int i = 0; i < 4; i++) { // Generate predictions for the next 4 cycles
+                                // Calculate start and end dates of the cycle
+                                Calendar cycleStart = (Calendar) predictionStart.clone();
+                                Calendar cycleEnd = (Calendar) cycleStart.clone();
+                                cycleEnd.add(Calendar.DAY_OF_MONTH, cycleLength - 1);
+
+                                // Calculate fertile window
+                                Calendar fertileWindowStart = (Calendar) cycleStart.clone();
+                                fertileWindowStart.add(Calendar.DAY_OF_MONTH, 12); // Example, adjust as needed
+                                Calendar fertileWindowEnd = (Calendar) fertileWindowStart.clone();
+                                fertileWindowEnd.add(Calendar.DAY_OF_MONTH, 5); // Example, adjust as needed
+
+                                // Calculate ovulation date
+                                Calendar ovulationDate = (Calendar) cycleStart.clone();
+                                ovulationDate.add(Calendar.DAY_OF_MONTH, 14); // Example, adjust as needed
+
+                                // Calculate next cycle start date
+                                Calendar nextCycleStart = (Calendar) cycleEnd.clone();
+                                nextCycleStart.add(Calendar.DAY_OF_MONTH, 1);
+
+                                // Create a map for this prediction
+                                Map<String, Object> prediction = new HashMap<>();
+                                prediction.put("cycle_start_date", dateFormat.format(cycleStart.getTime()));
+                                prediction.put("cycle_end_date", dateFormat.format(cycleEnd.getTime()));
+                                prediction.put("fertile_window_start", dateFormat.format(fertileWindowStart.getTime()));
+                                prediction.put("fertile_window_end", dateFormat.format(fertileWindowEnd.getTime()));
+                                prediction.put("ovulation_date", dateFormat.format(ovulationDate.getTime()));
+                                prediction.put("next_cycle_start_date", dateFormat.format(nextCycleStart.getTime()));
+                                prediction.put("strong_flow_start", dateFormat.format(cycleStart.getTime())); // Example, adjust as needed
+                                prediction.put("strong_flow_end", dateFormat.format(cycleEnd.getTime())); // Example, adjust as needed
+
+                                // Add this prediction to the list
+                                predictions.add(prediction);
+
+                                // Move to the next cycle
+                                predictionStart.add(Calendar.DAY_OF_MONTH, cycleLength);
+                                predictionEnd.add(Calendar.DAY_OF_MONTH, cycleLength);
+                            }
+
+                            // Save predictions to Firestore
+                            db.collection("menstrual_cycles")
+                                    .document(userId)
+                                    .update("predictions", predictions)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                messageTextView.setText("Data saved and predictions updated successfully!");
+                                                Intent intent = new Intent(EditPeriodActivity.this, CalendarActivity.class);
+                                                startActivity(intent);
+                                            } else {
+                                                messageTextView.setText("Error updating predictions: " + task.getException());
+                                            }
+                                        }
+                                    });
+                        } else {
+                            messageTextView.setText("Error clearing existing predictions: " + task.getException());
+                        }
+                    }
+                });
+    }
+
+
+
+
+    private Calendar parseDate(String dateString) {
+        Calendar calendar = Calendar.getInstance();
+        try {
+            calendar.setTime(dateFormat.parse(dateString));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return calendar;
+    }
+
+
 }
