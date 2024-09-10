@@ -85,7 +85,7 @@ slots:
 
 responses:
   utter_greet:
-    - text: "Hi mate! How may I help you today?\n\nAre you looking to log your menstrual cycle?\n\nGet information about the reproductive system or anything related to it?\n\nLearn more about how a man's lifestyle impacts his fertility?\n\nTopics related to fertility, contraception, and sexual health? \n\nDiscuss symptoms like: headache, stomach-ache, flu, vision issues or any symptoms related to your reproductive system?\n\nCommon causes of testicular pain\n\nWhat to Do If You Have Itchy Testicles"
+    - text: "Hi mate! How may I help you today?\n\nAre you looking to log your menstrual cycle?\n\nGet information about the reproductive system or anything related to it?\n\nLearn more about how a man's lifestyle impacts his fertility?\n\nTopics related to fertility, contraception, and sexual health? \n\nDiscuss symptoms like: headache, stomach-ache, flu, vision issues or any symptoms related to your reproductive system?\n\nCommon causes of testicular pain\n\nWhat procedures will a doctor use to address itchy testicles?"
 
   utter_ask_start_date:
     - text: "Please provide the start date of your menstrual cycle (dd/mm/yyyy)."
@@ -128,6 +128,9 @@ responses:
 
   utter_day:
     - text: "Since when are you experiencing the pain? less than 24 hours | more than 24 hours"
+
+  utter_explain_each_detail:
+    - text: "Would you like me to explain each of those in more detail?"
   
 # query and answer for head or head aches
   utter_head_symptom:
@@ -179,9 +182,6 @@ responses:
   utter_nine_life_style_men:
     - text: "To improve male fertility, consider these lifestyle changes:\n\n1. Lose Excess Weight\n2. Stop Smoking\n3. Cut Back on Alcohol\n4. Avoid Recreational Drugs\n5. Do regular exercise\n6. Manage Stress\n7. Keep an eye on temperature\n8. Eat a Healthy Diet\n9. Talk to Your GP"
 
-  utter_explain_nine_life_style_men:
-    - text: "Would you like me to explain each of those in more detail?"
-
   utter_explain_lose_excess_weight:
     - text: "Lose Excess Weight:\nObesity can negatively impact hormone levels, sperm production, and DNA integrity. Achieve a healthy weight through a balanced diet and exercise."
 
@@ -210,7 +210,14 @@ responses:
     - text: "Talk to Your GP:\nIf you have existing medical conditions or have had relevant surgeries, discuss fertility concerns with your doctor. If you have trouble conceiving after a year of unprotected sex, seek medical advice."
 
 # query and answer if you have itchy testicles
-  utter
+  utter_men_itchy_testicles:
+    - text: "What procedures will a doctor use to address itchy testicles? The following steps are:\n\n1. Pre-Exam Discussion\n2. Getting Ready\n3. Positioning\n4. The Exam\n5. Checking the Prostate\n6. Finishing Up"
+
+  utter_pre_exam_discussion:
+    - text: "1.	Pre-Exam Discussion:\nYour doctor or nurse will explain the procedure and answer any questions you have. You can request to have someone else present in the room if you'd like."
+
+  utter_getting_ready:
+    - text: "2.  Getting Ready:\nBefore the procedure, your doctor or nurse
 
 session_config:
   session_expiration_time: 60

@@ -68,10 +68,10 @@ public class FemaleReproductiveSystemActivity extends AppCompatActivity implemen
                     Log.d("FertiliSense", "Already on the Genital Screen");
                 } else if (id == R.id.calendar) {
                     Log.d("FertiliSense", "Calendar clicked");
-                    // Intent intent = new Intent(FemaleReproductiveSystemActivity.this, CalendarActivity.class);
-                    // startActivity(intent);
-                    // overridePendingTransition(0, 0);
-                    // finish();
+                    Intent intent = new Intent(FemaleReproductiveSystemActivity.this, CalendarActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    finish();
                 } else if (id == R.id.home) {
                     Log.d("FertiliSense", "Home clicked");
                     Intent intent = new Intent(FemaleReproductiveSystemActivity.this, FertiliSenseDashboardActivity.class);

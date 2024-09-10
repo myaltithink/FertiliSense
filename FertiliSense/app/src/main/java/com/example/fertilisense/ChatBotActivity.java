@@ -1,10 +1,13 @@
 package com.example.fertilisense;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -58,6 +61,17 @@ public class ChatBotActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_bot);
 
+        // Set up the toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle("FertiliSense ChatBot");
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_back_button_white);
+        }
+
         // Initialize Firebase Auth and Database
         auth = FirebaseAuth.getInstance();
         chatReference = FirebaseDatabase.getInstance().getReference("Chat");
@@ -85,6 +99,14 @@ public class ChatBotActivity extends AppCompatActivity {
                 welcomeTextView.setVisibility(View.GONE);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(ChatBotActivity.this, FertiliSenseDashboardActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
 
     void addToChat(String message, String sentBy) {
@@ -198,5 +220,6 @@ public class ChatBotActivity extends AppCompatActivity {
             }
 
         });
+
     }
 }

@@ -1,10 +1,8 @@
 version: "3.1"
 
 stories:
-  - story: greet and log cycle
+  - story: log cycle
     steps:
-      - intent: greet
-      - action: utter_greet
       - intent: log_menstrual_cycle
       - action: utter_ask_start_date
       - intent: inform
@@ -155,12 +153,11 @@ stories:
       - action: utter_did_that_help
 
 # handles lifestyles and fertility of men questions and answers
-
   - story: lifestyle men yes
     steps:
       - intent: lifestyle_men
       - action: utter_nine_life_style_men
-      - action: utter_explain_nine_life_style_men
+      - action: utter_explain_each_detail
       - intent: affirm
       - action: utter_explain_lose_excess_weight
       - action: utter_explain_stop_smoking
@@ -182,3 +179,10 @@ stories:
       - action: utter_did_that_help
 
 # handles itchy testicles questions and answers
+  - story: itchy testicles
+    steps:
+      - intent: itchy_testicles
+      - action: utter_men_itchy_testicles
+      - action: utter_explain_each_detail
+      - intent: affirm
+      - action: 

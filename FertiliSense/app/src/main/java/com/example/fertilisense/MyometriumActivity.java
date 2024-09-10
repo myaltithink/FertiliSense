@@ -73,11 +73,10 @@ public class MyometriumActivity extends AppCompatActivity {
                     finish();
                 } else if (id == R.id.calendar) {
                     Log.d(TAG, "Calendar clicked");
-                    // Uncomment and complete as needed
-                    // Intent intent = new Intent(MyometriumActivity.this, CalendarActivity.class);
-                    // startActivity(intent);
-                    // overridePendingTransition(0,0);
-                    // finish();
+                    Intent intent = new Intent(MyometriumActivity.this, CalendarActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(0,0);
+                    finish();
                 } else if (id == R.id.home) {
                     Log.d(TAG, "Dashboard clicked");
                     Intent intent = new Intent(MyometriumActivity.this, FertiliSenseDashboardActivity.class);

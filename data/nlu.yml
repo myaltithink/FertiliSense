@@ -201,3 +201,20 @@ nlu:
       - fertility men
       - men's fertility lifestyle
       - men's lifestyle fertility
+      - 9 lifestyle factors that help men fertility
+      - 9 factors that help men fertility
+      - factors that help men fertility
+
+  - intent: itchy_testicles
+    examples: |
+      - What procedures will a doctor use to address itchy testicles? the following steps are
+      - What are the following steps a doctor will take to diagnose and treat itchy testicles?
+      - How will a doctor proceed with treating itchy testicles? The following steps are
+      - What procedures does a doctor follow to manage itchy testicles? The following steps are
+      - What steps are involved in a doctor's approach to itchy testicles? The following steps are
+      - How does a doctor handle a case of itchy testicles? The following steps are
+      - What actions will a doctor take if you have itchy testicles? The following steps are
+      - What is the procedure for a doctor dealing with itchy testicles? The following steps are
+      - procedure itchy testicles
+      - procedures for itchy testicles
+      - steps for treating itchy testicles

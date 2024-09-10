@@ -415,13 +415,13 @@ class ActionLifestyleMen(Action):
 # Actions for handling itchy testicles
 class ActionItchyTesticles(Action):
     def name(self) -> Text:
-        return "action_lifestyle_men"
+        return "action_itchy_testicles"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        dispatcher.utter_message(response="utter_nine_life_style_men")
+        dispatcher.utter_message(response="utter_men_itchy_testicles")
 
         return []
     

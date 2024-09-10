@@ -71,10 +71,10 @@ public class MaleReproductiveSystemActivity extends AppCompatActivity implements
                     Log.d("FertiliSense", "Navigating to MaleReproductiveSystemActivity");
                 } else if (id == R.id.calendar) {
                     Log.d("FertiliSense", "Calendar clicked");
-                    // Intent intent = new Intent(MaleReproductiveSystemActivity.this, CalendarActivity.class);
-                    // startActivity(intent);
-                    // overridePendingTransition(0, 0);
-                    // finish();
+                    Intent intent = new Intent(MaleReproductiveSystemActivity.this, CalendarActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    finish();
                 } else if (id == R.id.home) {
                     Log.d("FertiliSense", "Home clicked");
                     Intent intent = new Intent(MaleReproductiveSystemActivity.this, FertiliSenseDashboardActivity.class);
@@ -87,7 +87,14 @@ public class MaleReproductiveSystemActivity extends AppCompatActivity implements
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                     finish();
+                } else if (id == R.id.report) {
+                    Log.d("FertiliSense", "User report details clicked");
+//                    Intent intent = new Intent(ReportActivity.this, ChatBotActivity.class);
+//                    startActivity(intent);
+//                    overridePendingTransition(0, 0);
+//                    finish();
                 }
+
 
                 return true;
             }

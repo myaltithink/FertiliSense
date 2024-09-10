@@ -69,17 +69,19 @@ public class ProstrateGlandActivity extends AppCompatActivity {
                     Log.d(TAG, "Navigating to MaleReproductiveSystemActivity");
                     Intent intent = new Intent(ProstrateGlandActivity.this, MaleReproductiveSystemActivity.class);
                     startActivity(intent);
+                    overridePendingTransition(0, 0);
                     finish();
                 } else if (id == R.id.calendar) {
                     Log.d(TAG, "Calendar clicked");
-                    // Uncomment and complete as needed
-                    // Intent intent = new Intent(ProstrateGlandActivity.this, CalendarActivity.class);
-                    // startActivity(intent);
-                    // finish();
+                    Intent intent = new Intent(ProstrateGlandActivity.this, CalendarActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    finish();
                 } else if (id == R.id.home) {
                     Log.d(TAG, "Dashboard clicked");
                     Intent intent = new Intent(ProstrateGlandActivity.this, FertiliSenseDashboardActivity.class);
                     startActivity(intent);
+                    overridePendingTransition(0, 0);
                     finish();
                 } else if (id == R.id.chatbot) {
                     Log.d("FertiliSense", "Chatbot clicked");
