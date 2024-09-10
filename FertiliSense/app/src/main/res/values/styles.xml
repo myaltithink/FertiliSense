@@ -20,4 +20,14 @@
         <item name="android:textSize">14sp</item> <!-- Adjust the text size for inactive items as needed -->
         <item name="android:textColor">@color/violet</item> <!-- Ensure the text color is violet -->
     </style>
+
+
+    <style name="CircleImageView" parent="Widget.MaterialComponents.ShapeableImageView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.Corner.Full</item>
+    </style>
+
+   <style name="ShapeAppearanceOverlay.App.Corner.Full" parent="">
+       <item name="cornerFamily">rounded</item>
+       <item name="cornerSize">50%</item>
+   </style>
 </resources>
