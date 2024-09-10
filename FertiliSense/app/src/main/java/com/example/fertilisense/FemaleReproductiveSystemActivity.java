@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class FemaleReproductiveSystemActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
@@ -351,6 +352,7 @@ public class FemaleReproductiveSystemActivity extends AppCompatActivity implemen
         View headerView = navigationView.getHeaderView(0);
         TextView usernameTextView = headerView.findViewById(R.id.nav_drawer_username);
         TextView emailTextView = headerView.findViewById(R.id.nav_drawer_email);
+        ImageView profilePictureView = findViewById(R.id.nav_header_profile_picture); // Add this
 
         FirebaseUser user = authProfile.getCurrentUser();
         if (user != null) {
@@ -365,18 +367,23 @@ public class FemaleReproductiveSystemActivity extends AppCompatActivity implemen
             referenceProfile.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    Log.d("FertiliSense", "DataSnapshot exists: " + snapshot.exists());
                     if (snapshot.exists()) {
                         String username = snapshot.child("username").getValue(String.class);
-                        Log.d("FertiliSense", "Username from snapshot: " + username);
                         if (username != null && !username.isEmpty()) {
-                            Log.d("FertiliSense", "Fetched username: " + username);
                             usernameTextView.setText(username);
+                        }
+
+                        // Fetch the profile picture from FirebaseUser
+                        Uri photoUri = user.getPhotoUrl();
+                        if (photoUri != null) {
+                            Picasso.with(FemaleReproductiveSystemActivity.this)
+                                    .load(photoUri)
+                                    .placeholder(R.drawable.ic_user) // Fallback image
+                                    .into(profilePictureView);
                         } else {
-                            Log.d("FertiliSense", "Username is null or empty");
+                            Log.d("FertiliSense", "User does not have a profile picture");
                         }
                     } else {
-                        Log.d("FertiliSense", "User data not found");
                         Toast.makeText(FemaleReproductiveSystemActivity.this, "User data not found", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -384,7 +391,6 @@ public class FemaleReproductiveSystemActivity extends AppCompatActivity implemen
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                     Toast.makeText(FemaleReproductiveSystemActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                    Log.e("FertiliSense", "Database error: " + error.getMessage());
                 }
             });
 
