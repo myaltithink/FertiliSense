@@ -17,6 +17,7 @@ actions:
   - action_stomach_symptom
   - action_goodbye
   - action_bot_challenge
+  - action_lifestyle_men
   - day
   - head_symptom
   - head_whole
@@ -33,10 +34,10 @@ intents:
   - goodbye
   - log_menstrual_cycle
   - inform
+  - mood_answer
   - mood_unhappy
   - bot_challenge
   - ask_reproductive_health
-  - ask_medication
   - head_symptom
   - day
   - deny
@@ -52,6 +53,7 @@ intents:
   - stomach_types
   - dry_eyes_response
   - allergy_eyes_response
+  - lifestyle_men
 
 entities:
   - start_date
@@ -83,7 +85,7 @@ slots:
 
 responses:
   utter_greet:
-    - text: "Hi mate! How may I help you today?\n\nAre you looking to log your menstrual cycle\n\nGet information about the reproductive system\n\nLearn more about how a man's lifestyle impacts his fertility\nDiscuss symptoms like: headache, stomach-ache, flu, vision issues or any symptoms related to your reproductive system?"
+    - text: "Hi mate! How may I help you today?\n\nAre you looking to log your menstrual cycle?\n\nGet information about the reproductive system or anything related to it?\n\nLearn more about how a man's lifestyle impacts his fertility?\n\nTopics related to fertility, contraception, and sexual health? \n\nDiscuss symptoms like: headache, stomach-ache, flu, vision issues or any symptoms related to your reproductive system?\n\nCommon causes of testicular pain\n\nWhat to Do If You Have Itchy Testicles"
 
   utter_ask_start_date:
     - text: "Please provide the start date of your menstrual cycle (dd/mm/yyyy)."
@@ -107,10 +109,10 @@ responses:
     - text: "I'm sorry to hear that. Would you like to talk about it?"
 
   utter_inform_mood:
-    - text: "Okay, tell me what is wrong."
+    - text: "Okay, tell me what is wrong?"
 
   utter_acknowledge_mood:
-    - text: "It's okay to feel that way. I'm always here if you need to talk."
+    - text: "That's alright, I understand. I'm always here if you ever need someone to talk to."
 
   utter_ask_for_topic:
     - text: "What specific information about the reproductive system are you looking for? For example, 'male reproductive system' or 'female reproductive system'."
@@ -126,7 +128,8 @@ responses:
 
   utter_day:
     - text: "Since when are you experiencing the pain? less than 24 hours | more than 24 hours"
-
+  
+# query and answer for head or head aches
   utter_head_symptom:
     - text: "Which area of the head does it hurt the most? Whole | Sides | Crown | Around the eye"
 
@@ -142,9 +145,11 @@ responses:
   utter_head_eyes_response:
     - text: "This often indicates Change in Eye number or Stress.\n\nFollowing are some remedies for the same:\n\nChange in Eye number:\n1. Get your number checked again\n2. Limit screen time\n3. Take breaks every 30 minutes.\n\nStress:\n1. Sip Ginger tea\n2. Get a massage\n3. Apply Cold Compress"
 
+# query and answer for Flu
   utter_flu_response:
     - text: "This often is caused by high fever, headache, muscle aches, cough, runny nose, or vomiting sensation.\n\nFollowing are some remedies for the same:\n1. Get lots of rest\n2. Stay hydrated\n3. Gargle with salt water for sore throat\n4. Wash your hands often with soap and water"
 
+# query and answer for Vision
   utter_vision_types:
     - text: "1. Did you use contact lenses for a long time?\n2. Had lack of sleep?\n3. Have conditions like arthritis, diabetes, or pregnancy?\n\nYes | No"
 
@@ -154,6 +159,7 @@ responses:
   utter_allergy_eyes_response:
     - text: "You have symptoms of Eye Allergies. They occur when the eyes react to allergens such as dust, exposure to sun, bacteria or virus, pollen, smoke, or contact lens that irritates them.\n\nFollowing are some remedies for the same:\n1. Wash your eyes\n2. Apply cold compress\n3. Stay indoors\n4. Apply allergy eye drops"
 
+# query and answer for Stomach ache 
   utter_stomach_types:
     - text: "Are you facing any of the following issues: Bloating, Constipation, Gas?\n\nYes | No"
 
@@ -168,6 +174,43 @@ responses:
 
   utter_head_stomach_response:
     - text: "1. Drink buttermilk\n2. Drink lukewarm water with lemon\n3. Consume apple cider vinegar"
+
+# query and answer for question about 9 lifestyles of men
+  utter_nine_life_style_men:
+    - text: "To improve male fertility, consider these lifestyle changes:\n\n1. Lose Excess Weight\n2. Stop Smoking\n3. Cut Back on Alcohol\n4. Avoid Recreational Drugs\n5. Do regular exercise\n6. Manage Stress\n7. Keep an eye on temperature\n8. Eat a Healthy Diet\n9. Talk to Your GP"
+
+  utter_explain_nine_life_style_men:
+    - text: "Would you like me to explain each of those in more detail?"
+
+  utter_explain_lose_excess_weight:
+    - text: "Lose Excess Weight:\nObesity can negatively impact hormone levels, sperm production, and DNA integrity. Achieve a healthy weight through a balanced diet and exercise."
+
+  utter_explain_stop_smoking:
+    - text: "Stop Smoking:\nSmoking reduces sperm volume, density, motility, and can damage sperm DNA. Quitting smoking can reverse these effects and improve overall fertility."
+
+  utter_explain_cut_back_alcohol:
+    - text: "Cut Back on Alcohol:\nExcessive alcohol consumption lowers testosterone levels and sperm quality. Limiting alcohol intake can enhance fertility."
+
+  utter_explain_avoid_recreational_drugs:
+    - text: "Avoid Recreational Drugs:\nDrugs like marijuana, cocaine, and anabolic steroids can damage sperm quality. Seek help to stop using these substances."
+
+  utter_explain_do_regular_exercise:
+    - text: "Do regular exercise:\nAim for at least 30 minutes of moderate exercise, five times a week, to maintain cardiovascular health and improve sperm count."
+
+  utter_explain_manage_stress:
+    - text: "Manage Stress:\nHigh stress levels can affect hormone production and sperm quality. Practice stress-reducing techniques like meditation."
+
+  utter_explain_keep_an_eye_on_temperature:
+    - text: "Keep an eye on temperature:\nAvoid overheating the testicles by not using a laptop on your lap or taking long hot baths. Wear loose-fitting clothing and take breaks if working in hot environments." 
+
+  utter_explain_eat_healthy_diet:
+    - text: "Eat a Healthy Diet:\nFocus on a diet rich in fruits, vegetables, whole grains, and omega-3 fatty acids. Avoid processed meats and excessive caffeine. Consider supplements if needed."
+
+  utter_explain_talk_to_your_gp:
+    - text: "Talk to Your GP:\nIf you have existing medical conditions or have had relevant surgeries, discuss fertility concerns with your doctor. If you have trouble conceiving after a year of unprotected sex, seek medical advice."
+
+# query and answer if you have itchy testicles
+  utter
 
 session_config:
   session_expiration_time: 60
