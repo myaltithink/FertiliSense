@@ -38,6 +38,7 @@ public class CalendarActivity extends AppCompatActivity {
     private FirebaseAuth authProfile;
     private String appPackageName;
 
+
     private static final String TAG = "CalendarActivity";
     private MaterialCalendarView calendarView;
     private Button editPeriodButton;
@@ -67,6 +68,7 @@ public class CalendarActivity extends AppCompatActivity {
 
         // bading si albert
         fetchCycleData();
+
     }
 
     private void fetchCycleData() {
