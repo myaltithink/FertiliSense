@@ -25,6 +25,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_menu" />
 
+        <ImageView
+            android:id="@+id/nav_header_profile_picture"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/border_profile_picture_dashboard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_user" />
+
         <!-- Male Reproductive System -->
 
         <!-- preview -->
@@ -132,7 +143,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="4dp"
             android:text="Seminal\nVesicle"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -145,7 +156,7 @@
             android:id="@+id/bladder_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="272dp"
+            android:layout_marginStart="300dp"
             android:layout_marginTop="28dp"
             android:text="Bladder"
             android:textColor="@color/black"
@@ -154,12 +165,14 @@
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toBottomOf="@id/repro_male_label" />
 
+        <!-- Description -->
+
         <TextView
             android:id="@+id/ductus_vas_deferens_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="48dp"
             android:text="Ductus (Vas) Deferens"
             android:textColor="@color/black"
             android:textSize="12sp"
@@ -171,8 +184,8 @@
             android:id="@+id/penis_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="124dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="132dp"
             android:text="Penis"
             android:textColor="@color/black"
             android:textSize="12sp"
@@ -185,7 +198,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="352dp"
+            android:layout_marginTop="392dp"
             android:padding="2dp"
             android:text="Urethral Opening"
             android:textAlignment="center"
@@ -195,14 +208,12 @@
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
 
-        <!-- Description -->
-
         <TextView
             android:id="@+id/testicles_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="164dp"
-            android:layout_marginTop="320dp"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="372dp"
             android:padding="2dp"
             android:text="Testicles"
             android:textAlignment="center"
@@ -216,8 +227,8 @@
             android:id="@+id/epididymis_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="260dp"
-            android:layout_marginTop="280dp"
+            android:layout_marginStart="292dp"
+            android:layout_marginTop="320dp"
             android:padding="2dp"
             android:text="Epididymis"
             android:textAlignment="center"
@@ -231,8 +242,8 @@
             android:id="@+id/bulbourethral_gland_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="272dp"
-            android:layout_marginTop="216dp"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="252dp"
             android:padding="2dp"
             android:text="Bulbourethral Gland"
             android:textAlignment="center"
@@ -246,8 +257,8 @@
             android:id="@+id/glans_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="136dp"
-            android:layout_marginTop="352dp"
+            android:layout_marginStart="152dp"
+            android:layout_marginTop="400dp"
             android:padding="2dp"
             android:text="Glans"
             android:textAlignment="center"
