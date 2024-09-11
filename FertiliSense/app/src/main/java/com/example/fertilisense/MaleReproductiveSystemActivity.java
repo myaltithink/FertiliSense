@@ -292,6 +292,7 @@ public class MaleReproductiveSystemActivity extends AppCompatActivity implements
                             Picasso.with(MaleReproductiveSystemActivity.this)
                                     .load(photoUri)
                                     .placeholder(R.drawable.ic_user) // Fallback image
+                                    .transform(new CircleTransform()) // Make the image circular
                                     .into(profilePictureView);
                         } else {
                             Log.d("FertiliSense", "User does not have a profile picture");
