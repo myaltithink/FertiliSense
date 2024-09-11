@@ -218,3 +218,25 @@ nlu:
       - procedure itchy testicles
       - procedures for itchy testicles
       - steps for treating itchy testicles
+
+  - intent: common_causes
+    examples: |
+      - common causes of testicular pain
+      - common causes of testicular problems
+      - common causes of testicular pain and problems
+      - common causes of testicular symptoms
+      - common causes of testicular discomfort
+      - common causes
+      - common testicular problems
+      - common testicular pain
+      - common testicular symptoms
+      - common testicular discomfort
+      - common testicular conditions
+      - common testicular problems and causes
+      - common testicular problems and symptoms
+      - common testicular conditions and symptoms
+      - common testicular causes and symptoms
+      - common testicular causes and discomfort
+      - common testicular causes and problems
+      - common testicular discomfort and problems
+      - testicular pain

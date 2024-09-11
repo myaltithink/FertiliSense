@@ -18,6 +18,8 @@ actions:
   - action_goodbye
   - action_bot_challenge
   - action_lifestyle_men
+  - action_itchy_testicles
+  - action_common_causes
   - day
   - head_symptom
   - head_whole
@@ -54,6 +56,8 @@ intents:
   - dry_eyes_response
   - allergy_eyes_response
   - lifestyle_men
+  - itchy_testicles
+  - common_causes
 
 entities:
   - start_date
@@ -217,7 +221,53 @@ responses:
     - text: "1.	Pre-Exam Discussion:\nYour doctor or nurse will explain the procedure and answer any questions you have. You can request to have someone else present in the room if you'd like."
 
   utter_getting_ready:
-    - text: "2.  Getting Ready:\nBefore the procedure, your doctor or nurse
+    - text: "2.  Getting Ready:\nBefore the procedure, your doctor or nurse"
+
+  utter_positioning:
+    - text: "3. Positioning:\n- Standing Up: You'll bend over with your legs apart and arms resting on a surface.\n- Lying Down: You'll lie on your side on the examination table with your knees pulled up to your chest."
+
+  utter_the_exam:
+    - text: "4. The Exam:\n- The doctor or nurse will insert a lubricated, gloved finger into your rectum. The lubrication helps make the process smoother. The finger only goes a short way in, as the prostate is close to the entrance."
+
+  utter_checking_the_prostate:
+    - text: "5. Checking the Prostate:\n- Lumps\n- Swelling\n- Tenderness\n- Abnormal size"
+
+  utter_finishing_up:
+    - text: "6. Finishing Up:\n- After the exam, you'll be given tissue to clean up any excess lubrication and privacy to get dressed. The whole process usually takes just a few minutes."
+
+#query and answer for common causes of testicular pain
+  utter_common_causes:
+    - text: "The following are the common causes of testicular pain:\n\n1. Trauma\n2. Epididymitis\n3. Orchitis\n4. Epididymal Cysts\n5. Hernias\n6. Kidney Stones\n7. Varicoceles\n8. Genital Thrush\n9. Eczema and Psoriasis\n10. Scabies"
+
+  utter_trauma:
+    - text: "1. Trauma\n- If you get hit in the testicles, it can really hurt and sometimes cause bruising or swelling. For relief, you can take painkillers you buy at the store and soak in a warm bath to help with the swelling. If the pain is really bad, you should see a doctor right away."
+
+  utter_orchitis:
+    - text: "2. Orchitis\n- Orchitis is when the testicles become inflamed, usually due to a virus or infection. It often follows untreated epididymitis. Orchitis is caused by mumps, which also includes a temperature, headache, and swelling of the face glands."
+  
+  utter_epididymal_cysts:
+    - text: "3. Epididymal Cysts\n- Are fluid-filled lumps in the tube behind the testicles. They’re common and usually harmless, but it’s important to see a doctor to rule out testicular cancer."
+
+  utter_hernias:
+    - text: "4. Hernias\n- Occur when an organ or fatty tissue pushes through a weak spot in the muscle or tissue wall, creating a lump or swelling in your groin or lower abdomen. This can cause testicular pain and swelling. You might notice the lump appears when you strain or disappears when you lie down."
+
+  utter_kidney_stones:
+    - text: "5.  Kidney Stones\n -Are hard lumps that form in the kidneys from waste in your blood and can travel down to the bladder, causing testicular pain. Along with testicular pain."
+
+  utter_varicoceles:
+    - text: "6. Varicoceles\n- Are swollen veins in the testicles, often on the left side. They might not always cause symptoms, but if they do, you might feel pain that worsens over the day or with physical activity. The affected testicle can feel heavy and lumpy. If you notice pain or changes mainly in your left testicle, check for these symptoms and consult a doctor."
+
+  utter_epididymitis:
+    - text: "7. Epididymitis\n- Epididymitis happens when the tube behind your testicles, called the epididymis, gets swollen and sore. It’s often caused by sexually transmitted infections (STIs) like gonorrhea or chlamydia, but can also be due to other infections."
+
+  utter_genital_thrush:
+    - text: "8. Genital Thrush\n- is a fungal infection caused by Candida albicans. It leads to redness, itching, and a burning sensation, often with white discharge and a bad smell. It can affect the testicles, the glands, and sometimes spread to the anal area or thighs."
+
+  utter_eczema_and_psoriasis:
+    - text: "9. Eczema and Psoriasis\n- are chronic skin conditions that can affect the genital area. They cause long-term inflammation but are not contagious."
+
+  utter_scabies:
+    - text: "10. Scabies\n- is a highly contagious condition caused by tiny mites that burrow into the skin. It spreads through close or repeated contact, including sexual contact, and causes intense itching that can affect various body parts."
 
 session_config:
   session_expiration_time: 60

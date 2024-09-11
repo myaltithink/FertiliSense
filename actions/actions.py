@@ -425,3 +425,15 @@ class ActionItchyTesticles(Action):
 
         return []
     
+# Actions for handling common causes of testicular pain
+class ActionItchyTesticles(Action):
+    def name(self) -> Text:
+        return "action_common_causes"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(response="utter_men_common_causes")
+
+        return []

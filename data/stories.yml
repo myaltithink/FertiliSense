@@ -174,15 +174,56 @@ stories:
     steps:
       - intent: lifestyle_men
       - action: utter_nine_life_style_men
-      - action: utter_explain_nine_life_style_men
+      - action: utter_explain_each_detail
       - intent: deny
       - action: utter_did_that_help
 
 # handles itchy testicles questions and answers
-  - story: itchy testicles
+  - story: itchy testicles yes
     steps:
       - intent: itchy_testicles
       - action: utter_men_itchy_testicles
       - action: utter_explain_each_detail
       - intent: affirm
-      - action: 
+      - action: utter_pre_exam_discussion
+      - action: utter_getting_ready
+      - action: utter_positioning
+      - action: utter_the_exam
+      - action: utter_checking_the_prostate
+      - action: utter_finishing_up
+      - action: utter_did_that_help
+
+  - story: itchy testicles no
+    steps:
+      - intent: itchy_testicles
+      - action: utter_men_itchy_testicles
+      - action: utter_explain_each_detail
+      - intent: deny
+      - action: utter_did_that_help
+
+# handles common causes questions and answers
+  - story: common causes yes
+    steps:
+      - intent: common_causes
+      - action: utter_common_causes
+      - action: utter_explain_each_detail
+      - intent: affirm
+      - action: utter_trauma
+      - action: utter_orchitis
+      - action: utter_epididymal_cysts
+      - action: utter_hernias
+      - action: utter_kidney_stones
+      - action: utter_varicoceles
+      - action: utter_epididymitis
+      - action: utter_genital_thrush
+      - action: utter_eczema_and_psoriasis
+      - action: utter_scabies
+      - action: utter_did_that_help
+
+  - story: common causes no
+    steps:
+      - intent: common_causes
+      - action: utter_common_causes
+      - action: utter_explain_each_detail
+      - intent: deny
+      - action: utter_did_that_help
