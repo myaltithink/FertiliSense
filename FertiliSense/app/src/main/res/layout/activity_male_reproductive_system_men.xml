@@ -276,7 +276,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="12dp"
             android:padding="10dp"
-            android:text="The male reproductive system includes the scrotum, testes, spermatic ducts, sex glands, and penis. These organs work together to produce sperm, the male gamete, and the other components of semen. These organs also work together to deliver semen out of the body and into the vagina where it can fertilize egg cells to produce offspring."
+            android:text="The male reproductive system consists of the scrotum, testes, spermatic ducts, sex glands, and penis. These organs function together to produce sperm and other components of semen. They also work together to deliver semen from the body into the vagina, where it can fertilize egg cells and produce offspring.\n\nSource: https://www.innerbody.com/image/repmov.html"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="14sp"

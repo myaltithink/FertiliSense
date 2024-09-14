@@ -55,7 +55,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         android:padding="10dp"
-        android:text="A triangular shaped, hollow organ located in the lower abdomen. It is held in place by ligaments that are attached to other organs and the pelvic bones. The bladder's walls relax and expand to store urine and contract and flatten to empty urine through the urethra."
+        android:text="The bladder is a hollow, triangular organ found in the lower abdomen. It's held in place by ligaments that connect it to nearby organs and the pelvic bones. The bladder's walls can stretch to hold urine and then contract to push the urine out through the urethra. \n\nSource:https://www.innerbody.com/image_dige05/dige15.html"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16sp"

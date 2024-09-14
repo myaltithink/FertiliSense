@@ -385,7 +385,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="12dp"
             android:padding="10dp"
-            android:text="The reproductive system of an organism, also known as the genitalsystem, is the biological system made up of all the anatomical organs involved in sexual reproduction. Many non-living substances such as fluids, hormones, and pheromones are also important accessories to the reproductive system."
+            android:text="The reproductive system of an organism, also known as the genitalsystem, is the biological system made up of all the anatomical organs involved in sexual reproduction. Many non-living substances such as fluids, hormones, and pheromones are also important accessories to the reproductive system.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/female-genital-system-1541215168?from=2"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp"

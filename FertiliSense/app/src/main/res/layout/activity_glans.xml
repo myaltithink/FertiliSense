@@ -64,7 +64,7 @@
             android:id="@+id/repro_female_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="The extremity of the penis is formed by the glans penis, the expanded anterior end of the corpus cavernosum urethræ. It is separated from the body by the constricted neck, which is overhung by the corona glandis. The glans of the penis is a sensitive, cone-shaped end to the shaft of the penis that covers the corpora cavernosa and bears the urethral opening. Inside the glans penis, the corpus spongiosum is dilated and forms the navicular fossa."
+            android:text="The tip of the penis is called the glans penis, which is the expanded front part of the corpus cavernosum urethrae. It is separated from the main part of the penis by a narrow area known as the neck, and is covered by a ridge called the corona glandis.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/glans-penis-1541222032?from=2"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp" />

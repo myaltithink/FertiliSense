@@ -55,7 +55,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         android:padding="10dp"
-        android:text="The serous coat (tunica serosa) is derived from the peritoneum; it invests the fundus and the whole of the intestinal surface of the uterus; but covers the vesical surface only as far as the junction of the body and cervix. In the lower fourth of the intestinal surface the peritoneum, though covering the uterus, is not closely connected with it, being separated from it by a layer of loose cellular tissue and some large veins."
+        android:text="The serous coat, or tunica serosa, comes from the peritoneum and covers the fundus and the entire intestinal surface of the uterus. However, it only covers the vesical surface up to where the body of the uterus meets the cervix. In the lower fourth of the intestinal surface, the peritoneum covers the uterus but is not tightly attached, being separated by a layer of loose connective tissue and some large veins.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/perimetrium-1541215220?from=2"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="15sp"

@@ -55,7 +55,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         android:padding="10dp"
-        android:text="Ovarian follicles are small sacs filled with fluid that are found inside a woman’s ovaries. They secrete hormones which influence stages of the menstrual cycle and women begin puberty with about 300,000 to 400,000 of them. Each has the potential to release an egg for fertilisation. Follicles and their size and status are a vital part of assessing fertility and fertility treatment."
+        android:text="Ovarian follicles are tiny fluid-filled sacs inside a woman's ovaries. They release hormones that affect the menstrual cycle. A woman is born with about 300,000 to 400,000 of these follicles, each capable of releasing an egg for fertilization. The size and condition of these follicles are important for evaluating fertility and guiding fertility treatments.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/vesicular-ovarian-follicles-1541215088"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="15sp"

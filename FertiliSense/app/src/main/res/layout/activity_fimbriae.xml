@@ -55,7 +55,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         android:padding="10dp"
-        android:text="Fimbriae are finger-like projections on the ends of your fallopian tubes closest to your ovaries. Each month, your fimbriae catch the egg that one of your ovaries releases during ovulation. Your fimbriae then sweep the egg (ovum) into the fallopian tube where the egg can be fertilized. Your fimbriae are just one small portion of your fallopian tubes, but they play a significant role in conception."
+        android:text="Fimbriae are finger-like projections at the ends of the Fallopian tubes near the ovaries. Each month, during ovulation, the fimbriae catch the egg released from the ovary and sweep it into the Fallopian tube. This is where the egg can be fertilized.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/fimbriae-of-uterine-tube-1541214796?from=2"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16sp"
