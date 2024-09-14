@@ -61,17 +61,6 @@ public class ChatBotActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_bot);
 
-        // Set up the toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("FertiliSense ChatBot");
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_back_button_white);
-        }
-
         // Initialize Firebase Auth and Database
         auth = FirebaseAuth.getInstance();
         chatReference = FirebaseDatabase.getInstance().getReference("Chat");

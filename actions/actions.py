@@ -7,6 +7,9 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 import wikipediaapi
 import openai
+import requests
+import json
+from urllib.parse import quote
 
 # Initialize Firebase
 cred = credentials.Certificate("fertilisense-f1335-firebase-adminsdk-erc4z-f6c9372187.json")
@@ -436,4 +439,44 @@ class ActionItchyTesticles(Action):
 
         dispatcher.utter_message(response="utter_men_common_causes")
 
+        return []
+
+# Actions for handling drug medicine using openFDA
+class ActionFetchDrugInfo(Action):
+    def name(self) -> Text:
+        return "action_fetch_drug_info"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        query = tracker.get_slot("drug_query")
+        
+        if not query:
+            dispatcher.utter_message(text="Please provide a drug name to get information.")
+            return []
+
+        api_key = "LrfhiuHJ6kLg03oGvZnwwY0j8yPhY2edeomjMgmo"
+        # Encode the query to handle special characters
+        encoded_query = quote(query)
+        api_url = f"https://api.fda.gov/drug/event.json?api_key={api_key}&search={encoded_query}+AND+reproductive&limit=5"
+        
+        try:
+            response = requests.get(api_url)
+            response.raise_for_status()  # Raise HTTPError for bad responses
+            data = response.json()
+
+            if 'results' in data and len(data['results']) > 0:
+                try:
+                    drug_info = data['results'][0]['patient']['drug'][0].get('drugindication', 'No specific indication found.')
+                    answer = f"The drug indication for {query} related to the reproductive system is: {drug_info}"
+                except (KeyError, IndexError):
+                    answer = "I couldn't find specific drug information due to a data error."
+            else:
+                answer = "I couldn't find information about that drug related to the reproductive system."
+
+        except requests.RequestException as e:
+            answer = "I'm sorry, I couldn't fetch the information right now."
+
+        dispatcher.utter_message(text=answer)
         return []

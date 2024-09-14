@@ -240,3 +240,10 @@ nlu:
       - common testicular causes and problems
       - common testicular discomfort and problems
       - testicular pain
+
+  - intent: ask_drug_info
+    examples: |
+      - What is [clomiphene](drug_query) used for in reproductive health?
+      - Tell me about [letrozole](drug_query) for fertility.
+      - What are the uses of [metformin](drug_query) in relation to reproductive health?
+      - Can you give me information about [testosterone](drug_query) for male reproductive health?

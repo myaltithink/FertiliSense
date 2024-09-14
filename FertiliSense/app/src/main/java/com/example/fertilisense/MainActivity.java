@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                         if (gender.equalsIgnoreCase("female")) {
                             navigateToActivity(FertiliSenseDashboardActivity.class);
                         } else if (gender.equalsIgnoreCase("male")) {
-                            navigateToActivity(ChatBotActivity.class);
+                            navigateToActivity(MaleDashboardActivity.class);
                         }
                     } else {
                         Toast.makeText(MainActivity.this, "Gender information is missing", Toast.LENGTH_SHORT).show();

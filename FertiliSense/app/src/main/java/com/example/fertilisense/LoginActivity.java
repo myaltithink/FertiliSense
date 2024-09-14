@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth authProfile;
     private DatabaseReference userDatabaseReference;
     private static final String TAG = "LoginActivity";
-    private boolean isNavigatingFromRegister = false; // Add this flag
+    private boolean isNavigatingFromRegister = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,7 +167,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (gender.equalsIgnoreCase("female")) {
                             navigateToActivity(FertiliSenseDashboardActivity.class);
                         } else if (gender.equalsIgnoreCase("male")) {
-                            navigateToActivity(ChatBotActivity.class);
+                            navigateToActivity(MaleDashboardActivity.class);
                         }
                     } else {
                         Toast.makeText(LoginActivity.this, "Gender information is missing", Toast.LENGTH_SHORT).show();
