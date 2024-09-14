@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/genital"
+        android:title="Genital"
+        android:icon="@drawable/ic_health" />
+
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/ic_home" />
+
+    <item
+        android:id="@+id/chatbot"
+        android:title="Chatbot"
+        android:icon="@drawable/ic_chatbot" />
+
+</menu>
