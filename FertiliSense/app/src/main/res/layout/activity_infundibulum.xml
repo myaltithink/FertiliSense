@@ -64,7 +64,8 @@
             android:id="@+id/repro_female_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="The infundibulum catches and channels the released eggs; it is the wide distal (outermost) portion of each fallopian tube. The endings of the fimbriae extend over the ovary; they contract close to the ovary’s surface during ovulation in order to guide the free egg. Leading from the infundibulum is the long central portion of the fallopian tube called the ampulla. The isthmus is a small region, only about 2 cm (0.8 inch) long, that connects the ampulla and infundibulum to the uterus. The final region of the fallopian tube, known as the intramural, or uterine, part, is located in the top portion (fundus) of the uterus; it is a narrow tube continuous with the isthmus, and it leads through the thick uterine wall to the uterine cavity, where fertilized eggs normally attach and develop. The channel of the intramural duct is the narrowest part of the fallopian tube."
+            android:text="
+The infundibulum of the uterine tube is the funnel-shaped beginning of the tube, located right after the opening into the abdomen. It is positioned near the free edge and the inner surface of the ovary.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/infundibulum-of-uterine-tube-1541214788?from=2"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp" />

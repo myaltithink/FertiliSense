@@ -64,7 +64,7 @@
             android:id="@+id/repro_female_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="The corpus luteum is a temporary collection of cells that forms on your ovary each menstrual cycle if you’re still getting a menstrual period. It appears right after an egg leaves your ovary (ovulation). The corpus luteum’s job is to make your uterus a healthy place for a fetus to grow. It releases a hormone called progesterone that prepares your uterus for pregnancy. Once it’s no longer needed to make progesterone, the corpus luteum dissolves and goes away until the next menstrual cycle."
+            android:text="The corpus luteum is a group of cells that forms on your ovary each menstrual cycle after an egg is released (ovulation). Its role is to create a suitable environment in your uterus for a potential pregnancy by producing a hormone called progesterone. If pregnancy doesn’t occur, the corpus luteum eventually breaks down and disappears until the next cycle.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/corpus-luteum-1541215184"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp" />

@@ -64,7 +64,7 @@
             android:id="@+id/repro_female_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="The 2 testes, also known as testicles, are the male gonads responsible for the production of sperm and testosterone. The testes are ellipsoid glandular organs around 1.5 to 2 inches long and an inch in diameter. Each testis is found inside its own pouch on one side of the scrotum and is connected to the abdomen by a spermatic cord and cremaster muscle. The cremaster muscles contract and relax along with the scrotum to regulate the temperature of the testes. The inside of the testes is divided into small compartments known as lobules. Each lobule contains a section of seminiferous tubule lined with epithelial cells. These epithelial cells contain many stem cells that divide and form sperm cells through the process of spermatogenesis."
+            android:text="The testes are two glandular organs that produce semen and are suspended in the scrotum by the spermatic cords. Early in fetal development, the testes are located in the abdominal cavity behind the peritoneum. Before birth, they descend through the inguinal canal along with the spermatic cord, and exit through the subcutaneous inguinal ring. They then move into the scrotum, acquiring coverings from the serous, muscular, and fibrous layers of the abdominal wall, as well as from the scrotum itself.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/testis-1541216084?from=2"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp" />

@@ -55,7 +55,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         android:padding="10dp"
-        android:text="The ampulla of the uterine tube, is the intermediate dilated portion, which curves over the ovary; The major channel in your fallopian tube, located in-between the infundibulum and the isthmus. Fertilization most often takes place in the ampulla."
+        android:text="The ampulla of the uterine tube is the wide, curved part of the fallopian tube that sits above the ovary. It's the main section of the fallopian tube, located between the funnel-shaped opening and the narrow part closer to the uterus. Most of the time, fertilization happens in this section. \n\n Source:https://www.imaios.com/en/e-anatomy/anatomical-structure/ovary-1541215200?from=2"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16sp"

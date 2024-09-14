@@ -55,7 +55,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         android:padding="10dp"
-        android:text="The fundus of the uterus is the region of the uterus farthest from the cervix. It is the thickest and most muscular part of the uterus, making it essential for labor and delivery of a newborn. The fundus also acts as the roof of the uterus, spanning the area between the fallopian tubes."
+        android:text="The fundus (fundus uteri) is convex in all directions, and covered by peritoneum continuous with that on the vesical and intestinal surfaces. On it rest some coils of small intestine, and occasionally the distended sigmoid colon.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/fundus-of-uterus-1541215180?from=2"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16sp"

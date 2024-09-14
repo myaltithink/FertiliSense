@@ -64,7 +64,7 @@
             android:id="@+id/repro_female_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="The ductus deferens, also known as the vas deferens, is a tiny muscular tube in the male reproductive system that carries sperm from the epididymis to the ejaculatory duct. There is a pair of these ducts in the male body, with one duct carrying sperm from each testis to the left and right ejaculatory ducts. Along the way they pass through the scrotum, spermatic cord, inguinal canal, and pelvic body cavity. The location and function of the ductus deferens makes it a prime area for male contraception surgery."
+            android:text="The ductus deferens, or vas deferens, is a small muscular tube in the male reproductive system that transports sperm from the epididymis to the ejaculatory duct. There are two of these ducts, one for each testis, leading sperm to the left and right ejaculatory ducts. The ducts travel through the scrotum, spermatic cord, inguinal canal, and pelvic cavity. Because of its location and role, the ductus deferens is commonly targeted in male contraception procedures.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/artery-of-ductus-deferens-1553666032"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp" />

@@ -64,7 +64,8 @@
             android:id="@+id/repro_female_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="The penis is a pendulous organ suspended from the front and sides of the pubic arch and containing the greater part of the urethra. In the flaccid condition it is cylindrical in shape, but when erect assumes the form of a triangular prism with rounded angles, one side of the prism forming the dorsum. It is composed of three cylindrical masses of cavernous tissue bound together by fibrous tissue and covered with skin. Two of the masses are lateral, and are known as the corpora cavernosa penis; the third is median, and is termed the corpus spongiosum penis (corpus cavernosum urethræ). For descriptive purposes it is convenient to divide the penis into three regions: the root, the body, and the extremity."
+            android:text="
+The penis is a pendulous organ hanging from the front and sides of the pubic arch and contains most of the urethra. When not erect, it is cylindrical, but during erection, it takes on the shape of a triangular prism with rounded edges, with one side forming the dorsum. The penis is made up of three cylindrical masses of cavernous tissue, which are held together by fibrous tissue and covered by skin. There are two lateral masses called the corpora cavernosa penis, and a central mass known as the corpus spongiosum penis (or corpus cavernosum urethrae).\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/penis-1541222304?from=2"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp" />

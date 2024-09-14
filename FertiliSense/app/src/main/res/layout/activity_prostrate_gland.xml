@@ -64,7 +64,7 @@
             android:id="@+id/repro_female_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Found only in men, the prostate is a walnut-sized gland that grows throughout a man's life and may eventually interfere with or prevent urination by blocking the urethra. The prostate makes a significant contribution to the production and ejaculation of semen during sexual intercourse. Prostate cancer is a common disorder of the prostate that often necessitates the surgical removal of the prostate. Evidence suggests that some men are at genetically higher risk of developing prostate cancer than others. Learn more about DNA health testing to decide if you'd like to find out your own genetic risk."
+            android:text="The prostate is a walnut-sized gland found only in men. It grows throughout a man’s life and can sometimes block the urethra, making urination difficult or impossible. The prostate plays a key role in producing and ejecting semen during sexual intercourse. Prostate cancer is a common condition that can affect the prostate and often requires surgical removal of the gland.\n\nSource: https://www.innerbody.com/image_repmov/repo09-new4.html"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp" />
