@@ -30,4 +30,11 @@
        <item name="cornerFamily">rounded</item>
        <item name="cornerSize">50%</item>
    </style>
+
+    <style name="TabTextAppearance">
+        <item name="android:textSize">14sp</item> <!-- Adjust size as needed -->
+        <item name="android:textAllCaps">true</item> <!-- Capitalize text if desired -->
+
+    </style>
+
 </resources>
