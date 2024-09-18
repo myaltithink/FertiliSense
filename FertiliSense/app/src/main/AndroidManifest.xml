@@ -17,6 +17,93 @@
         android:theme="@style/Theme.FertiliSense"
         tools:targetApi="31">
         <activity
+            android:name=".FemaleDevelopingFolliclesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FemaleVaginaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FemaleUterusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FemalePerimetriumActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FemaleOvaryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FemaleOvarianLigamentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FemaleMyometriumActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FemaleIsthmusUterusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FemaleIsthmusOfUterineTubeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FemaleInfundibulumActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FemaleFundusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FemaleFimbraeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FemaleFallopianTubeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FemaleEndometriumActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FemaleCorpusLuteumActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FemaleCervixActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FemaleAmpullaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenSeminalVesicleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenBulbourethralGlandActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenEpididymisActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenTesticlesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenGlansActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenUrethralOpeningActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenPenisActivty"
+            android:exported="false" />
+        <activity
+            android:name=".MenProstrateGlandActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenDuctusVasDeferensActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenBladderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FemaleReproductiveSystemFemaleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MaleReproductiveSystemMenActivity"
+            android:exported="false" />
+        <activity
             android:name=".MaleDashboardActivity"
             android:exported="false" />
         <activity

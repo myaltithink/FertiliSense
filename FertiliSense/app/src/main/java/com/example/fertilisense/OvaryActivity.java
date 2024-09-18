@@ -119,6 +119,7 @@ public class OvaryActivity extends AppCompatActivity {
             // Back Button
             Intent intent = new Intent(OvaryActivity.this, FemaleReproductiveSystemActivity.class);
             startActivity(intent);
+            overridePendingTransition(0, 0);
             finish();
         } else if (id == R.id.female_menu_refresh) {
             // Refresh Activity

@@ -12,13 +12,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
+
 import androidx.core.view.GravityCompat;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -43,9 +43,10 @@ public class MaleReproductiveSystemMenActivity extends AppCompatActivity impleme
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_male_reproductive_system);
+        setContentView(R.layout.activity_male_reproductive_system_men);
 
-        drawerLayout = findViewById(R.id.drawer_layout);
+        drawerLayout = findViewById(R.id.main);
+
         navigationView = findViewById(R.id.nav_view);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -76,7 +77,7 @@ public class MaleReproductiveSystemMenActivity extends AppCompatActivity impleme
 
                 } else if (id == R.id.home) {
                     Log.d("FertiliSense", "Home clicked");
-                    Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, FertiliSenseDashboardActivity.class);
+                    Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, MaleDashboardActivity.class);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                     finish();
@@ -102,7 +103,7 @@ public class MaleReproductiveSystemMenActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 Log.d("FertiliSense", "Navigating to Male Reproductive System");
-                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, FemaleReproductiveSystemActivity.class);
+                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, FemaleReproductiveSystemFemaleActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
@@ -114,7 +115,7 @@ public class MaleReproductiveSystemMenActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 Log.d("FertiliSense", "Navigating to Mmale Reproductive System");
-                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, FemaleReproductiveSystemActivity.class);
+                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, FemaleReproductiveSystemFemaleActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
@@ -129,7 +130,7 @@ public class MaleReproductiveSystemMenActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 Log.d("FertiliSense", "Navigating to Bladder Activity");
-                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, BladderActivity.class);
+                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, MenBladderActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
@@ -142,7 +143,7 @@ public class MaleReproductiveSystemMenActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 Log.d("FertiliSense", "Navigating to Seminal Vesicle Activity");
-                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, SeminalVesicleActivity.class);
+                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, MenSeminalVesicleActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
@@ -155,7 +156,7 @@ public class MaleReproductiveSystemMenActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 Log.d("FertiliSense", "Navigating to Bulbourethral Gland Activity");
-                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, BulbourethralGlandActivity.class);
+                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, MenBulbourethralGlandActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
@@ -168,7 +169,7 @@ public class MaleReproductiveSystemMenActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 Log.d("FertiliSense", "Navigating to Testicles Activity");
-                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, TesticlesActivity.class);
+                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, MenTesticlesActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
@@ -181,7 +182,7 @@ public class MaleReproductiveSystemMenActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 Log.d("FertiliSense", "Navigating to Urethral Opening Activity");
-                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, UrethralOpeningActivity.class);
+                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, MenUrethralOpeningActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
@@ -194,7 +195,7 @@ public class MaleReproductiveSystemMenActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 Log.d("FertiliSense", "Navigating to Epididymis Activity");
-                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, EpididymisActivity.class);
+                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, MenEpididymisActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
@@ -207,7 +208,7 @@ public class MaleReproductiveSystemMenActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 Log.d("FertiliSense", "Navigating to Prostrate Gland Activity");
-                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, ProstrateGlandActivity.class);
+                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, MenProstrateGlandActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
@@ -220,7 +221,7 @@ public class MaleReproductiveSystemMenActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 Log.d("FertiliSense", "Navigating to Ductus (Vas) Deferens Activity");
-                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, DuctusVasDeferensActivity.class);
+                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, MenDuctusVasDeferensActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
@@ -233,7 +234,7 @@ public class MaleReproductiveSystemMenActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 Log.d("FertiliSense", "Navigating to Penis Activity");
-                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, PenisActivity.class);
+                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, MenPenisActivty.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
@@ -246,7 +247,7 @@ public class MaleReproductiveSystemMenActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 Log.d("FertiliSense", "Navigating to Glans Activity");
-                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, GlansActivity.class);
+                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, MenGlansActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
