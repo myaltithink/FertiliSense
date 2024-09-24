@@ -38,10 +38,10 @@
                 android:layout_marginTop="28dp"
                 android:text="FertiliSense Dashboard"
                 android:textColor="@color/black"
-                android:textSize="23sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/nav_header_profile_picture"
-                app:layout_constraintHorizontal_bias="0.681"
+                app:layout_constraintHorizontal_bias="0.553"
                 app:layout_constraintStart_toEndOf="@id/ic_menu"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,26 +57,26 @@
                 app:srcCompat="@drawable/ic_user" />
 
             <!-- Image Slider -->
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/imageSlider"
-                android:layout_width="411dp"
-                android:layout_height="710dp"
-                app:layout_constraintBottom_toBottomOf="@+id/bottom_navigation"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
             <!-- TabLayout for pagination -->
 
 
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/imageSlider"
+                android:layout_width="420dp"
+                android:layout_height="515dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/tab_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintVertical_bias="0.265" />
+
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="96dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:tabGravity="fill"
                 app:tabIndicatorHeight="4dp"

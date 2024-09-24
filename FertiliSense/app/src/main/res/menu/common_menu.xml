@@ -11,7 +11,7 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:title="Update Profile"
+        android:title="Update User Details"
         android:icon="@drawable/ic_update"
         android:id="@+id/common_menu_update_profile"/>
 
