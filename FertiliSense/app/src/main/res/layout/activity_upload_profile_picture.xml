@@ -9,6 +9,7 @@
     android:layout_height="match_parent"
     tools:context=".UploadProfilePictureActivity">
 
+    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -20,6 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0" />
 
+    <!-- Header TextView -->
     <TextView
         android:id="@+id/header"
         android:layout_width="0dp"
@@ -34,34 +36,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- Profile ImageView -->
     <ImageView
         android:id="@+id/imageView_profile_dp"
-        android:layout_width="350dp"
-        android:layout_height="500dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="20dp"
         android:padding="20dp"
         android:background="@color/gray"
-        app:layout_constraintTop_toBottomOf="@id/header"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintDimensionRatio="w,h"
+    app:layout_constraintWidth_percent="0.7"
+    app:layout_constraintHeight_percent="0.5"
+    app:layout_constraintTop_toBottomOf="@id/header"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Upload Picture Button -->
     <Button
         android:id="@+id/upload_picture_button"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Upload Image"
         android:backgroundTint="#BE29EC"
+        android:textColor="@color/white"
+        app:layout_constraintWidth_percent="0.7"
         app:layout_constraintTop_toBottomOf="@id/imageView_profile_dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"/>
 
+    <!-- Save Profile Button -->
     <Button
         android:id="@+id/save_profile_button"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:text="Save Changes"
         android:backgroundTint="#BE29EC"
+        app:layout_constraintWidth_percent="0.7"
         app:layout_constraintTop_toBottomOf="@id/upload_picture_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

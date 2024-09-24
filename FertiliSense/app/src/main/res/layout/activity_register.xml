@@ -91,7 +91,7 @@
 
     <RadioGroup
         android:id="@+id/radio_group_register_gender"
-        android:layout_width="195dp"
+        android:layout_width="180dp"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
@@ -109,7 +109,7 @@
             android:fontFamily="@font/inter_semibold"
             android:text="FEMALE"
             android:textColor="@color/black"
-            android:textSize="11sp" />
+            android:textSize="10sp" />
 
         <RadioButton
             android:id="@+id/radio_male"
@@ -120,7 +120,7 @@
             android:fontFamily="@font/inter_semibold"
             android:text="MALE"
             android:textColor="@color/black"
-            android:textSize="11sp" />
+            android:textSize="10sp" />
 
     </RadioGroup>
 
@@ -128,7 +128,6 @@
         android:id="@+id/gender_label_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:background="@android:color/white"
         android:fontFamily="@font/inter_semibold"
         android:text="GENDER"
@@ -139,9 +138,9 @@
 
     <EditText
         android:id="@+id/age_field_register"
-        android:layout_width="165dp"
+        android:layout_width="140dp"
         android:layout_height="32dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/border"
         android:inputType="number"
@@ -166,7 +165,7 @@
 
     <EditText
         android:id="@+id/date_field_register"
-        android:layout_width="167dp"
+        android:layout_width="158dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="44dp"
@@ -195,7 +194,7 @@
 
     <EditText
         android:id="@+id/phone_field_register"
-        android:layout_width="187dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:background="@drawable/border"

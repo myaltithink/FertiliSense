@@ -40,14 +40,16 @@
             app:layout_constraintStart_toEndOf="@id/ic_menu"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Next Icon -->
+
         <ImageView
             android:id="@+id/ic_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="105dp"
             android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toStartOf="@+id/imgDashboard"
-            app:layout_constraintHorizontal_bias="0.774"
+            app:layout_constraintHorizontal_bias="0.905"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/date_now"
             app:srcCompat="@drawable/ic_back" />
@@ -56,21 +58,21 @@
             android:id="@+id/ic_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="92dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.454"
+            app:layout_constraintHorizontal_bias="0.409"
             app:layout_constraintStart_toEndOf="@+id/imgDashboard"
             app:layout_constraintTop_toTopOf="@+id/imgDashboard"
             app:srcCompat="@drawable/ic_next" />
 
         <ImageView
             android:id="@+id/imgDashboard"
-            android:layout_width="253dp"
-            android:layout_height="268dp"
+            android:layout_width="216dp"
+            android:layout_height="208dp"
             android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toTopOf="@+id/label_tag"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintHorizontal_bias="0.516"
             app:layout_constraintStart_toStartOf="parent"
             app:shapeAppearanceOverlay="@style/CircleImageView"
             app:srcCompat="@drawable/img_dashboard" />
@@ -109,16 +111,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.315" />
 
         <TextView
             android:id="@+id/next_period"
-            android:layout_width="350dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="28dp"
             android:background="@drawable/dashboard_background"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:padding="20dp"
             android:text="Next Period"
+            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/fertile_window"
@@ -128,12 +133,15 @@
 
         <TextView
             android:id="@+id/fertile_window"
-            android:layout_width="350dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="28dp"
             android:background="@drawable/dashboard_background"
             android:padding="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:text="Fertile Period"
+            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/cycle_duration"
@@ -143,12 +151,15 @@
 
         <TextView
             android:id="@+id/cycle_duration"
-            android:layout_width="350dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:background="@drawable/dashboard_background"
             android:padding="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:text="Cycle Duration"
+            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
@@ -162,6 +173,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="Chance of getting pregnant"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/status_of_fertility"
@@ -187,6 +199,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"
+            android:textColor="@color/black"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="@+id/next_period"
             app:layout_constraintTop_toTopOf="@+id/next_period" />
@@ -197,6 +210,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="35dp"
             android:layout_marginEnd="20dp"
+            android:textColor="@color/black"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="@+id/next_period"
             app:layout_constraintTop_toTopOf="@+id/next_period" />
@@ -207,6 +221,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="35dp"
             android:layout_marginEnd="20dp"
+            android:textColor="@color/black"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="@+id/fertile_window"
             app:layout_constraintTop_toTopOf="@+id/fertile_window" />
@@ -217,6 +232,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"
+            android:textColor="@color/black"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="@+id/fertile_window"
             app:layout_constraintTop_toTopOf="@+id/fertile_window" />
@@ -227,6 +243,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="35dp"
             android:layout_marginEnd="20dp"
+            android:textColor="@color/black"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="@+id/cycle_duration"
             app:layout_constraintTop_toTopOf="@+id/cycle_duration" />
@@ -248,6 +265,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"
+            android:textColor="@color/black"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="@+id/cycle_duration"
             app:layout_constraintTop_toTopOf="@+id/cycle_duration" />

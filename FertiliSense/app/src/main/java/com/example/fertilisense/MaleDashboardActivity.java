@@ -103,12 +103,12 @@ public class MaleDashboardActivity extends AppCompatActivity implements Navigati
     private void setupImageSlider() {
         // Arrays for descriptions and URLs
         String[] descriptions = {
-                "Environment",
-                "Sex",
-                "Supplements",
-                "Nutrition",
-                "Stress",
-                "Exercise"
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
         };
 
         String[] urls = {
