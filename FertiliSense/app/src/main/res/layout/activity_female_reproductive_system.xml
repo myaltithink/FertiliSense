@@ -60,39 +60,40 @@
 
         <TextView
             android:id="@+id/repro_female_label"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="37dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginTop="28dp"
             android:text="Female Reproductive System"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-
             app:layout_constraintTop_toBottomOf="@id/title" />
 
         <ImageView
             android:id="@+id/ic_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toStartOf="@id/repro_female_label"
+            app:layout_constraintTop_toTopOf="@id/repro_female_label"
             app:layout_constraintBottom_toBottomOf="@id/repro_female_label"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/repro_female_label"
             app:srcCompat="@drawable/ic_back" />
 
-        <!-- Next -->
         <ImageView
             android:id="@+id/ic_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toEndOf="@id/repro_female_label"
+            app:layout_constraintTop_toTopOf="@id/repro_female_label"
             app:layout_constraintBottom_toBottomOf="@id/repro_female_label"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/repro_female_label"
             app:srcCompat="@drawable/ic_next" />
 
         <!-- Female Reproductive System 3D Image -->
@@ -379,22 +380,27 @@
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
 
-        <TextView
-            android:id="@+id/repro_female_desc"
-            android:layout_width="348dp"
-            android:layout_height="213dp"
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="12dp"
-            android:padding="10dp"
-            android:text="The reproductive system of an organism, also known as the genitalsystem, is the biological system made up of all the anatomical organs involved in sexual reproduction. Many non-living substances such as fluids, hormones, and pheromones. \n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/female-genital-system-1541215168?from=2"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageView" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView">
+
+            <TextView
+                android:id="@+id/repro_female_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="The reproductive system of an organism, also known as the genitalsystem, is the biological system made up of all the anatomical organs involved in sexual reproduction. Many non-living substances such as fluids, hormones, and pheromones. \n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/female-genital-system-1541215168?from=2"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
