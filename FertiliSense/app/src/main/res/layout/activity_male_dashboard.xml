@@ -80,6 +80,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:tabGravity="fill"
                 app:tabIndicatorHeight="4dp"
+                android:background="@color/white"
                 app:tabMode="fixed"
                 app:tabPaddingBottom="4dp"
                 app:tabPaddingEnd="8dp"
