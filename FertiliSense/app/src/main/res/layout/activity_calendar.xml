@@ -115,19 +115,20 @@
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="25dp"
-            android:layout_height="14dp"
+            android:layout_width="39dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.841"
+            app:layout_constraintVertical_bias="0.842"
             app:srcCompat="@drawable/period_color_shape" />
 
         <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Strong Flow"
+            android:text="Date"
             android:textSize="12sp"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -138,9 +139,13 @@
 
         <!-- Period Image and Text -->
 
+        <!-- Fertile Days Image and Text -->
+
+        <!-- Ovulation Image and Text -->
+
         <ImageView
             android:id="@+id/imageView9"
-            android:layout_width="18dp"
+            android:layout_width="28dp"
             android:layout_height="23dp"
             android:layout_marginStart="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -153,28 +158,26 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:text="Period"
             android:textColor="@color/black"
-            android:textStyle="bold"
             android:textSize="12sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView9"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.836" />
 
-        <!-- Fertile Days Image and Text -->
-
         <ImageView
             android:id="@+id/imageView6"
-            android:layout_width="10dp"
+            android:layout_width="28dp"
             android:layout_height="16dp"
+            android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView5"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.834"
             app:srcCompat="@drawable/pink_color_shape" />
-
-        <!-- Ovulation Image and Text -->
 
         <TextView
             android:id="@+id/textView6"
@@ -188,17 +191,17 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView6"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.833" />
+            app:layout_constraintVertical_bias="0.834" />
 
         <ImageView
             android:id="@+id/imageView7"
-            android:layout_width="10dp"
+            android:layout_width="28dp"
             android:layout_height="15dp"
             android:layout_marginStart="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView6"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.835"
+            app:layout_constraintVertical_bias="0.833"
             app:srcCompat="@drawable/green_shape_color" />
 
         <TextView
@@ -207,41 +210,16 @@
             android:layout_height="wrap_content"
             android:text="Ovulation"
             android:textColor="@color/black"
-            android:textStyle="bold"
             android:textSize="12sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageView7"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.835" />
+            app:layout_constraintVertical_bias="0.834" />
 
         <!-- Date Image and Text -->
-
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="10dp"
-            android:layout_height="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.067"
-            app:layout_constraintStart_toEndOf="@+id/textView7"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.835"
-            app:srcCompat="@drawable/red_shape_color" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Date"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.096"
-            app:layout_constraintStart_toEndOf="@+id/imageView8"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.834" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
