@@ -9,12 +9,12 @@
     <color name="dark_gray">#a6a6a6</color>
 
     <color name="cycleColor">#B22222</color> <!--  for start to end -->
-    <color name="cycleDurationColor">#00CCDD</color> <!--   for cycle duration -->
+    <color name="cycleDurationColor">#ffffff</color> <!--   for cycle duration -->
     <color name="predictionCycleStartEndColor">#B22222</color> <!-- for cycle start date -->
     <color name="fertileWindowColor">#F7B5CA</color> <!--  for fertile window -->
     <color name="nextCycleStartColor">#B22222</color> <!--   for next cycle start -->
     <color name="ovulationColor">#71A95A</color> <!--  for ovulation -->
-    <color name="strongFlowColor">#B22222</color> <!--  for strong flow -->
+    <color name="strongFlowColor">#00CCDD</color> <!--  for strong flow -->
     <color name="cycleEndDateColor">#B22222</color> <!-- Firebrick Red (Bloody Red) -->
     <color name="predictionCycleEndDateColor">#B22222</color> <!-- Firebrick Red (Bloody Red) -->
     <color name="todayBlueColor">#FF9874</color> <!-- date today -->

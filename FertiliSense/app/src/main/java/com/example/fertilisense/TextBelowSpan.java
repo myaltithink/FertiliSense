@@ -8,10 +8,12 @@ public class TextBelowSpan implements LineBackgroundSpan {
 
     private final String text;
     private final int textColor;
+    private final float textSize; // Text size
 
-    public TextBelowSpan(String text, int textColor) {
+    public TextBelowSpan(String text, int textColor, float textSize) {
         this.text = text;
         this.textColor = textColor;
+        this.textSize = textSize; // Initialize text size
     }
 
     @Override
@@ -21,20 +23,23 @@ public class TextBelowSpan implements LineBackgroundSpan {
             int bottom, CharSequence charSequence,
             int start, int end, int lineNum) {
 
-        // Save the original paint style
+        // Save original paint color and text size
         int oldColor = paint.getColor();
+        float oldTextSize = paint.getTextSize();
 
-        // Set custom color
+        // Set custom color and text size
         paint.setColor(textColor);
+        paint.setTextSize(textSize); // Set the desired text size
 
         // Adjust the text position below the date
         float textX = (left + right) / 2 - paint.measureText(text) / 2;
-        float textY = bottom + 20; // Adjust this value as needed for proper positioning
+        float textY = bottom + 20; // Adjust this value for vertical positioning
 
         // Draw the text below the date
         canvas.drawText(text, textX, textY, paint);
 
-        // Restore original paint color
+        // Restore original paint style
         paint.setColor(oldColor);
+        paint.setTextSize(oldTextSize); // Restore the original text size
     }
 }

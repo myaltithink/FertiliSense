@@ -14,10 +14,16 @@ public class EventDecorator implements DayViewDecorator {
 
     private final int color;
     private final Collection<CalendarDay> dates;
+    private final String text; // Add a text field
 
-    public EventDecorator(Context context, int colorResId, Collection<CalendarDay> dates) {
+    int textColor = Color.BLACK; // Change this to your desired color
+    float textSize = 16f;
+
+
+    public EventDecorator(Context context, int colorResId, Collection<CalendarDay> dates, String text) {
         this.color = context.getResources().getColor(colorResId);
         this.dates = dates;
+        this.text = text; // Initialize the text
     }
 
     @Override
@@ -28,5 +34,10 @@ public class EventDecorator implements DayViewDecorator {
     @Override
     public void decorate(DayViewFacade view) {
         view.setBackgroundDrawable(new ColorDrawable(color));
+
+        // Use TextBelowSpan to draw text below the date
+        if (text != null && !text.isEmpty()) {
+            view.addSpan(new TextBelowSpan(text, textColor, textSize)); // Now passing three arguments
+        }
     }
 }
