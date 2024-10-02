@@ -17,7 +17,7 @@
     <color name="strongFlowColor">#B22222</color> <!--  for strong flow -->
     <color name="cycleEndDateColor">#B22222</color> <!-- Firebrick Red (Bloody Red) -->
     <color name="predictionCycleEndDateColor">#B22222</color> <!-- Firebrick Red (Bloody Red) -->
-    <color name="todayBlueColor">#FF9874</color> <!-- date today -->
+    <color name="todayBlueColor">#00CCDD</color> <!-- date today -->
 
     <color name="tab_text_color">#FF000000</color> <!-- Replace with your desired color -->
     <color name="tab_selected_text_color">#00FF00</color> <!-- Replace with your color -->
