@@ -228,7 +228,7 @@ stories:
       - intent: deny
       - action: utter_did_that_help
 
-# handles druh medicine questions and answers
+# handles drug medicine questions and answers
   - story: Fetch drug information
     steps:
     - intent: ask_drug_info

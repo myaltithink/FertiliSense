@@ -57,7 +57,7 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
             Log.d(TAG, "Logged in as: " + email);
         }
 
-        scrollView = findViewById(R.id.scrollView);
+        scrollView = findViewById(R.id.scroll_view);
         toggleScrollButton = findViewById(R.id.toggle_scroll_button);
 
         toggleScrollButton.setOnClickListener(new View.OnClickListener() {
