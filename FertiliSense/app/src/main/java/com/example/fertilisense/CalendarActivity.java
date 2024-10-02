@@ -239,9 +239,9 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
                                             cycleEndDates.add(CalendarDay.from(parseDate(endDateStr)));
                                         }
                                         // Add decorators for cycles
-                                        calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.cycleColor, cycleDates));
-                                        calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.cycleDurationColor, cycleDurationDates));
-                                        calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.cycleEndDateColor, cycleEndDates));
+                                        calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.cycleColor, cycleDates, ""));
+                                        calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.cycleDurationColor, cycleDurationDates, ""));
+                                        calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.cycleEndDateColor, cycleEndDates, ""));
                                     }
 
                                     // Process predictions
@@ -275,12 +275,16 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
                                             addDateToSet(prediction.get("next_cycle_start_date"), nextCycleStartDates);
                                         }
                                         // Add decorators for predictions
-                                        calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.predictionCycleStartEndColor, predictionCycleDates));
-                                        calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.fertileWindowColor, fertileWindowDates));
-                                        calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.ovulationColor, ovulationDates));
-                                        calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.strongFlowColor, strongFlowDates));
-                                        calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.nextCycleStartColor, nextCycleStartDates));
-                                        calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.predictionCycleEndDateColor, predictionCycleEndDates));
+                                        calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.predictionCycleStartEndColor, predictionCycleDates, ""));
+                                        calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.fertileWindowColor, fertileWindowDates, ""));
+                                        calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.ovulationColor, ovulationDates, ""));
+
+                                        // Assuming strongFlowDates is a Collection<CalendarDay> that you have populated
+                                        calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.strongFlowColor, strongFlowDates, "Strong"));
+
+
+                                        calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.nextCycleStartColor, nextCycleStartDates, ""));
+                                        calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.predictionCycleEndDateColor, predictionCycleEndDates, ""));
                                     }
 
                                     // Finally, highlight today's date in blue (this decorator is added last)
@@ -358,7 +362,8 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
         Set<CalendarDay> todaySet = new HashSet<>();
         todaySet.add(CalendarDay.from(today)); // Add today's date to the set
         // Add a decorator to highlight today's date in blue
-        calendarView.addDecorator(new EventDecorator(this, R.color.todayBlueColor, todaySet));
+        calendarView.addDecorator(new EventDecorator(this, R.color.todayBlueColor, todaySet, null)); // No text for today
+
     }
 }
 
