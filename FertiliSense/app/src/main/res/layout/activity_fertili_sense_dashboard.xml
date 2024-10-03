@@ -42,41 +42,49 @@
 
         <!-- Next Icon -->
 
+        <!-- Next Icon -->
+
+        <!-- Dashboard Image -->
+
         <ImageView
             android:id="@+id/ic_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="115dp"
-            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgDashboard"
             app:layout_constraintEnd_toStartOf="@+id/imgDashboard"
-            app:layout_constraintHorizontal_bias="0.905"
+            app:layout_constraintHorizontal_bias="0.827"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/date_now"
+            app:layout_constraintVertical_bias="0.497"
+            app:layout_constraintVertical_chainStyle="packed"
             app:srcCompat="@drawable/ic_back" />
 
         <ImageView
             android:id="@+id/ic_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="76dp"
-            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgDashboard"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.344"
+            app:layout_constraintHorizontal_bias="0.152"
             app:layout_constraintStart_toEndOf="@+id/imgDashboard"
             app:layout_constraintTop_toTopOf="@+id/imgDashboard"
+            app:layout_constraintVertical_bias="0.479"
             app:srcCompat="@drawable/ic_next" />
 
         <ImageView
             android:id="@+id/imgDashboard"
-            android:layout_width="216dp"
-            android:layout_height="208dp"
-            android:layout_marginBottom="4dp"
-            app:layout_constraintBottom_toTopOf="@+id/label_tag"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.516"
-            app:layout_constraintStart_toStartOf="parent"
-            app:shapeAppearanceOverlay="@style/CircleImageView"
-            app:srcCompat="@drawable/img_dashboard" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.6"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/label_tag"
+        app:layout_constraintTop_toBottomOf="@+id/date_now"
+        app:layout_constraintVertical_bias="0.4"
+        app:srcCompat="@drawable/img_dashboard"
+        app:shapeAppearanceOverlay="@style/CircleImageView" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
