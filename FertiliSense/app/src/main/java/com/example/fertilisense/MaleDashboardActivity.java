@@ -189,7 +189,7 @@ public class MaleDashboardActivity extends AppCompatActivity implements Navigati
                 Log.d("FertiliSense", "Already on the Home screen");
             } else if (id == R.id.chatbot) {
                 Log.d("FertiliSense", "Navigating to ChatBotActivity");
-                startActivity(new Intent(MaleDashboardActivity.this, ChatBotActivity.class));
+                startActivity(new Intent(MaleDashboardActivity.this, MaleChatBotActivity.class));
                 overridePendingTransition(0, 0);
                 finish();
             }

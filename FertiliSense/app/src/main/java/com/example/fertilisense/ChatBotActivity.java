@@ -53,13 +53,24 @@ public class ChatBotActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private DatabaseReference chatReference;
 
-    private final String chatUrl = "https://ebe4-2001-4452-409-cc00-8901-fb99-b6af-c7aa.ngrok-free.app/webhooks/rest/webhook";
+    private final String chatUrl = "https://6265-175-176-24-229.ngrok-free.app/webhooks/rest/webhook";
     //private final String actionUrl = "https://2c12-2001-4452-409-cc00-784a-f1c-c946-7897.ngrok-free.app/webhook";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_bot);
+
+        // Set up the toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle("FertiliSense ChatBot");
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_back_button_white);
+        }
 
         // Initialize Firebase Auth and Database
         auth = FirebaseAuth.getInstance();
