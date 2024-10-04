@@ -31,8 +31,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             app:mcv_showOtherDates="all"
-            app:mcv_tileHeight="30dp"
-            app:mcv_tileSize="50dp" />
+            app:mcv_tileHeight="29.5dp"
+            app:mcv_tileSize="match_parent" />
 
         <ImageView
             android:id="@+id/ic_menu"
@@ -56,26 +56,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:layout_marginTop="60dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/img_dashboard" />
-
-        <Button
-            android:id="@+id/editPeriodButton"
-            android:layout_width="167dp"
-            android:layout_height="42dp"
-            android:layout_marginTop="256dp"
-            android:text="Edit Period"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
@@ -229,6 +209,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.833"
             app:layout_constraintWidth_percent="0.15" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="409dp"
+            android:layout_height="227dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toTopOf="@+id/calendarView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/calendarrchu" />
 
 
         <!-- Date Image and Text -->

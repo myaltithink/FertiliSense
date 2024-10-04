@@ -40,32 +40,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/ic_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/imgDashboard"
-            app:layout_constraintEnd_toStartOf="@+id/imgDashboard"
-            app:layout_constraintHorizontal_bias="0.827"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/date_now"
-            app:layout_constraintVertical_bias="0.497"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:srcCompat="@drawable/ic_back" />
-
-        <ImageView
-            android:id="@+id/ic_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/imgDashboard"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.152"
-            app:layout_constraintStart_toEndOf="@+id/imgDashboard"
-            app:layout_constraintTop_toTopOf="@+id/imgDashboard"
-            app:layout_constraintVertical_bias="0.479"
-            app:srcCompat="@drawable/ic_next" />
-
-        <ImageView
             android:id="@+id/imgDashboard"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -202,7 +176,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"
             android:textColor="@color/black"
-            android:text="TextView"
+            android:text="Next Period Start Date"
             app:layout_constraintEnd_toEndOf="@+id/next_period"
             app:layout_constraintTop_toTopOf="@+id/next_period" />
 
@@ -213,7 +187,7 @@
             android:layout_marginTop="35dp"
             android:layout_marginEnd="20dp"
             android:textColor="@color/black"
-            android:text="TextView"
+            android:text="Next Period End Date"
             app:layout_constraintEnd_toEndOf="@+id/next_period"
             app:layout_constraintTop_toTopOf="@+id/next_period" />
 
@@ -224,7 +198,7 @@
             android:layout_marginTop="35dp"
             android:layout_marginEnd="20dp"
             android:textColor="@color/black"
-            android:text="TextView"
+            android:text="Fertile Period End Date"
             app:layout_constraintEnd_toEndOf="@+id/fertile_window"
             app:layout_constraintTop_toTopOf="@+id/fertile_window" />
 
@@ -235,7 +209,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"
             android:textColor="@color/black"
-            android:text="TextView"
+            android:text="Fertile Period Start Date"
             app:layout_constraintEnd_toEndOf="@+id/fertile_window"
             app:layout_constraintTop_toTopOf="@+id/fertile_window" />
 

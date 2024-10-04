@@ -53,7 +53,7 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
 
     private static final String TAG = "CalendarActivity";
     private MaterialCalendarView calendarView;
-    private Button editPeriodButton;
+    //private Button editPeriodButton;
     private FirebaseFirestore db;
 
     @Override
@@ -67,7 +67,7 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
 
         // Initialize the views
         calendarView = findViewById(R.id.calendarView);
-        editPeriodButton = findViewById(R.id.editPeriodButton);
+        //editPeriodButton = findViewById(R.id.editPeriodButton);
 
         // Initialize navigation components
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -121,11 +121,7 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
         // Set "Calendar" as the default selected item in bottom navigation
         bottomNavigationView.setSelectedItemId(R.id.calendar);
 
-        // Set up click listener for the Edit Period button
-        editPeriodButton.setOnClickListener(v -> {
-            Intent intent = new Intent(CalendarActivity.this, EditPeriodActivity.class);
-            startActivity(intent);
-        });
+
 
         // Fetch cycle data and highlight on the calendar
         fetchCycleData();
