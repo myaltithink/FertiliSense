@@ -23,7 +23,7 @@ wiki_wiki = wikipediaapi.Wikipedia(
 )
 
 # Set up OpenAI API key
-openai.api_key = 'your_key'
+openai.api_key = ''
 
 # Actions of handling logging of cycles
 class ActionLogMenstrualCycle(Action):
@@ -438,6 +438,19 @@ class ActionItchyTesticles(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         dispatcher.utter_message(response="utter_men_common_causes")
+
+        return []
+    
+# Actions for handling sperm health
+class ActionSpermHealth(Action):
+    def name(self) -> Text:
+        return "action_sperm_health"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(response="utter_men_sperm_health")
 
         return []
 

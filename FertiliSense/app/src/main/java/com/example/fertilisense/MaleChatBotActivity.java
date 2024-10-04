@@ -110,6 +110,7 @@ public class MaleChatBotActivity extends AppCompatActivity {
         Intent intent = new Intent(MaleChatBotActivity.this, MaleDashboardActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        overridePendingTransition(0, 0);
         finish();
     }
 

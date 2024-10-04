@@ -107,7 +107,11 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
                     overridePendingTransition(0, 0);
                     finish();
                 } else if (id == R.id.report) {
-                    // Placeholder for report action
+                    Log.d("FertiliSense", "User report details clicked");
+//                    Intent intent = new Intent(ReportActivity.this, ChatBotActivity.class);
+//                    startActivity(intent);
+//                    overridePendingTransition(0, 0);
+//                    finish();
                 }
 
                 return true;
@@ -314,18 +318,28 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
         } else if (id == R.id.rate_us) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName));
             startActivity(intent);
+            overridePendingTransition(0, 0);
+            finish();
         } else if (id == R.id.feedback) {
             Intent intent = new Intent(CalendarActivity.this, FeedbackActivity.class);
             startActivity(intent);
+            overridePendingTransition(0, 0);
+            finish();
         } else if (id == R.id.privacy) {
             Intent intent = new Intent(CalendarActivity.this, PrivacyPolicyActivity.class);
             startActivity(intent);
+            overridePendingTransition(0, 0);
+            finish();
         } else if (id == R.id.disclaimer_content) {
             Intent intent = new Intent(CalendarActivity.this, DisclaimerContentActivity.class);
             startActivity(intent);
+            overridePendingTransition(0, 0);
+            finish();
         } else if (id == R.id.terms_condition) {
             Intent intent = new Intent(CalendarActivity.this, TermsAndConditionContentActivity.class);
             startActivity(intent);
+            overridePendingTransition(0, 0);
+            finish();
         } else if (id == R.id.logout) {
             authProfile.signOut();
             Intent intent = new Intent(CalendarActivity.this, LoginActivity.class);
@@ -363,7 +377,5 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
         todaySet.add(CalendarDay.from(today)); // Add today's date to the set
         // Add a decorator to highlight today's date in blue
         calendarView.addDecorator(new EventDecorator(this, R.color.todayBlueColor, todaySet, null)); // No text for today
-
     }
 }
-

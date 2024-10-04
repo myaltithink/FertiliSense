@@ -228,6 +228,28 @@ stories:
       - intent: deny
       - action: utter_did_that_help
 
+# handles sperm health questions and answers
+  - story: sperm health yes
+    steps:
+      - intent: sperm_health
+      - action: utter_men_sperm_health
+      - action: utter_explain_each_detail
+      - intent: affirm
+      - action: utter_volume
+      - action: utter_count
+      - action: utter_concentration
+      - action: utter_motility
+      - action: utter_morphology
+      - action: utter_did_that_help
+
+  - story: sperm health no
+    steps:
+      - intent: sperm_health
+      - action: utter_men_sperm_health
+      - action: utter_explain_each_detail
+      - intent: deny
+      - action: utter_did_that_help
+
 # handles drug medicine questions and answers
   - story: Fetch drug information
     steps:

@@ -10,7 +10,6 @@
 
     <!-- Main content -->
 
-    <!-- Navigation drawer -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,12 +38,6 @@
             app:layout_constraintHorizontal_bias="0.681"
             app:layout_constraintStart_toEndOf="@id/ic_menu"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- Next Icon -->
-
-        <!-- Next Icon -->
-
-        <!-- Dashboard Image -->
 
         <ImageView
             android:id="@+id/ic_back"
@@ -167,7 +160,7 @@
             android:padding="20dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:text="Cycle Duration"
+            android:text="Ovulation Date"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -225,7 +218,7 @@
             app:layout_constraintTop_toTopOf="@+id/next_period" />
 
         <TextView
-            android:id="@+id/next_ovulation_date"
+            android:id="@+id/next_fertile_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="35dp"
@@ -236,7 +229,7 @@
             app:layout_constraintTop_toTopOf="@+id/fertile_window" />
 
         <TextView
-            android:id="@+id/next_ovulation_left"
+            android:id="@+id/next_fertile_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
@@ -247,13 +240,24 @@
             app:layout_constraintTop_toTopOf="@+id/fertile_window" />
 
         <TextView
-            android:id="@+id/cycle_duration_date"
+            android:id="@+id/next_ovulation_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="35dp"
             android:layout_marginEnd="20dp"
             android:textColor="@color/black"
-            android:text="TextView"
+            android:text="Days until ovulation"
+            app:layout_constraintEnd_toEndOf="@+id/cycle_duration"
+            app:layout_constraintTop_toTopOf="@+id/cycle_duration" />
+
+        <TextView
+            android:id="@+id/next_ovulation_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:text="Next Ovulation Date"
             app:layout_constraintEnd_toEndOf="@+id/cycle_duration"
             app:layout_constraintTop_toTopOf="@+id/cycle_duration" />
 
@@ -267,18 +271,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/black"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="@+id/cycle_duration"
-            app:layout_constraintTop_toTopOf="@+id/cycle_duration" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

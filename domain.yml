@@ -21,6 +21,7 @@ actions:
   - action_itchy_testicles
   - action_common_causes
   - action_fetch_drug_info
+  - action_sperm_health
   - day
   - head_symptom
   - head_whole
@@ -60,6 +61,7 @@ intents:
   - itchy_testicles
   - common_causes
   - ask_drug_info
+  - sperm_health
 
 entities:
   - start_date
@@ -243,7 +245,7 @@ responses:
   utter_finishing_up:
     - text: "6. Finishing Up:\n- After the exam, you'll be given tissue to clean up any excess lubrication and privacy to get dressed. The whole process usually takes just a few minutes."
 
-#query and answer for common causes of testicular pain
+# query and answer for common causes of testicular pain
   utter_common_causes:
     - text: "The following are the common causes of testicular pain:\n\n1. Trauma\n2. Epididymitis\n3. Orchitis\n4. Epididymal Cysts\n5. Hernias\n6. Kidney Stones\n7. Varicoceles\n8. Genital Thrush\n9. Eczema and Psoriasis\n10. Scabies"
 
@@ -277,7 +279,24 @@ responses:
   utter_scabies:
     - text: "10. Scabies\n- is a highly contagious condition caused by tiny mites that burrow into the skin. It spreads through close or repeated contact, including sexual contact, and causes intense itching that can affect various body parts."
 
-#query and answer for male fertility and sperm health
+# query and answer for male fertility and sperm health
+  utter_men_sperm_health:
+    - text: "Here are some factors to know if your sperm is healthy:\n\n1. Volume\n2. Count\n3. Concentration\n4. Motility\n5. Morphology"
+  
+  utter_volume:
+    - text: "1. Volume - Volume of semen in a complete sperm sample"
+  
+  utter_count:
+    - text: "2. Count - Sperm count"
+  
+  utter_concentration:
+    - text: "3. Concentration - Motility of sperm"
+
+  utter_motility:
+    - text: "4. Motility - Quality of sperm that are progressing forward"
+
+  utter_morphology:
+    - text: "5. Morphology - Count of sperm that have normal shape and size"
 
 session_config:
   session_expiration_time: 60

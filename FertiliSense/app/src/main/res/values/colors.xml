@@ -22,4 +22,7 @@
     <color name="tab_text_color">#FF000000</color> <!-- Replace with your desired color -->
     <color name="tab_selected_text_color">#00FF00</color> <!-- Replace with your color -->
 
+    <color name="start">#C364FA</color>
+    <color name="end">#A230ED</color>
+
 </resources>

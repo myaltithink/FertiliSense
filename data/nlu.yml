@@ -7,15 +7,11 @@ nlu:
       - hello
       - hi
       - hello there
-      - good morning
-      - good evening
       - moin
       - hey there
       - let's go
       - hey dude
-      - goodmorning
-      - goodevening
-      - good afternoon
+      - hello mate
 
   - intent: log_menstrual_cycle
     examples: |
@@ -240,6 +236,22 @@ nlu:
       - common testicular causes and problems
       - common testicular discomfort and problems
       - testicular pain
+
+  - intent: sperm_health
+    examples: |
+      - factors to know if your sperm is healthy
+      - sperm health factors
+      - how to know if your sperm is healthy
+      - criteria for healthy sperm
+      - healthy sperm
+      - know if your sperm is healthy
+      - sperm health criteria
+      - what factors should I consider when evaluating my sperm health?
+      - sperm health evaluation criteria
+      - what should I consider when evaluating my sperm health?
+      - what factors should I look out for when evaluating my sperm health?
+      - what factors should I look out for when evaluating sperm health?
+      - what factors should I look for when evaluating sperm health in relation to reproductive health?
 
   - intent: ask_drug_info
     examples: |

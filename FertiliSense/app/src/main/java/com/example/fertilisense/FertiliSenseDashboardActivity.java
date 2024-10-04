@@ -27,6 +27,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+import com.google.firebase.firestore.FirebaseFirestore;
+import java.util.concurrent.TimeUnit;
+
 
 public class FertiliSenseDashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -34,6 +42,11 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
     private NavigationView navigationView;
     private BottomNavigationView bottomNavigationView;
     private FirebaseAuth authProfile;
+    private FirebaseFirestore db;
+
+    private TextView dateNow;
+    private TextView nextOvulationLeft;
+    private TextView nextOvulationDate;
 
     private String appPackageName;
 
@@ -51,6 +64,18 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
 
         // Initialize FirebaseAuth
         authProfile = FirebaseAuth.getInstance();
+
+        // Initialize Firestore
+        db = FirebaseFirestore.getInstance();
+
+        // Current Date
+        dateNow = findViewById(R.id.date_now);
+        setCurrentDate();
+
+        // Next ovulation date and how many days left
+        nextOvulationLeft = findViewById(R.id.next_ovulation_left);
+        nextOvulationDate = findViewById(R.id.next_ovulation_date);
+        setNextOvulationInfo();
 
         // Load user information in the navigation header
         loadUserInformation();
@@ -73,11 +98,8 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
                     overridePendingTransition(0, 0);
                     finish();
                 } else if (id == R.id.calendar) {
-                    Log.d("FertiliSense", "Navigationg to CalendarActivity");
-                    Intent intent = new Intent(FertiliSenseDashboardActivity.this, CalendarActivity.class);
-                    startActivity(intent);
-                    overridePendingTransition(0, 0);
-                    finish();
+                    Log.d("FertiliSense", "Checking cycle logs before navigating to CalendarActivity");
+                    checkForLoggedCyclesAndShowDialog();
                 } else if (id == R.id.home) {
                     // Handle "Home" action
                     Log.d("FertiliSense", "Already on the Home screen");
@@ -101,6 +123,46 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
 
         // Set "Home" as the default selected item
         bottomNavigationView.setSelectedItemId(R.id.home);
+    }
+
+    // Method for setting the current date
+    private void setCurrentDate() {
+        // Get current date
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d", Locale.getDefault()); // Format: August 20
+        String currentDate = dateFormat.format(calendar.getTime());
+
+        // Set the current date to TextView
+        dateNow.setText(currentDate);
+    }
+
+    // Method to set next ovulation information
+    private void setNextOvulationInfo() {
+        // Assuming you have menstrual cycle data
+        int cycleLength = 28; // Example cycle length (in days)
+        int lutealPhaseLength = 14; // Example luteal phase length (in days)
+
+        // Get current date
+        Calendar calendar = Calendar.getInstance();
+
+        // Calculate the next ovulation date
+        Calendar nextOvulationDateCalendar = Calendar.getInstance();
+        nextOvulationDateCalendar.setTime(calendar.getTime());
+
+        // Assuming the last period started today
+        nextOvulationDateCalendar.add(Calendar.DAY_OF_MONTH, cycleLength - lutealPhaseLength);
+
+        // Set next ovulation date
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d", Locale.getDefault());
+        String nextOvulation = dateFormat.format(nextOvulationDateCalendar.getTime());
+        nextOvulationDate.setText(nextOvulation);
+
+        // Calculate remaining days until ovulation
+        long diffInMillis = nextOvulationDateCalendar.getTimeInMillis() - calendar.getTimeInMillis();
+        long remainingDays = TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
+
+        // Set remaining days until ovulation
+        nextOvulationLeft.setText(remainingDays + " days left");
     }
 
     private void loadUserInformation() {
@@ -159,6 +221,55 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
             Log.d("FertiliSense", "No current user logged in");
         }
     }
+
+    private void checkForLoggedCyclesAndShowDialog() {
+        FirebaseUser currentUser = authProfile.getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+
+            db.collection("menstrual_cycles")
+                    .document(userId)
+                    .get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (!documentSnapshot.exists()) {
+                            showCycleLogDialog();
+                        } else {
+                            navigateToCalendarActivity();
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(FertiliSenseDashboardActivity.this, "Error checking cycle data", Toast.LENGTH_SHORT).show();
+                    });
+        } else {
+            Toast.makeText(this, "No user logged in", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void showCycleLogDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Log Menstrual Cycle")
+                .setMessage("You haven't logged any menstrual cycle yet. Would you like to log it now?")
+                .setPositiveButton("OK", (dialog, which) -> navigateToChatBotActivity())
+                .setNegativeButton("Cancel", (dialog, which) -> navigateToCalendarActivity())
+                .setCancelable(false)
+                .show();
+    }
+
+    private void navigateToCalendarActivity() {
+        Intent intent = new Intent(FertiliSenseDashboardActivity.this, CalendarActivity.class);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+        finish();
+    }
+
+    private void navigateToChatBotActivity() {
+        Intent intent = new Intent(FertiliSenseDashboardActivity.this, ChatBotActivity.class);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+        finish();
+    }
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
