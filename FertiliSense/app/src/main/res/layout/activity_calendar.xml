@@ -10,29 +10,39 @@
     android:layout_height="match_parent"
     tools:context=".CalendarActivity">
 
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <com.prolificinteractive.materialcalendarview.MaterialCalendarView
             android:id="@+id/calendarView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="300dp"
-            android:layout_marginBottom="170dp"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@id/imageView3"
+            app:layout_constraintWidth_percent="1.0"
             app:mcv_showOtherDates="all"
-            app:mcv_tileHeight="30dp"
-            app:mcv_tileSize="50dp" />
+            app:mcv_tileHeight="@dimen/calendar_tile_height"
+            app:mcv_tileSize="match_parent" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="410dp"
+            android:layout_height="256dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toTopOf="@id/calendarView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintWidth_percent="0.9"
+            app:srcCompat="@drawable/calendarrchu" />
 
         <ImageView
             android:id="@+id/ic_menu"
@@ -57,26 +67,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_user" />
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:layout_marginTop="60dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/img_dashboard" />
-
-        <Button
-            android:id="@+id/editPeriodButton"
-            android:layout_width="167dp"
-            android:layout_height="42dp"
-            android:layout_marginTop="256dp"
-            android:text="Edit Period"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
@@ -91,14 +81,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/bottom_menu" >
+            app:menu="@menu/bottom_menu" />
 
-        </com.google.android.material.bottomnavigation.BottomNavigationView>
+        <!-- 50% of the width -->
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="255dp"
-            android:layout_height="32dp"
+            android:layout_width="243dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:text="FertiliSense Tracker"
             android:textColor="@color/black"
@@ -106,14 +96,11 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/ic_menu"
             app:layout_constraintEnd_toStartOf="@+id/nav_header_profile_picture"
+            app:layout_constraintHorizontal_bias="0.521"
             app:layout_constraintStart_toEndOf="@+id/ic_menu"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
-
-        <!-- Cycle Image and Text -->
-
-        <!-- Image and Text for Date -->
+            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintWidth_percent="0.5" />
 
         <ImageView
             android:id="@+id/imageView4"
@@ -121,18 +108,12 @@
             android:layout_height="28dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.84"
-        app:layout_constraintWidth_percent="0.05"
-        app:srcCompat="@drawable/period_color_shape" />
-
-        <!-- Period Image and Text -->
-
-        <!-- Fertile Days Image and Text -->
-
-        <!-- Ovulation Image and Text -->
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.84"
+            app:layout_constraintWidth_percent="0.05"
+            app:srcCompat="@drawable/period_color_shape" />
 
         <TextView
             android:id="@+id/textView9"
@@ -223,15 +204,25 @@
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageView7"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.833"
-            app:layout_constraintWidth_percent="0.15" />
+            app:layout_constraintWidth_percent="0.2" />
 
 
-        <!-- Date Image and Text -->
+
+        <TextView
+            android:id="@+id/status_of_fertility"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calendarView"
+            app:layout_constraintWidth_percent="0.8" /> <!-- Set to 80% of screen width -->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

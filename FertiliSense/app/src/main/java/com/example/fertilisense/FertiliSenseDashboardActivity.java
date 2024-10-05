@@ -34,6 +34,16 @@ import java.util.Calendar;
 import java.util.Locale;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.concurrent.TimeUnit;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import java.util.List;
+import java.util.Map;
 
 
 public class FertiliSenseDashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,6 +57,11 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
     private TextView dateNow;
     private TextView nextOvulationLeft;
     private TextView nextOvulationDate;
+    private TextView nextPeriodStartTextView;
+    private TextView nextPeriodEndTextView;
+    private TextView fertileStartTextView;
+    private TextView fertileEndTextView;
+    private TextView statusOfFertilityTextView;
 
     private String appPackageName;
 
@@ -72,10 +87,21 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
         dateNow = findViewById(R.id.date_now);
         setCurrentDate();
 
+        // Next Period startend and fertilewindow start end
+        nextPeriodStartTextView = findViewById(R.id.next_period_date);
+        nextPeriodEndTextView = findViewById(R.id.next_period_left);
+        fertileStartTextView = findViewById(R.id.next_fertile_date);
+        fertileEndTextView = findViewById(R.id.next_fertile_left);
+        fetchNextPeriodAndFertileDates();
+
+
         // Next ovulation date and how many days left
         nextOvulationLeft = findViewById(R.id.next_ovulation_left);
         nextOvulationDate = findViewById(R.id.next_ovulation_date);
         setNextOvulationInfo();
+
+        statusOfFertilityTextView = findViewById(R.id.status_of_fertility);
+        fetchFertilityRiskStatus();
 
         // Load user information in the navigation header
         loadUserInformation();
@@ -136,34 +162,224 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
         dateNow.setText(currentDate);
     }
 
+
+    private void fetchNextPeriodAndFertileDates() {
+        FirebaseUser currentUser = authProfile.getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+
+            db.collection("menstrual_cycles")
+                    .document(userId)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    // Fetch predictions
+                                    List<Map<String, Object>> predictions = (List<Map<String, Object>>) document.get("predictions");
+                                    if (predictions != null && !predictions.isEmpty()) {
+                                        Map<String, Object> firstPrediction = predictions.get(0); // Change this line
+
+
+
+                                        // Fetch next period start and end dates
+                                        String nextPeriodStartDateStr = (String) firstPrediction.get("cycle_start_date");
+                                        String nextPeriodEndDateStr = (String) firstPrediction.get("cycle_end_date");
+                                        String fertileStartDateStr = (String) firstPrediction.get("fertile_window_start");
+                                        String fertileEndDateStr = (String) firstPrediction.get("fertile_window_end");
+
+                                        // Display the dates in TextViews
+                                        nextPeriodStartTextView.setText(nextPeriodStartDateStr);
+                                        nextPeriodEndTextView.setText(nextPeriodEndDateStr);
+                                        fertileStartTextView.setText(fertileStartDateStr);
+                                        fertileEndTextView.setText(fertileEndDateStr);
+                                    } else {
+                                        Log.d(TAG, "No predictions found");
+                                    }
+                                } else {
+                                    Log.d(TAG, "No such document");
+                                }
+                            } else {
+                                Log.d(TAG, "Error getting document: ", task.getException());
+                            }
+                        }
+                    });
+        } else {
+            Log.d(TAG, "No user is signed in");
+        }
+    }
+
+
+
+
     // Method to set next ovulation information
     private void setNextOvulationInfo() {
-        // Assuming you have menstrual cycle data
-        int cycleLength = 28; // Example cycle length (in days)
-        int lutealPhaseLength = 14; // Example luteal phase length (in days)
+        FirebaseUser currentUser = authProfile.getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
 
-        // Get current date
-        Calendar calendar = Calendar.getInstance();
+            db.collection("menstrual_cycles")
+                    .document(userId)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    // Fetch predictions
+                                    List<Map<String, Object>> predictions = (List<Map<String, Object>>) document.get("predictions");
+                                    if (predictions != null && !predictions.isEmpty()) {
+                                        Map<String, Object> firstPrediction = predictions.get(0); // Get the first prediction
 
-        // Calculate the next ovulation date
-        Calendar nextOvulationDateCalendar = Calendar.getInstance();
-        nextOvulationDateCalendar.setTime(calendar.getTime());
+                                        // Fetch ovulation date
+                                        String ovulationDateStr = (String) firstPrediction.get("ovulation_date");
+                                        Calendar ovulationDate = parseDate(ovulationDateStr);
 
-        // Assuming the last period started today
-        nextOvulationDateCalendar.add(Calendar.DAY_OF_MONTH, cycleLength - lutealPhaseLength);
+                                        // Get current date
+                                        Calendar today = Calendar.getInstance();
 
-        // Set next ovulation date
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d", Locale.getDefault());
-        String nextOvulation = dateFormat.format(nextOvulationDateCalendar.getTime());
-        nextOvulationDate.setText(nextOvulation);
+                                        // Calculate remaining days until ovulation
+                                        long diffInMillis = ovulationDate.getTimeInMillis() - today.getTimeInMillis();
+                                        long remainingDays = TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
 
-        // Calculate remaining days until ovulation
-        long diffInMillis = nextOvulationDateCalendar.getTimeInMillis() - calendar.getTimeInMillis();
-        long remainingDays = TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
-
-        // Set remaining days until ovulation
-        nextOvulationLeft.setText(remainingDays + " days left");
+                                        // Check if ovulation date is in the past
+                                        if (remainingDays < 0) {
+                                            nextOvulationDate.setText("Ovulation date has passed.");
+                                            nextOvulationLeft.setText("0 days left");
+                                        } else {
+                                            // Set next ovulation date and remaining days
+                                            SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d", Locale.getDefault());
+                                            String nextOvulation = dateFormat.format(ovulationDate.getTime());
+                                            nextOvulationDate.setText( nextOvulation);
+                                            nextOvulationLeft.setText(remainingDays + " days left ");
+                                        }
+                                    } else {
+                                        Log.d(TAG, "No predictions found");
+                                    }
+                                } else {
+                                    Log.d(TAG, "No such document");
+                                }
+                            } else {
+                                Log.d(TAG, "Error getting document: ", task.getException());
+                            }
+                        }
+                    });
+        } else {
+            Log.d(TAG, "No user is signed in");
+        }
     }
+
+    private void fetchFertilityRiskStatus() {
+        FirebaseUser currentUser = authProfile.getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+
+            db.collection("menstrual_cycles")
+                    .document(userId)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    // Fetch predictions
+                                    List<Map<String, Object>> predictions = (List<Map<String, Object>>) document.get("predictions");
+                                    if (predictions != null && !predictions.isEmpty()) {
+                                        Map<String, Object> firstPrediction = predictions.get(0); // Get the first prediction
+
+                                        // Fetch ovulation date and fertile window dates
+                                        String ovulationDateStr = (String) firstPrediction.get("ovulation_date");
+                                        String fertileStartDateStr = (String) firstPrediction.get("fertile_window_start");
+                                        String fertileEndDateStr = (String) firstPrediction.get("fertile_window_end");
+
+                                        // Calculate risk status
+                                        String riskStatus = calculateRiskStatus(ovulationDateStr, fertileStartDateStr, fertileEndDateStr);
+
+                                        // Display the risk status in TextView
+                                        statusOfFertilityTextView.setText(riskStatus);
+                                    } else {
+                                        Log.d(TAG, "No predictions found");
+                                        statusOfFertilityTextView.setText("No predictions available");
+                                    }
+                                } else {
+                                    Log.d(TAG, "No such document");
+                                    statusOfFertilityTextView.setText("No data found");
+                                }
+                            } else {
+                                Log.d(TAG, "Error getting document: ", task.getException());
+                            }
+                        }
+                    });
+        } else {
+            Log.d(TAG, "No user is signed in");
+        }
+    }
+
+    // Method to calculate risk status
+    private String calculateRiskStatus(String ovulationDateStr, String fertileWindowStartStr, String fertileWindowEndStr) {
+        try {
+            // Parse the dates
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            Date currentDate = new Date(); // Current date
+            Date ovulationDate = sdf.parse(ovulationDateStr);
+            Date fertileWindowStart = sdf.parse(fertileWindowStartStr);
+            Date fertileWindowEnd = sdf.parse(fertileWindowEndStr);
+
+            // Determine risk status
+            String riskStatus = "Low"; // Default risk status
+
+            if (currentDate.after(fertileWindowStart) && currentDate.before(fertileWindowEnd)) {
+                riskStatus = "High"; // Current date is in the fertile window
+            } else if (currentDate.after(new Date(fertileWindowStart.getTime() - 7 * 24 * 60 * 60 * 1000)) &&
+                    currentDate.before(new Date(fertileWindowEnd.getTime() + 7 * 24 * 60 * 60 * 1000))) {
+                riskStatus = "Medium"; // Current date is within a week before or after the fertile window
+            }
+
+            return riskStatus;
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "Unknown"; // Handle parse exception
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private Calendar parseDate(String dateStr) {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        try {
+            // Parse the string into a Date object
+            Date date = dateFormat.parse(dateStr);
+            // Set the calendar to the parsed date
+            calendar.setTime(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            Log.d(TAG, "Error parsing date: " + e.getMessage());
+        }
+        return calendar;
+    }
+
+
+
 
     private void loadUserInformation() {
         View headerView = navigationView.getHeaderView(0);
