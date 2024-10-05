@@ -53,6 +53,8 @@ public class ChatBotActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private DatabaseReference chatReference;
 
+    private FirebaseUser currentUser;
+
     private final String chatUrl = "https://6265-175-176-24-229.ngrok-free.app/webhooks/rest/webhook";
     //private final String actionUrl = "https://2c12-2001-4452-409-cc00-784a-f1c-c946-7897.ngrok-free.app/webhook";
 
@@ -62,8 +64,6 @@ public class ChatBotActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_bot);
 
         // Set up the toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -75,11 +75,11 @@ public class ChatBotActivity extends AppCompatActivity {
         // Initialize Firebase Auth and Database
         auth = FirebaseAuth.getInstance();
         chatReference = FirebaseDatabase.getInstance().getReference("Chat");
+        currentUser = auth.getCurrentUser();
 
         messageList = new ArrayList<>();
 
-        recyclerView = findViewById(R.id.recycler_view);
-        welcomeTextView = findViewById(R.id.welcome_text);
+        recyclerView = findViewById(R.id.recyclerView);
         messageEditText = findViewById(R.id.message_edit_text);
         sendButton = findViewById(R.id.send_btn);
 
@@ -93,10 +93,11 @@ public class ChatBotActivity extends AppCompatActivity {
         sendButton.setOnClickListener((v) -> {
             String question = messageEditText.getText().toString().trim();
             if (!question.isEmpty()) {
-                addToChat(question, Message.SENT_BY_ME);
-                messageEditText.setText("");
-                callAPI(question);
-                welcomeTextView.setVisibility(View.GONE);
+                runOnUiThread(() -> {
+                    addToChat(question, Message.SENT_BY_ME);
+                    messageEditText.setText("");
+                    callAPI(question);
+                });
             }
         });
     }
@@ -112,19 +113,21 @@ public class ChatBotActivity extends AppCompatActivity {
 
     void addToChat(String message, String sentBy) {
         runOnUiThread(() -> {
-            messageList.add(new Message(message, sentBy));
-            messageAdapter.notifyDataSetChanged();
-            recyclerView.smoothScrollToPosition(messageAdapter.getItemCount());
-
             // Save the message to Firebase Realtime Database
-            FirebaseUser currentUser = auth.getCurrentUser();
             if (currentUser != null) {
                 String senderId = currentUser.getUid();
                 String senderName = currentUser.getDisplayName() != null ? currentUser.getDisplayName() : "Anonymous";
 
+                // Save message in Firebase
                 DatabaseReference newMessageRef = chatReference.push();
                 newMessageRef.setValue(new Message(message, sentBy, senderId, senderName));
+
+                messageList.add(new Message(message, sentBy, senderId, senderName, currentUser.getPhotoUrl()));
+            }else {
+                messageList.add(new Message(message, sentBy));
             }
+            messageAdapter.notifyDataSetChanged();
+            recyclerView.smoothScrollToPosition(messageAdapter.getItemCount());
         });
     }
 
@@ -138,12 +141,10 @@ public class ChatBotActivity extends AppCompatActivity {
 
     void callAPI(String question) {
         messageList.add(new Message("Typing...", Message.SENT_BY_BOT));
-        messageAdapter.notifyItemInserted(messageList.size() - 1);
         recyclerView.smoothScrollToPosition(messageAdapter.getItemCount());
 
         JSONObject jsonBody = new JSONObject();
         try {
-            FirebaseUser currentUser = auth.getCurrentUser();
             if (currentUser != null) {
                 String senderId = currentUser.getUid();
                 String senderName = currentUser.getDisplayName() != null ? currentUser.getDisplayName() : "Anonymous";
