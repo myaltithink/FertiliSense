@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- dimens.xml -->
+    <dimen name="calendar_tile_height">29.5dp</dimen>
+    <dimen name="calendar_height_percent">0.55</dimen>
+
+</resources>

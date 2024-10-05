@@ -176,7 +176,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"
             android:textColor="@color/black"
-            android:text="Next Period Start Date"
+            android:text="Loading..."
             app:layout_constraintEnd_toEndOf="@+id/next_period"
             app:layout_constraintTop_toTopOf="@+id/next_period" />
 
@@ -187,7 +187,7 @@
             android:layout_marginTop="35dp"
             android:layout_marginEnd="20dp"
             android:textColor="@color/black"
-            android:text="Next Period End Date"
+            android:text="Loading..."
             app:layout_constraintEnd_toEndOf="@+id/next_period"
             app:layout_constraintTop_toTopOf="@+id/next_period" />
 
@@ -198,7 +198,7 @@
             android:layout_marginTop="35dp"
             android:layout_marginEnd="20dp"
             android:textColor="@color/black"
-            android:text="Fertile Period End Date"
+            android:text="Loading..."
             app:layout_constraintEnd_toEndOf="@+id/fertile_window"
             app:layout_constraintTop_toTopOf="@+id/fertile_window" />
 
@@ -209,7 +209,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"
             android:textColor="@color/black"
-            android:text="Fertile Period Start Date"
+            android:text="Loading..."
             app:layout_constraintEnd_toEndOf="@+id/fertile_window"
             app:layout_constraintTop_toTopOf="@+id/fertile_window" />
 
@@ -220,7 +220,7 @@
             android:layout_marginTop="35dp"
             android:layout_marginEnd="20dp"
             android:textColor="@color/black"
-            android:text="Days until ovulation"
+            android:text="Loading..."
             app:layout_constraintEnd_toEndOf="@+id/cycle_duration"
             app:layout_constraintTop_toTopOf="@+id/cycle_duration" />
 
@@ -231,7 +231,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"
             android:textColor="@color/black"
-            android:text="Next Ovulation Date"
+            android:text="Loading..."
             app:layout_constraintEnd_toEndOf="@+id/cycle_duration"
             app:layout_constraintTop_toTopOf="@+id/cycle_duration" />
 
