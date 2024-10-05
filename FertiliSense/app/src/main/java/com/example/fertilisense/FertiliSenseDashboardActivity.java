@@ -211,9 +211,6 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
         }
     }
 
-
-
-
     // Method to set next ovulation information
     private void setNextOvulationInfo() {
         FirebaseUser currentUser = authProfile.getCurrentUser();
@@ -347,22 +344,6 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private Calendar parseDate(String dateStr) {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
@@ -377,9 +358,6 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
         }
         return calendar;
     }
-
-
-
 
     private void loadUserInformation() {
         View headerView = navigationView.getHeaderView(0);
