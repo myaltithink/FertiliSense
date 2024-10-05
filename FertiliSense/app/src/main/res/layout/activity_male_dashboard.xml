@@ -62,8 +62,8 @@
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/imageSlider"
-                android:layout_width="420dp"
-                android:layout_height="515dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 app:layout_constraintBottom_toTopOf="@+id/tab_layout"
                 app:layout_constraintEnd_toEndOf="parent"
