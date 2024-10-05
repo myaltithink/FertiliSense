@@ -75,15 +75,18 @@
     </RelativeLayout>
 
     <!-- Recycler view for messages -->
+
+    <!-- Input field and send button at the bottom -->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_above="@+id/above"
         android:layout_below="@id/below"
-        android:layout_above="@id/above"
-        android:layout_marginBottom="6dp"/>
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="5dp" />
 
-    <!-- Input field and send button at the bottom -->
     <RelativeLayout
         android:id="@+id/above"
         android:layout_width="match_parent"
@@ -101,28 +104,42 @@
             android:paddingBottom="8dp"
             android:paddingRight="14dp">
 
-            <EditText
-                android:id="@+id/message_edit_text"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/transparent"
-                android:hint="Ask me anything?"
-                android:paddingLeft="28dp"
-                android:paddingTop="13dp"
-                android:paddingRight="18dp"
-                android:paddingBottom="12dp"
-                android:textSize="18sp"  />
+                android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@+id/send_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
-                android:layout_marginStart="300dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:paddingBottom="8dp"
-                android:src="@drawable/ic_send" />
+                <EditText
+                    android:id="@+id/message_edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    android:hint="Ask me anything?"
+                    android:paddingLeft="26dp"
+                    android:paddingTop="25dp"
+                    android:paddingRight="18dp"
+                    android:paddingBottom="15dp"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/send_btn"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ImageButton
+                    android:id="@+id/send_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_send"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.95"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.43" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
 
