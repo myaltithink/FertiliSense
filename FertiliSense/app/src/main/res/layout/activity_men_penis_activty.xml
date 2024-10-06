@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="
-The penis is a pendulous organ hanging from the front and sides of the pubic arch and contains most of the urethra. When not erect, it is cylindrical, but during erection, it takes on the shape of a triangular prism with rounded edges, with one side forming the dorsum. The penis is made up of three cylindrical masses of cavernous tissue, which are held together by fibrous tissue and covered by skin. There are two lateral masses called the corpora cavernosa penis, and a central mass known as the corpus spongiosum penis (or corpus cavernosum urethrae).\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/penis-1541222304?from=2"
+The penis is a flaccid organ that hangs in front of and on either side of the pubic arch and houses most of the urethra.. When not erect, it is cylindrical, but during erection, it takes on the shape of a triangular prism with rounded edges, with one side forming the dorsum. The penis is made up of three cylindrical masses of cavernous tissue, which are held together by fibrous tissue and covered by skin. There are two lateral masses called the corpora cavernosa penis, and a central mass known as the corpus spongiosum penis (or corpus cavernosum urethrae).\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/penis-1541222304?from=2"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp" />

@@ -64,8 +64,7 @@
             android:id="@+id/repro_female_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="
-The infundibulum of the uterine tube is the funnel-shaped beginning of the tube, located right after the opening into the abdomen. It is positioned near the free edge and the inner surface of the ovary.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/infundibulum-of-uterine-tube-1541214788?from=2"
+            android:text="The infundibulum of the uterine tube is the funnel-shaped beginning of the tube, located right after the opening into the abdomen. It is positioned near the free edge and the inner surface of the ovary.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/infundibulum-of-uterine-tube-1541214788?from=2"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp" />
