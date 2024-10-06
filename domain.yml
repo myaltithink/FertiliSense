@@ -89,6 +89,10 @@ actions:
   - action_oral_sex_hygiene
   - action_cleaning_sex_toys
   - action_cleaning_bed
+  - action_trying_to_conceive
+  - action_cleaning_vagina_prevent_sex
+  - action_prevent_infection_after_sex
+  - action_best_time_to_get_pregnant
 
 intents:
   - greet
@@ -176,6 +180,10 @@ intents:
   - oral_sex_hygiene
   - cleaning_sex_toys
   - cleaning_bed
+  - trying_to_conceive
+  - cleaning_vagina_after_sex
+  - prevent_infection_after_sex
+  - best_time_to_get_pregnant
 
 entities:
   - start_date
@@ -213,7 +221,7 @@ slots:
 
 responses:
   utter_greet:
-    - text: "Hi mate! How may I help you today?\n\nAre you looking to log your menstrual cycle?\n\nGet information about the reproductive system or anything related to it?\n\nLearn more about how a man's lifestyle impacts his fertility?\n\nTopics related to fertility, contraception, and sexual health? \n\nDiscuss symptoms like: headache, stomach-ache, flu, vision issues or any symptoms related to your reproductive system?\n\nCommon causes of testicular pain\n\nWhat procedures will a doctor use to address itchy testicles?"
+    - text: "Hi mate! How may I help you today?"
 
   utter_ask_start_date:
     - text: "Please provide the start date of your menstrual cycle (dd/mm/yyyy)."
@@ -249,7 +257,7 @@ responses:
     - text: "{response}"
 
   utter_did_that_help:
-    - text: "I hope this information is useful to you. If you’d like to continue, let me know how I can assist you further. Otherwise, feel free to exit."
+    - text: "I hope this information is useful to you. If you’d like to continue, let me know how I can assist you further."
 
   utter_happy:
     - text: "Great, carry on!"
@@ -640,7 +648,21 @@ responses:
   utter_cleaning_bed:
     - text: "Wash sheets weekly or more often if soiled, and using a mattress protector or towels can help keep the bed clean."
 
-# query and answer
+# query and answer trying to conceived
+  utter_trying_to_conceive:
+    - text: "To increase the chance of conception, avoid douching and lie down for a few minutes after sex to allow sperm to reach the egg."
+
+# query and answer cleaning vagina prevent sex
+  utter_cleaning_vagina_after_sex:
+    - text: "Cleaning the vagina won't prevent pregnancy; use contraception or consider emergency contraception if needed."
+
+# query and answer prevent infection after sex
+  utter_prevent_infection_after_sex:
+    - text: "Preventing infections after sex involves several proactive steps that focus on both hygiene and safe sexual practices. Here are some effective measures:\n1. Urinate After Sex\n2. Wash Gently\n3. Stay Hydrated\n4. Wear Clean, Loose-Fitting Underwear\n5. Practice Safe Sex\n6. Change Out of Damp Clothing\n7. Avoid Prolonged Exposure to Moisture\n8. Be Mindful of Lubricants\n9. Maintain Regular Hygiene Practices\n10. Get Regular Check-Ups"
+
+# query and answer best time to get pregnant
+  utter_best_time_to_get_pregnant:
+    - text: "Here are the effective ways to determine the best time to have sex if you're trying to get pregnant:\n1. Track fertility and menstrual cycles\n2. Optimal timing for conception\n3. Tracking ovulation\n4. Cervical mucus changes\n5. Basal body temperature (BBT) monitoring\n6. Ovulation predictor kits(OPKs)\n7. Physical ovulation symptoms"
 
 # query and answer
 

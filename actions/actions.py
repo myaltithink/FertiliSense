@@ -23,7 +23,7 @@ wiki_wiki = wikipediaapi.Wikipedia(
 )
 
 # Set up OpenAI API key
-openai.api_key = ''
+openai.api_key = 'your_key'
 
 # Actions of handling logging of cycles
 class ActionLogMenstrualCycle(Action):
@@ -1235,7 +1235,57 @@ class ActionCleaningBed(Action):
 
         return []
 
-# Actions for handling 
+# Actions for handling trying to conceived
+class ActionTryingToConceive(Action):
+    def name(self) -> Text:
+        return "action_trying_to_conceive"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(response="utter_trying_to_conceive")
+
+        return []
+
+# Actions for handling cleaning vagina prevent sex
+class ActionCleaningVaginaPreventSex(Action):
+    def name(self) -> Text:
+        return "action_cleaning_vagina_prevent_sex"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(response="utter_cleaning_vagina_prevent_sex")
+
+        return []
+
+# Actions for handling prevent infection after sex
+class ActionPreventInfectionAfterSex(Action):
+    def name(self) -> Text:
+        return "action_prevent_infection_after_sex"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(response="utter_prevent_infection_after_sex")
+
+        return []
+
+# Actions for handling best time to get pregnant
+class ActionBestTimeToGetPregnant(Action):
+    def name(self) -> Text:
+        return "action_best_time_to_get_pregnant"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(response="utter_best_time_to_get_pregnant")
+
+        return []
 
 # Actions for handling 
 
@@ -1246,6 +1296,8 @@ class ActionCleaningBed(Action):
 # Actions for handling 
 
 # Actions for handling 
+
+
 
 
 

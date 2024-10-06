@@ -655,7 +655,33 @@ stories:
       - action: utter_cleaning_bed
       - action: utter_did_that_help
 
-# handles
+# handles trying to conceived
+  - story: trying to conceive
+    steps:
+      - intent: trying_to_conceive
+      - action: utter_trying_to_conceive
+      - action: utter_did_that_help
+
+# handles cleaning vagina after sex
+  - story: cleaning vagina after sex
+    steps:
+      - intent: cleaning_vagina_after_sex
+      - action: utter_cleaning_vagina_after_sex
+      - action: utter_did_that_help
+
+# handles prevent infection after sex
+  - story: prevent infection after sex
+    steps:
+      - intent: prevent_infection_after_sex
+      - action: utter_prevent_infection_after_sex
+      - action: utter_did_that_help
+
+# handles best time to get pregnant
+  - story: best time to get pregnant
+    steps:
+      - intent: best_time_to_get_pregnant
+      - action: utter_best_time_to_get_pregnant
+      - action: utter_did_that_help
 
 # handles
 
@@ -663,6 +689,7 @@ stories:
 
 # handles
 
+# handles
 
 
 

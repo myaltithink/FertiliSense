@@ -1137,3 +1137,63 @@ nlu:
       - When should I wash my sheets following sexual activity?
       - What is the proper frequency for cleaning the bed after sex?
       - How often should I launder my bedding after sexual encounters?
+
+  - intent: trying_to_conceive
+    examples: |
+      - What should you do after sex to have a high change of being pregnant?
+      - How can I increase my chances of getting pregnant after sex?
+      - What steps should I take post-sex to improve my chances of conception?
+      - What actions can boost pregnancy chances after intercourse?
+      - How can I maximize my likelihood of conceiving after sex?
+      - What should I do following sex to enhance my fertility?
+      - What practices help in increasing the probability of pregnancy after sex?
+      - How can I optimize my chances of becoming pregnant post-sex?
+      - What post-sex habits improve the odds of conception?
+      - What can I do after intercourse to increase my chances of pregnancy?
+      - How do I ensure a higher probability of getting pregnant after sex?
+
+  - intent: cleaning_vagina_after_sex
+    examples: |
+      - Does washing the vagina after sex stop pregnancy?
+      - Can rinsing the vagina post-intercourse prevent conception?
+      - Is it possible to prevent pregnancy by cleaning the vagina after sex?
+      - Can vaginal hygiene after sex prevent getting pregnant?
+      - Does post-sex cleaning of the vagina reduce the chance of pregnancy?
+      - Will washing up after intercourse prevent pregnancy?
+      - Can douching after sex stop pregnancy?
+      - Is it effective to clean the vagina after sex to avoid pregnancy?
+      - Does cleaning the vaginal area post-sex affect pregnancy chances?
+      - Can hygiene practices after sex prevent pregnancy?
+      - Is it possible to prevent pregnancy by washing up after intercourse?
+      - Can washing up after sex reduce the chance of pregnancy?
+      - Can cleaning the vagina after sex prevent pregnancy?
+
+  - intent: prevent_infection_after_sex
+    examples: |
+      - How can you prevent infections after sex?
+      - What steps can you take to avoid infections after sex?
+      - How do you protect yourself from infections following intercourse?
+      - What measures can help prevent post-sex infections?
+      - How can you reduce the risk of infections after sexual activity?
+      - What can you do to stay infection-free after sex?
+      - How do you prevent getting infections post-intercourse?
+      - What are the best practices to avoid infections after having sex?
+      - How can you minimize the chances of infections after sex?
+      - What should you do to prevent infections following sexual activity?
+      - How can you ensure you don't get infections after sex?
+
+  - intent: best_time_to_get_pregnant
+    examples: |
+      - What are the effective ways to determine the best time to have sex if you're trying to get pregnant?
+      - How can I predict the right time to have sex to maximize my chances of conception?
+      - What are the best times to have sex to avoid early pregnancy?
+      - How can you find the optimal time for sex to increase your chances of pregnancy?
+      - What methods can help you pinpoint the best time to conceive?
+      - How do you determine the ideal timing for intercourse when trying to get pregnant?
+      - What are the best strategies to identify your most fertile days?
+      - How can you track the best days for conception?
+      - What techniques can you use to figure out the best time for pregnancy attempts?
+      - How do you calculate the most fertile period for getting pregnant?
+      - What tools can help you identify the perfect time to have sex for conception?
+      - How can you accurately determine your fertile window for pregnancy?
+      - What are the most effective ways to time intercourse for conception?
