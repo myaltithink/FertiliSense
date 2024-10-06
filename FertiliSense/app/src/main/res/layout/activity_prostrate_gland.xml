@@ -64,7 +64,7 @@
             android:id="@+id/repro_female_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="The prostate is a walnut-sized gland found only in men. It grows throughout a man’s life and can sometimes block the urethra, making urination difficult or impossible. The prostate plays a key role in producing and ejecting semen during sexual intercourse. Prostate cancer is a common condition that can affect the prostate and often requires surgical removal of the gland.\n\nSource: https://www.innerbody.com/image_repmov/repo09-new4.html"
+            android:text="It grows throughout a man’s life and can sometimes block the urethra, making urination difficult or impossible. The prostate plays a key role in producing and ejecting semen during sexual intercourse. Prostate cancer is a common condition that can affect the prostate and often requires surgical removal of the gland.\n\nSource: https://www.innerbody.com/image_repmov/repo09-new4.html"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp" />
