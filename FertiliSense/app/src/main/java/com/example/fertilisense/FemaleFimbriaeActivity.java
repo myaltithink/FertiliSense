@@ -6,21 +6,17 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class FemaleFimbraeActivity extends AppCompatActivity {
+public class FemaleFimbriaeActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private FirebaseAuth authProfile;
@@ -67,19 +63,19 @@ public class FemaleFimbraeActivity extends AppCompatActivity {
 
                 if (id == R.id.genital) {
                     Log.d(TAG, "Navigating to FemaleReproductiveSystemActivity");
-                    Intent intent = new Intent(FemaleFimbraeActivity.this, FemaleReproductiveSystemFemaleActivity.class);
+                    Intent intent = new Intent(FemaleFimbriaeActivity.this, FemaleReproductiveSystemFemaleActivity.class);
                     startActivity(intent);
                     overridePendingTransition(0,0);
                     finish();
                 } else if (id == R.id.home) {
                     Log.d(TAG, "Dashboard clicked");
-                    Intent intent = new Intent(FemaleFimbraeActivity.this, MaleDashboardActivity.class);
+                    Intent intent = new Intent(FemaleFimbriaeActivity.this, MaleDashboardActivity.class);
                     startActivity(intent);
                     overridePendingTransition(0,0);
                     finish();
                 } else if (id == R.id.chatbot) {
                     Log.d("FertiliSense", "Chatbot clicked");
-                    Intent intent = new Intent(FemaleFimbraeActivity.this, ChatBotActivity.class);
+                    Intent intent = new Intent(FemaleFimbriaeActivity.this, ChatBotActivity.class);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                     finish();
@@ -106,7 +102,7 @@ public class FemaleFimbraeActivity extends AppCompatActivity {
         // Handle different menu item clicks based on their IDs
         if (id == android.R.id.home) {
             // Back Button
-            Intent intent = new Intent(FemaleFimbraeActivity.this, FemaleReproductiveSystemFemaleActivity.class);
+            Intent intent = new Intent(FemaleFimbriaeActivity.this, FemaleReproductiveSystemFemaleActivity.class);
             startActivity(intent);
             overridePendingTransition(0,0);
             finish();
@@ -187,7 +183,7 @@ public class FemaleFimbraeActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.female_menu_fimbriae) {
             Log.d(TAG, "onOptionsItemSelected: Fimbriae selected.");
-            Intent intent = new Intent(this, FemaleFimbraeActivity.class);
+            Intent intent = new Intent(this, FemaleFimbriaeActivity.class);
             startActivity(intent);
             overridePendingTransition(0,0);
             finish();

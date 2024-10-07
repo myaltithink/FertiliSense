@@ -166,6 +166,14 @@ class ActionGoodbye(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
         dispatcher.utter_message(text="Goodbye! Have a great day!")
         return []
+    
+class ActionThankYou(Action):
+    def name(self) -> str:
+        return "action_thank_you"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        dispatcher.utter_message(text="You're welcome mate!")
+        return []
 
 # Actions handle the mood
 class ActionHandleMood(Action):    
@@ -1287,7 +1295,278 @@ class ActionBestTimeToGetPregnant(Action):
 
         return []
 
-# Actions for handling 
+# Actions for handling miscarriage
+class ActionMiscarriage(Action):
+    def name(self) -> Text:
+        return "action_miscarriage"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(response="utter_miscarriage")
+
+        return []
+
+# Actions for handling types of miscarriage
+class ActionTypesOfMiscarriage(Action):
+    def name(self) -> Text:
+        return "action_types_of_miscarriage"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(response="utter_types_of_miscarriage")
+
+        return []
+
+# Actions for handling missed miscarriage
+class ActionMissedMiscarriage(Action):
+    def name(self) -> Text:
+        return "action_missed_miscarriage"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(response="utter_missed_miscarriage")
+
+        return []
+
+# Actions for handling complete miscarriage
+class ActionCompleteMiscarriage(Action):
+    def name(self) -> Text:
+        return "action_complete_miscarriage"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(response="utter_complete_miscarriage")
+
+        return []
+
+# Actions for handling recurrent miscarriage
+class ActionRecurrentMiscarriage(Action):
+    def name(self) -> Text:
+        return "action_recurrent_miscarriage"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(response="utter_recurrent_miscarriage")
+
+        return []
+
+# Actions for handling threatened miscarriage
+class ActionThreatenedMiscarriage(Action):
+    def name(self) -> Text:
+        return "action_threatened_miscarriage"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(response="utter_threatened_miscarriage")
+
+        return []
+
+# Actions for handling inevitable miscarriage
+class ActionInevitableMiscarriage(Action):
+    def name(self) -> Text:
+        return "action_inevitable_miscarriage"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(response="utter_inevitable_miscarriage")
+
+        return []
+
+# Actions for handling having miscarriage
+class ActionHavingMiscarriage(Action):
+    def name(self) -> Text:
+        return "action_having_miscarriage"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(response="utter_having_miscarriage")
+
+        return []
+
+# Actions for handling cause miscarriage
+class ActionCauseMiscarriage(Action):
+    def name(self) -> Text:
+        return "action_cause_miscarriage"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(response="utter_cause_miscarriage")
+
+        return []
+
+# Actions for handling painful miscarriage
+class ActionPainfulMiscarriage(Action):
+    def name(self) -> Text:
+        return "action_painful_miscarriage"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(response="utter_painful_miscarriage")
+
+        return []
+
+# Actions for handling safe sex
+class ActionSafeSex(Action):
+    def name(self) -> Text:
+        return "action_safe_sex"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(response="utter_safe_sex")
+
+        return []
+
+# Actions for handling importance safe sex
+class ActionImportanceSafeSex(Action):
+    def name(self) -> Text:
+        return "action_importance_safe_sex"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(response="utter_importance_safe_sex")
+
+        return []
+
+# Actions for handling sti
+class ActionSti(Action):
+    def name(self) -> Text:
+        return "action_sti"
+    
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        dispatcher.utter_message(response="utter_sti")
+
+        return []
+
+# Actions for handling std
+class ActionStd(Action):
+    def name(self) -> Text:
+        return "action_std"
+    
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        dispatcher.utter_message(response="utter_std")
+
+        return []
+
+# Actions for handling difference std sti
+class ActionDifferenceStdSti(Action):
+    def name(self) -> Text:
+        return "action_difference_std_sti"
+    
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        dispatcher.utter_message(response="utter_difference_std_sti")
+
+        return []
+
+# Actions for handling type sti
+class ActionTypeSti(Action):
+    def name(self) -> Text:
+        return "action_types_sti"
+    
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        dispatcher.utter_message(response="utter_types_sti")
+
+        return []
+
+# Actions for handling how common sti
+class ActionHowCommonSti(Action):
+    def name(self) -> Text:
+        return "action_how_common_sti"
+    
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        dispatcher.utter_message(response="utter_how_common_sti")
+
+        return []
+
+# Actions for handling symptoms sti
+class ActionSymptomsSti(Action):
+    def name(self) -> Text:
+        return "action_symptoms_sti"
+    
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        dispatcher.utter_message(response="utter_symptoms_sti")
+
+        return []
+
+# Actions for handling causes sti
+class ActionCausesSti(Action):
+    def name(self) -> Text:
+        return "action_causes_sti"
+    
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        dispatcher.utter_message(response="utter_causes_sti")
+
+        return []
+
+# Actions for handling sti contagious
+class ActionStiContagious(Action):
+    def name(self) -> Text:
+        return "action_sti_contagious"
+    
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        dispatcher.utter_message(response="utter_sti_contagious")
+
+        return []
+
+# Actions for handling sti diagnosed
+class ActionStiDiagnosed(Action):
+    def name(self) -> Text:
+        return "action_sti_diagnosed"
+    
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        dispatcher.utter_message(response="utter_sti_diagnosed")
+
+        return []
 
 # Actions for handling 
 
@@ -1297,7 +1576,7 @@ class ActionBestTimeToGetPregnant(Action):
 
 # Actions for handling 
 
-
+# Actions for handling 
 
 
 

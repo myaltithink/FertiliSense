@@ -6,21 +6,17 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class FemaleIsthmusUterusActivity extends AppCompatActivity {
+public class FemaleIsthmusOfUterusActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private FirebaseAuth authProfile;
@@ -67,19 +63,19 @@ public class FemaleIsthmusUterusActivity extends AppCompatActivity {
 
                 if (id == R.id.genital) {
                     Log.d(TAG, "Navigating to FemaleReproductiveSystemActivity");
-                    Intent intent = new Intent(FemaleIsthmusUterusActivity.this, FemaleReproductiveSystemFemaleActivity.class);
+                    Intent intent = new Intent(FemaleIsthmusOfUterusActivity.this, FemaleReproductiveSystemFemaleActivity.class);
                     startActivity(intent);
                     overridePendingTransition(0,0);
                     finish();
                 } else if (id == R.id.home) {
                     Log.d(TAG, "Dashboard clicked");
-                    Intent intent = new Intent(FemaleIsthmusUterusActivity.this, MaleDashboardActivity.class);
+                    Intent intent = new Intent(FemaleIsthmusOfUterusActivity.this, MaleDashboardActivity.class);
                     startActivity(intent);
                     overridePendingTransition(0,0);
                     finish();
                 } else if (id == R.id.chatbot) {
                     Log.d("FertiliSense", "Chatbot clicked");
-                    Intent intent = new Intent(FemaleIsthmusUterusActivity.this, ChatBotActivity.class);
+                    Intent intent = new Intent(FemaleIsthmusOfUterusActivity.this, ChatBotActivity.class);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                     finish();
@@ -105,7 +101,7 @@ public class FemaleIsthmusUterusActivity extends AppCompatActivity {
         // Handle different menu item clicks based on their IDs
         if (id == android.R.id.home) {
             // Back Button
-            Intent intent = new Intent(FemaleIsthmusUterusActivity.this, FemaleReproductiveSystemFemaleActivity.class);
+            Intent intent = new Intent(FemaleIsthmusOfUterusActivity.this, FemaleReproductiveSystemFemaleActivity.class);
             startActivity(intent);
             overridePendingTransition(0,0);
             finish();

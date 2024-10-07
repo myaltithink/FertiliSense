@@ -234,7 +234,7 @@ public class MaleReproductiveSystemMenActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 Log.d("FertiliSense", "Navigating to Penis Activity");
-                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, MenPenisActivty.class);
+                Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, MenPenisActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();

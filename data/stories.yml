@@ -1,6 +1,7 @@
 version: "3.1"
 
 stories:
+# Action for handling adding menstrual cycle
   - story: log cycle
     steps:
       - intent: log_menstrual_cycle
@@ -22,10 +23,23 @@ stories:
           - period_duration
       - action: action_log_menstrual_cycle
 
+# Action for handling greet
   - story: happy path
     steps:
       - intent: greet
       - action: utter_greet
+
+# Action for handling thank you
+  - story: thank you
+    steps:
+      - intent: thank_you
+      - action: utter_thank_you
+
+# Action for handling goodbye
+  - story: goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
 
 # Action for handling mood
   - story: handle mood unhappy
@@ -44,6 +58,7 @@ stories:
       - intent: deny
       - action: utter_acknowledge_mood
 
+# Action for openAI
   - story: handle reproductive health query
     steps:
       - intent: ask_reproductive_health
@@ -683,7 +698,152 @@ stories:
       - action: utter_best_time_to_get_pregnant
       - action: utter_did_that_help
 
-# handles
+# handles miscarriage
+  - story: miscarriage
+    steps:
+      - intent: miscarriage
+      - action: utter_miscarriage
+      - action: utter_did_that_help
+
+# handles types of miscarriage
+  - story: types of miscarriage
+    steps:
+      - intent: types_of_miscarriage
+      - action: utter_types_of_miscarriage
+      - action: utter_did_that_help
+
+# handles missed miscarriage
+  - story: missed miscarriage
+    steps:
+      - intent: missed_miscarriage
+      - action: utter_missed_miscarriage
+      - action: utter_did_that_help
+
+# handles complete miscarriage
+  - story: complete miscarriage
+    steps:
+      - intent: complete_miscarriage
+      - action: utter_complete_miscarriage
+      - action: utter_did_that_help
+
+# handles recurrent miscarriage
+  - story: recurrent miscarriage
+    steps:
+      - intent: recurrent_miscarriage
+      - action: utter_recurrent_miscarriage
+      - action: utter_did_that_help
+
+# handles threatened miscarriage
+  - story: threatened miscarriage
+    steps:
+      - intent: threatened_miscarriage
+      - action: utter_threatened_miscarriage
+      - action: utter_did_that_help
+
+# handles inevitable miscarriage
+  - story: inevitable miscarriage
+    steps:
+      - intent: inevitable_miscarriage
+      - action: utter_inevitable_miscarriage
+      - action: utter_did_that_help
+
+# handles having miscarriage
+  - story: having miscarriage
+    steps:
+      - intent: having_miscarriage
+      - action: utter_having_miscarriage
+      - action: utter_did_that_help
+
+# handles cause miscarriage
+  - story: cause miscarriage
+    steps:
+      - intent: cause_miscarriage
+      - action: utter_cause_miscarriage
+      - action: utter_did_that_help
+
+# handles painful miscarriage
+  - story: painful miscarriage
+    steps:
+      - intent: painful_miscarriage
+      - action: utter_painful_miscarriage
+      - action: utter_did_that_help
+
+# handles safe sex
+  - story: safe sex
+    steps:
+      - intent: safe_sex
+      - action: utter_safe_sex
+      - action: utter_did_that_help
+
+# handles importance safe sex
+  - story: importance safe sex
+    steps:
+      - intent: importance_safe_sex
+      - action: utter_importance_safe_sex
+      - action: utter_did_that_help
+
+# handles sti
+  - story: sti
+    steps:
+      - intent: sti
+      - action: utter_sti
+      - action: utter_did_that_help
+
+# handles std
+  - story: std
+    steps:
+      - intent: std
+      - action: utter_std
+      - action: utter_did_that_help
+
+# handles difference std sti
+  - story: difference std sti
+    steps:
+      - intent: difference_std_sti
+      - action: utter_difference_std_sti
+      - action: utter_did_that_help
+
+# handles types sti
+  - story: types sti
+    steps:
+      - intent: types_sti
+      - action: utter_types_sti
+      - action: utter_did_that_help
+
+# handles how common sti
+  - story: how common sti
+    steps:
+      - intent: how_common_sti
+      - action: utter_how_common_sti
+      - action: utter_did_that_help
+
+# handles symptoms sti
+  - story: symptoms sti
+    steps:
+      - intent: symptoms_sti
+      - action: utter_symptoms_sti
+      - action: utter_did_that_help
+
+# handles causes sti
+  - story: causes sti
+    steps:
+      - intent: causes_sti
+      - action: utter_causes_sti
+      - action: utter_did_that_help
+
+# handles sti contagious
+  - story: sti contagious
+    steps:
+      - intent: sti_contagious
+      - action: utter_sti_contagious
+      - action: utter_did_that_help
+
+# handles sti diagnosed
+  - story: sti diagnosed
+    steps:
+      - intent: sti_diagnosed
+      - action: utter_sti_diagnosed
+      - action: utter_did_that_help
 
 # handles
 
@@ -691,6 +851,9 @@ stories:
 
 # handles
 
+# handles
+
+# handles
 
 
 

@@ -172,7 +172,7 @@ public class FemaleReproductiveSystemFemaleActivity extends AppCompatActivity im
             @Override
             public void onClick(View view) {
                 Log.d("FertiliSense", "Navigating to Isthmus of Uterus Activity");
-                Intent intent = new Intent(FemaleReproductiveSystemFemaleActivity.this, FemaleIsthmusUterusActivity.class);
+                Intent intent = new Intent(FemaleReproductiveSystemFemaleActivity.this, FemaleIsthmusOfUterusActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
@@ -250,7 +250,7 @@ public class FemaleReproductiveSystemFemaleActivity extends AppCompatActivity im
             @Override
             public void onClick(View view) {
                 Log.d("FertiliSense", "Navigating to Fimbriae Activity");
-                Intent intent = new Intent(FemaleReproductiveSystemFemaleActivity.this, FemaleFimbraeActivity.class);
+                Intent intent = new Intent(FemaleReproductiveSystemFemaleActivity.this, FemaleFimbriaeActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();

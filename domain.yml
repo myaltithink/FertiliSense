@@ -14,6 +14,8 @@ actions:
   - action_log_menstrual_cycle
   - action_greet
   - action_handle_mood
+  - action_thank_you
+  - action_goodbye
   - action_query_wikipedia
   - action_query_gpt4
   - action_ask_day
@@ -25,7 +27,6 @@ actions:
   - action_flu_symptom
   - action_vision_symptom
   - action_stomach_symptom
-  - action_goodbye
   - action_bot_challenge
   - action_lifestyle_men
   - action_itchy_testicles
@@ -93,10 +94,32 @@ actions:
   - action_cleaning_vagina_prevent_sex
   - action_prevent_infection_after_sex
   - action_best_time_to_get_pregnant
+  - action_miscarriage
+  - action_types_of_miscarriage
+  - action_missed_miscarriage
+  - action_complete_miscarriage
+  - action_recurrent_miscarriage
+  - action_threatened_miscarriage
+  - action_inevitable_miscarriage
+  - action_having_miscarriage
+  - action_cause_miscarriage
+  - action_painful_miscarriage
+  - action_safe_sex
+  - action_importance_safe_sex
+  - action_sti
+  - action_std
+  - action_difference_std_sti
+  - action_types_sti
+  - action_how_common_sti
+  - action_symptoms_sti
+  - action_causes_sti
+  - action_sti_contagious
+  - action_sti_diagnosed
 
 intents:
   - greet
   - goodbye
+  - thank_you
   - log_menstrual_cycle
   - inform
   - mood_answer
@@ -184,6 +207,27 @@ intents:
   - cleaning_vagina_after_sex
   - prevent_infection_after_sex
   - best_time_to_get_pregnant
+  - miscarriage
+  - types_of_miscarriage
+  - missed_miscarriage
+  - complete_miscarriage
+  - recurrent_miscarriage
+  - threatened_miscarriage
+  - inevitable_miscarriage
+  - having_miscarriage
+  - cause_miscarriage
+  - painful_miscarriage
+  - safe_sex
+  - importance_safe_sex
+  - sti
+  - std
+  - difference_std_sti
+  - types_sti
+  - how_common_sti
+  - symptoms_sti
+  - causes_sti
+  - sti_contagious
+  - sti_diagnosed
 
 entities:
   - start_date
@@ -237,6 +281,9 @@ responses:
 
   utter_goodbye:
     - text: "Goodbye! Take care mate!"
+
+  utter_thank_you:
+    - text: "You're welcome mate!"
 
   utter_iamabot:
     - text: "I am your mate, powered by FertiliSense."
@@ -664,7 +711,91 @@ responses:
   utter_best_time_to_get_pregnant:
     - text: "Here are the effective ways to determine the best time to have sex if you're trying to get pregnant:\n1. Track fertility and menstrual cycles\n2. Optimal timing for conception\n3. Tracking ovulation\n4. Cervical mucus changes\n5. Basal body temperature (BBT) monitoring\n6. Ovulation predictor kits(OPKs)\n7. Physical ovulation symptoms"
 
-# query and answer
+# query and answer miscarriage
+  utter_miscarriage:
+    - text: "A miscarriage, also known as a spontaneous abortion, refers to the unexpected termination of a pregnancy within the first 20 weeks of gestation. The term miscarriage does not imply that you did anything wrong while carrying the pregnancy. In fact, most miscarriages are out of your control and happen because the fetus ceases to develop."
+
+# query and answer types of miscarriage
+  utter_types_of_miscarriage:
+    - text: "Here are some types of miscarriage:\n1. Missed Miscarriage\n2. Complete Miscarriage\n3. Recurrent Miscarriage\n4. Threatened Miscarriage\n5. Inevitable Miscarriage"
+
+# query and answer missed miscarriage
+  utter_missed_miscarriage:
+    - text: "You may have lost the pregnancy without realizing it. There are no signs of a miscarriage, but an ultrasound reveals that the fetus has no heartbeat."
+
+# query and answer complete miscarriage
+  utter_complete_miscarriage:
+    - text: "You have lost the pregnancy, and your uterus is empty. You have experienced bleeding and passed fetal tissue. Your healthcare provider can confirm a complete miscarriage through an ultrasound."
+
+# query and answer recurrent miscarriage
+  utter_recurrent_miscarriage:
+    - text: "Experiencing three consecutive miscarriages affects approximately 1% of couples."
+
+# query and answer threatened miscarriage
+  utter_threatened_miscarriage:
+    - text: "Your cervix remains closed, but you are experiencing bleeding and pelvic cramping. In most cases, the pregnancy continues without further complications. Your pregnancy care provider may keep a closer watch on you for the remainder of your pregnancy."
+
+# query and answer inevitable miscarriage
+  utter_inevitable_miscarriage:
+    - text: "You are experiencing bleeding and cramping, and your cervix has begun to open (dilate). You may also be leaking amniotic fluid, indicating that a complete miscarriage is likely."
+
+# query and answer having miscarriage
+  utter_having_miscarriage:
+    - text: "Here are the most common symptoms of miscarriage:\n1. Bleeding that starts light and becomes heavy. You might also pass grayish tissue or blood clots.\n2. Cramping and abdominal pain, typically more severe than menstrual cramps.\n3. A low back ache that can vary from mild to severe.\n4. A reduction in pregnancy symptoms."
+
+# query and answer cause miscarriage
+  utter_cause_miscarriage:
+    - text: "Here are several factors that may cause miscarriage:\n1. Infections\n2. Exposure to TORCH disease\n3. Hormonal Imbalances\n4. Improper implantation of fertilized eggs\n5. Age\n6. Uterine Abnormalities\n7. Cervix begins to open too early in pregnancy\n8. Lifestyle Factors\n9. Disorder of immune system\n10. Severe kidney disease\n11. Congenital Heart Disease\n12. Diabetes\n13. Thyroid Disease\n14. Certain Medicines\n15. Severe Malnutrition\n16. Radiation"
+
+# query and answer painful miscarriage
+  utter_painful_miscarriage:
+    - text: "Miscarriages vary for each individual. Some may experience painful cramping, while others might have cramps similar to their menstrual period. The type of miscarriage can also influence the level of pain. For instance, a person having a complete miscarriage at home may experience more pain compared to someone who has a missed miscarriage and undergoes a surgical procedure to remove the pregnancy."
+
+# query and answer safe sex
+  utter_safe_sex:
+    - text: "Here are factors that can help to practice safe sex:\n1. Use Condoms: Consistently using condoms can significantly reduce the risk of sexually transmitted infections (STIs) and unintended pregnancies.\n2. Get Tested Regularly: Both partners should get tested for STIs before engaging in sexual activity, especially if they have multiple partners.\n3. Limit Sexual Partners: Reducing the number of sexual partners can lower the risk of STIs and help maintain a healthier sexual relationship.\n4. Communicate Openly: Discuss sexual history, boundaries, and safe sex practices with your partner to ensure both parties are informed and comfortable.\n5. Consider Dental Dams: For oral sex, using dental dams can help reduce the risk of transmitting STIs.\n6. Avoid Alcohol and Drugs: Being under the influence can impair judgment and lead to risky sexual behavior. It's important to be sober when making decisions about sex.\n7. Understand Your Cycle: If trying to avoid pregnancy, be aware of your menstrual cycle and fertile windows to practice natural family planning methods.\n8. Use Lubricants: Water-based or silicone-based lubricants can help prevent condom breakage and reduce friction during intercourse.\n9. Educate Yourself: Stay informed about safe sex practices, STIs, and contraceptive methods through reliable sources.\n10. Seek Regular Health Check-Ups: Routine check-ups with a healthcare provider can help monitor sexual health and address any concerns."
+
+# query and answer importance safe sex
+  utter_importance_safe_sex:
+    - text: "Practicing safe sex is crucial as it reduces the risk of contracting STIs and helps maintain the health and safety of you and your partner(s). By protecting yourself from STIs, you can prevent spreading them to others and avoid potential negative health effects. This is particularly important because certain STIs, such as HPV and HIV, can lead to more severe health problems."
+
+# query and answer sti
+  utter_sti:
+    - text: "Sexually Transmitted Infections (STIs) are contaminations or conditions that can be contracted through any sort of sexual movement including the mouth, butt, vagina, or penis. STIs are too commonly alluded to as sexually transmitted maladies (STDs). There are different sorts of STIs, with common indications counting burning, tingling, or release in the genital zone. Be that as it may, a few STIs are asymptomatic, meaning they do not show any discernible indications."
+
+# query and answer std
+  utter_std:
+    - text: "STD stands for sexually transmitted disease, also known as sexually transmitted infections (STIs). These are infections that spread from person to person through sexual activity, including anal, vaginal, or oral sex."
+
+# query and answer difference std sti
+  utter_difference_std_sti:
+    - text: "STD stands for Sexually Transmitted Disease, while STI stands for Sexually Transmitted Infection. Regardless of the term used, both refer to infections that are transmitted from one person to another during sexual activity."
+
+# query and answer types sti
+  utter_types_sti:
+    - text: "The most common types of sexually transmitted infections include:\n1. Chlamydia\n2. Genital Herpes\n3. Genital Warts\n4. Gonorrhea\n5. Hepatitis\n6. HIV/AIDS\n7. Human Papillomavirus (HPV)\n8.Pubic Lice\n9. Syphilis\n10. Trichomoniasis\n11. Vaginitis"
+
+# query and answer how common sti
+  utter_how_common_sti:
+    - text: "Sexually transmitted infections are widespread. Each year, over 25 million cases are reported in the United States, while globally, an estimated 374 million cases occur annually. According to the CDC, there were around 2.5 million instances of chlamydia, gonorrhea, and syphilis in the U.S. in 2021. Approximately half of these cases were among individuals aged 15 to 24."
+
+# query and answer symptoms sti
+  utter_symptoms_sti:
+    - text: "Symptoms of sexually transmitted infections (STIs) vary by type and may not always be present. When symptoms do occur, they often appear in the genital area and may include\n1. Bumps, sores, or warts on or around your genitals, mouth, or anus\n2. Swelling or intense itching near your genitals\n3. Discharge from the penis\n4. Vaginal discharge that has a foul smell, causes irritation, or differs in color or amount from normal\n5. Unusual vaginal bleeding that isn't related to your period\n6. Pain during sex\n7. Painful or frequent urination\nYou may also experience symptoms affecting your whole body, such as:\n1. Skin Rash\n2. Unexplained weight loss\n3. Diarrhea\n4. Night sweats\n5. Body aches, fever, and chills\n6. Jaundice (yellowing of the skin and eyes)"
+
+# query and answer causes sti
+  utter_causes_sti:
+    - text: "Sexually transmitted infections occur when different bacteria, viruses, or parasites invade your body. These microorganisms can be transmitted through bodily fluids, such as blood, urine, semen, saliva, and other mucous membranes, during sexual activities, including vaginal, oral, and anal sex."
+
+# query and answer sti contagious
+  utter_sti_contagious:
+    - text: "Yes, sexually transmitted infections (STIs) are contagious. Most STIs are transmitted through sexual contact via bodily fluids or through skin-to-skin contact by touching an infected area, typically the genitals. Certain STIs, such as syphilis, can also be transmitted during childbirth. If you have an STI, it's crucial to see a healthcare provider for treatment, as some STIs are curable. To prevent the spread of STIs, get tested regularly if you're sexually active, communicate your diagnosis to your sexual partners, and use protection during sex."
+
+# query and answer sti diagnosed
+  utter_sti_diagnosed:
+    - text: "A healthcare provider will diagnose a sexually transmitted infection (STI) through a physical exam and testing. They will inquire about your symptoms, as well as your medical and sexual history—it's important to answer honestly to receive appropriate care. After receiving a positive STI diagnosis, you should inform your sexual partner(s) so they can also get tested. Although this can be an emotional experience, notifying your partners is essential for ensuring they receive the care they need and for preventing the further spread of the infection."
+
+# query and answer 
 
 # query and answer
 
@@ -672,6 +803,9 @@ responses:
 
 # query and answer
 
+# query and answer
+
+# query and answer
 
 session_config:
   session_expiration_time: 60

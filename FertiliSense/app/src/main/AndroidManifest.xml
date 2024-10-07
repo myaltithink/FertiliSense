@@ -41,7 +41,7 @@
             android:name=".FemaleMyometriumActivity"
             android:exported="false" />
         <activity
-            android:name=".FemaleIsthmusUterusActivity"
+            android:name=".FemaleIsthmusOfUterusActivity"
             android:exported="false" />
         <activity
             android:name=".FemaleIsthmusOfUterineTubeActivity"
@@ -53,7 +53,7 @@
             android:name=".FemaleFundusActivity"
             android:exported="false" />
         <activity
-            android:name=".FemaleFimbraeActivity"
+            android:name=".FemaleFimbriaeActivity"
             android:exported="false" />
         <activity
             android:name=".FemaleFallopianTubeActivity"
@@ -89,7 +89,7 @@
             android:name=".MenUrethralOpeningActivity"
             android:exported="false" />
         <activity
-            android:name=".MenPenisActivty"
+            android:name=".MenPenisActivity"
             android:exported="false" />
         <activity
             android:name=".MenProstrateGlandActivity"

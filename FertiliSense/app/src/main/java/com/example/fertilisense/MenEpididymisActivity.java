@@ -122,35 +122,35 @@ public class MenEpididymisActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.male_menu_seminal_vesicle) {
             Log.d(TAG, "onOptionsItemSelected: Seminal Vesicle selected.");
-            Intent intent = new Intent(this, SeminalVesicleActivity.class);
+            Intent intent = new Intent(this, MenSeminalVesicleActivity.class);
             startActivity(intent);
             overridePendingTransition(0,0);
             finish();
             return true;
         } else if (id == R.id.male_menu_bladder) {
             Log.d(TAG, "onOptionsItemSelected: Bladder selected.");
-            Intent intent = new Intent(this, BladderActivity.class);
+            Intent intent = new Intent(this, MenBladderActivity.class);
             startActivity(intent);
             overridePendingTransition(0,0);
             finish();
             return true;
         } else if (id == R.id.male_menu_bulbourethral_gland) {
             Log.d(TAG, "onOptionsItemSelected: Bulbourethral Gland selected.");
-            Intent intent = new Intent(this, BulbourethralGlandActivity.class);
+            Intent intent = new Intent(this, MenBulbourethralGlandActivity.class);
             startActivity(intent);
             overridePendingTransition(0,0);
             finish();
             return true;
         } else if (id == R.id.male_menu_testicles) {
             Log.d(TAG, "onOptionsItemSelected: Testicles selected.");
-            Intent intent = new Intent(this, TesticlesActivity.class);
+            Intent intent = new Intent(this, MenTesticlesActivity.class);
             startActivity(intent);
             overridePendingTransition(0,0);
             finish();
             return true;
         } else if (id == R.id.male_menu_urethral_opening) {
             Log.d(TAG, "onOptionsItemSelected: Urethral Opening selected.");
-            Intent intent = new Intent(this, UrethralOpeningActivity.class);
+            Intent intent = new Intent(this, MenUrethralOpeningActivity.class);
             startActivity(intent);
             overridePendingTransition(0,0);
             finish();
@@ -164,28 +164,28 @@ public class MenEpididymisActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.male_menu_prostrate_gland) {
             Log.d(TAG, "onOptionsItemSelected: Prostrate Gland selected.");
-            Intent intent = new Intent(this, ProstrateGlandActivity.class);
+            Intent intent = new Intent(this, MenProstrateGlandActivity.class);
             startActivity(intent);
             overridePendingTransition(0,0);
             finish();
             return true;
         } else if (id == R.id.male_menu_ductus_vas_deferens) {
             Log.d(TAG, "onOptionsItemSelected: Ductus (Vas) Deferens selected.");
-            Intent intent = new Intent(this, DuctusVasDeferensActivity.class);
+            Intent intent = new Intent(this, MenDuctusVasDeferensActivity.class);
             startActivity(intent);
             overridePendingTransition(0,0);
             finish();
             return true;
         } else if (id == R.id.male_menu_penis) {
             Log.d(TAG, "onOptionsItemSelected: Penis selected.");
-            Intent intent = new Intent(this, PenisActivity.class);
+            Intent intent = new Intent(this, MenPenisActivity.class);
             startActivity(intent);
             overridePendingTransition(0,0);
             finish();
             return true;
         } else if (id == R.id.male_menu_glans) {
             Log.d(TAG, "onOptionsItemSelected: Penis selected.");
-            Intent intent = new Intent(this, GlansActivity.class);
+            Intent intent = new Intent(this, MenGlansActivity.class);
             startActivity(intent);
             overridePendingTransition(0,0);
             finish();

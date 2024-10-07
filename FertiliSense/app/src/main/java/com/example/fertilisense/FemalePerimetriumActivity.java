@@ -116,91 +116,91 @@ public class FemalePerimetriumActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.female_menu_developing_follicles) {
             Log.d(TAG, "onOptionsItemSelected: Developing Follicles selected.");
-            Intent intent = new Intent(this, DevelopingFolliclesActivity.class);
+            Intent intent = new Intent(this, FemaleDevelopingFolliclesActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
             return true;
         } else if (id == R.id.female_menu_fundus) {
             Log.d(TAG, "onOptionsItemSelected: Fundus selected.");
-            Intent intent = new Intent(this, FundusActivity.class);
+            Intent intent = new Intent(this, FemaleFundusActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
             return true;
         } else if (id == R.id.female_menu_endometrium) {
             Log.d(TAG, "onOptionsItemSelected: Endometrium selected.");
-            Intent intent = new Intent(this, EndometriumActivity.class);
+            Intent intent = new Intent(this, FemaleEndometriumActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
             return true;
         } else if (id == R.id.female_menu_isthmus_of_uterine_tube) {
             Log.d(TAG, "onOptionsItemSelected: Isthmus of Uterine Tube selected.");
-            Intent intent = new Intent(this, IsthmusOfUterineTubeActivity.class);
+            Intent intent = new Intent(this, FemaleIsthmusOfUterineTubeActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
             return true;
         } else if (id == R.id.female_menu_ovarian_ligament) {
             Log.d(TAG, "onOptionsItemSelected: Ovarian Ligament selected.");
-            Intent intent = new Intent(this, OvarianLigamentActivity.class);
+            Intent intent = new Intent(this, FemaleOvarianLigamentActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
             return true;
         } else if (id == R.id.female_menu_myometrium) {
             Log.d(TAG, "onOptionsItemSelected: Myometrium selected.");
-            Intent intent = new Intent(this, MyometriumActivity.class);
+            Intent intent = new Intent(this, FemaleMyometriumActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
             return true;
         } else if (id == R.id.female_menu_isthmus_of_uterus) {
             Log.d(TAG, "onOptionsItemSelected: Isthmus of Uterus selected.");
-            Intent intent = new Intent(this, IsthmusOfUterusActivity.class);
+            Intent intent = new Intent(this, FemaleIsthmusOfUterusActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
             return true;
         } else if (id == R.id.female_menu_fallopian_tube) {
             Log.d(TAG, "onOptionsItemSelected: Fallopian Tube selected.");
-            Intent intent = new Intent(this, FallopianTubeActivity.class);
+            Intent intent = new Intent(this, FemaleFallopianTubeActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
             return true;
         } else if (id == R.id.female_menu_infundibulum) {
             Log.d(TAG, "onOptionsItemSelected: Infundibulum selected.");
-            Intent intent = new Intent(this, InfundibulumActivity.class);
+            Intent intent = new Intent(this, FemaleInfundibulumActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
             return true;
         } else if (id == R.id.female_menu_corpus_luteum) {
             Log.d(TAG, "onOptionsItemSelected: Corpus Luteum selected.");
-            Intent intent = new Intent(this, CorpusLuteumActivity.class);
+            Intent intent = new Intent(this, FemaleCorpusLuteumActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
             return true;
         } else if (id == R.id.female_menu_fimbriae) {
             Log.d(TAG, "onOptionsItemSelected: Fimbriae selected.");
-            Intent intent = new Intent(this, FimbriaeActivity.class);
+            Intent intent = new Intent(this, FemaleFimbriaeActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
             return true;
         } else if (id == R.id.female_menu_ampulla) {
             Log.d(TAG, "onOptionsItemSelected: Ampulla selected.");
-            Intent intent = new Intent(this, AmpullaActivity.class);
+            Intent intent = new Intent(this, FemaleAmpullaActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
             return true;
         } else if (id == R.id.female_menu_uterus) {
             Log.d(TAG, "onOptionsItemSelected: Uterus selected.");
-            Intent intent = new Intent(this, UterusActivity.class);
+            Intent intent = new Intent(this, FemaleUterusActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
@@ -214,21 +214,21 @@ public class FemalePerimetriumActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.female_menu_ovary) {
             Log.d(TAG, "onOptionsItemSelected: Ovary selected.");
-            Intent intent = new Intent(this, OvaryActivity.class);
+            Intent intent = new Intent(this, FemaleOvaryActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
             return true;
         } else if (id == R.id.female_menu_vagina) {
             Log.d(TAG, "onOptionsItemSelected: Vagina selected.");
-            Intent intent = new Intent(this, VaginaActivity.class);
+            Intent intent = new Intent(this, FemaleVaginaActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
             return true;
         } else if (id == R.id.female_menu_cervix) {
             Log.d(TAG, "onOptionsItemSelected: Cervix selected.");
-            Intent intent = new Intent(this, CervixActivity.class);
+            Intent intent = new Intent(this, FemaleCervixActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();

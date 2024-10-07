@@ -31,6 +31,20 @@ nlu:
       - duration is 30 days
       - 01/08/2024
 
+  - intent: thank_you
+    examples: |
+      - thank you
+      - thanks
+      - Thanks
+      - ty
+      - TY
+      - tnx
+      - salamat
+      - Salamat
+      - thanks a lot
+      - thank you so much
+      - Thank you
+
   - intent: goodbye
     examples: |
       - cu
@@ -43,6 +57,9 @@ nlu:
       - see you around
       - bye bye
       - see you later
+      - Goodbye
+      - Bye
+      - That's all, thank you
 
   - intent: mood_unhappy
     examples: |
@@ -1197,3 +1214,350 @@ nlu:
       - What tools can help you identify the perfect time to have sex for conception?
       - How can you accurately determine your fertile window for pregnancy?
       - What are the most effective ways to time intercourse for conception?
+
+  - intent: miscarriage
+    examples: |
+      - What is miscarriage?
+      - explain miscarriage
+      - what do you mean by miscarriage?
+      - How would you define a miscarriage?
+      - What is meant by the term "miscarriage"?
+      - Can you explain what miscarriage refers to?
+      - What does miscarriage signify?
+      - How is a miscarriage characterized?
+      - What does it mean when someone talks about a miscarriage?
+      - Can you describe what happens during a miscarriage?
+      - What does the term miscarriage entail?
+      - How is miscarriage understood in medical terms?
+      - What is the explanation of a miscarriage?
+
+  - intent: types_of_miscarriage
+    examples: |
+      - What are the types of miscarriage?
+      - What are the different types of miscarriages?
+      - What are the main types of miscarriages?
+      - Can you list the different types of miscarriages?
+      - What are the different kinds of miscarriage?
+      - Can you explain the various types of miscarriage?
+      - What categories of miscarriage exist?
+      - How many types of miscarriage are there?
+      - What are the classifications of miscarriage?
+      - What types of miscarriage should one be aware of?
+      - What are the different forms of miscarriage?
+      - How can miscarriages be categorized?
+      - What are the specific types of miscarriage?
+      - What are the various kinds of miscarriages that can occur?
+
+  - intent: missed_miscarriage
+    examples: |
+      - what do you mean by missed miscarriage?
+      - missed miscarriage
+      - Missed miscarriage
+      - Missed Miscarriage
+      - Can you explain what missed miscarriage means?
+      - explain missed miscarriage
+      - What is a missed miscarriage?
+      - Can you explain what a missed miscarriage is?
+      - What does it mean when someone refers to a missed miscarriage?
+      - How would you describe a missed miscarriage?
+      - What exactly is a missed miscarriage?
+      - Can you clarify what a missed miscarriage means?
+      - What happens in a missed miscarriage?
+      - How do you define a missed miscarriage?
+      - What does the term missed miscarriage refer to?
+      - What should I know about missed miscarriages?
+
+  - intent: complete_miscarriage
+    examples: |
+      - what do you mean by complete miscarriage?
+      - explain complete miscarriage
+      - complete miscarriage
+      - Complete Miscarriage
+      - Can you explain what complete miscarriage means?
+      - How would you define a complete miscarriage?
+      - What does complete miscarriage refer to?
+      - Can you explain what a complete miscarriage is?
+      - What does it mean when someone talks about a complete miscarriage?
+      - How is a complete miscarriage characterized?
+      - What exactly is a complete miscarriage?
+      - Can you clarify the meaning of complete miscarriage?
+      - What happens during a complete miscarriage?
+      - How do you define the term complete miscarriage?
+      - What should I know about complete miscarriages?
+
+  - intent: recurrent_miscarriage
+    examples: |
+      - what do you mean by recurrent miscarriage?
+      - explain recurrent miscarriage
+      - recurrent miscarriage
+      - Recurrent Miscarriage
+      - Can you explain what recurrent miscarriage means?
+      - How would you define a recurrent miscarriage?
+      - How would you define recurrent miscarriage?
+      - What does recurrent miscarriage refer to?
+      - Can you explain what a recurrent miscarriage is?
+      - What does it mean when someone talks about a recurrent miscarriage?
+      - How is recurrent miscarriage characterized?
+      - What exactly is meant by recurrent miscarriage?
+      - Can you clarify the meaning of recurrent miscarriage?
+      - What happens in cases of recurrent miscarriage?
+      - How do you define the term recurrent miscarriage?
+      - What should I know about recurrent miscarriages?
+
+  - intent: threatened_miscarriage
+    examples: |
+      - what do you mean by threatened miscarriage?
+      - explain threatened miscarriage
+      - threatened miscarriage
+      - Threatened Miscarriage
+      - Can you explain what threatened miscarriage means?
+      - How would you define a threatened miscarriage?
+      - What does the term threatened miscarriage refer to?
+      - Can you explain what a threatened miscarriage is?
+      - What does it mean when someone mentions a threatened miscarriage?
+      - How is a threatened miscarriage characterized?
+      - What exactly is meant by threatened miscarriage?
+      - Can you clarify the meaning of a threatened miscarriage?
+      - What signs indicate a threatened miscarriage?
+      - How do you define the term threatened miscarriage?
+      - What should I know about threatened miscarriages?
+
+  - intent: inevitable_miscarriage
+    examples: |
+      - what do you mean by inevitable miscarriage?
+      - explain inevitable miscarriage
+      - inevitable miscarriage
+      - Inevitable Miscarriage
+      - Can you explain what inevitable miscarriage means?
+      - How would you define an inevitable miscarriage?
+      - How would you define an inevitable miscarriage?
+      - What does the term inevitable miscarriage refer to?
+      - Can you explain what an inevitable miscarriage is?
+      - What does it mean when someone talks about an inevitable miscarriage?
+      - How is an inevitable miscarriage characterized?
+      - What exactly is meant by inevitable miscarriage?
+      - Can you clarify the meaning of an inevitable miscarriage?
+      - What are the signs of an inevitable miscarriage?
+      - How do you define the term inevitable miscarriage?
+      - What should I know about inevitable miscarriages?
+
+  - intent: having_miscarriage
+    examples: |
+      - having miscarriage
+      - Having Miscarriage
+      - how do you know if your having miscarriage?
+      - how do i know if im having miscarriage?
+      - What are the signs of a miscarriage?
+      - How can I tell if I'm experiencing a miscarriage?
+      - What symptoms indicate a miscarriage?
+      - What should I look for to know if I'm having a miscarriage?
+      - How do I recognize a miscarriage?
+      - What are the early warning signs of a miscarriage?
+      - How can I determine if I'm miscarrying?
+      - What happens during a miscarriage and how will I know?
+      - What are the common symptoms of a miscarriage?
+      - How can I identify a miscarriage?
+
+  - intent: cause_miscarriage
+    examples: |
+      - What can be the cause of miscarriage?
+      - what are the main causes of miscarriage?
+      - what are the primary causes of miscarriage?
+      - Can you explain the primary causes of miscarriage?
+      - cause miscarriage
+      - Cause Miscarriage
+      - What factors might lead to a miscarriage?
+      - What are the common reasons for a miscarriage?
+      - What can trigger a miscarriage?
+      - What potential causes are there for a miscarriage?
+      - What could result in a miscarriage?
+      - What are the possible reasons behind a miscarriage?
+      - What might cause a miscarriage to happen?
+      - What are the typical causes of a miscarriage?
+      - What conditions can lead to a miscarriage?
+      - What are the risk factors for a miscarriage?
+
+  - intent: painful_miscarriage
+    examples: |
+      - how painful is a miscarriage?
+      - What level of pain can be expected during a miscarriage?
+      - How much discomfort does a miscarriage cause?
+      - Is a miscarriage very painful?
+      - How severe is the pain associated with a miscarriage?
+      - What kind of pain is experienced during a miscarriage?
+      - Does a miscarriage hurt a lot?
+      - How intense is the pain from a miscarriage?
+      - How bad is the pain during a miscarriage?
+      - How much does a miscarriage hurt?
+      - What is the pain level like during a miscarriage?
+
+  - intent: safe_sex
+    examples: |
+      - How to practice safe sex?
+      - What are the signs of safe sex?
+      - practice safe sex
+      - How can I be sure that I'm safe with my partner?
+      - What are the risks of unsafe sex?
+      - What are the best ways to have safe sex?
+      - How can you ensure sex is safe?
+      - What steps should you take to practice safe sex?
+      - How do you make sure you're having safe sex?
+      - What are the guidelines for safe sex?
+      - What precautions should you take for safe sex?
+      - How can you protect yourself during sex?
+      - What are the tips for practicing safe sex?
+      - How do you maintain safety during sexual activity?
+      - What measures should you follow for safe sex?
+
+  - intent: importance_safe_sex
+    examples: |
+      - What is the importance of safe sex?
+      - why safe sex is important?
+      - How important is safe sex for my health?
+      - How important is safe sex for my partner?
+      - What are the best ways to have safe sex?
+      - How can you ensure sex is safe?
+      - What steps should you take to practice safe sex?
+      - How do you make sure you're having safe sex?
+      - What are the guidelines for safe sex?
+      - What precautions should you take for safe sex?
+      - How can you protect yourself during sex?
+      - What are the tips for practicing safe sex?
+      - How do you maintain safety during sexual activity?
+      - What measures should you follow for safe sex?
+
+  - intent: sti
+    examples: |
+      - What is STI?
+      - what is STIs?
+      - what is sti?
+      - Sexually Transmitted Infections
+      - sti
+      - STI
+      - sexually transmitted infections
+      - What does STI stand for?
+      - What is a sexually transmitted infection?
+      - Can you explain what an STI is?
+      - What are STIs?
+      - What are sexually transmitted infections?
+
+  - intent: std
+    examples: |
+      - What is STD?
+      - what is STDs?
+      - what is std?
+      - Sexually Transmitted Diseases
+      - std
+      - STD
+      - sexually transmitted diseases
+      - What does STD stand for?
+      - What is a sexually transmitted disease?
+      - Can you explain what a STD is?
+      - What are STDs?
+
+  - intent: difference_std_sti
+    examples: |
+      - what is the difference between sti and std?
+      - what is the difference between STI and STD?
+      - what is the difference between sexually transmitted infections and sexually transmitted diseases?
+      - What is the main difference between STI and STD?
+      - What is the primary difference between sexually transmitted infections and sexually transmitted diseases?
+      - How do STIs and STDs differ?
+      - What's the distinction between an STI and an STD?
+      - Can you explain the difference between STIs and STDs?
+      - What sets an STI apart from an STD?
+      - How are STIs different from STDs?
+      - What's the difference between sexually transmitted infections and sexually transmitted diseases?
+      - Are STIs and STDs the same thing?
+      - How do you differentiate between an STI and an STD?
+      - What's the main difference between an STI and an STD?
+      - What makes an STI different from an STD?
+
+  - intent: types_sti
+    examples: |
+      - What are the types of sexually transmitted infections?
+      - What are the types of STI?
+      - What kinds of STIs are there?
+      - Can you list the different types of sexually transmitted infections?
+      - What are the various types of STIs?
+      - What are the categories of sexually transmitted infections?
+      - What are the common types of STIs?
+      - What are the different kinds of sexually transmitted infections?
+      - What types of STIs exist?
+      - What are the main types of sexually transmitted infections?
+      - Can you name the types of STIs?
+      - What are the different types of STIs?
+
+  - intent: how_common_sti
+    examples: |
+      - How common are sexually transmitted infections?
+      - how common are sti?
+      - How common are STIs?
+      - How prevalent are STIs?
+      - Are sexually transmitted infections common?
+      - How frequently do people get STIs?
+      - What is the rate of occurrence for sexually transmitted infections?
+      - How widespread are STIs?
+      - How often do sexually transmitted infections occur?
+      - What is the prevalence of STIs?
+      - How usual are sexually transmitted infections?
+      - How many people get STIs?
+      - What is the frequency of sexually transmitted infections?
+
+  - intent: symptoms_sti
+    examples: |
+      - What are the symptoms of sexually transmitted infections?
+      - What are the symptoms of STIs?
+      - what are the symptoms of sti?
+      - What signs indicate an STI?
+      - What are the common symptoms of sexually transmitted infections?
+      - How can you tell if you have an STI?
+      - What symptoms should I look out for with STIs?
+      - What are the warning signs of sexually transmitted infections?
+      - What are the typical symptoms associated with STIs?
+      - How do sexually transmitted infections manifest?
+      - What are the symptoms that suggest an STI?
+      - What should I be aware of regarding STI symptoms?
+      - How can one recognize the symptoms of sexually transmitted infections?
+
+  - intent: causes_sti
+    examples: |
+      - What causes sexually transmitted infections?
+      - What leads to the development of sexually transmitted infections?
+      - How do sexually transmitted infections occur?
+      - What are the primary causes of STIs?
+      - What factors contribute to the spread of sexually transmitted infections?
+      - How can someone contract a sexually transmitted infection?
+      - What are the reasons behind sexually transmitted infections?
+      - What triggers the occurrence of STIs?
+      - What causes infections that are transmitted sexually?
+      - How do sexually transmitted infections develop?
+      - What can lead to the transmission of STIs?
+
+  - intent: sti_contagious
+    examples: |
+      - Are sexually transmitted infections contagious?
+      - Can sexually transmitted infections be spread from one person to another?
+      - Are STIs transmissible between individuals?
+      - Do sexually transmitted infections pass from person to person?
+      - Can you catch a sexually transmitted infection from someone else?
+      - Are sexually transmitted infections infectious?
+      - Is it possible to transmit sexually transmitted infections?
+      - Can STIs be spread through sexual contact?
+      - Are sexually transmitted infections capable of being contagious?
+      - Can you get a sexually transmitted infection from a partner?
+      - Do sexually transmitted infections spread easily?
+
+  - intent: sti_diagnosed
+    examples: |
+      - How are sexually transmitted infections diagnosed?
+      - What methods are used to diagnose sexually transmitted infections?
+      - How do doctors determine if someone has an STI?
+      - What tests are performed to identify sexually transmitted infections?
+      - How can you find out if you have a sexually transmitted infection?
+      - What is the process for diagnosing STIs?
+      - How do healthcare professionals test for sexually transmitted infections?
+      - What procedures are involved in diagnosing STIs?
+      - How can a sexually transmitted infection be confirmed?
+      - What steps are taken to diagnose an STI?
+      - How is a sexually transmitted infection typically identified?
