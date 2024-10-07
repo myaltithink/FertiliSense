@@ -845,15 +845,47 @@ stories:
       - action: utter_sti_diagnosed
       - action: utter_did_that_help
 
-# handles
+# handles sti testing
+  - story: sti testing
+    steps:
+      - intent: sti_testing
+      - action: utter_sti_testing
+      - action: utter_did_that_help
+
+# handles sexual health
+  - story: sexual health
+    steps:
+      - intent: sexual_health
+      - action: utter_sexual_health
+      - action: utter_did_that_help
+
+# handles importance sexual health
+  - story: importance sexual health
+    steps:
+      - intent: importance_sexual_health
+      - action: utter_importance_sexual_health
+      - action: utter_did_that_help
+
+# handles hiv
+  - story: hiv
+    steps:
+      - intent: hiv
+      - action: utter_hiv
+      - action: utter_did_that_help
+
+# handles hiv treatment
+  - story: hiv treatment
+    steps:
+      - intent: hiv_treatment
+      - action: utter_hiv_treatment
+      - action: utter_did_that_help
 
 # handles
 
 # handles
 
-# handles
 
-# handles
+
 
 
 

@@ -1561,3 +1561,90 @@ nlu:
       - How can a sexually transmitted infection be confirmed?
       - What steps are taken to diagnose an STI?
       - How is a sexually transmitted infection typically identified?
+
+  - intent: sti_testing
+    examples: |
+      - What types of tests might be performed to diagnose an STI?
+      - What tests are available for diagnosing sexually transmitted infections?
+      - How can I test for sexually transmitted infections?
+      - What are the common tests used to detect STIs?
+      - How do doctors test for sexually transmitted infections?
+      - What medical tests diagnose STIs?
+      - What laboratory tests are used to identify sexually transmitted infections?
+      - What screenings are performed to detect STIs?
+      - How are sexually transmitted infections diagnosed through testing?
+      - What kinds of exams are conducted to check for STIs?
+      - What diagnostic tests might be used for STIs?
+      - What are the testing methods for sexually transmitted infections?
+      - How can STIs be identified through medical tests?
+
+  - intent: sexual_health
+    examples: |
+      - What is sexual health?
+      - what is sexual health?
+      - What is Sexual Health?
+      - How would you define sexual health?
+      - What does sexual health mean?
+      - Can you explain what sexual health is?
+      - What encompasses sexual health?
+      - What does it mean to have good sexual health?
+      - How do you describe sexual health?
+      - What is meant by sexual health?
+      - How is sexual health defined?
+      - What does being sexually healthy involve?
+      - What are the key aspects of sexual health?
+      - What should I know about sexual health?
+
+  - intent: importance_sexual_health
+    examples: |
+      - why sexual health is important?
+      - Why sexual health is important?
+      - Why does sexual health matter?
+      - Why should I care about my sexual health?
+      - What makes sexual health so important?
+      - Why is it crucial to maintain good sexual health?
+      - How does sexual health impact overall well-being?
+      - What are the benefits of prioritizing sexual health?
+      - Why is it essential to focus on sexual health?
+      - How important is sexual health in daily life?
+      - What are the reasons to pay attention to sexual health?
+      - Why is sexual health significant?
+      - Why should we prioritize sexual health?
+
+  - intent: hiv
+    examples: |
+      - What is HIV?
+      - What is hiv?
+      - Human immunodeficiency virus
+      - Human Immunodeficiency Virus
+      - human immunodeficiency virus
+      - Can you explain what HIV is?
+      - What is the meaning of HIV?
+      - What is the definition of HIV?
+      - How would you describe HIV?
+      - What exactly is HIV?
+      - What are the basics of HIV?
+      - Can you tell me about HIV?
+      - What is HIV, and how does it affect people?
+      - What should I know about HIV?
+
+  - intent: hiv_treatment
+    examples: |
+      - What are the medical interventions available for managing HIV?
+      - What treatments are available for managing HIV?
+      - How is HIV managed medically?
+      - What medical options exist for treating HIV?
+      - What are the standard medical interventions for HIV?
+      - How do doctors treat HIV?
+      - What therapies are used to control HIV?
+      - What are the healthcare strategies for HIV management?
+      - How can HIV be medically treated?
+      - What medical care is available for HIV patients?
+      - What are the current medical practices for managing HIV?
+
+
+
+
+
+
+

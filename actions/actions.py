@@ -1568,7 +1568,70 @@ class ActionStiDiagnosed(Action):
 
         return []
 
-# Actions for handling 
+# Actions for handling sti testing
+class ActionStiTesting(Action):
+    def name(self) -> Text:
+        return "action_sti_testing"
+    
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        dispatcher.utter_message(response="utter_sti_testing")
+
+        return []
+
+# Actions for handling sexual health
+class ActionSexualHealth(Action):
+    def name(self) -> Text:
+        return "action_sexual_health"
+    
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        dispatcher.utter_message(response="utter_sexual_health")
+
+        return []
+
+# Actions for handling importance sexual health
+class ActionImportanceSexualHealth(Action):
+    def name(self) -> Text:
+        return "action_importance_sexual_health"
+    
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        dispatcher.utter_message(response="utter_importance_sexual_health")
+
+        return []
+
+# Actions for handling hiv
+class ActionHiv(Action):
+    def name(self) -> Text:
+        return "action_hiv"
+    
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        dispatcher.utter_message(response="utter_hiv")
+
+        return []
+
+# Actions for handling hiv treatment
+class ActionHivTreatment(Action):
+    def name(self) -> Text:
+        return "action_hiv_treatment"
+    
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        dispatcher.utter_message(response="utter_hiv_treatment")
+
+        return []
 
 # Actions for handling 
 
@@ -1577,6 +1640,12 @@ class ActionStiDiagnosed(Action):
 # Actions for handling 
 
 # Actions for handling 
+
+# Actions for handling 
+
+# Actions for handling 
+
+
 
 
 

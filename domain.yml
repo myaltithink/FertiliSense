@@ -115,6 +115,11 @@ actions:
   - action_causes_sti
   - action_sti_contagious
   - action_sti_diagnosed
+  - action_sti_testing
+  - action_sexual_health
+  - action_importance_sexual_health
+  - action_hiv
+  - action_hiv_treatment
 
 intents:
   - greet
@@ -228,6 +233,11 @@ intents:
   - causes_sti
   - sti_contagious
   - sti_diagnosed
+  - sti_testing
+  - sexual_health
+  - importance_sexual_health
+  - hiv
+  - hiv_treatment
 
 entities:
   - start_date
@@ -795,7 +805,25 @@ responses:
   utter_sti_diagnosed:
     - text: "A healthcare provider will diagnose a sexually transmitted infection (STI) through a physical exam and testing. They will inquire about your symptoms, as well as your medical and sexual history—it's important to answer honestly to receive appropriate care. After receiving a positive STI diagnosis, you should inform your sexual partner(s) so they can also get tested. Although this can be an emotional experience, notifying your partners is essential for ensuring they receive the care they need and for preventing the further spread of the infection."
 
-# query and answer 
+# query and answer sti testing
+  utter_sti_testing:
+    - text: "Testing for STIs may involve:\n1. Urine Testing\n2. Cheek Swab\n3. Blood Tests\n4. A sample of fluid from skin sores.\n5. A discharge or cell sample from your body, typically from the vagina, urethra, cervix, penis, anus, or throat."
+
+# query and answer sexual health
+  utter_sexual_health:
+    - text: "Sexual health is essential for the overall well-being of individuals, couples, and families, and it plays a crucial role in the social and economic development of communities and nations. A positive view of sexual health involves a respectful approach to sexuality and sexual relationships, ensuring that individuals can have pleasurable and safe sexual experiences without coercion, discrimination, or violence."
+
+# query and answer importance sexual health
+  utter_importance_sexual_health:
+    - text: "Sexual health matters because it impacts overall well-being, helping prevent health risks and fostering fulfilling, communicative relationships."
+
+# query and answer hiv
+  utter_hiv:
+    - text: "Human immunodeficiency infection (HIV) is a infection that assaults the safe framework. Procured immunodeficiency disorder (Helps) is the most progressed arrange of HIV disease. HIV targets white blood cells, debilitating the resistant framework and making the body more helpless to ailments like tuberculosis, contaminations, and certain cancers. HIV is transmitted through the substantial liquids of an contaminated individual, such as blood, breast drain, semen, and vaginal liquids. It is not spread through kissing, embracing, or sharing nourishment"
+
+# query and answer hiv treatment
+  utter_hiv_treatment:
+    - text: "There is no cure for HIV infection, but it is managed with antiretroviral drugs, which prevent the virus from replicating in the body. Although current antiretroviral therapy (ART) doesn't cure HIV, it helps strengthen the immune system, enabling individuals to better combat other infections. Advanced HIV disease continues to be a significant challenge in the fight against HIV. The World Health Organization (WHO) is aiding countries in implementing advanced HIV disease care packages to reduce illness and death. Newer HIV medications and short-course treatments for opportunistic infections, such as cryptococcal meningitis, are being developed. These advancements, including injectable formulations, may transform how people take ART and prevention medicines in the future."
 
 # query and answer
 
