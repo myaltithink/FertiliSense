@@ -1,0 +1,28 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-drug_query",
+      "2": "I-drug_query",
+      "3": "L-drug_query",
+      "4": "U-drug_query",
+      "5": "B-start_date",
+      "6": "I-start_date",
+      "7": "L-start_date",
+      "8": "U-start_date",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-drug_query": 1,
+      "I-drug_query": 2,
+      "L-drug_query": 3,
+      "U-drug_query": 4,
+      "B-start_date": 5,
+      "I-start_date": 6,
+      "L-start_date": 7,
+      "U-start_date": 8,
+      "O": 0
+    },
+    "num_tags": 9
+  }
+]

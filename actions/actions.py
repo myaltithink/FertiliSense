@@ -23,7 +23,7 @@ wiki_wiki = wikipediaapi.Wikipedia(
 )
 
 # Set up OpenAI API key
-openai.api_key = 'your_key'
+openai.api_key = ''
 
 # Actions of handling logging of cycles
 class ActionLogMenstrualCycle(Action):
@@ -147,6 +147,170 @@ class ActionLogMenstrualCycle(Action):
             dispatcher.utter_message(text="Your menstrual cycle information and predictions for the next four months have been recorded successfully.")
         except ValueError as e:
             dispatcher.utter_message(text="There was an error processing the dates. Please use the format dd/mm/yyyy.")
+            print(f"ERROR: {e}")
+
+        return []
+    
+class ActionLogSymptoms(Action):
+    def name(self) -> str:
+        return "action_log_symptoms"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        operation = tracker.get_slot("operation")
+        symptoms = tracker.get_slot("symptoms")  # This should be a list of symptom dictionaries
+
+        user_id = tracker.sender_id
+
+        # Debug logs
+        print(f"DEBUG: Operation: {operation}")
+        print(f"DEBUG: Symptoms Slot Value: {symptoms}")
+
+        if operation == "create":
+            return self.create_log(dispatcher, user_id, symptoms)
+        elif operation == "read":
+            return self.read_logs(dispatcher, user_id)
+        elif operation == "update":
+            return self.update_log(dispatcher, user_id, symptoms)
+        elif operation == "delete":
+            return self.delete_log(dispatcher, user_id, symptoms)
+        else:
+            dispatcher.utter_message(text="Please specify a valid operation: create, read, update, or delete.")
+            return []
+
+    def create_log(self, dispatcher, user_id, symptoms):
+        # Handle creation of multiple symptom logs
+        if not symptoms:
+            dispatcher.utter_message(text="Please provide symptom information.")
+            return []
+
+        try:
+            # Fetch previous symptom logs from Firestore
+            previous_logs = db.collection('symptom_logs').document(user_id).get().to_dict()
+            if previous_logs:
+                historical_logs = previous_logs.get('logs', [])
+            else:
+                historical_logs = []
+
+            # Add each symptom log to the historical logs
+            for symptom_entry in symptoms:
+                symptom = symptom_entry.get("symptom")
+                start_date = symptom_entry.get("start_date")
+                end_date = symptom_entry.get("end_date")
+
+                # Validate symptom data
+                if not symptom or not start_date or not end_date:
+                    dispatcher.utter_message(text="Each symptom must include a symptom name, start date, and end date.")
+                    return []
+
+                historical_logs.append({
+                    'symptoms': symptom,
+                    'start_date': start_date,
+                    'end_date': end_date
+                })
+
+            # Save the logs to Firestore
+            db.collection('symptom_logs').document(user_id).set({
+                'logs': historical_logs
+            })
+
+            dispatcher.utter_message(text="Your symptoms have been logged successfully.")
+        except ValueError as e:
+            dispatcher.utter_message(text="There was an error processing the dates. Please use the format dd/mm/yyyy.")
+            print(f"ERROR: {e}")
+
+        return []
+
+    def read_logs(self, dispatcher, user_id):
+        # Handle reading all symptom logs
+        previous_logs = db.collection('symptom_logs').document(user_id).get().to_dict()
+        if previous_logs and 'logs' in previous_logs:
+            logs = previous_logs['logs']
+            if logs:
+                log_messages = []
+                for log in logs:
+                    log_message = f"Symptoms: {log['symptoms']}, Start Date: {log['start_date']}, End Date: {log['end_date']}"
+                    log_messages.append(log_message)
+                dispatcher.utter_message(text="Here are your logged symptoms:\n" + "\n".join(log_messages))
+            else:
+                dispatcher.utter_message(text="You have no logged symptoms.")
+        else:
+            dispatcher.utter_message(text="You have no logged symptoms.")
+
+        return []
+
+    def update_log(self, dispatcher, user_id, symptoms):
+        # Handle updating existing symptom logs
+        if not symptoms:
+            dispatcher.utter_message(text="Please provide symptom information for updating.")
+            return []
+
+        try:
+            # Fetch previous symptom logs
+            previous_logs = db.collection('symptom_logs').document(user_id).get().to_dict()
+            if previous_logs:
+                historical_logs = previous_logs.get('logs', [])
+            else:
+                dispatcher.utter_message(text="No logs found to update.")
+                return []
+
+            # Update logs based on the provided symptoms
+            for symptom_entry in symptoms:
+                symptom = symptom_entry.get("symptom")
+                start_date = symptom_entry.get("start_date")
+                end_date = symptom_entry.get("end_date")
+
+                # Validate input
+                if not symptom or not start_date:
+                    continue  # Skip invalid entries
+
+                # Find the log with the matching start date and update it
+                for log in historical_logs:
+                    if log['start_date'] == start_date:
+                        log['symptoms'] = symptom
+                        log['end_date'] = end_date
+                        break
+
+            # Save the updated logs to Firestore
+            db.collection('symptom_logs').document(user_id).set({
+                'logs': historical_logs
+            })
+
+            dispatcher.utter_message(text="Your symptoms log has been updated successfully.")
+        except ValueError as e:
+            dispatcher.utter_message(text="There was an error processing the dates. Please use the format dd/mm/yyyy.")
+            print(f"ERROR: {e}")
+
+        return []
+
+    def delete_log(self, dispatcher, user_id, symptoms):
+        # Handle deleting symptom logs
+        if not symptoms:
+            dispatcher.utter_message(text="Please provide symptom information for deletion.")
+            return []
+
+        try:
+            # Fetch previous symptom logs
+            previous_logs = db.collection('symptom_logs').document(user_id).get().to_dict()
+            if previous_logs:
+                historical_logs = previous_logs.get('logs', [])
+            else:
+                dispatcher.utter_message(text="No logs found to delete.")
+                return []
+
+            # Remove logs based on the provided symptoms
+            for symptom_entry in symptoms:
+                start_date = symptom_entry.get("start_date")
+                if start_date:
+                    historical_logs = [log for log in historical_logs if log['start_date'] != start_date]
+
+            # Save the updated logs to Firestore
+            db.collection('symptom_logs').document(user_id).set({
+                'logs': historical_logs
+            })
+
+            dispatcher.utter_message(text="Your symptoms log has been deleted successfully.")
+        except ValueError as e:
+            dispatcher.utter_message(text="There was an error processing the date. Please use the format dd/mm/yyyy.")
             print(f"ERROR: {e}")
 
         return []
@@ -1633,7 +1797,18 @@ class ActionHivTreatment(Action):
 
         return []
 
-# Actions for handling 
+# Actions for handling medication during pregnancy
+class ActionMedicationPregnancy(Action):
+    def name(self) -> Text:
+        return "action_medication_during_pregnancy"
+    
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        dispatcher.utter_message(response="utter_medication_during_pregnancy")
+
+        return []
 
 # Actions for handling 
 

@@ -182,6 +182,95 @@ nlu:
       - no
       - n
 
+  - intent: log_symptoms_create
+    examples: |
+      - I want to create a new symptom log
+      - Log my symptoms
+      - Create a symptom log
+      - I need to record my symptoms.
+      - Can I start a new symptom log?
+      - Help me log my current symptoms.
+      - I'd like to add a new symptom log.
+      - Please log my symptoms for today.
+      - Start logging my symptoms.
+      - Add a symptom entry for me.
+      - I want to track my symptoms.
+      - How do I create a symptom log?
+      - Log the symptoms I've experienced today.
+      - Log symptoms
+      - Log symptom
+
+  - intent: log_symptom
+    examples: |
+      - I have a headache
+      - My stomach hurts
+      - I feel dizzy.
+      - I'm experiencing chest pain.
+      - My back is sore.
+      - I have a sore throat.
+      - My joints are aching.
+      - I’ve been coughing a lot.
+      - My eyes are irritated.
+      - I’m feeling nauseous.
+      - My legs are cramping.
+      - I have a fever.
+
+  - intent: log_symptoms_read
+    examples: |
+      - Show my symptom logs
+      - I want to read all symptom logs
+      - Display my symptom history
+      - Can you read my symptom logs?
+      - Show me my past symptom logs.
+      - I want to view my symptom records.
+      - Display my past symptoms.
+      - Can I see my symptom history?
+      - Show all my logged symptoms.
+      - Let me check my symptom logs.
+      - I need to review my symptom entries.
+      - Can you display my symptom records?
+      - Show the symptoms I’ve logged.
+      - I’d like to read my symptom history.
+  
+  - intent: log_symptoms_update
+    examples: |
+      - I want to update my symptom log
+      - Update my symptoms from [10/10/2024](start_date)
+      - Modify my symptom log for [10/10/2024](start_date)
+      - Change the log for symptoms on [10/10/2024](start_date)
+      - need to update my symptom entry.
+      - Can you change my symptoms from 10/10/2024?
+      - Edit the symptoms I logged on 10/10/2024.
+      - Update my symptom record for 10/10/2024.
+      - I want to revise my symptom log for 10/10/2024.
+      - Can I modify the symptoms I logged on 10/10/2024?
+      - Let me update the symptoms from 10/10/2024.
+      - Change the symptom details for 10/10/2024.
+      - I’d like to correct my symptoms log from 10/10/2024.
+      - Update the entry for my symptoms on 10/10/2024.
+      - Update
+      - Update log
+
+  - intent: log_symptoms_delete
+    examples: |
+      - Delete my symptom log for [12/10/2024](start_date)
+      - Remove the symptom log for [12/10/2024](start_date)
+      - I want to delete a symptom log
+      - Clear my log from [12/10/2024](start_date)
+      - an you delete my symptom log from 12/10/2024?
+      - Please remove the symptom entry for 12/10/2024.
+      - I’d like to clear my symptom log for 12/10/2024.
+      - Delete the symptoms I logged on 12/10/2024.
+      - Get rid of my symptom entry from 12/10/2024.
+      - Can you remove my log for 12/10/2024?
+      - I want to erase the symptoms I tracked on 12/10/2024.
+      - Please clear my symptoms from 12/10/2024.
+      - Delete the record I created for 12/10/2024.
+      - Remove my symptom log from 12/10/2024, please.
+      - Delete my log
+      - Delete logs
+      - Delete log
+
   - intent: mood_answer
     examples: |
       - I feel overwhelmed with everything going on
@@ -1642,6 +1731,21 @@ nlu:
       - What medical care is available for HIV patients?
       - What are the current medical practices for managing HIV?
 
+  - intent: medication_during_pregnancy
+    examples: |
+      - What medications are safe during pregnancy?
+      - What medications should I take during pregnancy?
+      - What are the medications available for pregnant women?
+      - Which medications can I safely take while pregnant?
+      - Are there any safe drugs to use during pregnancy?
+      - What meds are approved for use in pregnancy?
+      - Which prescriptions are safe for pregnant women?
+      - What over-the-counter medications are okay during pregnancy?
+      - Can I take any medicine while I'm pregnant?
+      - What are the safe options for medication during pregnancy?
+      - Which medicines are pregnancy-friendly?
+      - Are there any safe pharmaceuticals for expectant mothers?
+      - What drugs should I avoid while pregnant?
 
 
 

@@ -880,11 +880,67 @@ stories:
       - action: utter_hiv_treatment
       - action: utter_did_that_help
 
+# handles medication during pregnancy
+  - story: medication during pregnancy
+    steps:
+      - intent: medication_during_pregnancy
+      - action: utter_medication_during_pregnancy
+      - action: utter_did_that_help
+
+# handles crud symptom
+  - story: create symptom log
+    steps:
+    - intent: log_symptoms_create
+    - action: utter_ask_start_date_symptom
+    - intent: inform
+      entities:
+        - start_date
+    - action: utter_ask_end_date_symptom
+    - intent: inform
+      entities:
+        - end_date
+    - action: utter_ask_symptoms
+    - intent: inform
+      entities:
+        - symptoms
+    - action: action_log_symptoms_create
+    - action: utter_did_that_help
+
+  - story: read symptom logs
+    steps:
+      - intent: log_symptoms_read
+      - action: action_log_symptoms
+      - slot_was_set:
+        - operation: read
+      - action: utter_confirm_read
+
+  - story: update symptom log
+    steps:
+      - intent: log_symptoms_update
+      - action: action_log_symptoms
+      - slot_was_set:
+        - operation: update
+      - action: utter_confirm_update
+
+  - story: delete symptom log
+    steps:
+      - intent: log_symptoms_delete
+      - action: action_log_symptoms
+      - slot_was_set:
+        - operation: delete
+      - action: utter_confirm_delete
+
+# handles
+
 # handles
 
 # handles
 
+# handles
 
+# handles
+
+# handles
 
 
 
