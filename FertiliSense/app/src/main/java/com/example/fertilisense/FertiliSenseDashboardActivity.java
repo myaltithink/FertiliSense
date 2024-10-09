@@ -137,10 +137,10 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
                     finish();
                 } else if (id == R.id.report) {
                     Log.d("FertiliSense", "User report details clicked");
-//                    Intent intent = new Intent(ReportActivity.this, ChatBotActivity.class);
-//                    startActivity(intent);
-//                    overridePendingTransition(0, 0);
-//                    finish();
+                    Intent intent = new Intent(FertiliSenseDashboardActivity.this, ReportActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    finish();
                 }
 
                 return true;
