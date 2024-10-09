@@ -1747,6 +1747,28 @@ nlu:
       - Are there any safe pharmaceuticals for expectant mothers?
       - What drugs should I avoid while pregnant?
 
+  - intent: log_cycle
+    examples: |
+      - I want to log my cycle
+      - Can I record my period data?
+      - Log the start of my cycle
+      - Record the end date of my cycle
+  - intent: update_menstrual_cycle
+    examples: |
+      - I want to update my cycle
+      - Update my menstrual cycle
+      - Change my cycle information
+      - Modify my period data
+      - Edit my cycle
+
+  - intent: delete_menstrual_cycle
+    examples: |
+      - I want to delete a cycle
+      - Remove my cycle
+      - Delete my period data
+      - Erase a cycle
+      - Get rid of a menstrual cycle
+
 
 
 

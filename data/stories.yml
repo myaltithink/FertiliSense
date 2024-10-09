@@ -930,6 +930,23 @@ stories:
         - operation: delete
       - action: utter_confirm_delete
 
+# handles crud menstrual cycle
+  - story: Log menstrual cycle
+    steps:
+      - intent: log_cycle
+      - action: action_log_menstrual_cycle
+
+  - story: Update menstrual cycle
+    steps:
+    - intent: update_menstrual_cycle
+    - action: update_cycle_form
+    - action: action_update_menstrual_cycle
+
+  - story: Delete menstrual cycle
+    steps:
+    - intent: delete_menstrual_cycle
+    - action: action_delete_menstrual_cycle
+
 # handles
 
 # handles

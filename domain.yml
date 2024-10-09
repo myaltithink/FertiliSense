@@ -123,6 +123,9 @@ actions:
   - action_medication_during_pregnancy
   - action_log_symptoms
   - action_log_symptoms_create
+  - action_set_action_type
+  - action_update_menstrual_cycle
+  - action_delete_menstrual_cycle
 
 intents:
   - greet
@@ -247,37 +250,64 @@ intents:
   - log_symptoms_read
   - log_symptoms_update
   - log_symptoms_delete
+  - log_cycle
+  - delete_menstrual_cycle
+  - update_menstrual_cycle
 
 entities:
-  - start_date
-  - end_date
-  - cycle_duration
-  - period_duration
+  - start_dates
+  - end_dates
+  - cycle_durations
+  - period_durations
   - drug_query
   - symptoms
   - operation
 
 slots:
-  start_date:
-    type: text
+  start_dates:
+    type: list
     mappings:
       - type: from_entity
-        entity: start_date
-  end_date:
-    type: text
+        entity: start_dates
+  end_dates:
+    type: list
     mappings:
       - type: from_entity
-        entity: end_date
-  cycle_duration:
-    type: text
+        entity: end_dates
+  cycle_durations:
+    type: list
     mappings:
       - type: from_entity
-        entity: cycle_duration
-  period_duration:
-    type: text
+        entity: cycle_durations
+  period_durations:
+    type: list
     mappings:
       - type: from_entity
-        entity: period_duration      
+        entity: period_durations
+  index_to_update:
+    type: text
+    mappings:  # Add a mapping to fill this slot from user input if needed
+      - type: from_text
+  new_start_date:
+    type: text
+    mappings:  # Add a mapping to fill this slot from user input if needed
+      - type: from_text
+  new_end_date:
+    type: text
+    mappings:  # Add a mapping to fill this slot from user input if needed
+      - type: from_text
+  new_cycle_duration:
+    type: text
+    mappings:  # Add a mapping to fill this slot from user input if needed
+      - type: from_text
+  new_period_duration:
+    type: text
+    mappings:  # Add a mapping to fill this slot from user input if needed
+      - type: from_text
+  index_to_delete:
+    type: categorical
+    mappings:
+      - type: from_text
   drug_query:
     type: text
     mappings:
@@ -293,6 +323,22 @@ slots:
     mappings:
       - type: from_entity
         entity: operation
+
+forms:
+  log_menstrual_cycle_form:
+    required_slots:
+      - start_dates
+      - end_dates
+      - cycle_durations
+      - period_durations
+  
+  update_cycle_form:
+    required_slots:
+      - index_to_update
+      - new_start_date
+      - new_end_date
+      - new_cycle_duration
+      - new_period_duration
 
 responses:
   utter_greet:
@@ -879,7 +925,24 @@ responses:
   utter_medication_during_pregnancy:
     - text: "Here are medications that a pregnant woman can take:\nNausea:\n-Vitamin B6 is a safe option during pregnancy for improving nausea.\nAllergies:\n- Loratadine (Claritin)\n- Cetirizine (Zyrtec and Alleroff)\n- Chlorpheniramine\n- Dexchlorpheniramine\n- Hydroxyzine\n- Nasal Sprays (Nasonex, Nasacort, and Flonase)\nHeadache:\n- Acetaminophen (Tylenol)\nCold and Flu:\n- Diphenhydramine (Benadryl)\n- Dextromenthorphan (Robitussin)\n- Pseudoephedrine (Sudafed, only after the trimester)\n- Acetaminophen (Tylenol)\nYou can also use home remedies such as Vicks VapoRub mentholated cream, neti pots, saline nasal drops, saline spray, or gargling with salt water\nHeartburn:\n- Aluminum hydroxide/magnesium carbonate (Gaviscon)\n- Famotidine (Pepcid AC)\n- Aluminum hydroxide/magnesium hydroxide (Maalox)\n- Calcium carbonate/magnesium carbonate (Mylanta)\n- Calcium carbonate (Titralac or Tums)\n- Ranitidine (Zantac)\nEating yogurt and drinking milk may also help counteract heartburn\nDiarrhea:\n- Loperamide (Imodium) can be taken during pregnancy, but it should not be used after the first trimester or for more than 24 hours\nConstipation:\n- Methylcellulose fiber (Citrucel)\n- Docusate (Colace)\n- Psyllium (Fiberall, Metamucil)\n- Polycarbophil (FiberCon)\n- Polyethylene Glycol (MiraLAX)\nHemorrhoids:\n- Phenylephrine/mineral oil/petrolatum (Preparation H)\n- Witch Hazel (Tucks pads or ointments)\nFirst Aid (Cuts, Scrapes, Burns):\n- Bacitracin Ointments\n- Neomycin/Polymyxin B/Bacitracin (Neosporin)\nRash:\n- Diphenhydramine Cream (Benadryl)\n- Hydrocosticone Cream or Ointment\n- Oatmeal Batch (Aveeno)\nRemember:\n No medication is 100% safe during pregnancy, always consult your doctor."
 
-# query and answer
+# query and answer crud menstrual cycle
+  utter_ask_index_to_update:
+    - text: "Which cycle index would you like to update?"
+
+  utter_ask_new_start_date:
+    - text: "Please provide the new start date for the cycle."
+
+  utter_ask_new_end_date:
+    - text: "Please provide the new end date for the cycle."
+
+  utter_ask_new_cycle_duration:
+    - text: "Please provide the new cycle duration."
+
+  utter_ask_new_period_duration:
+    - text: "Please provide the new period duration."
+
+  utter_ask_index_to_delete:
+    - text: "Which cycle index would you like to delete?"
 
 # query and answer
 
