@@ -227,13 +227,13 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
                                             }
 
                                             // Highlight cycle duration in grey
-                                            Calendar cycleDurationStart = (Calendar) startCalendar.clone();
-                                            Calendar cycleDurationEnd = (Calendar) startCalendar.clone();
-                                            cycleDurationEnd.add(Calendar.DAY_OF_MONTH, Integer.parseInt(cycleDurationStr) - 1);
-                                            while (!cycleDurationStart.after(cycleDurationEnd)) {
-                                                cycleDurationDates.add(CalendarDay.from(cycleDurationStart));
-                                                cycleDurationStart.add(Calendar.DAY_OF_MONTH, 1);
-                                            }
+                                           // Calendar cycleDurationStart = (Calendar) startCalendar.clone();
+                                         //   Calendar cycleDurationEnd = (Calendar) startCalendar.clone();
+                                          //  cycleDurationEnd.add(Calendar.DAY_OF_MONTH, Integer.parseInt(cycleDurationStr) - 1);
+                                         //   while (!cycleDurationStart.after(cycleDurationEnd)) {
+                                         //       cycleDurationDates.add(CalendarDay.from(cycleDurationStart));
+                                          //      cycleDurationStart.add(Calendar.DAY_OF_MONTH, 1);
+                                         //   }
 
                                             // Highlight cycle end dates in bloody red
                                             cycleEndDates.add(CalendarDay.from(parseDate(endDateStr)));
