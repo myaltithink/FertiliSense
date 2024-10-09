@@ -2012,19 +2012,3 @@ class ActionMedicationPregnancy(Action):
         dispatcher.utter_message(response="utter_medication_during_pregnancy")
 
         return []
-
-# Actions for handling 
-
-# Actions for handling 
-
-# Actions for handling 
-
-# Actions for handling 
-
-# Actions for handling 
-
-
-
-
-
-

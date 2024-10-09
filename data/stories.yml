@@ -219,8 +219,8 @@ stories:
 # handles drug medicine questions and answers
   - story: Fetch drug information
     steps:
-    - intent: ask_drug_info
-    - action: action_fetch_drug_info
+      - intent: ask_drug_info
+      - action: action_fetch_drug_info
 
 # handles common causes questions and answers
   - story: common causes yes
@@ -890,21 +890,21 @@ stories:
 # handles crud symptom
   - story: create symptom log
     steps:
-    - intent: log_symptoms_create
-    - action: utter_ask_start_date_symptom
-    - intent: inform
-      entities:
-        - start_date
-    - action: utter_ask_end_date_symptom
-    - intent: inform
-      entities:
-        - end_date
-    - action: utter_ask_symptoms
-    - intent: inform
-      entities:
-        - symptoms
-    - action: action_log_symptoms_create
-    - action: utter_did_that_help
+      - intent: log_symptoms_create
+      - action: utter_ask_start_date_symptom
+      - intent: inform
+        entities:
+          - start_date
+      - action: utter_ask_end_date_symptom
+      - intent: inform
+        entities:
+          - end_date
+      - action: utter_ask_symptoms
+      - intent: inform
+        entities:
+          - symptoms
+      - action: action_log_symptoms_create
+      - action: utter_did_that_help
 
   - story: read symptom logs
     steps:
@@ -938,28 +938,11 @@ stories:
 
   - story: Update menstrual cycle
     steps:
-    - intent: update_menstrual_cycle
-    - action: update_cycle_form
-    - action: action_update_menstrual_cycle
+      - intent: update_menstrual_cycle
+      - action: update_cycle_form
+      - action: action_update_menstrual_cycle
 
   - story: Delete menstrual cycle
     steps:
-    - intent: delete_menstrual_cycle
-    - action: action_delete_menstrual_cycle
-
-# handles
-
-# handles
-
-# handles
-
-# handles
-
-# handles
-
-# handles
-
-
-
-
-
+      - intent: delete_menstrual_cycle
+      - action: action_delete_menstrual_cycle

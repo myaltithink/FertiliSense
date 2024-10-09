@@ -274,21 +274,21 @@ nlu:
   - intent: mood_answer
     examples: |
       - I feel overwhelmed with everything going on
-      - I’m struggling with my self-esteem
+      - I'm struggling with my self-esteem
       - I've been feeling down ever since I lost my job
-      - I feel like I’m not good enough
-      - My friends don’t seem to care about me anymore
-      - I’ve been having a hard time coping with recent changes
-      - I feel like I’m always alone even when I’m with others
-      - I’m dealing with a lot of stress at work
-      - I’ve been missing my family a lot lately
+      - I feel like I'm not good enough
+      - My friends don't seem to care about me anymore
+      - I've been having a hard time coping with recent changes
+      - I feel like I'm always alone even when I'm with others
+      - I'm dealing with a lot of stress at work
+      - I've been missing my family a lot lately
       - I feel disconnected from my goals and dreams
       - I'm having trouble moving past a recent disappointment
-      - I feel like I’m stuck in a rut and nothing is changing
-      - I’ve been feeling anxious and it’s affecting my mood
-      - I’m struggling with a recent breakup and can’t seem to move on
-      - I feel like I’m not making any progress in my life
-      - I’m upset because I feel unsupported by the people around me
+      - I feel like I'm stuck in a rut and nothing is changing
+      - I've been feeling anxious and it's affecting my mood
+      - I'm struggling with a recent breakup and can't seem to move on
+      - I feel like I'm not making any progress in my life
+      - I'm upset because I feel unsupported by the people around me
       - My dog died 
 
   - intent: lifestyle_men
@@ -1768,9 +1768,3 @@ nlu:
       - Delete my period data
       - Erase a cycle
       - Get rid of a menstrual cycle
-
-
-
-
-
-
