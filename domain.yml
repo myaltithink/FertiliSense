@@ -121,8 +121,6 @@ actions:
   - action_hiv
   - action_hiv_treatment
   - action_medication_during_pregnancy
-  - action_log_symptoms
-  - action_log_symptoms_create
   - action_set_action_type
   - action_update_menstrual_cycle
   - action_delete_menstrual_cycle
@@ -245,23 +243,16 @@ intents:
   - hiv
   - hiv_treatment
   - medication_during_pregnancy
-  - log_symptom
-  - log_symptoms_create
-  - log_symptoms_read
-  - log_symptoms_update
-  - log_symptoms_delete
   - log_cycle
   - delete_menstrual_cycle
   - update_menstrual_cycle
 
 entities:
-  - start_dates
-  - end_dates
-  - cycle_durations
-  - period_durations
+  - start_date
+  - end_date
+  - cycle_duration
+  - period_duration
   - drug_query
-  - symptoms
-  - operation
 
 slots:
   start_dates:
@@ -304,6 +295,7 @@ slots:
     type: text
     mappings:  # Add a mapping to fill this slot from user input if needed
       - type: from_text
+
   index_to_delete:
     type: categorical
     mappings:
@@ -313,16 +305,7 @@ slots:
     mappings:
       - type: from_entity
         entity: drug_query
-  symptoms:
-    type: list
-    mappings:
-      - type: from_entity
-        entity: symptoms
-  operation:
-    type: text
-    mappings:
-      - type: from_entity
-        entity: operation
+
 
 forms:
   log_menstrual_cycle_form:
@@ -340,6 +323,7 @@ forms:
       - new_cycle_duration
       - new_period_duration
 
+      
 responses:
   utter_greet:
     - text: "Hi mate! How may I help you today?"
@@ -381,36 +365,7 @@ responses:
     - text: "{response}"
 
   utter_did_that_help:
-    - text: "I hope this information is useful to you. If you'd like to continue, let me know how I can assist you further."
-
-# query and answer for start and end date of symptoms
-  utter_ask_start_date_symptom:
-    - text: "Please provide the start date of your symptom (dd/mm/yyyy)."
-
-  utter_ask_end_date_symptom:
-    - text: "Please provide the end date of your symptom (dd/mm/yyyy)."
-
-# query and answer crud of symptoms
-  utter_ask_operation:
-    - text: "What would you like to do? You can create, read, update, or delete symptom logs."
-  
-  utter_confirm_create:
-    - text: "Got it! Creating a log for symptoms: {symptoms} starting on {start_date} and ending on {end_date}."
-  
-  utter_confirm_read:
-    - text: "Here are your logged symptoms."
-  
-  utter_confirm_update:
-    - text: "Got it! Updating the log with start date {start_date}."
-  
-  utter_confirm_delete:
-    - text: "Deleting the log for start date {start_date}."
-  
-  utter_invalid_operation:
-    - text: "Please specify a valid operation: create, read, update, or delete."
-
-  utter_ask_symptoms:
-    - text: "What symptoms are you experiencing?"
+    - text: "I hope this information is useful to you. If you’d like to continue, let me know how I can assist you further."
 
   utter_happy:
     - text: "Great, carry on!"
@@ -923,9 +878,8 @@ responses:
 
 # query and answer medication during pregnancy
   utter_medication_during_pregnancy:
-    - text: "Here are medications that a pregnant woman can take:\nNausea:\n-Vitamin B6 is a safe option during pregnancy for improving nausea.\nAllergies:\n- Loratadine (Claritin)\n- Cetirizine (Zyrtec and Alleroff)\n- Chlorpheniramine\n- Dexchlorpheniramine\n- Hydroxyzine\n- Nasal Sprays (Nasonex, Nasacort, and Flonase)\nHeadache:\n- Acetaminophen (Tylenol)\nCold and Flu:\n- Diphenhydramine (Benadryl)\n- Dextromenthorphan (Robitussin)\n- Pseudoephedrine (Sudafed, only after the trimester)\n- Acetaminophen (Tylenol)\nYou can also use home remedies such as Vicks VapoRub mentholated cream, neti pots, saline nasal drops, saline spray, or gargling with salt water\nHeartburn:\n- Aluminum hydroxide/magnesium carbonate (Gaviscon)\n- Famotidine (Pepcid AC)\n- Aluminum hydroxide/magnesium hydroxide (Maalox)\n- Calcium carbonate/magnesium carbonate (Mylanta)\n- Calcium carbonate (Titralac or Tums)\n- Ranitidine (Zantac)\nEating yogurt and drinking milk may also help counteract heartburn\nDiarrhea:\n- Loperamide (Imodium) can be taken during pregnancy, but it should not be used after the first trimester or for more than 24 hours\nConstipation:\n- Methylcellulose fiber (Citrucel)\n- Docusate (Colace)\n- Psyllium (Fiberall, Metamucil)\n- Polycarbophil (FiberCon)\n- Polyethylene Glycol (MiraLAX)\nHemorrhoids:\n- Phenylephrine/mineral oil/petrolatum (Preparation H)\n- Witch Hazel (Tucks pads or ointments)\nFirst Aid (Cuts, Scrapes, Burns):\n- Bacitracin Ointments\n- Neomycin/Polymyxin B/Bacitracin (Neosporin)\nRash:\n- Diphenhydramine Cream (Benadryl)\n- Hydrocosticone Cream or Ointment\n- Oatmeal Batch (Aveeno)\nRemember:\n No medication is 100% safe during pregnancy, always consult your doctor."
+    - text: "Here are medications that a pregnant woman can take:\nNausea:\n-Vitamin B6 is a safe option during pregnancy for improving nausea.\nAllergies:\n- Loratadine (Claritin)\n- Cetirizine (Zyrtec and Alleroff)\n- Chlorpheniramine\n- Dexchlorpheniramine\n- Hydroxyzine\n- Nasal Sprays (Nasonex, Nasacort, and Flonase)\nHeadache:\n- Acetaminophen (Tylenol)\nCold and Flu:\n- Diphenhydramine (Benadryl)\n- Dextromenthorphan (Robitussin)\n- Pseudoephedrine (Sudafed, only after the trimester)\n- Acetaminophen (Tylenol)\nYou can also use home remedies such as Vicks VapoRub mentholated cream, neti pots, saline nasal drops, saline spray, or gargling with salt water\nHeartburn:\n- Aluminum hydroxide/magnesium carbonate (Gaviscon)\n- Famotidine (Pepcid AC)\n- Aluminum hydroxide/magnesium hydroxide (Maalox)\n- Calcium carbonate/magnesium carbonate (Mylanta)\n- Calcium carbonate (Titralac or Tums)\n- Ranitidine (Zantac)\nEating yogurt and drinking milk may also help counteract heartburn\nDiarrhea:\n- Loperamide (Imodium) can be taken during pregnancy, but it should not be used after the first trimester or for more than 24 hours\nConstipation:\n- Methylcellulose fiber (Citrucel)\n- Docusate (Colace)\n- Psyllium (Fiberall, Metamucil)\n- Polycarbophil (FiberCon)\n- Polyethylene Glycol (MiraLAX)\nHemorrhoids:\n- Phenylephrine/mineral oil/petrolatum (Preparation H)\n- Witch Hazel (Tucks pads or ointments)\nFirst Aid (Cuts, Scrapes, Burns):\n- Bacitracin Ointments\n- Neomycin/Polymyxin B/Bacitracin (Neosporin)\nRash:\n- Diphenhydramine Cream (Benadryl)\n- Hydrocosticone Cream or Ointment\n- Oatmeal Batch (Aveeno)\nRemember:\n No medication is 100% safe during pregnancy, always consult your doctor"
 
-# query and answer crud menstrual cycle
   utter_ask_index_to_update:
     - text: "Which cycle index would you like to update?"
 

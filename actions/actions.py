@@ -25,499 +25,6 @@ wiki_wiki = wikipediaapi.Wikipedia(
 # Set up OpenAI API key
 openai.api_key = ''
 
-# Actions of handling crud of menstrual cycles
-class ActionLogMenstrualCycle(Action):
-    def name(self) -> str:
-        return "action_log_menstrual_cycle"
-
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
-        # Extracting slot values
-        start_dates = tracker.get_slot("start_dates")
-        end_dates = tracker.get_slot("end_dates")
-        cycle_durations = tracker.get_slot("cycle_durations")
-        period_durations = tracker.get_slot("period_durations")
-
-        if not start_dates or not end_dates or not cycle_durations or not period_durations:
-            dispatcher.utter_message(text="Please provide all required cycle information: start dates, end dates, cycle durations, and period durations.")
-            return []
-
-        user_id = tracker.sender_id
-
-        try:
-            # Initialize historical cycles list
-            historical_cycles = []
-
-            # Fetch previous cycles from Firestore
-            previous_cycles = db.collection('menstrual_cycles').document(user_id).get().to_dict()
-            if previous_cycles:
-                historical_cycles = previous_cycles.get('cycles', [])
-
-            # Add the current cycles
-            for i in range(len(start_dates)):
-                historical_cycles.append({
-                    'start_date': start_dates[i],
-                    'end_date': end_dates[i],
-                    'cycle_duration': cycle_durations[i],
-                    'period_duration': period_durations[i]
-                })
-
-            # Calculate strong flow durations based on historical data
-            strong_flow_durations = []
-            for cycle in historical_cycles:
-                cycle_start = datetime.strptime(cycle['start_date'], "%d/%m/%Y")
-                cycle_end = datetime.strptime(cycle['end_date'], "%d/%m/%Y")
-                period_duration = (cycle_end - cycle_start).days + 1
-                strong_flow_start = cycle_start + timedelta(days=(period_duration // 3))
-                strong_flow_end = strong_flow_start + timedelta(days=min(2, period_duration // 3))  # Ensure the end is within the period duration
-                strong_flow_duration = (strong_flow_end - strong_flow_start).days + 1
-                strong_flow_durations.append(strong_flow_duration)
-
-            # Average strong flow duration
-            average_strong_flow_duration = sum(strong_flow_durations) / len(strong_flow_durations) if strong_flow_durations else 2  # Default if no historical data
-
-            # Calculate predictions based on historical data
-            predictions = []
-            current_start_date = datetime.strptime(start_dates[-1], "%d/%m/%Y")  # Start with the latest logged cycle
-
-            # Determine the next cycle's start date based on the last logged cycle
-            if historical_cycles:
-                last_cycle = historical_cycles[-1]
-                cycle_duration_days = int(cycle_durations[-1])  # Use the last cycle duration
-                
-                # Calculate the start date for the first prediction based on the last logged cycle
-                current_start_date = datetime.strptime(last_cycle['start_date'], "%d/%m/%Y") + timedelta(days=cycle_duration_days)  # Start of the next cycle
-            else:
-                # If no historical data, default to the most recent start date
-                current_start_date = datetime.strptime(start_dates[-1], "%d/%m/%Y")
-
-            for _ in range(4):  # Predict for the next 4 cycles
-                period_duration_days = int(period_durations[-1])
-
-                # Calculate cycle end date for the current cycle
-                cycle_end_date_dt = current_start_date + timedelta(days=period_duration_days - 1)  # End date for the current cycle
-                cycle_end_date = cycle_end_date_dt.strftime("%d/%m/%Y")
-
-                # Predict the next cycle's start date based on the current cycle's start date and duration
-                cycle_duration_days = int(cycle_durations[-1])  # Use the cycle duration of the last logged cycle
-                next_cycle_start_date_dt = current_start_date + timedelta(days=cycle_duration_days)  # Start of the next cycle
-                next_cycle_start_date = next_cycle_start_date_dt.strftime("%d/%m/%Y")
-
-                # Ovulation is typically 14 days before the next cycle start date
-                ovulation_date_dt = next_cycle_start_date_dt - timedelta(days=14)
-                ovulation_date = ovulation_date_dt.strftime("%d/%m/%Y")
-
-                # Fertile window is typically 2 days before and 2 days after ovulation
-                fertile_window_start_dt = ovulation_date_dt - timedelta(days=2)
-                fertile_window_end_dt = ovulation_date_dt + timedelta(days=2)
-                fertile_window_start = fertile_window_start_dt.strftime("%d/%m/%Y")
-                fertile_window_end = fertile_window_end_dt.strftime("%d/%m/%Y")
-
-                # Calculate strong flow start and end dates
-                strong_flow_start_dt = current_start_date + timedelta(days=(period_duration_days // 3))
-                strong_flow_end_dt = strong_flow_start_dt + timedelta(days=int(average_strong_flow_duration) - 1)
-                strong_flow_start = strong_flow_start_dt.strftime("%d/%m/%Y")
-                strong_flow_end = strong_flow_end_dt.strftime("%d/%m/%Y")
-
-                # Add this cycle's prediction
-                predictions.append({
-                    'cycle_start_date': current_start_date.strftime("%d/%m/%Y"),
-                    'cycle_end_date': cycle_end_date,
-                    'fertile_window_start': fertile_window_start,
-                    'fertile_window_end': fertile_window_end,
-                    'next_cycle_start_date': next_cycle_start_date,
-                    'ovulation_date': ovulation_date,
-                    'strong_flow_start': strong_flow_start,
-                    'strong_flow_end': strong_flow_end
-                })
-
-                # Update current_start_date to the next cycle's start date for the next prediction
-                current_start_date = next_cycle_start_date_dt
-
-            # Save both historical cycles and predictions to Firestore
-            db.collection('menstrual_cycles').document(user_id).set({
-                'cycles': historical_cycles,
-                'predictions': predictions
-            })
-
-            dispatcher.utter_message(text="Your menstrual cycle information and predictions for the next four cycles have been recorded successfully.")
-        except ValueError as e:
-            dispatcher.utter_message(text="There was an error processing the dates. Please use the format dd/mm/yyyy.")
-            print(f"ERROR: {e}")
-
-        return []
-    
-class ActionUpdateMenstrualCycle(Action):
-    def name(self) -> str:
-        return "action_update_menstrual_cycle"
-
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
-        # Extract slot values for updating the cycle
-        old_start_date = tracker.get_slot("old_start_date")
-        old_end_date = tracker.get_slot("old_end_date")
-        new_start_date = tracker.get_slot("new_start_date")
-        new_end_date = tracker.get_slot("new_end_date")
-        new_cycle_duration = tracker.get_slot("new_cycle_duration")
-        new_period_duration = tracker.get_slot("new_period_duration")
-
-        user_id = tracker.sender_id
-
-        try:
-            # Fetch previous cycles from Firestore
-            previous_cycles = db.collection('menstrual_cycles').document(user_id).get().to_dict()
-            historical_cycles = previous_cycles.get('cycles', []) if previous_cycles else []
-
-            # Find cycle to update using old_start_date or old_end_date
-            cycle_to_update = None
-            for cycle in historical_cycles:
-                # Check if cycle matches based on either old start or end date
-                if (old_start_date and cycle.get('start_date') == old_start_date) or \
-                   (old_end_date and cycle.get('end_date') == old_end_date):
-                    cycle_to_update = cycle
-                    break
-
-            if cycle_to_update is None:
-                dispatcher.utter_message(text="No cycle found with the specified old start or end date.")
-                return []
-
-            # Update the cycle found based on provided new dates
-            if new_start_date:
-                cycle_to_update['start_date'] = new_start_date
-            if new_end_date:
-                cycle_to_update['end_date'] = new_end_date
-            if new_cycle_duration:
-                cycle_to_update['cycle_duration'] = new_cycle_duration
-            if new_period_duration:
-                cycle_to_update['period_duration'] = new_period_duration
-
-            # Save updated cycles back to Firestore
-            db.collection('menstrual_cycles').document(user_id).set({
-                'cycles': historical_cycles,
-                'predictions': previous_cycles.get('predictions', [])
-            })
-
-            # Trigger predictions after updating the cycle
-            predictions = self.predict_next_cycles(historical_cycles, new_cycle_duration, new_period_duration)
-
-            # Save the new predictions
-            db.collection('menstrual_cycles').document(user_id).set({
-                'predictions': predictions
-            }, merge=True)
-
-            dispatcher.utter_message(text="Your menstrual cycle has been updated successfully and predictions recalculated.")
-        except Exception as e:
-            dispatcher.utter_message(text="There was an error updating the cycle.")
-            print(f"ERROR: {e}")
-
-        return []
-
-    def predict_next_cycles(self, historical_cycles, new_cycle_duration, new_period_duration):
-        # This method contains the logic for predicting next cycles based on the provided durations
-        predictions = []
-        current_start_date = datetime.strptime(historical_cycles[-1]['start_date'], "%d/%m/%Y") + timedelta(days=int(new_cycle_duration))
-
-        for _ in range(4):  # Predict for the next 4 cycles
-            cycle_end_date_dt = current_start_date + timedelta(days=int(new_period_duration) - 1)
-            cycle_end_date = cycle_end_date_dt.strftime("%d/%m/%Y")
-
-            next_cycle_start_date_dt = current_start_date + timedelta(days=int(new_cycle_duration))
-            next_cycle_start_date = next_cycle_start_date_dt.strftime("%d/%m/%Y")
-
-            ovulation_date_dt = next_cycle_start_date_dt - timedelta(days=14)
-            ovulation_date = ovulation_date_dt.strftime("%d/%m/%Y")
-
-            fertile_window_start_dt = ovulation_date_dt - timedelta(days=2)
-            fertile_window_end_dt = ovulation_date_dt + timedelta(days=2)
-            fertile_window_start = fertile_window_start_dt.strftime("%d/%m/%Y")
-            fertile_window_end = fertile_window_end_dt.strftime("%d/%m/%Y")
-
-            # Corrected strong flow calculation: starts on the 2nd day of the period and lasts 2 days
-            strong_flow_start_dt = current_start_date + timedelta(days=1)  # Start strong flow on the 2nd day of the period
-            strong_flow_end_dt = strong_flow_start_dt + timedelta(days=1)  # End on the 3rd day of the period
-            strong_flow_start = strong_flow_start_dt.strftime("%d/%m/%Y")
-            strong_flow_end = strong_flow_end_dt.strftime("%d/%m/%Y")
-
-            # Add this cycle's prediction
-            predictions.append({
-                'cycle_start_date': current_start_date.strftime("%d/%m/%Y"),
-                'cycle_end_date': cycle_end_date,
-                'fertile_window_start': fertile_window_start,
-                'fertile_window_end': fertile_window_end,
-                'next_cycle_start_date': next_cycle_start_date,
-                'ovulation_date': ovulation_date,
-                'strong_flow_start': strong_flow_start,
-                'strong_flow_end': strong_flow_end
-            })
-
-            # Update current_start_date to the next cycle's start date for the next prediction
-            current_start_date = next_cycle_start_date_dt
-
-        return predictions
-    
-class ActionDeleteMenstrualCycle(Action):
-
-    def name(self) -> str:
-        return "action_delete_menstrual_cycle"
-
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
-        # Extract the old start and end dates from slots
-        old_start_date = tracker.get_slot("old_start_date")
-        old_end_date = tracker.get_slot("old_end_date")
-        
-        user_id = tracker.sender_id
-
-        try:
-            # Fetch previous cycles from Firestore
-            previous_cycles = db.collection('menstrual_cycles').document(user_id).get().to_dict()
-            historical_cycles = previous_cycles.get('cycles', []) if previous_cycles else []
-
-            # Find cycles to delete using old_start_date or old_end_date
-            cycles_to_delete = []
-            for cycle in historical_cycles:
-                # Check if cycle matches based on either old start or old end date
-                if (old_start_date and cycle.get('start_date') == old_start_date) or \
-                   (old_end_date and cycle.get('end_date') == old_end_date):
-                    cycles_to_delete.append(cycle)
-
-            if not cycles_to_delete:
-                dispatcher.utter_message(text="No cycles found with the specified old start or end date.")
-                return []
-
-            # Remove the found cycles from historical_cycles
-            for cycle in cycles_to_delete:
-                historical_cycles.remove(cycle)
-
-            # Save updated cycles back to Firestore
-            db.collection('menstrual_cycles').document(user_id).set({
-                'cycles': historical_cycles,
-                'predictions': previous_cycles.get('predictions', [])
-            })
-
-            # If there are still cycles left, recalculate predictions
-            if historical_cycles:
-                new_cycle_duration = historical_cycles[-1].get('cycle_duration')
-                new_period_duration = historical_cycles[-1].get('period_duration')
-                predictions = self.predict_next_cycles(historical_cycles, new_cycle_duration, new_period_duration)
-
-                # Save the new predictions to Firestore
-                db.collection('menstrual_cycles').document(user_id).set({
-                    'predictions': predictions
-                }, merge=True)
-
-            dispatcher.utter_message(text="Your menstrual cycle has been deleted successfully, and predictions have been updated.")
-        except Exception as e:
-            dispatcher.utter_message(text="There was an error deleting the cycle.")
-            print(f"ERROR: {e}")
-
-        return []
-
-    def predict_next_cycles(self, historical_cycles, new_cycle_duration, new_period_duration):
-        # This method contains the logic for predicting next cycles based on the provided durations
-        predictions = []
-        current_start_date = datetime.strptime(historical_cycles[-1]['start_date'], "%d/%m/%Y") + timedelta(days=int(new_cycle_duration))
-
-        for _ in range(4):  # Predict for the next 4 cycles
-            cycle_end_date_dt = current_start_date + timedelta(days=int(new_period_duration) - 1)
-            cycle_end_date = cycle_end_date_dt.strftime("%d/%m/%Y")
-
-            next_cycle_start_date_dt = current_start_date + timedelta(days=int(new_cycle_duration))
-            next_cycle_start_date = next_cycle_start_date_dt.strftime("%d/%m/%Y")
-
-            ovulation_date_dt = next_cycle_start_date_dt - timedelta(days=14)
-            ovulation_date = ovulation_date_dt.strftime("%d/%m/%Y")
-
-            fertile_window_start_dt = ovulation_date_dt - timedelta(days=2)
-            fertile_window_end_dt = ovulation_date_dt + timedelta(days=2)
-            fertile_window_start = fertile_window_start_dt.strftime("%d/%m/%Y")
-            fertile_window_end = fertile_window_end_dt.strftime("%d/%m/%Y")
-
-            # Corrected strong flow calculation: starts on the 2nd day of the period and lasts 2 days
-            strong_flow_start_dt = current_start_date + timedelta(days=1)  # Start strong flow on the 2nd day of the period
-            strong_flow_end_dt = strong_flow_start_dt + timedelta(days=1)  # End on the 3rd day of the period
-            strong_flow_start = strong_flow_start_dt.strftime("%d/%m/%Y")
-            strong_flow_end = strong_flow_end_dt.strftime("%d/%m/%Y")
-
-            # Add this cycle's prediction
-            predictions.append({
-                'cycle_start_date': current_start_date.strftime("%d/%m/%Y"),
-                'cycle_end_date': cycle_end_date,
-                'fertile_window_start': fertile_window_start,
-                'fertile_window_end': fertile_window_end,
-                'next_cycle_start_date': next_cycle_start_date,
-                'ovulation_date': ovulation_date,
-                'strong_flow_start': strong_flow_start,
-                'strong_flow_end': strong_flow_end
-            })
-
-            # Update current_start_date to the next cycle's start date for the next prediction
-            current_start_date = next_cycle_start_date_dt
-
-        return predictions
-
-# Actions for handling crud of symptoms
-class ActionLogSymptoms(Action):
-    def name(self) -> str:
-        return "action_log_symptoms"
-
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
-        operation = tracker.get_slot("operation")
-        symptoms = tracker.get_slot("symptoms")  # This should be a list of symptom dictionaries
-
-        user_id = tracker.sender_id
-
-        # Debug logs
-        print(f"DEBUG: Operation: {operation}")
-        print(f"DEBUG: Symptoms Slot Value: {symptoms}")
-
-        if operation == "create":
-            return self.create_log(dispatcher, user_id, symptoms)
-        elif operation == "read":
-            return self.read_logs(dispatcher, user_id)
-        elif operation == "update":
-            return self.update_log(dispatcher, user_id, symptoms)
-        elif operation == "delete":
-            return self.delete_log(dispatcher, user_id, symptoms)
-        else:
-            dispatcher.utter_message(text="Please specify a valid operation: create, read, update, or delete.")
-            return []
-
-    def create_log(self, dispatcher, user_id, symptoms):
-        # Handle creation of multiple symptom logs
-        if not symptoms:
-            dispatcher.utter_message(text="Please provide symptom information.")
-            return []
-
-        try:
-            # Fetch previous symptom logs from Firestore
-            previous_logs = db.collection('symptom_logs').document(user_id).get().to_dict()
-            if previous_logs:
-                historical_logs = previous_logs.get('logs', [])
-            else:
-                historical_logs = []
-
-            # Add each symptom log to the historical logs
-            for symptom_entry in symptoms:
-                symptom = symptom_entry.get("symptom")
-                start_date = symptom_entry.get("start_date")
-                end_date = symptom_entry.get("end_date")
-
-                # Validate symptom data
-                if not symptom or not start_date or not end_date:
-                    dispatcher.utter_message(text="Each symptom must include a symptom name, start date, and end date.")
-                    return []
-
-                historical_logs.append({
-                    'symptoms': symptom,
-                    'start_date': start_date,
-                    'end_date': end_date
-                })
-
-            # Save the logs to Firestore
-            db.collection('symptom_logs').document(user_id).set({
-                'logs': historical_logs
-            })
-
-            dispatcher.utter_message(text="Your symptoms have been logged successfully.")
-        except ValueError as e:
-            dispatcher.utter_message(text="There was an error processing the dates. Please use the format dd/mm/yyyy.")
-            print(f"ERROR: {e}")
-
-        return []
-
-    def read_logs(self, dispatcher, user_id):
-        # Handle reading all symptom logs
-        previous_logs = db.collection('symptom_logs').document(user_id).get().to_dict()
-        if previous_logs and 'logs' in previous_logs:
-            logs = previous_logs['logs']
-            if logs:
-                log_messages = []
-                for log in logs:
-                    log_message = f"Symptoms: {log['symptoms']}, Start Date: {log['start_date']}, End Date: {log['end_date']}"
-                    log_messages.append(log_message)
-                dispatcher.utter_message(text="Here are your logged symptoms:\n" + "\n".join(log_messages))
-            else:
-                dispatcher.utter_message(text="You have no logged symptoms.")
-        else:
-            dispatcher.utter_message(text="You have no logged symptoms.")
-
-        return []
-
-    def update_log(self, dispatcher, user_id, symptoms):
-        # Handle updating existing symptom logs
-        if not symptoms:
-            dispatcher.utter_message(text="Please provide symptom information for updating.")
-            return []
-
-        try:
-            # Fetch previous symptom logs
-            previous_logs = db.collection('symptom_logs').document(user_id).get().to_dict()
-            if previous_logs:
-                historical_logs = previous_logs.get('logs', [])
-            else:
-                dispatcher.utter_message(text="No logs found to update.")
-                return []
-
-            # Update logs based on the provided symptoms
-            for symptom_entry in symptoms:
-                symptom = symptom_entry.get("symptom")
-                start_date = symptom_entry.get("start_date")
-                end_date = symptom_entry.get("end_date")
-
-                # Validate input
-                if not symptom or not start_date:
-                    continue  # Skip invalid entries
-
-                # Find the log with the matching start date and update it
-                for log in historical_logs:
-                    if log['start_date'] == start_date:
-                        log['symptoms'] = symptom
-                        log['end_date'] = end_date
-                        break
-
-            # Save the updated logs to Firestore
-            db.collection('symptom_logs').document(user_id).set({
-                'logs': historical_logs
-            })
-
-            dispatcher.utter_message(text="Your symptoms log has been updated successfully.")
-        except ValueError as e:
-            dispatcher.utter_message(text="There was an error processing the dates. Please use the format dd/mm/yyyy.")
-            print(f"ERROR: {e}")
-
-        return []
-
-    def delete_log(self, dispatcher, user_id, symptoms):
-        # Handle deleting symptom logs
-        if not symptoms:
-            dispatcher.utter_message(text="Please provide symptom information for deletion.")
-            return []
-
-        try:
-            # Fetch previous symptom logs
-            previous_logs = db.collection('symptom_logs').document(user_id).get().to_dict()
-            if previous_logs:
-                historical_logs = previous_logs.get('logs', [])
-            else:
-                dispatcher.utter_message(text="No logs found to delete.")
-                return []
-
-            # Remove logs based on the provided symptoms
-            for symptom_entry in symptoms:
-                start_date = symptom_entry.get("start_date")
-                if start_date:
-                    historical_logs = [log for log in historical_logs if log['start_date'] != start_date]
-
-            # Save the updated logs to Firestore
-            db.collection('symptom_logs').document(user_id).set({
-                'logs': historical_logs
-            })
-
-            dispatcher.utter_message(text="Your symptoms log has been deleted successfully.")
-        except ValueError as e:
-            dispatcher.utter_message(text="There was an error processing the date. Please use the format dd/mm/yyyy.")
-            print(f"ERROR: {e}")
-
-        return []
-
 class ActionGreet(Action):
     def name(self) -> str:
         return "action_greet"
@@ -2010,5 +1517,332 @@ class ActionMedicationPregnancy(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
         dispatcher.utter_message(response="utter_medication_during_pregnancy")
+
+        return []
+   
+class ActionDeleteMenstrualCycle(Action):
+
+    def name(self) -> str:
+        return "action_delete_menstrual_cycle"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        # Extract the old start and end dates from slots
+        old_start_date = tracker.get_slot("old_start_date")
+        old_end_date = tracker.get_slot("old_end_date")
+        
+        user_id = tracker.sender_id
+
+        try:
+            # Fetch previous cycles from Firestore
+            previous_cycles = db.collection('menstrual_cycles').document(user_id).get().to_dict()
+            historical_cycles = previous_cycles.get('cycles', []) if previous_cycles else []
+
+            # Find cycles to delete using old_start_date or old_end_date
+            cycles_to_delete = []
+            for cycle in historical_cycles:
+                # Check if cycle matches based on either old start or old end date
+                if (old_start_date and cycle.get('start_date') == old_start_date) or \
+                   (old_end_date and cycle.get('end_date') == old_end_date):
+                    cycles_to_delete.append(cycle)
+
+            if not cycles_to_delete:
+                dispatcher.utter_message(text="No cycles found with the specified old start or end date.")
+                return []
+
+            # Remove the found cycles from historical_cycles
+            for cycle in cycles_to_delete:
+                historical_cycles.remove(cycle)
+
+            # Save updated cycles back to Firestore
+            db.collection('menstrual_cycles').document(user_id).set({
+                'cycles': historical_cycles,
+                'predictions': previous_cycles.get('predictions', [])
+            })
+
+            # If there are still cycles left, recalculate predictions
+            if historical_cycles:
+                new_cycle_duration = historical_cycles[-1].get('cycle_duration')
+                new_period_duration = historical_cycles[-1].get('period_duration')
+                predictions = self.predict_next_cycles(historical_cycles, new_cycle_duration, new_period_duration)
+
+                # Save the new predictions to Firestore
+                db.collection('menstrual_cycles').document(user_id).set({
+                    'predictions': predictions
+                }, merge=True)
+
+            dispatcher.utter_message(text="Your menstrual cycle has been deleted successfully, and predictions have been updated.")
+        except Exception as e:
+            dispatcher.utter_message(text="There was an error deleting the cycle.")
+            print(f"ERROR: {e}")
+
+        return []
+
+    def predict_next_cycles(self, historical_cycles, new_cycle_duration, new_period_duration):
+        # This method contains the logic for predicting next cycles based on the provided durations
+        predictions = []
+        current_start_date = datetime.strptime(historical_cycles[-1]['start_date'], "%d/%m/%Y") + timedelta(days=int(new_cycle_duration))
+
+        for _ in range(4):  # Predict for the next 4 cycles
+            cycle_end_date_dt = current_start_date + timedelta(days=int(new_period_duration) - 1)
+            cycle_end_date = cycle_end_date_dt.strftime("%d/%m/%Y")
+
+            next_cycle_start_date_dt = current_start_date + timedelta(days=int(new_cycle_duration))
+            next_cycle_start_date = next_cycle_start_date_dt.strftime("%d/%m/%Y")
+
+            ovulation_date_dt = next_cycle_start_date_dt - timedelta(days=14)
+            ovulation_date = ovulation_date_dt.strftime("%d/%m/%Y")
+
+            fertile_window_start_dt = ovulation_date_dt - timedelta(days=2)
+            fertile_window_end_dt = ovulation_date_dt + timedelta(days=2)
+            fertile_window_start = fertile_window_start_dt.strftime("%d/%m/%Y")
+            fertile_window_end = fertile_window_end_dt.strftime("%d/%m/%Y")
+
+            # Corrected strong flow calculation: starts on the 2nd day of the period and lasts 2 days
+            strong_flow_start_dt = current_start_date + timedelta(days=1)  # Start strong flow on the 2nd day of the period
+            strong_flow_end_dt = strong_flow_start_dt + timedelta(days=1)  # End on the 3rd day of the period
+            strong_flow_start = strong_flow_start_dt.strftime("%d/%m/%Y")
+            strong_flow_end = strong_flow_end_dt.strftime("%d/%m/%Y")
+
+            # Add this cycle's prediction
+            predictions.append({
+                'cycle_start_date': current_start_date.strftime("%d/%m/%Y"),
+                'cycle_end_date': cycle_end_date,
+                'fertile_window_start': fertile_window_start,
+                'fertile_window_end': fertile_window_end,
+                'next_cycle_start_date': next_cycle_start_date,
+                'ovulation_date': ovulation_date,
+                'strong_flow_start': strong_flow_start,
+                'strong_flow_end': strong_flow_end
+            })
+
+            # Update current_start_date to the next cycle's start date for the next prediction
+            current_start_date = next_cycle_start_date_dt
+
+        return predictions
+
+class ActionUpdateMenstrualCycle(Action):
+    def name(self) -> str:
+        return "action_update_menstrual_cycle"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        # Extract slot values for updating the cycle
+        old_start_date = tracker.get_slot("old_start_date")
+        old_end_date = tracker.get_slot("old_end_date")
+        new_start_date = tracker.get_slot("new_start_date")
+        new_end_date = tracker.get_slot("new_end_date")
+        new_cycle_duration = tracker.get_slot("new_cycle_duration")
+        new_period_duration = tracker.get_slot("new_period_duration")
+
+        user_id = tracker.sender_id
+
+        try:
+            # Fetch previous cycles from Firestore
+            previous_cycles = db.collection('menstrual_cycles').document(user_id).get().to_dict()
+            historical_cycles = previous_cycles.get('cycles', []) if previous_cycles else []
+
+            # Find cycle to update using old_start_date or old_end_date
+            cycle_to_update = None
+            for cycle in historical_cycles:
+                # Check if cycle matches based on either old start or end date
+                if (old_start_date and cycle.get('start_date') == old_start_date) or \
+                   (old_end_date and cycle.get('end_date') == old_end_date):
+                    cycle_to_update = cycle
+                    break
+
+            if cycle_to_update is None:
+                dispatcher.utter_message(text="No cycle found with the specified old start or end date.")
+                return []
+
+            # Update the cycle found based on provided new dates
+            if new_start_date:
+                cycle_to_update['start_date'] = new_start_date
+            if new_end_date:
+                cycle_to_update['end_date'] = new_end_date
+            if new_cycle_duration:
+                cycle_to_update['cycle_duration'] = new_cycle_duration
+            if new_period_duration:
+                cycle_to_update['period_duration'] = new_period_duration
+
+            # Save updated cycles back to Firestore
+            db.collection('menstrual_cycles').document(user_id).set({
+                'cycles': historical_cycles,
+                'predictions': previous_cycles.get('predictions', [])
+            })
+
+            # Trigger predictions after updating the cycle
+            predictions = self.predict_next_cycles(historical_cycles, new_cycle_duration, new_period_duration)
+
+            # Save the new predictions
+            db.collection('menstrual_cycles').document(user_id).set({
+                'predictions': predictions
+            }, merge=True)
+
+            dispatcher.utter_message(text="Your menstrual cycle has been updated successfully and predictions recalculated.")
+        except Exception as e:
+            dispatcher.utter_message(text="There was an error updating the cycle.")
+            print(f"ERROR: {e}")
+
+        return []
+
+    def predict_next_cycles(self, historical_cycles, new_cycle_duration, new_period_duration):
+        # This method contains the logic for predicting next cycles based on the provided durations
+        predictions = []
+        current_start_date = datetime.strptime(historical_cycles[-1]['start_date'], "%d/%m/%Y") + timedelta(days=int(new_cycle_duration))
+
+        for _ in range(4):  # Predict for the next 4 cycles
+            cycle_end_date_dt = current_start_date + timedelta(days=int(new_period_duration) - 1)
+            cycle_end_date = cycle_end_date_dt.strftime("%d/%m/%Y")
+
+            next_cycle_start_date_dt = current_start_date + timedelta(days=int(new_cycle_duration))
+            next_cycle_start_date = next_cycle_start_date_dt.strftime("%d/%m/%Y")
+
+            ovulation_date_dt = next_cycle_start_date_dt - timedelta(days=14)
+            ovulation_date = ovulation_date_dt.strftime("%d/%m/%Y")
+
+            fertile_window_start_dt = ovulation_date_dt - timedelta(days=2)
+            fertile_window_end_dt = ovulation_date_dt + timedelta(days=2)
+            fertile_window_start = fertile_window_start_dt.strftime("%d/%m/%Y")
+            fertile_window_end = fertile_window_end_dt.strftime("%d/%m/%Y")
+
+            # Corrected strong flow calculation: starts on the 2nd day of the period and lasts 2 days
+            strong_flow_start_dt = current_start_date + timedelta(days=1)  # Start strong flow on the 2nd day of the period
+            strong_flow_end_dt = strong_flow_start_dt + timedelta(days=1)  # End on the 3rd day of the period
+            strong_flow_start = strong_flow_start_dt.strftime("%d/%m/%Y")
+            strong_flow_end = strong_flow_end_dt.strftime("%d/%m/%Y")
+
+            # Add this cycle's prediction
+            predictions.append({
+                'cycle_start_date': current_start_date.strftime("%d/%m/%Y"),
+                'cycle_end_date': cycle_end_date,
+                'fertile_window_start': fertile_window_start,
+                'fertile_window_end': fertile_window_end,
+                'next_cycle_start_date': next_cycle_start_date,
+                'ovulation_date': ovulation_date,
+                'strong_flow_start': strong_flow_start,
+                'strong_flow_end': strong_flow_end
+            })
+
+            # Update current_start_date to the next cycle's start date for the next prediction
+            current_start_date = next_cycle_start_date_dt
+
+        return predictions
+    
+class ActionLogMenstrualCycle(Action):
+    def name(self) -> str:
+        return "action_log_menstrual_cycle"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        # Extracting slot values
+        start_dates = tracker.get_slot("start_dates")
+        end_dates = tracker.get_slot("end_dates")
+        cycle_durations = tracker.get_slot("cycle_durations")
+        period_durations = tracker.get_slot("period_durations")
+
+        if not start_dates or not end_dates or not cycle_durations or not period_durations:
+            dispatcher.utter_message(text="Please provide all required cycle information: start dates, end dates, cycle durations, and period durations.")
+            return []
+
+        user_id = tracker.sender_id
+
+        try:
+            # Initialize historical cycles list
+            historical_cycles = []
+
+            # Fetch previous cycles from Firestore
+            previous_cycles = db.collection('menstrual_cycles').document(user_id).get().to_dict()
+            if previous_cycles:
+                historical_cycles = previous_cycles.get('cycles', [])
+
+            # Add the current cycles
+            for i in range(len(start_dates)):
+                historical_cycles.append({
+                    'start_date': start_dates[i],
+                    'end_date': end_dates[i],
+                    'cycle_duration': cycle_durations[i],
+                    'period_duration': period_durations[i]
+                })
+
+            # Calculate strong flow durations based on historical data
+            strong_flow_durations = []
+            for cycle in historical_cycles:
+                cycle_start = datetime.strptime(cycle['start_date'], "%d/%m/%Y")
+                cycle_end = datetime.strptime(cycle['end_date'], "%d/%m/%Y")
+                period_duration = (cycle_end - cycle_start).days + 1
+                strong_flow_start = cycle_start + timedelta(days=(period_duration // 3))
+                strong_flow_end = strong_flow_start + timedelta(days=min(2, period_duration // 3))  # Ensure the end is within the period duration
+                strong_flow_duration = (strong_flow_end - strong_flow_start).days + 1
+                strong_flow_durations.append(strong_flow_duration)
+
+            # Average strong flow duration
+            average_strong_flow_duration = sum(strong_flow_durations) / len(strong_flow_durations) if strong_flow_durations else 2  # Default if no historical data
+
+            # Calculate predictions based on historical data
+            predictions = []
+            current_start_date = datetime.strptime(start_dates[-1], "%d/%m/%Y")  # Start with the latest logged cycle
+
+            # Determine the next cycle's start date based on the last logged cycle
+            if historical_cycles:
+                last_cycle = historical_cycles[-1]
+                cycle_duration_days = int(cycle_durations[-1])  # Use the last cycle duration
+                
+                # Calculate the start date for the first prediction based on the last logged cycle
+                current_start_date = datetime.strptime(last_cycle['start_date'], "%d/%m/%Y") + timedelta(days=cycle_duration_days)  # Start of the next cycle
+            else:
+                # If no historical data, default to the most recent start date
+                current_start_date = datetime.strptime(start_dates[-1], "%d/%m/%Y")
+
+            for _ in range(4):  # Predict for the next 4 cycles
+                period_duration_days = int(period_durations[-1])
+
+                # Calculate cycle end date for the current cycle
+                cycle_end_date_dt = current_start_date + timedelta(days=period_duration_days - 1)  # End date for the current cycle
+                cycle_end_date = cycle_end_date_dt.strftime("%d/%m/%Y")
+
+                # Predict the next cycle's start date based on the current cycle's start date and duration
+                cycle_duration_days = int(cycle_durations[-1])  # Use the cycle duration of the last logged cycle
+                next_cycle_start_date_dt = current_start_date + timedelta(days=cycle_duration_days)  # Start of the next cycle
+                next_cycle_start_date = next_cycle_start_date_dt.strftime("%d/%m/%Y")
+
+                # Ovulation is typically 14 days before the next cycle start date
+                ovulation_date_dt = next_cycle_start_date_dt - timedelta(days=14)
+                ovulation_date = ovulation_date_dt.strftime("%d/%m/%Y")
+
+                # Fertile window is typically 2 days before and 2 days after ovulation
+                fertile_window_start_dt = ovulation_date_dt - timedelta(days=2)
+                fertile_window_end_dt = ovulation_date_dt + timedelta(days=2)
+                fertile_window_start = fertile_window_start_dt.strftime("%d/%m/%Y")
+                fertile_window_end = fertile_window_end_dt.strftime("%d/%m/%Y")
+
+                # Calculate strong flow start and end dates
+                strong_flow_start_dt = current_start_date + timedelta(days=(period_duration_days // 3))
+                strong_flow_end_dt = strong_flow_start_dt + timedelta(days=int(average_strong_flow_duration) - 1)
+                strong_flow_start = strong_flow_start_dt.strftime("%d/%m/%Y")
+                strong_flow_end = strong_flow_end_dt.strftime("%d/%m/%Y")
+
+                # Add this cycle's prediction
+                predictions.append({
+                    'cycle_start_date': current_start_date.strftime("%d/%m/%Y"),
+                    'cycle_end_date': cycle_end_date,
+                    'fertile_window_start': fertile_window_start,
+                    'fertile_window_end': fertile_window_end,
+                    'next_cycle_start_date': next_cycle_start_date,
+                    'ovulation_date': ovulation_date,
+                    'strong_flow_start': strong_flow_start,
+                    'strong_flow_end': strong_flow_end
+                })
+
+                # Update current_start_date to the next cycle's start date for the next prediction
+                current_start_date = next_cycle_start_date_dt
+
+            # Save both historical cycles and predictions to Firestore
+            db.collection('menstrual_cycles').document(user_id).set({
+                'cycles': historical_cycles,
+                'predictions': predictions
+            })
+
+            dispatcher.utter_message(text="Your menstrual cycle information and predictions for the next four cycles have been recorded successfully.")
+        except ValueError as e:
+            dispatcher.utter_message(text="There was an error processing the dates. Please use the format dd/mm/yyyy.")
+            print(f"ERROR: {e}")
 
         return []
