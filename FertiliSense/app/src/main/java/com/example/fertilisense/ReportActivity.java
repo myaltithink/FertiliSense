@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import android.widget.LinearLayout;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -107,8 +108,8 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
         symptomsInfo = findViewById(R.id.symptoms_info);
 
         // Initialize download button
-        downloadButton = findViewById(R.id.download_report);
-        downloadButton.setOnClickListener(v -> {
+        LinearLayout downloadLayout = findViewById(R.id.download_report);
+        downloadLayout.setOnClickListener(v -> {
             if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 downloadReport();
             } else {

@@ -16,39 +16,39 @@
 
         <ImageView
             android:id="@+id/ic_menu"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="28dp"
+            android:layout_width="32sp"
+            android:layout_height="32sp"
+            android:layout_marginStart="16sp"
+            android:layout_marginTop="28sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_menu" />
+
+        <!-- Report Section -->
+
+        <!-- Profile Picture -->
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="28sp"
             android:layout_marginEnd="35sp"
             android:text="FertiliSense Report"
             android:textColor="@color/black"
             android:textSize="23sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/nav_header_profile_picture"
-            app:layout_constraintHorizontal_bias="0.681"
+            app:layout_constraintHorizontal_bias="0.802"
             app:layout_constraintStart_toEndOf="@id/ic_menu"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Report Section -->
-
-        <!-- Profile Picture -->
-
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="405dp"
-            android:layout_height="575dp"
-            android:layout_margin="16dp"
-            android:background="@color/pink"
+            android:layout_width="405sp"
+            android:layout_height="575sp"
+            android:layout_margin="16sp"
+            android:background="@color/green"
             android:orientation="vertical"
             android:padding="16sp"
             app:layout_constraintBottom_toTopOf="@+id/download_report"
@@ -59,7 +59,7 @@
             <TextView
                 android:id="@+id/cycle_overview_title"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30sp"
                 android:layout_marginTop="16dp"
                 android:text="Menstrual Cycle Logs"
                 android:textColor="@color/black"
@@ -67,8 +67,11 @@
                 android:textStyle="bold" />
 
 
+            <!-- Symptoms Logs -->
+
+
             <ScrollView
-                android:layout_width="371dp"
+                android:layout_width="379dp"
                 android:layout_height="wrap_content"
                 android:fillViewport="true">
 
@@ -77,18 +80,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
-                    android:padding="16dp"
+                    android:padding="16sp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
             </ScrollView>
 
-
-            <!-- Symptoms Logs -->
-
             <TextView
                 android:id="@+id/symptoms_logs"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30sp"
                 android:layout_marginTop="16dp"
                 android:text="Symptoms Logs"
                 android:textColor="@color/black"
@@ -96,41 +96,33 @@
                 android:textStyle="bold" />
 
             <ScrollView
-                android:layout_width="match_parent"
+                android:layout_width="372sp"
                 android:layout_height="wrap_content"
-                android:fillViewport="true">
+                android:scrollbars="vertical"> <!-- Vertical scroll only -->
 
                 <TextView
                     android:id="@+id/symptoms_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
                     android:background="@android:color/white"
-                    android:padding="8dp"
-
-                    android:scrollbars="vertical"
+                    android:padding="16sp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
+
             </ScrollView>
 
-            <TextView
-                android:id="@+id/symptom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+
+
 
 
         </LinearLayout>
 
         <ImageView
             android:id="@+id/nav_header_profile_picture"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="16dp"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:layout_marginTop="28sp"
+            android:layout_marginEnd="16sp"
             android:background="@drawable/border_profile_picture_dashboard"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -142,7 +134,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bottom_navigation_background"
-            app:itemIconSize="47dp"
+            app:itemIconSize="47sp"
             app:itemIconTint="@color/violet"
             app:itemTextAppearanceActive="@style/BottomNavigationTextAppearance"
             app:itemTextAppearanceInactive="@style/BottomNavigationTextAppearanceInactive"
@@ -152,35 +144,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/bottom_menu" />
 
-        <Button
+        <LinearLayout
             android:id="@+id/download_report"
-            android:layout_width="401dp"
-            android:layout_height="55dp"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/violet"
-            android:drawablePadding="8dp"
+            android:layout_width="370sp"
+            android:layout_height="wrap_content"
+            android:background="@color/violet"
             android:gravity="center"
-            android:padding="10dp"
-            android:text="Download"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+            android:orientation="horizontal"
+            android:padding="8sp"
+            app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent">
 
-        <ImageView
-            android:id="@+id/save_icon"
-            android:layout_width="32sp"
-            android:layout_height="26sp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_save_report"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/download_report"
-            app:layout_constraintHorizontal_bias="0.376"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.881" />
+            <ImageView
+                android:layout_width="24sp"
+                android:layout_height="24sp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_save_report" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8sp"
+                android:text="Download"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
