@@ -95,7 +95,7 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
                     overridePendingTransition(0, 0);
                     finish();
                 } else if (id == R.id.calendar) {
-                    // Already in CalendarActivity
+                    Log.d("FertiliSense", "Calendar clicked");
                 } else if (id == R.id.home) {
                     Intent intent = new Intent(CalendarActivity.this, FertiliSenseDashboardActivity.class);
                     startActivity(intent);
@@ -109,7 +109,7 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
                 } else if (id == R.id.report) {
                     Log.d("FertiliSense", "User report details clicked");
                     Intent intent = new Intent(CalendarActivity.this, ReportActivity.class);
-                   startActivity(intent);
+                    startActivity(intent);
                     overridePendingTransition(0, 0);
                     finish();
                 }
@@ -120,8 +120,6 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
 
         // Set "Calendar" as the default selected item in bottom navigation
         bottomNavigationView.setSelectedItemId(R.id.calendar);
-
-
 
         // Fetch cycle data and highlight on the calendar
         fetchCycleData();
@@ -227,13 +225,13 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
                                             }
 
                                             // Highlight cycle duration in grey
-                                           // Calendar cycleDurationStart = (Calendar) startCalendar.clone();
-                                         //   Calendar cycleDurationEnd = (Calendar) startCalendar.clone();
-                                          //  cycleDurationEnd.add(Calendar.DAY_OF_MONTH, Integer.parseInt(cycleDurationStr) - 1);
-                                         //   while (!cycleDurationStart.after(cycleDurationEnd)) {
-                                         //       cycleDurationDates.add(CalendarDay.from(cycleDurationStart));
-                                          //      cycleDurationStart.add(Calendar.DAY_OF_MONTH, 1);
-                                         //   }
+                                            // Calendar cycleDurationStart = (Calendar) startCalendar.clone();
+                                            // Calendar cycleDurationEnd = (Calendar) startCalendar.clone();
+                                            // cycleDurationEnd.add(Calendar.DAY_OF_MONTH, Integer.parseInt(cycleDurationStr) - 1);
+                                            // while (!cycleDurationStart.after(cycleDurationEnd)) {
+                                            // cycleDurationDates.add(CalendarDay.from(cycleDurationStart));
+                                            // cycleDurationStart.add(Calendar.DAY_OF_MONTH, 1);
+                                            // }
 
                                             // Highlight cycle end dates in bloody red
                                             cycleEndDates.add(CalendarDay.from(parseDate(endDateStr)));

@@ -142,7 +142,6 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
                     overridePendingTransition(0, 0);
                     finish();
                 }
-
                 return true;
             }
         });
@@ -161,7 +160,6 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
         // Set the current date to TextView
         dateNow.setText(currentDate);
     }
-
 
     private void fetchNextPeriodAndFertileDates() {
         FirebaseUser currentUser = authProfile.getCurrentUser();
@@ -462,9 +460,7 @@ public class FertiliSenseDashboardActivity extends AppCompatActivity implements 
         overridePendingTransition(0, 0);
         finish();
     }
-
-
-
+    
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();

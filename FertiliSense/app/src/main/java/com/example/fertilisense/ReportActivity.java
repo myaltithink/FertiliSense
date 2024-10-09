@@ -235,10 +235,6 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
         }
     }
 
-
-
-
-
     private void fetchMenstrualCycleData() {
         FirebaseUser currentUser = authProfile.getCurrentUser();
         if (currentUser != null) {
@@ -301,11 +297,6 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
         }
     }
 
-
-
-
-
-
     private void fetchSymptomData() {
         FirebaseUser currentUser = authProfile.getCurrentUser();
         if (currentUser != null) {
@@ -363,11 +354,6 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
             Log.d(TAG, "No user is signed in");
         }
     }
-
-
-
-
-
 
     private void loadUserInformation() {
         View headerView = navigationView.getHeaderView(0);
@@ -466,10 +452,7 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
             startActivity(intent);
             finish();
         }
-
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
 }

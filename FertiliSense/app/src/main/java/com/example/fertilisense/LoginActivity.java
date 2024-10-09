@@ -144,8 +144,14 @@ public class LoginActivity extends AppCompatActivity {
                     try {
                         throw task.getException();
                     } catch (FirebaseAuthInvalidCredentialsException e) {
-                        emailFieldLogin.setError("Invalid credentials. Try Again");
-                        emailFieldLogin.requestFocus();
+                        // Error for invalid credentials (could be either email or password)
+                        if (e.getMessage().contains("The password is invalid")) {
+                            passwordFieldLogin.setError("Invalid password. Try again.");
+                            passwordFieldLogin.requestFocus();
+                        } else if (e.getMessage().contains("There is no user record corresponding to this identifier")) {
+                            emailFieldLogin.setError("No account found with this email.");
+                            emailFieldLogin.requestFocus();
+                        }
                     } catch (Exception e) {
                         Log.e(TAG, e.getMessage());
                         Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();

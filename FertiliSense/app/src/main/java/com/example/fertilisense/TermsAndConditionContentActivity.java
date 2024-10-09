@@ -20,8 +20,11 @@ import androidx.core.content.FileProvider;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
@@ -41,10 +44,12 @@ public class TermsAndConditionContentActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
     private DatabaseReference databaseRef;
+    private DatabaseReference userDatabaseReference;
     private ScrollView scrollView;
     private Button toggleScrollButton;
     private ImageView saveIcon;
     private boolean isAtBottom = false;
+    private String userGender = null; // Added userGender variable
 
     private static final String TAG = "TermsAndConditionContentActivity";
 
@@ -59,6 +64,7 @@ public class TermsAndConditionContentActivity extends AppCompatActivity {
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance();
         databaseRef = FirebaseDatabase.getInstance().getReference("TermsAndCondition");
+        userDatabaseReference = FirebaseDatabase.getInstance().getReference("Registered Users"); // Reference for user data
 
         // Set up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -109,6 +115,31 @@ public class TermsAndConditionContentActivity extends AppCompatActivity {
                 saveTermsAndConditions();
             }
         });
+
+        // Load user gender
+        loadUserGender();
+    }
+
+    private void loadUserGender() {
+        FirebaseUser user = auth.getCurrentUser();
+        if (user != null) {
+            userDatabaseReference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        userGender = snapshot.child("gender").getValue(String.class);
+                        Log.d(TAG, "User gender: " + userGender);
+                    } else {
+                        Log.e(TAG, "User data not found");
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.e(TAG, "Failed to retrieve user gender: " + error.getMessage());
+                }
+            });
+        }
     }
 
     private void saveTermsAndConditions() {
@@ -213,7 +244,14 @@ public class TermsAndConditionContentActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             Log.d("FertiliSense", "Navigating to Dashboard");
-            Intent intent = new Intent(TermsAndConditionContentActivity.this, FertiliSenseDashboardActivity.class);
+
+            // Navigate based on user gender
+            Intent intent;
+            if ("male".equalsIgnoreCase(userGender)) {
+                intent = new Intent(TermsAndConditionContentActivity.this, MaleDashboardActivity.class);
+            } else {
+                intent = new Intent(TermsAndConditionContentActivity.this, FertiliSenseDashboardActivity.class);
+            }
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();

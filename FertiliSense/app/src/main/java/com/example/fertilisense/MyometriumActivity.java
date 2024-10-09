@@ -25,7 +25,7 @@ public class MyometriumActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private FirebaseAuth authProfile;
     private FirebaseUser currentUser;
-    private static final String TAG = "FundusActivity";
+    private static final String TAG = "MyometriumActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,12 +91,11 @@ public class MyometriumActivity extends AppCompatActivity {
                     finish();
                 } else if (id == R.id.report) {
                     Log.d("FertiliSense", "User report details clicked");
-//                    Intent intent = new Intent(ReportActivity.this, ChatBotActivity.class);
-//                    startActivity(intent);
-//                    overridePendingTransition(0, 0);
-//                    finish();
+                    Intent intent = new Intent(MyometriumActivity.this, ReportActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    finish();
                 }
-
                 return true;
             }
         });
