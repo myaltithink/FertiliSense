@@ -159,6 +159,7 @@
         android:id="@+id/toggle_scroll_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/violet"
         android:layout_margin="16dp"
         android:text="Scroll to Bottom"
         app:layout_constraintBottom_toBottomOf="parent"

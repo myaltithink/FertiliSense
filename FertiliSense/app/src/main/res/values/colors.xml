@@ -8,6 +8,7 @@
     <color name="light_violet">#cb53ef</color>
     <color name="dark_gray">#a6a6a6</color>
     <color name="pink">#FFCDEA</color>
+    <color name="green">#F3CCFF</color>
 
     <color name="cycleColor">#B22222</color> <!--  for start to end -->
     <color name="cycleDurationColor">#ffffff</color> <!--   for cycle duration -->
