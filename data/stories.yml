@@ -65,10 +65,6 @@ stories:
       - action: action_query_wikipedia
       - action: action_query_gpt4
       - action: utter_provide_information
-
-  - story: handle medication query
-    steps:
-      - intent: ask_reproductive_health 
   
 # handles head questions and answers
   - story: head main
