@@ -140,8 +140,7 @@ class ActionQueryWikipedia(Action):
         if matched_topic:
             page = wiki_wiki.page(matched_topic)
             if page.exists():
-                response = page.summary[:500]  # Return a short summary of the page
-                dispatcher.utter_message(text=response)
+                dispatcher.utter_message(text=f"{page.summary[:500]}")
             else:
                 dispatcher.utter_message(text=f"Sorry, I couldn't find information on {matched_topic}.")
         else:
