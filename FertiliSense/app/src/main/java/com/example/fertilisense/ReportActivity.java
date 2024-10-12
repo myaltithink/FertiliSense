@@ -126,6 +126,9 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
         // Set up the drawer and bottom navigation listeners
         findViewById(R.id.ic_menu).setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
 
+        // Set navigation item selected listener
+        navigationView.setNavigationItemSelectedListener(this);
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

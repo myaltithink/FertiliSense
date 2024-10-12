@@ -24,10 +24,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_menu" />
 
-        <!-- Report Section -->
-
-        <!-- Profile Picture -->
-
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -60,15 +56,10 @@
                 android:id="@+id/cycle_overview_title"
                 android:layout_width="wrap_content"
                 android:layout_height="30sp"
-                android:layout_marginTop="16dp"
                 android:text="Menstrual Cycle Logs"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
-
-            <!-- Symptoms Logs -->
-
 
             <ScrollView
                 android:layout_width="379dp"
@@ -110,10 +101,6 @@
                     android:textSize="16sp" />
 
             </ScrollView>
-
-
-
-
 
         </LinearLayout>
 
