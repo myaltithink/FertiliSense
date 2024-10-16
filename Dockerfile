@@ -3,7 +3,6 @@ WORKDIR '/bot'
 COPY . /bot
 USER root
 COPY ./data /bot/data
-RUN rasa train
 VOLUME /bot
 VOLUME /bot/data
 VOLUME /bot/models
