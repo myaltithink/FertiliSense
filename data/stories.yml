@@ -864,16 +864,37 @@ stories:
   - story: log symptoms pre defined sickness
     steps:
       - intent: log_symptoms
+
       - action: utter_ask_start_symptoms
       - intent: inform
       - action: action_collect_start_dates
+
       - action: utter_ask_end_symptoms
       - intent: inform
       - action: action_collect_end_dates
+
       - action: utter_ask_symptoms
       - intent: inform_symptoms
       - action: action_collect_symptoms
+
       - action: action_create_log
       - action: action_evaluate_symptoms
 
 # handles delete symptoms
+
+# handles update symptoms
+
+# handles create menstrual cycle
+  - story: log menstrual cycle
+    steps:
+      - intent: log_menstrual_cycle
+      - action: action_log_menstrual_cycle
+      - intent: inform_start_date
+      - action: action_collect_start_date
+      - intent: inform_end_date
+      - action: action_collect_end_date
+      - intent: inform_cycle_duration
+      - action: action_collect_cycle_duration
+      - intent: inform_period_duration
+      - action: action_collect_period_duration
+      - action: action_create_logs

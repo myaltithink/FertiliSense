@@ -119,15 +119,17 @@ actions:
   - action_hiv
   - action_hiv_treatment
   - action_medication_during_pregnancy
+  - action_create_logs
+  - action_collect_end_date
+  - action_collect_cycle_duration
+  - action_collect_period_duration
+  - action_collect_start_date
+  - action_log_menstrual_cycle
   - action_collect_symptoms
   - action_collect_start_dates
   - action_collect_end_dates
   - action_create_log
   - action_evaluate_symptoms
-  - action_delete_symptoms
-  - action_collect_delete_start_dates
-  - action_collect_delete_end_dates
-  - action_update_log
 
 intents:
   - greet
@@ -245,30 +247,55 @@ intents:
   - hiv
   - hiv_treatment
   - medication_during_pregnancy
+  - inform_start_date
+  - inform_end_date
+  - inform_cycle_duration
+  - inform_period_duration
+  - log_menstrual_cycle
   - log_symptoms
   - inform_symptoms
 
 entities:
   - start_dates
+  - end_date
+  - cycle_duration
+  - period_duration
   - end_dates
   - symptoms
 
+
 slots:
+  start_dates:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: start_dates  # Capture start date from user input
+  end_date:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: end_date  # Capture end date from user input
+  cycle_duration:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: cycle_duration  # Capture cycle duration from user input
+  period_duration:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: period_duration  # Capture period duration from user input
+  
   symptoms:
     type: text
     mappings:
       - type: from_entity
         entity: symptoms
-  start_dates:
-    type: text
-    mappings:
-      - type: from_entity
-        entity: start_dates
   end_dates:
     type: text
     mappings:
       - type: from_entity
-        entity: end_dates
+        entity: end_date
       
 responses:
   utter_greet:
@@ -822,12 +849,27 @@ responses:
     - text: "When did the symptoms end (dd/mm/yyyy)?"
 
   utter_log_success:
-    - text: "Your symptoms have been logged successfully."
+    - text: "Thank you mate! Your logged is successful"
 
   utter_log_error:
     - text: "There was an error logging your symptoms."
 
 # query and answer for delete symptoms
+
+# query and answer for create menstrual cycle
+  utter_ask_start_date:
+    - text: "Please provide the start date of your cycle."
+  utter_ask_end_date:
+    - text: "What is the end date of your cycle?"
+  utter_ask_cycle_duration:
+    - text: "How long was your entire cycle (in days)?"
+  utter_ask_period_duration:
+    - text: "How long did your period last (in days)?"
+  utter_error_logging:
+    - text: "There was an error logging your menstrual cycle information. Please try again later."
+  utter_ask_date_to_delete:
+    - text: "Please provide the start date or end date of the cycle you want to delete."
+  
 
 session_config:
   session_expiration_time: 60

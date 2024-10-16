@@ -10,6 +10,9 @@ import openai
 import requests
 import json
 from urllib.parse import quote
+from typing import Dict, Text, Any
+from rasa_sdk.events import EventType
+import re
 
 # Initialize Firebase
 cred = credentials.Certificate("fertilisense-f1335-firebase-adminsdk-erc4z-f6c9372187.json")
@@ -23,7 +26,7 @@ wiki_wiki = wikipediaapi.Wikipedia(
 )
 
 # Set up OpenAI API key
-openai.api_key = 'sk-AiOvmKFrIECTVH30znj4AxPjGTT4nzmnh1XeIWF47oT3BlbkFJG8uqHdmnvldbg-RrwSzGXoQsH11lF2E8gFxcG9nyYA'
+openai.api_key = ''
 
 class ActionGreet(Action):
     def name(self) -> str:
@@ -1491,7 +1494,7 @@ class ActionMedicationPregnancy(Action):
 
         return []
     
-# Actions for handling creat symptoms
+# Actions for handling create symptoms
 class ActionCollectStartDates(Action):
     def name(self) -> str:
         return "action_collect_start_dates"
@@ -1573,8 +1576,7 @@ class ActionCreateLog(Action):
             print(f"ERROR: {e}")
 
         return []
-
-# Actions for handling evaluations of symptoms
+    
 class ActionEvaluateSymptoms(Action):
     def name(self) -> str:
         return "action_evaluate_symptoms"
@@ -1597,7 +1599,7 @@ class ActionEvaluateSymptoms(Action):
 
             # Call OpenAI Chat Completion API
             response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
+                model="gpt-3.5-turbo",  # or "gpt-4", depending on your plan
                 messages=messages,
                 max_tokens=70,
                 n=1,
@@ -1628,11 +1630,234 @@ class ActionEvaluateSymptoms(Action):
 
         except Exception as e:
             dispatcher.utter_message(text="There was an error evaluating your symptoms.")
+            print(f"ERROR: {e}")  # Debugging the error
+
+        return []
+
+    
+# Actions for handling delete symptoms
+    
+# Actions for handling update symptoms
+
+# Actions for handling create menstrual cycle
+class ActionCollectStartDate(Action):
+    def name(self) -> str:
+        return "action_collect_start_date"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[EventType]:
+        start_date_input = tracker.latest_message.get('text')  # Get the user's input
+
+        if start_date_input:
+            dispatcher.utter_message(text=f"Start date recorded: {start_date_input}. What is the end date of your cycle?")
+            return [SlotSet("start_dates", start_date_input)]  # Set the slot with the valid input
+        else:
+            dispatcher.utter_message(text="Please provide a valid start date.")
+            return []
+
+class ActionCollectEndDate(Action):
+    def name(self) -> str:
+        return "action_collect_end_date"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[EventType]:
+        end_date_input = tracker.latest_message.get('text')  # Get the user input
+
+        if end_date_input:
+            dispatcher.utter_message(text=f"End date recorded: {end_date_input}. What is the cycle duration?")
+            return [SlotSet("end_date", end_date_input)]  # Set the end date slot
+        else:
+            dispatcher.utter_message(text="Please provide a valid end date.")
+            return []
+
+class ActionCollectCycleDuration(Action):
+    def name(self) -> str:
+        return "action_collect_cycle_duration"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
+        cycle_duration = tracker.get_slot("cycle_duration")  # Check if cycle duration is already collected
+
+        if cycle_duration is None:
+            cycle_duration_input = tracker.latest_message.get('text')
+            if cycle_duration_input:
+                dispatcher.utter_message(text=f"Cycle duration recorded: {cycle_duration_input} days. How many days did your period last?")
+                return [SlotSet("cycle_duration", cycle_duration_input)]
+            else:
+                dispatcher.utter_message(text="Please provide a valid cycle duration.")
+                return []
+        else:
+            return []
+
+class ActionCollectPeriodDuration(Action):
+    def name(self) -> str:
+        return "action_collect_period_duration"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
+        period_duration = tracker.get_slot("period_duration")  # Check if period duration is already collected
+
+        if period_duration is None:
+            period_duration_input = tracker.latest_message.get('text')
+            if period_duration_input:
+                dispatcher.utter_message(text=f"Period duration recorded: {period_duration_input} days.")
+                return [SlotSet("period_duration", period_duration_input)]
+            else:
+                dispatcher.utter_message(text="Please provide a valid period duration.")
+                return []
+        else:
+            return []
+
+class ActionCreateLogs(Action):
+    def name(self) -> str:
+        return "action_create_logs"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
+        # Get slots
+        start_dates = tracker.get_slot("start_dates")
+        end_date = tracker.get_slot("end_date")
+        cycle_duration = tracker.get_slot("cycle_duration")
+        period_duration = tracker.get_slot("period_duration")
+        user_id = tracker.sender_id
+
+        # Regex patterns for date and number extraction
+        date_pattern = r"\b\d{2}/\d{2}/\d{4}\b"
+        number_pattern = r"\b\d+\b"
+
+        # Extract start date
+        if start_dates:
+            start_date_match = re.search(date_pattern, start_dates)
+            if start_date_match:
+                start_dates = start_date_match.group()
+            else:
+                dispatcher.utter_message(text="Please provide a valid start date in the format dd/MM/yyyy.")
+                return []
+
+        # Extract end date
+        if end_date:
+            end_date_match = re.search(date_pattern, end_date)
+            if end_date_match:
+                end_date = end_date_match.group()
+            else:
+                dispatcher.utter_message(text="Please provide a valid end date in the format dd/MM/yyyy.")
+                return []
+
+        # Extract cycle duration
+        if cycle_duration:
+            cycle_duration_match = re.search(number_pattern, cycle_duration)
+            if cycle_duration_match:
+                cycle_duration = int(cycle_duration_match.group())
+            else:
+                dispatcher.utter_message(text="Please provide a valid cycle duration in days (e.g., 28).")
+                return []
+
+        # Extract period duration
+        if period_duration:
+            period_duration_match = re.search(number_pattern, period_duration)
+            if period_duration_match:
+                period_duration = int(period_duration_match.group())
+            else:
+                dispatcher.utter_message(text="Please provide a valid period duration in days (e.g., 5).")
+                return []
+
+        if not start_dates or not end_date or not cycle_duration or not period_duration:
+            dispatcher.utter_message(text="Please provide all required cycle information: start date, end date, cycle duration, and period duration.")
+            return []
+
+        try:
+            # Fetch existing cycles
+            doc_ref = db.collection('menstrual_cycles').document(user_id)
+            doc = doc_ref.get()
+
+            if doc.exists:
+                historical_cycles = doc.to_dict().get('cycles', [])
+            else:
+                historical_cycles = []
+
+            # Add new cycle
+            historical_cycles.append({
+                'start_date': start_dates,
+                'end_date': end_date,
+                'cycle_duration': cycle_duration,
+                'period_duration': period_duration
+            })
+
+            # Calculate strong flow durations based on historical data
+            strong_flow_durations = []
+            for cycle in historical_cycles:
+                cycle_start = datetime.strptime(cycle['start_date'], "%d/%m/%Y")
+                cycle_end = datetime.strptime(cycle['end_date'], "%d/%m/%Y")
+                period_duration_days = (cycle_end - cycle_start).days + 1
+
+                # Strong flow calculations: 2nd and 3rd day of the period
+                strong_flow_start = cycle_start + timedelta(days=1)
+                strong_flow_end = cycle_start + timedelta(days=2)
+                strong_flow_duration = (strong_flow_end - strong_flow_start).days + 1
+                strong_flow_durations.append(strong_flow_duration)
+
+            # Average strong flow duration
+            average_strong_flow_duration = sum(strong_flow_durations) / len(strong_flow_durations) if strong_flow_durations else 2
+
+            # Calculate predictions based on historical data
+            predictions = []
+            current_start_date = datetime.strptime(start_dates, "%d/%m/%Y")
+
+            # If there are historical cycles, calculate the next cycle predictions
+            if historical_cycles:
+                last_cycle = historical_cycles[-1]
+                cycle_duration_days = last_cycle['cycle_duration']
+                current_start_date = datetime.strptime(last_cycle['start_date'], "%d/%m/%Y") + timedelta(days=cycle_duration_days)
+
+            for _ in range(4):  # Predict for the next four cycles
+                cycle_end_date_dt = current_start_date + timedelta(days=period_duration - 1)
+                cycle_end_date = cycle_end_date_dt.strftime("%d/%m/%Y")
+                next_cycle_start_date_dt = current_start_date + timedelta(days=cycle_duration_days)
+                next_cycle_start_date = next_cycle_start_date_dt.strftime("%d/%m/%Y")
+
+                # Ovulation and fertile window calculations
+                ovulation_date_dt = next_cycle_start_date_dt - timedelta(days=14)
+                ovulation_date = ovulation_date_dt.strftime("%d/%m/%Y")
+                fertile_window_start_dt = ovulation_date_dt - timedelta(days=2)
+                fertile_window_end_dt = ovulation_date_dt + timedelta(days=2)
+                fertile_window_start = fertile_window_start_dt.strftime("%d/%m/%Y")
+                fertile_window_end = fertile_window_end_dt.strftime("%d/%m/%Y")
+
+                # Strong flow calculations: 2nd and 3rd day of the period
+                strong_flow_start_dt = current_start_date + timedelta(days=1)  # 2nd day
+                strong_flow_end_dt = current_start_date + timedelta(days=2)  # 3rd day
+                strong_flow_start = strong_flow_start_dt.strftime("%d/%m/%Y")
+                strong_flow_end = strong_flow_end_dt.strftime("%d/%m/%Y")
+
+                predictions.append({
+                    'cycle_start_date': current_start_date.strftime("%d/%m/%Y"),
+                    'cycle_end_date': cycle_end_date,
+                    'fertile_window_start': fertile_window_start,
+                    'fertile_window_end': fertile_window_end,
+                    'ovulation_date': ovulation_date,
+                    'strong_flow_start': strong_flow_start,
+                    'strong_flow_end': strong_flow_end
+                })
+
+                current_start_date = next_cycle_start_date_dt  # Move to the next cycle start date
+
+            # Update Firestore with the new cycle and predictions
+            doc_ref.set({
+                'cycles': historical_cycles,
+                'predictions': predictions
+            }, merge=True)
+
+            # Reset slots
+            return [SlotSet("start_dates", None), SlotSet("end_date", None), SlotSet("cycle_duration", None), SlotSet("period_duration", None)]
+
+            # Send a success message
+            dispatcher.utter_message(text="Your menstrual cycle information has been logged successfully.")
+
+        except Exception as e:
+            dispatcher.utter_message(text="There was an error logging your menstrual cycle information. Please try again.")
             print(f"ERROR: {e}")
 
         return []
-    
-# Actions for handling delete symptoms
 
-    
-# Actions for handling update symptoms
+class ActionLogMenstrualCycle(Action):
+    def name(self) -> str:
+        return "action_log_menstrual_cycle"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
+        dispatcher.utter_message(text="Please provide the start date of your cycle.")
+        return []

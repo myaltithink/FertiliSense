@@ -1510,6 +1510,46 @@ nlu:
     - Which medicines are pregnancy-friendly?
     - Are there any safe pharmaceuticals for expectant mothers?
     - What drugs should I avoid while pregnant?
+
+- intent: log_menstrual_cycle
+  examples: |
+    - I want to log my menstrual cycle
+    - I would like to log my period data
+    - Can I log my menstrual cycle?
+    - I need to record my cycle information
+    - log my menstrual cycle
+    - log my cycle
+- intent: inform_start_date
+  examples: |
+    - My start date is 12/10/2023
+    - The start date is 15/09/2023
+    - 25th December 2023
+    - Starting on 15/10/2023
+    - Start date: 10/11/2023
+
+- intent: inform_end_date
+  examples: |
+    - My end date is 17/10/2023
+    - The end date is 20/09/2023
+    - 28th December 2023
+    - Ends on 15/10/2023
+
+- intent: inform_cycle_duration
+  examples: |
+    - My cycle lasts for 28 days
+    - The duration is 30 days
+    - It's 26 days
+    - 25 days
+    - My cycle is 27 days long
+
+- intent: inform_period_duration
+  examples: |
+    - My period lasted for 5 days
+    - The period duration is 6 days
+    - 4 days
+    - Lasted for 7 days
+    - Period is 3 days
+
 - intent: inform_symptoms
   examples: |
     - cramps
