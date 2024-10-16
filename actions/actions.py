@@ -23,7 +23,7 @@ wiki_wiki = wikipediaapi.Wikipedia(
 )
 
 # Set up OpenAI API key
-openai.api_key = ''
+openai.api_key = 'sk-AiOvmKFrIECTVH30znj4AxPjGTT4nzmnh1XeIWF47oT3BlbkFJG8uqHdmnvldbg-RrwSzGXoQsH11lF2E8gFxcG9nyYA'
 
 class ActionGreet(Action):
     def name(self) -> str:
@@ -149,65 +149,37 @@ class ActionQueryWikipedia(Action):
         return []
 
 # Action for getting info on GPT-4
-class ActionQueryGPT4(Action):
+class ActionQueryGPT(Action):
     def name(self) -> str:
-        return "action_query_gpt4"
+        return "action_query_gpt"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
-        topic = tracker.latest_message.get('text')
-        prompt = f"Provide detailed information on the following topic: {topic}"
-
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": prompt}
-            ],
-            max_tokens=150
-        )
-
-        result = response['choices'][0]['message']['content'].strip()
-        dispatcher.utter_message(text=result)
-        return []
-    
-# Actions for handling drug medicine using openFDA
-class ActionFetchDrugInfo(Action):
-    def name(self) -> Text:
-        return "action_fetch_drug_info"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
-        query = tracker.get_slot("drug_query")
+        # Get the latest message from the user
+        user_query = tracker.latest_message.get('text')
         
-        if not query:
-            dispatcher.utter_message(text="Please provide a drug name to get information.")
-            return []
+        # Construct the prompt for GPT
+        prompt = f"User asked: {user_query}\nAnswer them as a helpful assistant."
 
-        api_key = "LrfhiuHJ6kLg03oGvZnwwY0j8yPhY2edeomjMgmo"
-        # Encode the query to handle special characters
-        encoded_query = quote(query)
-        api_url = f"https://api.fda.gov/drug/event.json?api_key={api_key}&search={encoded_query}+AND+reproductive&limit=5"
-        
         try:
-            response = requests.get(api_url)
-            response.raise_for_status()  # Raise HTTPError for bad responses
-            data = response.json()
+            # Call the OpenAI API with GPT-3.5 or GPT-4
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": prompt}
+                ],
+                max_tokens=70
+            )
 
-            if 'results' in data and len(data['results']) > 0:
-                try:
-                    drug_info = data['results'][0]['patient']['drug'][0].get('drugindication', 'No specific indication found.')
-                    answer = f"The drug indication for {query} related to the reproductive system is: {drug_info}"
-                except (KeyError, IndexError):
-                    answer = "I couldn't find specific drug information due to a data error."
-            else:
-                answer = "I couldn't find information about that drug related to the reproductive system."
+            # Extract the GPT response
+            result = response['choices'][0]['message']['content'].strip()
 
-        except requests.RequestException as e:
-            answer = "I'm sorry, I couldn't fetch the information right now."
+            # Send the result back to the user
+            dispatcher.utter_message(text=result)
 
-        dispatcher.utter_message(text=answer)
+        except Exception as e:
+            # Handle potential errors and provide fallback response
+            dispatcher.utter_message(text="Sorry, I couldn't process your request at the moment. Please try again later.")
         return []
 
 # Action for asking user how is their day
@@ -1518,330 +1490,149 @@ class ActionMedicationPregnancy(Action):
         dispatcher.utter_message(response="utter_medication_during_pregnancy")
 
         return []
-   
-class ActionDeleteMenstrualCycle(Action):
-
-    def name(self) -> str:
-        return "action_delete_menstrual_cycle"
-
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
-        # Extract the old start and end dates from slots
-        old_start_date = tracker.get_slot("old_start_date")
-        old_end_date = tracker.get_slot("old_end_date")
-        
-        user_id = tracker.sender_id
-
-        try:
-            # Fetch previous cycles from Firestore
-            previous_cycles = db.collection('menstrual_cycles').document(user_id).get().to_dict()
-            historical_cycles = previous_cycles.get('cycles', []) if previous_cycles else []
-
-            # Find cycles to delete using old_start_date or old_end_date
-            cycles_to_delete = []
-            for cycle in historical_cycles:
-                # Check if cycle matches based on either old start or old end date
-                if (old_start_date and cycle.get('start_date') == old_start_date) or \
-                   (old_end_date and cycle.get('end_date') == old_end_date):
-                    cycles_to_delete.append(cycle)
-
-            if not cycles_to_delete:
-                dispatcher.utter_message(text="No cycles found with the specified old start or end date.")
-                return []
-
-            # Remove the found cycles from historical_cycles
-            for cycle in cycles_to_delete:
-                historical_cycles.remove(cycle)
-
-            # Save updated cycles back to Firestore
-            db.collection('menstrual_cycles').document(user_id).set({
-                'cycles': historical_cycles,
-                'predictions': previous_cycles.get('predictions', [])
-            })
-
-            # If there are still cycles left, recalculate predictions
-            if historical_cycles:
-                new_cycle_duration = historical_cycles[-1].get('cycle_duration')
-                new_period_duration = historical_cycles[-1].get('period_duration')
-                predictions = self.predict_next_cycles(historical_cycles, new_cycle_duration, new_period_duration)
-
-                # Save the new predictions to Firestore
-                db.collection('menstrual_cycles').document(user_id).set({
-                    'predictions': predictions
-                }, merge=True)
-
-            dispatcher.utter_message(text="Your menstrual cycle has been deleted successfully, and predictions have been updated.")
-        except Exception as e:
-            dispatcher.utter_message(text="There was an error deleting the cycle.")
-            print(f"ERROR: {e}")
-
-        return []
-
-    def predict_next_cycles(self, historical_cycles, new_cycle_duration, new_period_duration):
-        # This method contains the logic for predicting next cycles based on the provided durations
-        predictions = []
-        current_start_date = datetime.strptime(historical_cycles[-1]['start_date'], "%d/%m/%Y") + timedelta(days=int(new_cycle_duration))
-
-        for _ in range(4):  # Predict for the next 4 cycles
-            cycle_end_date_dt = current_start_date + timedelta(days=int(new_period_duration) - 1)
-            cycle_end_date = cycle_end_date_dt.strftime("%d/%m/%Y")
-
-            next_cycle_start_date_dt = current_start_date + timedelta(days=int(new_cycle_duration))
-            next_cycle_start_date = next_cycle_start_date_dt.strftime("%d/%m/%Y")
-
-            ovulation_date_dt = next_cycle_start_date_dt - timedelta(days=14)
-            ovulation_date = ovulation_date_dt.strftime("%d/%m/%Y")
-
-            fertile_window_start_dt = ovulation_date_dt - timedelta(days=2)
-            fertile_window_end_dt = ovulation_date_dt + timedelta(days=2)
-            fertile_window_start = fertile_window_start_dt.strftime("%d/%m/%Y")
-            fertile_window_end = fertile_window_end_dt.strftime("%d/%m/%Y")
-
-            # Corrected strong flow calculation: starts on the 2nd day of the period and lasts 2 days
-            strong_flow_start_dt = current_start_date + timedelta(days=1)  # Start strong flow on the 2nd day of the period
-            strong_flow_end_dt = strong_flow_start_dt + timedelta(days=1)  # End on the 3rd day of the period
-            strong_flow_start = strong_flow_start_dt.strftime("%d/%m/%Y")
-            strong_flow_end = strong_flow_end_dt.strftime("%d/%m/%Y")
-
-            # Add this cycle's prediction
-            predictions.append({
-                'cycle_start_date': current_start_date.strftime("%d/%m/%Y"),
-                'cycle_end_date': cycle_end_date,
-                'fertile_window_start': fertile_window_start,
-                'fertile_window_end': fertile_window_end,
-                'next_cycle_start_date': next_cycle_start_date,
-                'ovulation_date': ovulation_date,
-                'strong_flow_start': strong_flow_start,
-                'strong_flow_end': strong_flow_end
-            })
-
-            # Update current_start_date to the next cycle's start date for the next prediction
-            current_start_date = next_cycle_start_date_dt
-
-        return predictions
-
-class ActionUpdateMenstrualCycle(Action):
-    def name(self) -> str:
-        return "action_update_menstrual_cycle"
-
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
-        # Extract slot values for updating the cycle
-        old_start_date = tracker.get_slot("old_start_date")
-        old_end_date = tracker.get_slot("old_end_date")
-        new_start_date = tracker.get_slot("new_start_date")
-        new_end_date = tracker.get_slot("new_end_date")
-        new_cycle_duration = tracker.get_slot("new_cycle_duration")
-        new_period_duration = tracker.get_slot("new_period_duration")
-
-        user_id = tracker.sender_id
-
-        try:
-            # Fetch previous cycles from Firestore
-            previous_cycles = db.collection('menstrual_cycles').document(user_id).get().to_dict()
-            historical_cycles = previous_cycles.get('cycles', []) if previous_cycles else []
-
-            # Find cycle to update using old_start_date or old_end_date
-            cycle_to_update = None
-            for cycle in historical_cycles:
-                # Check if cycle matches based on either old start or end date
-                if (old_start_date and cycle.get('start_date') == old_start_date) or \
-                   (old_end_date and cycle.get('end_date') == old_end_date):
-                    cycle_to_update = cycle
-                    break
-
-            if cycle_to_update is None:
-                dispatcher.utter_message(text="No cycle found with the specified old start or end date.")
-                return []
-
-            # Update the cycle found based on provided new dates
-            if new_start_date:
-                cycle_to_update['start_date'] = new_start_date
-            if new_end_date:
-                cycle_to_update['end_date'] = new_end_date
-            if new_cycle_duration:
-                cycle_to_update['cycle_duration'] = new_cycle_duration
-            if new_period_duration:
-                cycle_to_update['period_duration'] = new_period_duration
-
-            # Save updated cycles back to Firestore
-            db.collection('menstrual_cycles').document(user_id).set({
-                'cycles': historical_cycles,
-                'predictions': previous_cycles.get('predictions', [])
-            })
-
-            # Trigger predictions after updating the cycle
-            predictions = self.predict_next_cycles(historical_cycles, new_cycle_duration, new_period_duration)
-
-            # Save the new predictions
-            db.collection('menstrual_cycles').document(user_id).set({
-                'predictions': predictions
-            }, merge=True)
-
-            dispatcher.utter_message(text="Your menstrual cycle has been updated successfully and predictions recalculated.")
-        except Exception as e:
-            dispatcher.utter_message(text="There was an error updating the cycle.")
-            print(f"ERROR: {e}")
-
-        return []
-
-    def predict_next_cycles(self, historical_cycles, new_cycle_duration, new_period_duration):
-        # This method contains the logic for predicting next cycles based on the provided durations
-        predictions = []
-        current_start_date = datetime.strptime(historical_cycles[-1]['start_date'], "%d/%m/%Y") + timedelta(days=int(new_cycle_duration))
-
-        for _ in range(4):  # Predict for the next 4 cycles
-            cycle_end_date_dt = current_start_date + timedelta(days=int(new_period_duration) - 1)
-            cycle_end_date = cycle_end_date_dt.strftime("%d/%m/%Y")
-
-            next_cycle_start_date_dt = current_start_date + timedelta(days=int(new_cycle_duration))
-            next_cycle_start_date = next_cycle_start_date_dt.strftime("%d/%m/%Y")
-
-            ovulation_date_dt = next_cycle_start_date_dt - timedelta(days=14)
-            ovulation_date = ovulation_date_dt.strftime("%d/%m/%Y")
-
-            fertile_window_start_dt = ovulation_date_dt - timedelta(days=2)
-            fertile_window_end_dt = ovulation_date_dt + timedelta(days=2)
-            fertile_window_start = fertile_window_start_dt.strftime("%d/%m/%Y")
-            fertile_window_end = fertile_window_end_dt.strftime("%d/%m/%Y")
-
-            # Corrected strong flow calculation: starts on the 2nd day of the period and lasts 2 days
-            strong_flow_start_dt = current_start_date + timedelta(days=1)  # Start strong flow on the 2nd day of the period
-            strong_flow_end_dt = strong_flow_start_dt + timedelta(days=1)  # End on the 3rd day of the period
-            strong_flow_start = strong_flow_start_dt.strftime("%d/%m/%Y")
-            strong_flow_end = strong_flow_end_dt.strftime("%d/%m/%Y")
-
-            # Add this cycle's prediction
-            predictions.append({
-                'cycle_start_date': current_start_date.strftime("%d/%m/%Y"),
-                'cycle_end_date': cycle_end_date,
-                'fertile_window_start': fertile_window_start,
-                'fertile_window_end': fertile_window_end,
-                'next_cycle_start_date': next_cycle_start_date,
-                'ovulation_date': ovulation_date,
-                'strong_flow_start': strong_flow_start,
-                'strong_flow_end': strong_flow_end
-            })
-
-            # Update current_start_date to the next cycle's start date for the next prediction
-            current_start_date = next_cycle_start_date_dt
-
-        return predictions
     
-class ActionLogMenstrualCycle(Action):
+# Actions for handling creat symptoms
+class ActionCollectStartDates(Action):
     def name(self) -> str:
-        return "action_log_menstrual_cycle"
+        return "action_collect_start_dates"
 
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
-        # Extracting slot values
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
+        start_dates = tracker.latest_message['text']
+        dispatcher.utter_message(text=f"Start date recorded: {start_dates}. What is the end date?")
+        print(f"Collected start date: {start_dates}")  # Debugging
+        return [SlotSet("start_dates", start_dates)]
+
+
+class ActionCollectEndDates(Action):
+    def name(self) -> str:
+        return "action_collect_end_dates"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
+        end_dates = tracker.latest_message['text']
+        dispatcher.utter_message(text=f"End date recorded: {end_dates}. What symptoms are you experiencing?")
+        print(f"Collected end date: {end_dates}")  # Debugging
+        return [SlotSet("end_dates", end_dates)]
+
+
+class ActionCollectSymptoms(Action):
+    def name(self) -> str:
+        return "action_collect_symptoms"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
+        symptoms = tracker.latest_message['text']
+        dispatcher.utter_message(text=f"Symptoms recorded: {symptoms}.")
+        print(f"Collected symptoms: {symptoms}")  # Debugging
+        return [SlotSet("symptoms", symptoms)]
+
+
+class ActionCreateLog(Action):
+    def name(self) -> str:
+        return "action_create_log"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
+        intent = tracker.latest_message['intent']['name']
+        print(f"Detected intent: {intent}") 
         start_dates = tracker.get_slot("start_dates")
         end_dates = tracker.get_slot("end_dates")
-        cycle_durations = tracker.get_slot("cycle_durations")
-        period_durations = tracker.get_slot("period_durations")
-
-        if not start_dates or not end_dates or not cycle_durations or not period_durations:
-            dispatcher.utter_message(text="Please provide all required cycle information: start dates, end dates, cycle durations, and period durations.")
-            return []
-
+        symptoms = tracker.get_slot("symptoms")
         user_id = tracker.sender_id
 
+        print(f"Start dates slot: {start_dates}")  # Debugging
+        print(f"End dates slot: {end_dates}")  # Debugging
+        print(f"Symptoms slot: {symptoms}")  # Debugging
+
+        if not start_dates or not end_dates or not symptoms:
+            dispatcher.utter_message(text="Please provide start date, end date, and symptoms.")
+            return []
+
         try:
-            # Initialize historical cycles list
-            historical_cycles = []
+            # Fetch existing logs
+            doc_ref = db.collection('symptom_logs').document(user_id)
+            doc = doc_ref.get()
 
-            # Fetch previous cycles from Firestore
-            previous_cycles = db.collection('menstrual_cycles').document(user_id).get().to_dict()
-            if previous_cycles:
-                historical_cycles = previous_cycles.get('cycles', [])
-
-            # Add the current cycles
-            for i in range(len(start_dates)):
-                historical_cycles.append({
-                    'start_date': start_dates[i],
-                    'end_date': end_dates[i],
-                    'cycle_duration': cycle_durations[i],
-                    'period_duration': period_durations[i]
-                })
-
-            # Calculate strong flow durations based on historical data
-            strong_flow_durations = []
-            for cycle in historical_cycles:
-                cycle_start = datetime.strptime(cycle['start_date'], "%d/%m/%Y")
-                cycle_end = datetime.strptime(cycle['end_date'], "%d/%m/%Y")
-                period_duration = (cycle_end - cycle_start).days + 1
-                strong_flow_start = cycle_start + timedelta(days=(period_duration // 3))
-                strong_flow_end = strong_flow_start + timedelta(days=min(2, period_duration // 3))  # Ensure the end is within the period duration
-                strong_flow_duration = (strong_flow_end - strong_flow_start).days + 1
-                strong_flow_durations.append(strong_flow_duration)
-
-            # Average strong flow duration
-            average_strong_flow_duration = sum(strong_flow_durations) / len(strong_flow_durations) if strong_flow_durations else 2  # Default if no historical data
-
-            # Calculate predictions based on historical data
-            predictions = []
-            current_start_date = datetime.strptime(start_dates[-1], "%d/%m/%Y")  # Start with the latest logged cycle
-
-            # Determine the next cycle's start date based on the last logged cycle
-            if historical_cycles:
-                last_cycle = historical_cycles[-1]
-                cycle_duration_days = int(cycle_durations[-1])  # Use the last cycle duration
-                
-                # Calculate the start date for the first prediction based on the last logged cycle
-                current_start_date = datetime.strptime(last_cycle['start_date'], "%d/%m/%Y") + timedelta(days=cycle_duration_days)  # Start of the next cycle
+            if doc.exists:
+                # Get existing logs and append the new one
+                historical_logs = doc.to_dict().get('logs', [])
             else:
-                # If no historical data, default to the most recent start date
-                current_start_date = datetime.strptime(start_dates[-1], "%d/%m/%Y")
+                # Initialize if no logs exist
+                historical_logs = []
 
-            for _ in range(4):  # Predict for the next 4 cycles
-                period_duration_days = int(period_durations[-1])
-
-                # Calculate cycle end date for the current cycle
-                cycle_end_date_dt = current_start_date + timedelta(days=period_duration_days - 1)  # End date for the current cycle
-                cycle_end_date = cycle_end_date_dt.strftime("%d/%m/%Y")
-
-                # Predict the next cycle's start date based on the current cycle's start date and duration
-                cycle_duration_days = int(cycle_durations[-1])  # Use the cycle duration of the last logged cycle
-                next_cycle_start_date_dt = current_start_date + timedelta(days=cycle_duration_days)  # Start of the next cycle
-                next_cycle_start_date = next_cycle_start_date_dt.strftime("%d/%m/%Y")
-
-                # Ovulation is typically 14 days before the next cycle start date
-                ovulation_date_dt = next_cycle_start_date_dt - timedelta(days=14)
-                ovulation_date = ovulation_date_dt.strftime("%d/%m/%Y")
-
-                # Fertile window is typically 2 days before and 2 days after ovulation
-                fertile_window_start_dt = ovulation_date_dt - timedelta(days=2)
-                fertile_window_end_dt = ovulation_date_dt + timedelta(days=2)
-                fertile_window_start = fertile_window_start_dt.strftime("%d/%m/%Y")
-                fertile_window_end = fertile_window_end_dt.strftime("%d/%m/%Y")
-
-                # Calculate strong flow start and end dates
-                strong_flow_start_dt = current_start_date + timedelta(days=(period_duration_days // 3))
-                strong_flow_end_dt = strong_flow_start_dt + timedelta(days=int(average_strong_flow_duration) - 1)
-                strong_flow_start = strong_flow_start_dt.strftime("%d/%m/%Y")
-                strong_flow_end = strong_flow_end_dt.strftime("%d/%m/%Y")
-
-                # Add this cycle's prediction
-                predictions.append({
-                    'cycle_start_date': current_start_date.strftime("%d/%m/%Y"),
-                    'cycle_end_date': cycle_end_date,
-                    'fertile_window_start': fertile_window_start,
-                    'fertile_window_end': fertile_window_end,
-                    'next_cycle_start_date': next_cycle_start_date,
-                    'ovulation_date': ovulation_date,
-                    'strong_flow_start': strong_flow_start,
-                    'strong_flow_end': strong_flow_end
-                })
-
-                # Update current_start_date to the next cycle's start date for the next prediction
-                current_start_date = next_cycle_start_date_dt
-
-            # Save both historical cycles and predictions to Firestore
-            db.collection('menstrual_cycles').document(user_id).set({
-                'cycles': historical_cycles,
-                'predictions': predictions
+            # Add new log
+            historical_logs.append({
+                'start_dates': start_dates,
+                'end_dates': end_dates,
+                'symptoms': symptoms
             })
 
-            dispatcher.utter_message(text="Your menstrual cycle information and predictions for the next four cycles have been recorded successfully.")
-        except ValueError as e:
-            dispatcher.utter_message(text="There was an error processing the dates. Please use the format dd/mm/yyyy.")
+            # Update Firestore document with the new log
+            doc_ref.set({'logs': historical_logs}, merge=True)
+
+            dispatcher.utter_message(text="Your symptoms have been logged successfully.")
+        except Exception as e:
+            dispatcher.utter_message(text="There was an error logging your symptoms.")
             print(f"ERROR: {e}")
 
         return []
+
+# Actions for handling evaluations of symptoms
+class ActionEvaluateSymptoms(Action):
+    def name(self) -> str:
+        return "action_evaluate_symptoms"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
+        # Retrieve the symptoms from the slot
+        symptoms = tracker.get_slot("symptoms")
+        user_id = tracker.sender_id
+
+        if not symptoms:
+            dispatcher.utter_message(text="I don't have any symptoms to evaluate.")
+            return []
+
+        try:
+            # Construct the chat message for OpenAI
+            messages = [
+                {"role": "system", "content": "You are an AI health assistant."},
+                {"role": "user", "content": f"I am experiencing the following symptoms: {symptoms}. What could be the possible condition?"}
+            ]
+
+            # Call OpenAI Chat Completion API
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=messages,
+                max_tokens=70,
+                n=1,
+                stop=None,
+                temperature=0.7,
+            )
+
+            evaluation = response['choices'][0]['message']['content'].strip()
+
+            # Provide the user with the AI evaluation
+            dispatcher.utter_message(text=f"Based on your symptoms, here is a possible evaluation:\n{evaluation}")
+
+            # Log the evaluation for future reference if needed
+            doc_ref = db.collection('symptom_logs').document(user_id)
+            doc = doc_ref.get()
+
+            if doc.exists:
+                historical_logs = doc.to_dict().get('logs', [])
+            else:
+                historical_logs = []
+
+            # Add the evaluation to the latest log
+            if historical_logs:
+                historical_logs[-1]['evaluation'] = evaluation
+
+            # Update Firestore with the evaluation
+            doc_ref.set({'logs': historical_logs}, merge=True)
+
+        except Exception as e:
+            dispatcher.utter_message(text="There was an error evaluating your symptoms.")
+            print(f"ERROR: {e}")
+
+        return []
+    
+# Actions for handling delete symptoms
+
+    
+# Actions for handling update symptoms

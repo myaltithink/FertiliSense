@@ -262,10 +262,11 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
 
                                     // Iterate through each cycle and log the information
                                     for (Map<String, Object> cycle : cycles) {
-                                        String cycleDuration = (String) cycle.get("cycle_duration");
-                                        String endDate = (String) cycle.get("end_date");
-                                        String periodDuration = (String) cycle.get("period_duration");
-                                        String startDate = (String) cycle.get("start_date");
+                                        // Safely retrieve each field, handling both Long and String types
+                                        String cycleDuration = getStringFromObject(cycle.get("cycle_duration"));
+                                        String endDate = getStringFromObject(cycle.get("end_date"));
+                                        String periodDuration = getStringFromObject(cycle.get("period_duration"));
+                                        String startDate = getStringFromObject(cycle.get("start_date"));
 
                                         // Log each cycle's information
                                         Log.d(TAG, "Cycle Duration: " + cycleDuration);
@@ -278,7 +279,6 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
                                                 .append("End Date: ").append(endDate != null ? endDate : "N/A").append("\n")
                                                 .append("Cycle Duration: ").append(cycleDuration != null ? cycleDuration : "N/A").append("\n")
                                                 .append("Period Duration: ").append(periodDuration != null ? periodDuration : "N/A").append("\n\n");
-
                                     }
 
                                     // Update the UI on the main thread
@@ -301,6 +301,18 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
         }
     }
 
+    // Helper method to safely convert Object to String
+    private String getStringFromObject(Object obj) {
+        if (obj instanceof Long) {
+            return String.valueOf((Long) obj); // Convert Long to String
+        } else if (obj instanceof String) {
+            return (String) obj; // Cast directly if it's a String
+        } else {
+            return null; // Return null or handle the unexpected case
+        }
+    }
+
+
     private void fetchSymptomData() {
         FirebaseUser currentUser = authProfile.getCurrentUser();
         if (currentUser != null) {
@@ -322,16 +334,20 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
                                 if (logs != null && !logs.isEmpty()) {
                                     StringBuilder symptomsInfo = new StringBuilder(); // To hold all symptom info
 
+                                    // Log the entire logs structure for debugging
+                                    Log.d(TAG, "Logs: " + logs.toString());
+
                                     // Iterate through each log and log the information
                                     for (Map<String, Object> log : logs) {
                                         String symptom = (String) log.get("symptoms");
-                                        String startDate = (String) log.get("start_date");
-                                        String endDate = (String) log.get("end_date");
+                                        // Use the correct keys to access start_dates and end_dates
+                                        String startDate = (String) log.get("start_dates");
+                                        String endDate = (String) log.get("end_dates");
 
                                         // Log each symptom's information
+                                        Log.d(TAG, "Symptom: " + symptom);
                                         Log.d(TAG, "Symptom Start: " + startDate);
                                         Log.d(TAG, "Symptom End: " + endDate);
-                                        Log.d(TAG, "Symptom: " + symptom);
 
                                         // Append the information to symptomsInfo
                                         symptomsInfo.append("Start Date: ").append(startDate != null ? startDate : "N/A").append("\n")
@@ -358,6 +374,8 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
             Log.d(TAG, "No user is signed in");
         }
     }
+
+
 
     private void loadUserInformation() {
         View headerView = navigationView.getHeaderView(0);

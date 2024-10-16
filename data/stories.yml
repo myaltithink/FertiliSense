@@ -1,27 +1,6 @@
 version: "3.1"
 
 stories:
-# Action for handling adding menstrual cycle
-  - story: log cycle
-    steps:
-      - intent: log_menstrual_cycle
-      - action: utter_ask_start_date
-      - intent: inform
-        entities:
-          - start_date
-      - action: utter_ask_end_date
-      - intent: inform
-        entities:
-          - end_date
-      - action: utter_ask_cycle_duration
-      - intent: inform
-        entities:
-          - cycle_duration
-      - action: utter_ask_period_duration
-      - intent: inform
-        entities:
-          - period_duration
-      - action: action_log_menstrual_cycle
 
 # Action for handling greet
   - story: happy path
@@ -58,13 +37,17 @@ stories:
       - intent: deny
       - action: utter_acknowledge_mood
 
-# Action for openAI
+# Action for Wikipedia
   - story: handle reproductive health query
     steps:
       - intent: ask_reproductive_health
       - action: action_query_wikipedia
-      - action: action_query_gpt4
-      - action: utter_provide_information
+
+# Action for OpenAI
+  - story: Respond with GPT for any question
+    steps:
+      - intent: nlu_fallback
+      - action: action_query_gpt 
   
 # handles head questions and answers
   - story: head main
@@ -211,12 +194,6 @@ stories:
       - action: utter_explain_each_detail
       - intent: deny
       - action: utter_did_that_help
-
-# handles drug medicine questions and answers
-  - story: Fetch drug information
-    steps:
-    - intent: ask_drug_info
-    - action: action_fetch_drug_info
 
 # handles common causes questions and answers
   - story: common causes yes
@@ -883,19 +860,20 @@ stories:
       - action: utter_medication_during_pregnancy
       - action: utter_did_that_help
 
-# Action for handling adding menstrual cycle
-  - story: Log menstrual cycle
+# handles create symptoms
+  - story: log symptoms pre defined sickness
     steps:
-      - intent: log_cycle
-      - action: action_log_menstrual_cycle
+      - intent: log_symptoms
+      - action: utter_ask_start_symptoms
+      - intent: inform
+      - action: action_collect_start_dates
+      - action: utter_ask_end_symptoms
+      - intent: inform
+      - action: action_collect_end_dates
+      - action: utter_ask_symptoms
+      - intent: inform_symptoms
+      - action: action_collect_symptoms
+      - action: action_create_log
+      - action: action_evaluate_symptoms
 
-  - story: Update menstrual cycle
-    steps:
-    - intent: update_menstrual_cycle
-    - action: update_cycle_form
-    - action: action_update_menstrual_cycle
-
-  - story: Delete menstrual cycle
-    steps:
-    - intent: delete_menstrual_cycle
-    - action: action_delete_menstrual_cycle
+# handles delete symptoms

@@ -11,13 +11,12 @@ actions:
   - vision_symptom
   - stomach_symptom
   - bot_challenge
-  - action_log_menstrual_cycle
   - action_greet
   - action_handle_mood
   - action_thank_you
   - action_goodbye
   - action_query_wikipedia
-  - action_query_gpt4
+  - action_query_gpt
   - action_ask_day
   - action_head_symptom
   - action_head_whole
@@ -31,7 +30,6 @@ actions:
   - action_lifestyle_men
   - action_itchy_testicles
   - action_common_causes
-  - action_fetch_drug_info
   - action_sperm_health
   - action_eggs_healthy
   - action_eggs_poor_quality
@@ -121,15 +119,20 @@ actions:
   - action_hiv
   - action_hiv_treatment
   - action_medication_during_pregnancy
-  - action_set_action_type
-  - action_update_menstrual_cycle
-  - action_delete_menstrual_cycle
+  - action_collect_symptoms
+  - action_collect_start_dates
+  - action_collect_end_dates
+  - action_create_log
+  - action_evaluate_symptoms
+  - action_delete_symptoms
+  - action_collect_delete_start_dates
+  - action_collect_delete_end_dates
+  - action_update_log
 
 intents:
   - greet
   - goodbye
   - thank_you
-  - log_menstrual_cycle
   - inform
   - mood_answer
   - mood_unhappy
@@ -153,7 +156,6 @@ intents:
   - lifestyle_men
   - itchy_testicles
   - common_causes
-  - ask_drug_info
   - sperm_health
   - healthy_eggs
   - poor_quality_eggs
@@ -243,102 +245,34 @@ intents:
   - hiv
   - hiv_treatment
   - medication_during_pregnancy
-  - log_cycle
-  - delete_menstrual_cycle
-  - update_menstrual_cycle
+  - log_symptoms
+  - inform_symptoms
 
 entities:
-  - start_date
-  - end_date
-  - cycle_duration
-  - period_duration
-  - drug_query
+  - start_dates
+  - end_dates
+  - symptoms
 
 slots:
+  symptoms:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: symptoms
   start_dates:
-    type: list
+    type: text
     mappings:
       - type: from_entity
         entity: start_dates
   end_dates:
-    type: list
+    type: text
     mappings:
       - type: from_entity
         entity: end_dates
-  cycle_durations:
-    type: list
-    mappings:
-      - type: from_entity
-        entity: cycle_durations
-  period_durations:
-    type: list
-    mappings:
-      - type: from_entity
-        entity: period_durations
-  index_to_update:
-    type: text
-    mappings:  # Add a mapping to fill this slot from user input if needed
-      - type: from_text
-  new_start_date:
-    type: text
-    mappings:  # Add a mapping to fill this slot from user input if needed
-      - type: from_text
-  new_end_date:
-    type: text
-    mappings:  # Add a mapping to fill this slot from user input if needed
-      - type: from_text
-  new_cycle_duration:
-    type: text
-    mappings:  # Add a mapping to fill this slot from user input if needed
-      - type: from_text
-  new_period_duration:
-    type: text
-    mappings:  # Add a mapping to fill this slot from user input if needed
-      - type: from_text
-
-  index_to_delete:
-    type: categorical
-    mappings:
-      - type: from_text
-  drug_query:
-    type: text
-    mappings:
-      - type: from_entity
-        entity: drug_query
-
-
-forms:
-  log_menstrual_cycle_form:
-    required_slots:
-      - start_dates
-      - end_dates
-      - cycle_durations
-      - period_durations
-  
-  update_cycle_form:
-    required_slots:
-      - index_to_update
-      - new_start_date
-      - new_end_date
-      - new_cycle_duration
-      - new_period_duration
-
       
 responses:
   utter_greet:
     - text: "Hi mate! How may I help you today?"
-
-  utter_ask_start_date:
-    - text: "Please provide the start date of your menstrual cycle (dd/mm/yyyy)."
-
-  utter_ask_end_date:
-    - text: "Please provide the end date of your menstrual cycle (dd/mm/yyyy)."
-
-  utter_ask_cycle_duration:
-    - text: "Please provide the duration of your cycle in days."
-
-  utter_ask_period_duration:
-    - text: "Please provide the number of days your period lasts."
 
   utter_goodbye:
     - text: "Goodbye! Take care mate!"
@@ -360,9 +294,6 @@ responses:
 
   utter_ask_for_topic:
     - text: "What specific information about the reproductive system are you looking for? For example, 'male reproductive system' or 'female reproductive system'."
-
-  utter_provide_information:
-    - text: "{response}"
 
   utter_did_that_help:
     - text: "I hope this information is useful to you. If you’d like to continue, let me know how I can assist you further."
@@ -880,23 +811,23 @@ responses:
   utter_medication_during_pregnancy:
     - text: "Here are medications that a pregnant woman can take:\nNausea:\n-Vitamin B6 is a safe option during pregnancy for improving nausea.\nAllergies:\n- Loratadine (Claritin)\n- Cetirizine (Zyrtec and Alleroff)\n- Chlorpheniramine\n- Dexchlorpheniramine\n- Hydroxyzine\n- Nasal Sprays (Nasonex, Nasacort, and Flonase)\nHeadache:\n- Acetaminophen (Tylenol)\nCold and Flu:\n- Diphenhydramine (Benadryl)\n- Dextromenthorphan (Robitussin)\n- Pseudoephedrine (Sudafed, only after the trimester)\n- Acetaminophen (Tylenol)\nYou can also use home remedies such as Vicks VapoRub mentholated cream, neti pots, saline nasal drops, saline spray, or gargling with salt water\nHeartburn:\n- Aluminum hydroxide/magnesium carbonate (Gaviscon)\n- Famotidine (Pepcid AC)\n- Aluminum hydroxide/magnesium hydroxide (Maalox)\n- Calcium carbonate/magnesium carbonate (Mylanta)\n- Calcium carbonate (Titralac or Tums)\n- Ranitidine (Zantac)\nEating yogurt and drinking milk may also help counteract heartburn\nDiarrhea:\n- Loperamide (Imodium) can be taken during pregnancy, but it should not be used after the first trimester or for more than 24 hours\nConstipation:\n- Methylcellulose fiber (Citrucel)\n- Docusate (Colace)\n- Psyllium (Fiberall, Metamucil)\n- Polycarbophil (FiberCon)\n- Polyethylene Glycol (MiraLAX)\nHemorrhoids:\n- Phenylephrine/mineral oil/petrolatum (Preparation H)\n- Witch Hazel (Tucks pads or ointments)\nFirst Aid (Cuts, Scrapes, Burns):\n- Bacitracin Ointments\n- Neomycin/Polymyxin B/Bacitracin (Neosporin)\nRash:\n- Diphenhydramine Cream (Benadryl)\n- Hydrocosticone Cream or Ointment\n- Oatmeal Batch (Aveeno)\nRemember:\n No medication is 100% safe during pregnancy, always consult your doctor"
 
-  utter_ask_index_to_update:
-    - text: "Which cycle index would you like to update?"
+# query and answer for create symptoms
+  utter_ask_symptoms:
+    - text: "Please tell me what symptoms you're experiencing."
 
-  utter_ask_new_start_date:
-    - text: "Please provide the new start date for the cycle."
+  utter_ask_start_symptoms:
+    - text: "When did the symptoms start (dd/mm/yyyy)?"
 
-  utter_ask_new_end_date:
-    - text: "Please provide the new end date for the cycle."
+  utter_ask_end_symptoms:
+    - text: "When did the symptoms end (dd/mm/yyyy)?"
 
-  utter_ask_new_cycle_duration:
-    - text: "Please provide the new cycle duration."
+  utter_log_success:
+    - text: "Your symptoms have been logged successfully."
 
-  utter_ask_new_period_duration:
-    - text: "Please provide the new period duration."
+  utter_log_error:
+    - text: "There was an error logging your symptoms."
 
-  utter_ask_index_to_delete:
-    - text: "Which cycle index would you like to delete?"
+# query and answer for delete symptoms
 
 session_config:
   session_expiration_time: 60

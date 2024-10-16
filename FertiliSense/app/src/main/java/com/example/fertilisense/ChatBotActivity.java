@@ -55,7 +55,7 @@ public class ChatBotActivity extends AppCompatActivity {
 
     private FirebaseUser currentUser;
 
-    private final String chatUrl = "https://ca02-120-29-72-196.ngrok-free.app/webhooks/rest/webhook";
+    private final String chatUrl = "https://6265-175-176-24-229.ngrok-free.app/webhooks/rest/webhook";
     //private final String actionUrl = "https://2c12-2001-4452-409-cc00-784a-f1c-c946-7897.ngrok-free.app/webhook";
 
     @Override

@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
+import java.util.GregorianCalendar;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -198,25 +198,42 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
                                 if (document.exists()) {
                                     // Initialize collections for dates
                                     Set<CalendarDay> cycleDates = new HashSet<>();
-                                    Set<CalendarDay> cycleDurationDates = new HashSet<>();
+                                    Set<CalendarDay> cycleEndDates = new HashSet<>();
                                     Set<CalendarDay> fertileWindowDates = new HashSet<>();
                                     Set<CalendarDay> ovulationDates = new HashSet<>();
                                     Set<CalendarDay> nextCycleStartDates = new HashSet<>();
                                     Set<CalendarDay> strongFlowDates = new HashSet<>();
                                     Set<CalendarDay> predictionCycleDates = new HashSet<>();
-                                    Set<CalendarDay> cycleEndDates = new HashSet<>();
                                     Set<CalendarDay> predictionCycleEndDates = new HashSet<>();
 
                                     // Process cycles
                                     List<Map<String, Object>> cycles = (List<Map<String, Object>>) document.get("cycles");
                                     if (cycles != null) {
                                         for (Map<String, Object> cycle : cycles) {
-                                            String startDateStr = (String) cycle.get("start_date");
-                                            String endDateStr = (String) cycle.get("end_date");
-                                            String cycleDurationStr = (String) cycle.get("cycle_duration");
+                                            Object startDateObj = cycle.get("start_date");
+                                            Object endDateObj = cycle.get("end_date");
 
-                                            Calendar startCalendar = parseDate(startDateStr);
-                                            Calendar endCalendar = parseDate(endDateStr);
+                                            // Use GregorianCalendar instead of Calendar
+                                            Calendar startCalendar = new GregorianCalendar();
+                                            Calendar endCalendar = new GregorianCalendar();
+
+                                            // Handle start date
+                                            if (startDateObj instanceof Long) {
+                                                startCalendar.setTimeInMillis((Long) startDateObj);
+                                            } else if (startDateObj instanceof String) {
+                                                startCalendar = parseDate((String) startDateObj);
+                                            } else {
+                                                Log.e(TAG, "Unexpected type for start_date: " + startDateObj.getClass().getSimpleName());
+                                            }
+
+                                            // Handle end date
+                                            if (endDateObj instanceof Long) {
+                                                endCalendar.setTimeInMillis((Long) endDateObj);
+                                            } else if (endDateObj instanceof String) {
+                                                endCalendar = parseDate((String) endDateObj);
+                                            } else {
+                                                Log.e(TAG, "Unexpected type for end_date: " + endDateObj.getClass().getSimpleName());
+                                            }
 
                                             // Highlight start to end dates in green
                                             while (!startCalendar.after(endCalendar)) {
@@ -224,29 +241,21 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
                                                 startCalendar.add(Calendar.DAY_OF_MONTH, 1);
                                             }
 
-                                            // Highlight cycle duration in grey
-                                            // Calendar cycleDurationStart = (Calendar) startCalendar.clone();
-                                            // Calendar cycleDurationEnd = (Calendar) startCalendar.clone();
-                                            // cycleDurationEnd.add(Calendar.DAY_OF_MONTH, Integer.parseInt(cycleDurationStr) - 1);
-                                            // while (!cycleDurationStart.after(cycleDurationEnd)) {
-                                            // cycleDurationDates.add(CalendarDay.from(cycleDurationStart));
-                                            // cycleDurationStart.add(Calendar.DAY_OF_MONTH, 1);
-                                            // }
-
-                                            // Highlight cycle end dates in bloody red
-                                            cycleEndDates.add(CalendarDay.from(parseDate(endDateStr)));
+                                            // Highlight cycle end dates in red
+                                            cycleEndDates.add(CalendarDay.from(endCalendar));
                                         }
+
                                         // Add decorators for cycles
                                         calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.cycleColor, cycleDates, ""));
-                                        calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.cycleDurationColor, cycleDurationDates, ""));
                                         calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.cycleEndDateColor, cycleEndDates, ""));
+                                    } else {
+                                        Log.d(TAG, "No cycles found.");
                                     }
 
                                     // Process predictions
                                     List<Map<String, Object>> predictions = (List<Map<String, Object>>) document.get("predictions");
                                     if (predictions != null) {
                                         for (Map<String, Object> prediction : predictions) {
-                                            // Handle cycle start and end dates
                                             addDateToSet(prediction.get("cycle_start_date"), predictionCycleDates);
                                             addDateToSet(prediction.get("cycle_end_date"), predictionCycleEndDates);
 
@@ -272,17 +281,16 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
                                             // Handle next cycle start date
                                             addDateToSet(prediction.get("next_cycle_start_date"), nextCycleStartDates);
                                         }
+
                                         // Add decorators for predictions
                                         calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.predictionCycleStartEndColor, predictionCycleDates, ""));
                                         calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.fertileWindowColor, fertileWindowDates, ""));
                                         calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.ovulationColor, ovulationDates, ""));
-
-                                        // Assuming strongFlowDates is a Collection<CalendarDay> that you have populated
                                         calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.strongFlowColor, strongFlowDates, "Strong"));
-
-
                                         calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.nextCycleStartColor, nextCycleStartDates, ""));
                                         calendarView.addDecorator(new EventDecorator(CalendarActivity.this, R.color.predictionCycleEndDateColor, predictionCycleEndDates, ""));
+                                    } else {
+                                        Log.d(TAG, "No predictions found.");
                                     }
 
                                     // Finally, highlight today's date in blue (this decorator is added last)
@@ -299,6 +307,7 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
             Log.d(TAG, "No user is signed in");
         }
     }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
