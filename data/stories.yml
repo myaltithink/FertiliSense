@@ -898,3 +898,5 @@ stories:
       - intent: inform_period_duration
       - action: action_collect_period_duration
       - action: action_create_logs
+
+# handles delete cycle

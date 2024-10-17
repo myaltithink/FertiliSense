@@ -64,11 +64,12 @@
             android:id="@+id/repro_female_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="
-The vagina extends from the vestibule to the uterus, positioned behind the bladder and in front of the rectum. It is angled upward and backward, creating an angle of over 90 degrees with the axis of the uterus, and opens forward.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/vagina-1541215848?from=2"
+            android:text="The vagina extends from the vestibule to the uterus, positioned behind the bladder and in front of the rectum. It is angled upward and backward, creating an angle of over 90 degrees with the axis of the uterus, and opens forward.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/vagina-1541215848?from=2"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:autoLink="web"
+            android:linksClickable="true" />
     </ScrollView>
 
     <!-- Bottom Navigation View -->

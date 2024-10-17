@@ -269,22 +269,22 @@ slots:
     type: text
     mappings:
       - type: from_entity
-        entity: start_dates  # Capture start date from user input
+        entity: start_dates
   end_date:
     type: text
     mappings:
       - type: from_entity
-        entity: end_date  # Capture end date from user input
+        entity: end_date
   cycle_duration:
     type: text
     mappings:
       - type: from_entity
-        entity: cycle_duration  # Capture cycle duration from user input
+        entity: cycle_duration
   period_duration:
     type: text
     mappings:
       - type: from_entity
-        entity: period_duration  # Capture period duration from user input
+        entity: period_duration
   
   symptoms:
     type: text

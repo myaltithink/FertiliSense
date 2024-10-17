@@ -53,7 +53,6 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
 
     private static final String TAG = "CalendarActivity";
     private MaterialCalendarView calendarView;
-    //private Button editPeriodButton;
     private FirebaseFirestore db;
 
     @Override
@@ -236,8 +235,9 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
                                             }
 
                                             // Highlight start to end dates in green
-                                            while (!startCalendar.after(endCalendar)) {
+                                            while (startCalendar.compareTo(endCalendar) <= 0) {
                                                 cycleDates.add(CalendarDay.from(startCalendar));
+                                                Log.d(TAG, "Cycle date: " + startCalendar.getTime());
                                                 startCalendar.add(Calendar.DAY_OF_MONTH, 1);
                                             }
 
@@ -256,8 +256,16 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
                                     List<Map<String, Object>> predictions = (List<Map<String, Object>>) document.get("predictions");
                                     if (predictions != null) {
                                         for (Map<String, Object> prediction : predictions) {
-                                            addDateToSet(prediction.get("cycle_start_date"), predictionCycleDates);
-                                            addDateToSet(prediction.get("cycle_end_date"), predictionCycleEndDates);
+                                            // Get predicted start and end dates
+                                            Calendar predictedStart = parseDate((String) prediction.get("cycle_start_date"));
+                                            Calendar predictedEnd = parseDate((String) prediction.get("cycle_end_date"));
+
+                                            // Highlight all dates between start and end
+                                            while (predictedStart.compareTo(predictedEnd) <= 0) {
+                                                predictionCycleDates.add(CalendarDay.from(predictedStart));
+                                                Log.d(TAG, "Highlighting predicted cycle date: " + predictedStart.getTime());
+                                                predictedStart.add(Calendar.DAY_OF_MONTH, 1);
+                                            }
 
                                             // Handle fertile window
                                             String fertileStartStr = (String) prediction.get("fertile_window_start");
@@ -268,6 +276,7 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
                                             // Highlight fertile window
                                             while (!fertileStart.after(fertileEnd)) {
                                                 fertileWindowDates.add(CalendarDay.from(fertileStart));
+                                                Log.d(TAG, "Highlighting fertile window date: " + fertileStart.getTime());
                                                 fertileStart.add(Calendar.DAY_OF_MONTH, 1);
                                             }
 
@@ -307,7 +316,6 @@ public class CalendarActivity extends AppCompatActivity implements NavigationVie
             Log.d(TAG, "No user is signed in");
         }
     }
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

@@ -64,11 +64,12 @@
             android:id="@+id/repro_female_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="
-The ovaries, like the testes in males, are both gonads and endocrine glands. There are two ovaries, one on each side of the uterus, positioned along the lateral walls of the pelvis. They are attached to the back of the broad ligament of the uterus, located behind and below the uterine tubes.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/ovary-1541215200?from=2"
+            android:text="The ovaries, like the testes in males, are both gonads and endocrine glands. There are two ovaries, one on each side of the uterus, positioned along the lateral walls of the pelvis. They are attached to the back of the broad ligament of the uterus, located behind and below the uterine tubes.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/ovary-1541215200?from=2"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:autoLink="web"
+            android:linksClickable="true" />
     </ScrollView>
 
     <!-- Bottom Navigation View -->

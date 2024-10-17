@@ -161,7 +161,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:text="Medium"
+            android:text="Loading..."
             android:textColor="@color/violet"
             android:textSize="30sp"
             android:textStyle="bold"

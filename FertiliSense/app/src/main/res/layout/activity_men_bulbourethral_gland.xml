@@ -9,7 +9,6 @@
     android:layout_height="match_parent"
     tools:context=".BulbourethralGlandActivity">
 
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -68,7 +67,9 @@
             android:text="The bulbourethral glands are small, pea-sized glands located behind the urethra, near the pelvic diaphragm. They are yellow and gradually shrink with age. Each gland has a tiny duct that opens into the urethra. The glands consist of several lobes with small sacs that drain into a main duct.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/bulbourethral-gland-1541222184?from=2"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:autoLink="web"
+            android:linksClickable="true" />
     </ScrollView>
 
     <!-- Bottom Navigation View -->

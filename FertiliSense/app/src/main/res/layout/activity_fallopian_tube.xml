@@ -66,7 +66,9 @@
             android:text="The Fallopian tubes, or uterine tubes, are a pair of 4-inch (10 cm) long narrow tubes that connect the ovaries to the uterus. They transport egg cells from the ovaries to the uterus after ovulation and are also where fertilization typically occurs if sperm are present. Each tube starts narrow at the uterus and gradually widens as it extends towards the ovary.\n\nSource: https://www.innerbody.com/image/repfov.html"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:autoLink="web"
+            android:linksClickable="true" />
     </ScrollView>
 
     <!-- Bottom Navigation View -->

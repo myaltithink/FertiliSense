@@ -67,7 +67,9 @@
             android:text="The testes are two glandular organs that produce semen and are suspended in the scrotum by the spermatic cords. Early in fetal development, the testes are located in the abdominal cavity behind the peritoneum. Before birth, they descend through the inguinal canal along with the spermatic cord, and exit through the subcutaneous inguinal ring. They then move into the scrotum, acquiring coverings from the serous, muscular, and fibrous layers of the abdominal wall, as well as from the scrotum itself.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/testis-1541216084?from=2"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:autoLink="web"
+            android:linksClickable="true" />
     </ScrollView>
 
     <!-- Bottom Navigation View -->

@@ -8,16 +8,11 @@
     android:layout_height="match_parent"
     tools:context=".FemaleReproductiveSystemActivity">
 
-    <!-- Main content -->
-
-    <!-- Navigation drawer -->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white">
 
-        <!-- upper menu -->
         <ImageView
             android:id="@+id/ic_menu"
             android:layout_width="32dp"
@@ -27,10 +22,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_menu" />
-
-        <!-- Female Reproductive System -->
-
-        <!-- preview -->
 
         <ImageView
             android:id="@+id/nav_header_profile_picture"
@@ -96,10 +87,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_next" />
 
-        <!-- Female Reproductive System 3D Image -->
-
-        <!-- Bottom Menu -->
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="361dp"
@@ -126,19 +113,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/bottom_menu" />
 
-        <!-- Parts -->
-        <!-- Parts TextViews are modified to be centered and aligned based on imageView -->
-        <!-- Example: -->
-
         <TextView
             android:id="@+id/fundus_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="160dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginStart="153sp"
+            android:layout_marginTop="55sp"
             android:text="Fundus"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
@@ -147,11 +130,10 @@
             android:id="@+id/fallopian_tube_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="48dp"
             android:text="Fallopian Tube"
             android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textSize="13sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
@@ -160,11 +142,11 @@
             android:id="@+id/infundibulum_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="288dp"
+            android:layout_marginStart="290dp"
             android:layout_marginTop="204dp"
             android:text="Infundibulum"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
@@ -173,12 +155,12 @@
             android:id="@+id/ovarian_ligament_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="90dp"
             android:layout_marginTop="156dp"
             android:text="Ovarian\nLigament"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textSize="13sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
@@ -192,7 +174,7 @@
             android:text="Corpus\nLuteum"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
@@ -207,7 +189,7 @@
             android:text="Ovarian\nFollicles"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
@@ -220,7 +202,7 @@
             android:layout_marginTop="188dp"
             android:text="Fimbriae"
             android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
@@ -233,7 +215,7 @@
             android:layout_marginTop="220dp"
             android:text="Perimetrium"
             android:textColor="@color/black"
-            android:textSize="9sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
@@ -242,11 +224,11 @@
             android:id="@+id/uterus_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="84dp"
+            android:layout_marginStart="90dp"
             android:layout_marginTop="48dp"
             android:text="Uterus"
             android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
@@ -255,14 +237,14 @@
             android:id="@+id/cervix_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="168dp"
-            android:layout_marginTop="192dp"
+            android:layout_marginStart="163dp"
+            android:layout_marginTop="191dp"
             android:background="@color/white"
             android:padding="1dp"
             android:text="Cervix"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="8sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
@@ -287,14 +269,14 @@
             android:id="@+id/vagina_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="160dp"
-            android:layout_marginTop="244dp"
+            android:layout_marginStart="155dp"
+            android:layout_marginTop="240dp"
             android:background="@color/white"
             android:padding="2dp"
             android:text="Vagina"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
@@ -303,34 +285,29 @@
             android:id="@+id/ovary_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="272dp"
+            android:layout_marginStart="265dp"
             android:layout_marginTop="128dp"
             android:background="@color/white"
             android:padding="1dp"
             android:text="Ovary"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textSize="13sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
-
-
-        <!-- Other Parts TextViews follow similar adjustments -->
-
-        <!-- Description -->
 
         <TextView
             android:id="@+id/isthmus_of_uterine_tube_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="236dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginStart="228dp"
+            android:layout_marginTop="55dp"
             android:padding="1dp"
             android:text="Isthmus of\n Uterine Tube"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="8sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
@@ -339,14 +316,14 @@
             android:id="@+id/ampulla_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="324dp"
-            android:layout_marginTop="104dp"
+            android:layout_marginStart="315dp"
+            android:layout_marginTop="100dp"
             android:background="@color/white"
             android:padding="1dp"
             android:text="Ampulla"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="8sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
@@ -355,13 +332,13 @@
             android:id="@+id/endometrium_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="192dp"
-            android:layout_marginTop="108dp"
+            android:layout_marginStart="185dp"
+            android:layout_marginTop="105dp"
             android:background="@color/white"
             android:text="Endometrium"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="8sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
@@ -370,13 +347,13 @@
             android:id="@+id/myometrium_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="184dp"
-            android:layout_marginTop="136dp"
+            android:layout_marginStart="170dp"
+            android:layout_marginTop="132dp"
             android:background="@color/white"
             android:text="Myometrium"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="8sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView" />
@@ -399,7 +376,9 @@
                 android:text="The reproductive system of an organism, also known as the genitalsystem, is the biological system made up of all the anatomical organs involved in sexual reproduction. Many non-living substances such as fluids, hormones, and pheromones. \n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/female-genital-system-1541215168?from=2"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:autoLink="web"
+                android:linksClickable="true" />
 
         </ScrollView>
 
@@ -415,21 +394,6 @@
         app:itemIconTint="@color/violet"
         app:itemTextColor="@color/violet"
         app:menu="@menu/main_menu">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <EditText
-                android:id="@+id/editTextTextPostalAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter address"
-                android:inputType="textPostalAddress" />
-
-        </LinearLayout>
 
     </com.google.android.material.navigation.NavigationView>
 

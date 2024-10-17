@@ -67,7 +67,9 @@
             android:text="The male urethra is a muscle approximately 18–22 cm long that transports urine from the bladder to the outside of the body through the perineal opening. It also serves as a passage for semen and glandular secretions during ejaculation. The urethra extends from the internal urethral orifice in the bladder to the external urethral orifice at the tip of the glans penis. When the penis is flaccid, the urethra has a double curvature. The male urethra is divided into four parts: the preprostatic (or intramural) part, the prostatic part, the membranous (or intermediate) part, and the spongy (or penile) part.\n\nSource: https://www.kenhub.com/en/library/anatomy/the-male-urethra"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:autoLink="web"
+            android:linksClickable="true"/>
     </ScrollView>
 
     <!-- Bottom Navigation View -->

@@ -67,7 +67,9 @@
             android:text="The uterus, or womb, is a key female reproductive organ that responds to hormones. It plays a central role in the reproductive system of humans and most mammals. The term  is used to describe events that happen within the uterus. The lower part of the uterus, called the cervix, opens into the vagina, while the upper part, known as the fundus, connects to the fallopian tubes. The uterus is where the fetus develops during pregnancy.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/uterus-1541215172?from=2"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:autoLink="web"
+            android:linksClickable="true" />
     </ScrollView>
 
     <!-- Bottom Navigation View -->

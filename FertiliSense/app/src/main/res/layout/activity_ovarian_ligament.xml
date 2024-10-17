@@ -66,7 +66,9 @@
             android:text="The tubal extremity of the ovaries, located near the external iliac vein, is where the ovarian fimbria of the uterine tube and a fold of peritoneum called the suspensory ligament of the ovary are attached. This ligament extends upward over the iliac vessels and contains the ovarian blood vessels.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/suspensory-ligament-of-ovary-1541222360"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:autoLink="web"
+            android:linksClickable="true"/>
     </ScrollView>
 
     <!-- Bottom Navigation View -->

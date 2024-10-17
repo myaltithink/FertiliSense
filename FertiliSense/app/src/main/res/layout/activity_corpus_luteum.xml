@@ -20,7 +20,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextColor="@color/white" />
 
-    <!-- Corpus Luteum Label -->
     <TextView
         android:id="@+id/corpus_luteum_label"
         android:layout_width="wrap_content"
@@ -35,7 +34,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-    <!-- Corpus Luteum Image -->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
@@ -47,7 +45,6 @@
         app:layout_constraintTop_toBottomOf="@id/corpus_luteum_label"
         app:srcCompat="@drawable/corpus_luteum" />
 
-    <!-- Description Text -->
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
@@ -67,7 +64,9 @@
             android:text="The corpus luteum is a group of cells that forms on your ovary each menstrual cycle after an egg is released (ovulation). Its role is to create a suitable environment in your uterus for a potential pregnancy by producing a hormone called progesterone. If pregnancy doesn’t occur, the corpus luteum eventually breaks down and disappears until the next cycle.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/corpus-luteum-1541215184"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:autoLink="web"
+            android:linksClickable="true" />
     </ScrollView>
 
     <!-- Bottom Navigation View -->
