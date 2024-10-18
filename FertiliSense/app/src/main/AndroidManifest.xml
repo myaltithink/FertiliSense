@@ -119,9 +119,6 @@
             android:name=".EventDecorator"
             android:exported="false" />
         <activity
-            android:name=".EditPeriodActivity"
-            android:exported="false" />
-        <activity
             android:name=".CalendarActivity"
             android:exported="false" />
         <activity
