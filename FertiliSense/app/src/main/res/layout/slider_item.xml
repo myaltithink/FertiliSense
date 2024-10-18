@@ -9,8 +9,7 @@
     <ImageView
         android:id="@+id/imageSliderItem"
         android:layout_width="match_parent"
-        android:layout_height="580dp"
-        android:layout_margin="16dp"
+        android:layout_height="600dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +21,6 @@
         android:id="@+id/imageDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:gravity="center"

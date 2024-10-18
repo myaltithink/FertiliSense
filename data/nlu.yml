@@ -1510,7 +1510,30 @@ nlu:
     - Which medicines are pregnancy-friendly?
     - Are there any safe pharmaceuticals for expectant mothers?
     - What drugs should I avoid while pregnant?
-
+- intent: best_time_safe_sex
+  examples: |
+    - When is the best time to have safe sex?
+    - when is the best time to have safe sex to about pregnancy?
+    - When is the best time to have safe sex so you don't get pregnant?
+    - What's the safest time to have sex if you want to avoid pregnancy?
+    - When should I have safe sex to not get pregnant?
+    - What time is it best to practice safe sex to prevent pregnancy?
+    - When is it smart to have safe sex if you want to avoid getting pregnant?
+    - When can I have safe sex without worrying about getting pregnant?
+    - What's the right time for safe sex to keep from getting pregnant?
+    - When should I be careful with sex to avoid having a baby?
+    - When is it safest to have sex so I won't get pregnant?
+    - What's the best time for safe sex to make sure I don't get pregnant?
+    - When is the best time to practice safe sex?
+    - When should I have safe sex for the best results?
+    - What's the right time to have safe sex?
+    - When's the ideal moment to engage in safe sex?
+    - When is it smart to have safe sex?
+    - What's the best time to be safe during sex?
+    - When should I be careful about having sex?
+    - When is it safest to have sex?
+    - When's the right time to think about safe sex?
+    - When should I consider having safe sex?
 - intent: log_menstrual_cycle
   examples: |
     - I want to log my menstrual cycle
@@ -1519,6 +1542,16 @@ nlu:
     - I need to record my cycle information
     - log my menstrual cycle
     - log my cycle
+    - Track my period
+    - Keep a record of my menstrual cycle
+    - Monitor my monthly cycle
+    - Jot down my period details
+    - Record my menstrual days
+    - Keep tabs on my periods
+    - Note my period start and end dates
+    - Follow my monthly flow schedule
+    - Log my period dates
+    - Track when my period starts and stops
 - intent: inform_start_date
   examples: |
     - My start date is 12/10/2023
@@ -1526,14 +1559,18 @@ nlu:
     - 25th December 2023
     - Starting on 15/10/2023
     - Start date: 10/11/2023
-
+    - start date 10/10/2024
+    - Start Date: 15/10/2024
+    - start date 15/10/2024
 - intent: inform_end_date
   examples: |
     - My end date is 17/10/2023
     - The end date is 20/09/2023
     - 28th December 2023
     - Ends on 15/10/2023
-
+    - End Date: 20/10/2023
+    - end date: 20/10/2024
+    - end date 20/10/2024
 - intent: inform_cycle_duration
   examples: |
     - My cycle lasts for 28 days
@@ -1541,7 +1578,6 @@ nlu:
     - It's 26 days
     - 25 days
     - My cycle is 27 days long
-
 - intent: inform_period_duration
   examples: |
     - My period lasted for 5 days
@@ -1549,13 +1585,11 @@ nlu:
     - 4 days
     - Lasted for 7 days
     - Period is 3 days
-
 - intent: inform_symptoms
   examples: |
     - cramps
     - headache
     - Bloating
-    - Headache
     - Fatigue
     - Moodiness
     - Nausea
@@ -1563,6 +1597,16 @@ nlu:
     - Acne
     - Irritability
     - Dizziness
+    - Cramps, Bloating, Headache
+    - cramps and morning sickness
+    - vomit
+    - vommit
+    - vommitting
+    - vomitting
+    - vomiting
+    - vomiting, morning sickness, cramps
+    - tender of breast and nausea
+    - dizziness, vomiting, nausea
 - intent: log_symptoms
   examples: |
     - I want to log my symptoms
@@ -1576,3 +1620,6 @@ nlu:
   examples: |
     - 10/04/2023
     - 15/04/2023
+    - 20/04/2023
+    - 12/05/2023
+    - 19/05/2023

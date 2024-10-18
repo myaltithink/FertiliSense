@@ -350,6 +350,12 @@ public class MaleReproductiveSystemMenActivity extends AppCompatActivity impleme
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();
+        } else if (id == R.id.user_manual) {
+            Log.d("FertiliSense", "User Manual clicked");
+            Intent intent = new Intent(MaleReproductiveSystemMenActivity.this, UserManualActivity.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+            finish();
         } else if (id == R.id.logout) {
             // Handle "LOG OUT" action
             authProfile.signOut();

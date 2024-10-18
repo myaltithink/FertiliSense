@@ -177,7 +177,7 @@ public class ChatBotActivity extends AppCompatActivity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                addResponse("Failed to load response due to " + e.getMessage());
+                addResponse("Failed to load check your internet connectivity.");
             }
 
             @Override

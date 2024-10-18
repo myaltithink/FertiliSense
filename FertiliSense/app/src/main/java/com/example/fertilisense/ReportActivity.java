@@ -1,5 +1,6 @@
 package com.example.fertilisense;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -52,7 +53,7 @@ import java.io.FileOutputStream;
 import android.graphics.pdf.PdfDocument;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.Manifest; // Import Manifest class
+import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -61,10 +62,12 @@ import android.graphics.pdf.PdfDocument;
 import android.os.Environment;
 import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat; // Ensure this import is present
+import androidx.core.content.ContextCompat;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Locale;
+import java.util.Date;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -73,18 +76,21 @@ import com.google.firebase.database.ServerValue; // Add this import
 public class ReportActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final int STORAGE_PERMISSION_CODE = 100;
 
+    private TextView cyclesInfoTextView;
+    private TextView symptomsInfoTextView;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private BottomNavigationView bottomNavigationView;
     private FirebaseAuth authProfile;
     private String appPackageName;
+    private PdfDocument pdfDocument;
 
     private static final String TAG = "ReportActivity";
     private MaterialCalendarView calendarView;
     private FirebaseFirestore db;
 
-    private TextView cyclesInfo, symptomsInfo; // Declare TextViews
-    private Button downloadButton; // Declare Button
+    private TextView cyclesInfo, symptomsInfo;
+    private Button downloadButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +109,9 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
         // Initialize the appPackageName inside onCreate
         appPackageName = getPackageName();
 
+        cyclesInfoTextView = findViewById(R.id.cycles_info);
+        symptomsInfoTextView = findViewById(R.id.symptoms_info);
+
         // Initialize TextViews
         cyclesInfo = findViewById(R.id.cycles_info);
         symptomsInfo = findViewById(R.id.symptoms_info);
@@ -110,11 +119,7 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
         // Initialize download button
         LinearLayout downloadLayout = findViewById(R.id.download_report);
         downloadLayout.setOnClickListener(v -> {
-            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                downloadReport();
-            } else {
-                requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
-            }
+            downloadReport();
         });
 
         // Load user information in the navigation header
@@ -129,37 +134,32 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
         // Set navigation item selected listener
         navigationView.setNavigationItemSelectedListener(this);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id = item.getItemId();
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            int id = item.getItemId();
 
-                if (id == R.id.genital) {
-                    Intent intent = new Intent(ReportActivity.this, FemaleReproductiveSystemActivity.class);
-                    startActivity(intent);
-                    overridePendingTransition(0, 0);
-                    finish();
-                } else if (id == R.id.calendar) {
-                    Intent intent = new Intent(ReportActivity.this, CalendarActivity.class);
-                    startActivity(intent);
-                    overridePendingTransition(0, 0);
-                    finish();
-                } else if (id == R.id.home) {
-                    Intent intent = new Intent(ReportActivity.this, FertiliSenseDashboardActivity.class);
-                    startActivity(intent);
-                    overridePendingTransition(0, 0);
-                    finish();
-                } else if (id == R.id.chatbot) {
-                    Intent intent = new Intent(ReportActivity.this, ChatBotActivity.class);
-                    startActivity(intent);
-                    overridePendingTransition(0, 0);
-                    finish();
-                } else if (id == R.id.report) {
-                    Log.d("FertiliSense", "User report details clicked");
-                }
-
-                return true;
+            if (id == R.id.genital) {
+                Intent intent = new Intent(ReportActivity.this, FemaleReproductiveSystemActivity.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                finish();
+            } else if (id == R.id.calendar) {
+                Log.d("FertiliSense", "Checking cycle logs before navigating to CalendarActivity");
+                checkForLoggedCyclesAndShowDialog();
+            } else if (id == R.id.home) {
+                Intent intent = new Intent(ReportActivity.this, FertiliSenseDashboardActivity.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                finish();
+            } else if (id == R.id.chatbot) {
+                Intent intent = new Intent(ReportActivity.this, ChatBotActivity.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                finish();
+            } else if (id == R.id.report) {
+                Log.d("FertiliSense", "User report details clicked");
             }
+
+            return true;
         });
 
         // Set "Report" as the default selected item in bottom navigation
@@ -177,12 +177,32 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
         paint.setTextSize(12);
         paint.setColor(Color.BLACK);
 
-        String reportContent = "Menstrual Cycle Data:\n" +
-                cyclesInfo.getText().toString() +
-                "\nSymptom Data:\n" +
-                symptomsInfo.getText().toString();
+        // Prepare the report content with improved formatting
+        StringBuilder reportContentBuilder = new StringBuilder();
 
-        canvas.drawText(reportContent, 10, 25, paint);
+        // Menstrual Cycle Data Section
+        reportContentBuilder.append("Menstrual Cycle Data:\n")
+                .append("Start Date: ").append(cyclesInfo.getText().toString()).append("\n") // Add actual data here
+                .append("End Date: \n") // Placeholder, replace with actual data if available
+                .append("Cycle Duration: \n") // Placeholder
+                .append("Period Duration: \n") // Placeholder
+                .append("\n"); // Add spacing
+
+        // Symptom Data Section
+        reportContentBuilder.append("Symptom Data:\n")
+                .append(symptomsInfo.getText().toString()).append("\n") // Symptoms info
+                .append("\n"); // Add spacing
+
+        // Convert StringBuilder to String
+        String reportContent = reportContentBuilder.toString();
+
+        // Draw the report content on the canvas with line spacing
+        float yPosition = 25; // Initial y position
+        for (String line : reportContent.split("\n")) {
+            canvas.drawText(line, 10, yPosition, paint);
+            yPosition += 20; // Increase y position for the next line (add spacing)
+        }
+
         pdfDocument.finishPage(page);
 
         // Save the report to the Firebase Realtime Database
@@ -196,8 +216,20 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
         reportsRef.push().setValue(reportData).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Toast.makeText(this, "Report saved to Firebase Realtime Database", Toast.LENGTH_SHORT).show();
-                // Now save the PDF file locally
-                savePdf(pdfDocument);
+
+                // Save the PDF file locally in the Downloads directory
+                File pdfFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "report.pdf");
+
+                try {
+                    pdfDocument.writeTo(new FileOutputStream(pdfFile));
+                    Toast.makeText(this, "Successfully Downloaded Report: " + pdfFile.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "Failed to download report: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                } finally {
+                    pdfDocument.close(); // Ensure the document is closed
+                }
+
             } else {
                 Toast.makeText(this, "Failed to save report: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 pdfDocument.close(); // Ensure document is closed if the Firebase save fails
@@ -205,10 +237,25 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
         });
     }
 
-    private void savePdf(PdfDocument pdfDocument) {
-        File reportFile = new File(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "report.pdf"); // Use app-specific directory
+    // This method should handle the result of the permission request
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, proceed to save PDF
+                savePdf(pdfDocument);
+            } else {
+                Toast.makeText(this, "Permission denied to write to external storage", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
-        // Create directory if it doesn't exist
+    private void savePdf(PdfDocument pdfDocument) {
+        // Use the app's private storage or scoped storage
+        File reportFile = new File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "report.pdf");
+
+        // Create the directory if it doesn't exist
         if (!reportFile.getParentFile().exists()) {
             reportFile.getParentFile().mkdirs();
         }
@@ -221,21 +268,7 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
             e.printStackTrace();
             Toast.makeText(this, "Failed to download report: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         } finally {
-            pdfDocument.close(); // Ensure document is closed
-        }
-    }
-
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == STORAGE_PERMISSION_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                downloadReport();
-            } else {
-                Toast.makeText(this, "Permission denied to write to external storage", Toast.LENGTH_SHORT).show();
-            }
+            pdfDocument.close();
         }
     }
 
@@ -312,7 +345,6 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
         }
     }
 
-
     private void fetchSymptomData() {
         FirebaseUser currentUser = authProfile.getCurrentUser();
         if (currentUser != null) {
@@ -375,8 +407,6 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
         }
     }
 
-
-
     private void loadUserInformation() {
         View headerView = navigationView.getHeaderView(0);
         TextView usernameTextView = headerView.findViewById(R.id.nav_drawer_username);
@@ -434,6 +464,53 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
         }
     }
 
+    private void checkForLoggedCyclesAndShowDialog() {
+        FirebaseUser currentUser = authProfile.getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+
+            db.collection("menstrual_cycles")
+                    .document(userId)
+                    .get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (!documentSnapshot.exists()) {
+                            showCycleLogDialog();
+                        } else {
+                            navigateToCalendarActivity();
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(ReportActivity.this, "Error checking cycle data", Toast.LENGTH_SHORT).show();
+                    });
+        } else {
+            Toast.makeText(this, "No user logged in", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void showCycleLogDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Log Menstrual Cycle")
+                .setMessage("You haven't logged any menstrual cycle yet. Would you like to log it now?")
+                .setPositiveButton("OK", (dialog, which) -> navigateToChatBotActivity())
+                .setNegativeButton("Cancel", (dialog, which) -> navigateToCalendarActivity())
+                .setCancelable(false)
+                .show();
+    }
+
+    private void navigateToCalendarActivity() {
+        Intent intent = new Intent(ReportActivity.this, CalendarActivity.class);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+        finish();
+    }
+
+    private void navigateToChatBotActivity() {
+        Intent intent = new Intent(ReportActivity.this, ChatBotActivity.class);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+        finish();
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -465,6 +542,12 @@ public class ReportActivity extends AppCompatActivity implements NavigationView.
             finish();
         } else if (id == R.id.terms_condition) {
             Intent intent = new Intent(ReportActivity.this, TermsAndConditionContentActivity.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+            finish();
+        } else if (id == R.id.user_manual) {
+            Log.d("FertiliSense", "User Manual clicked");
+            Intent intent = new Intent(ReportActivity.this, UserManualActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();

@@ -23,8 +23,8 @@
 
             <ImageView
                 android:id="@+id/ic_menu"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="28dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,27 +38,22 @@
                 android:layout_marginTop="28dp"
                 android:text="FertiliSense Dashboard"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="23sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/nav_header_profile_picture"
-                app:layout_constraintHorizontal_bias="0.553"
                 app:layout_constraintStart_toEndOf="@id/ic_menu"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/nav_header_profile_picture"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="43dp"
+                android:layout_height="43dp"
                 android:layout_marginTop="28dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/border_profile_picture_dashboard"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_user" />
-
-            <!-- Image Slider -->
-            <!-- TabLayout for pagination -->
-
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/imageSlider"
@@ -82,12 +77,9 @@
                 app:tabIndicatorHeight="4dp"
                 android:background="@color/white"
                 app:tabMode="fixed"
-                app:tabPaddingBottom="4dp"
-                app:tabPaddingEnd="8dp"
-                app:tabPaddingStart="8dp"
-                app:tabPaddingTop="4dp"
                 app:tabTextAppearance="@style/TabTextAppearance"
-                app:tabTextColor="@color/tab_text_color" />
+                app:tabTextColor="@color/tab_text_color"
+                android:padding="8dp" />
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_navigation"

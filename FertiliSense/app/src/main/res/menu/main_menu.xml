@@ -41,6 +41,11 @@
                     android:icon="@drawable/ic_terms"
                     android:orderInCategory="6"
                     android:title="Terms and Condition" />
+                <item
+                    android:id="@+id/user_manual"
+                    android:icon="@drawable/ic_user_manual"
+                    android:orderInCategory="6"
+                    android:title="User Manual" />
             </group>
         </menu>
     </item>

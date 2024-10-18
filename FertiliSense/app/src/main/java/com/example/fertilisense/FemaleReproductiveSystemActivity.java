@@ -2,6 +2,7 @@ package com.example.fertilisense;
 
 import static android.content.ContentValues.TAG;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
 public class FemaleReproductiveSystemActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -34,6 +36,7 @@ public class FemaleReproductiveSystemActivity extends AppCompatActivity implemen
     private FirebaseAuth authProfile;
     private BottomNavigationView bottomNavigationView;
     private String appPackageName;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class FemaleReproductiveSystemActivity extends AppCompatActivity implemen
 
         // Initialize FirebaseAuth
         authProfile = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         // Load user information in the navigation header
         loadUserInformation();
@@ -67,11 +71,8 @@ public class FemaleReproductiveSystemActivity extends AppCompatActivity implemen
                 if (id == R.id.genital) {
                     Log.d("FertiliSense", "Already on the Genital Screen");
                 } else if (id == R.id.calendar) {
-                    Log.d("FertiliSense", "Calendar clicked");
-                    Intent intent = new Intent(FemaleReproductiveSystemActivity.this, CalendarActivity.class);
-                    startActivity(intent);
-                    overridePendingTransition(0, 0);
-                    finish();
+                    Log.d("FertiliSense", "Checking cycle logs before navigating to CalendarActivity");
+                    checkForLoggedCyclesAndShowDialog();
                 } else if (id == R.id.home) {
                     Log.d("FertiliSense", "Home clicked");
                     Intent intent = new Intent(FemaleReproductiveSystemActivity.this, FertiliSenseDashboardActivity.class);
@@ -405,6 +406,53 @@ public class FemaleReproductiveSystemActivity extends AppCompatActivity implemen
         }
     }
 
+    private void checkForLoggedCyclesAndShowDialog() {
+        FirebaseUser currentUser = authProfile.getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+
+            db.collection("menstrual_cycles")
+                    .document(userId)
+                    .get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (!documentSnapshot.exists()) {
+                            showCycleLogDialog();
+                        } else {
+                            navigateToCalendarActivity();
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(FemaleReproductiveSystemActivity.this, "Error checking cycle data", Toast.LENGTH_SHORT).show();
+                    });
+        } else {
+            Toast.makeText(this, "No user logged in", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void showCycleLogDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Log Menstrual Cycle")
+                .setMessage("You haven't logged any menstrual cycle yet. Would you like to log it now?")
+                .setPositiveButton("OK", (dialog, which) -> navigateToChatBotActivity())
+                .setNegativeButton("Cancel", (dialog, which) -> navigateToCalendarActivity())
+                .setCancelable(false)
+                .show();
+    }
+
+    private void navigateToCalendarActivity() {
+        Intent intent = new Intent(FemaleReproductiveSystemActivity.this, CalendarActivity.class);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+        finish();
+    }
+
+    private void navigateToChatBotActivity() {
+        Intent intent = new Intent(FemaleReproductiveSystemActivity.this, ChatBotActivity.class);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+        finish();
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -440,6 +488,12 @@ public class FemaleReproductiveSystemActivity extends AppCompatActivity implemen
         } else if (id == R.id.terms_condition) {
             Log.d("FertiliSense", "Terms and Condition clicked");
             Intent intent = new Intent(this, TermsAndConditionContentActivity.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+            finish();
+        } else if (id == R.id.user_manual) {
+            Log.d("FertiliSense", "User Manual clicked");
+            Intent intent = new Intent(FemaleReproductiveSystemActivity.this, UserManualActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
             finish();

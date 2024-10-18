@@ -860,6 +860,13 @@ stories:
       - action: utter_medication_during_pregnancy
       - action: utter_did_that_help
 
+# handles best time safe sex
+  - story: best time safe sex
+    steps:
+      - intent: best_time_safe_sex
+      - action: utter_best_time_safe_sex
+      - action: utter_did_that_help
+
 # handles create symptoms
   - story: log symptoms pre defined sickness
     steps:
