@@ -1705,7 +1705,7 @@ class ActionCollectStartDate(Action):
                     dispatcher.utter_message(text=f"The start date cannot be after today ({current_date.strftime('%d/%m/%Y')}). Please provide a valid start date.")
                     return []
                 else:
-                    dispatcher.utter_message(text=f"Start Date recorded: {start_date_input}. What is the end date of your cycle?\n Example: End Date: DD/MM/YYYY")
+                    dispatcher.utter_message(text=f"Start Date recorded: {start_date_input}. What is the end date of your cycle?\nExample:\nEnd Date: DD/MM/YYYY")
                     return [SlotSet("start_dates", start_date_input)]
 
             except ValueError:
@@ -1939,7 +1939,7 @@ class ActionLogMenstrualCycle(Action):
         return "action_log_menstrual_cycle"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
-        dispatcher.utter_message(text="Please provide the start date of your cycle?\n Example: Start Date: DD/MM/YYYY")
+        dispatcher.utter_message(text="Please provide the start date of your cycle?\nExample:\nStart Date: DD/MM/YYYY")
         return []
     
 # Actions for handling delete menstrual cycle

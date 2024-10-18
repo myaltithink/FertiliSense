@@ -64,7 +64,6 @@ public class MaleChatBotActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_bot);
 
         // Set up the toolbar
-
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle("FertiliSense ChatBot");
@@ -90,6 +89,11 @@ public class MaleChatBotActivity extends AppCompatActivity {
         llm.setStackFromEnd(true);
         recyclerView.setLayoutManager(llm);
 
+        // Show the welcome message as soon as the chatbot starts
+        String welcomeMessage = "Welcome to FertiliSense! How can I assist you today?";
+        addToChat(welcomeMessage, Message.SENT_BY_BOT);  // This adds the welcome message as coming from the bot
+
+        // Send message button logic
         sendButton.setOnClickListener((v) -> {
             String question = messageEditText.getText().toString().trim();
             if (!question.isEmpty()) {
