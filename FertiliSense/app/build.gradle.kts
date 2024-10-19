@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.fertilisense"
+    namespace = "com.fertilisense.fertilisense"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.fertilisense"
+        applicationId = "com.fertilisense.fertilisense"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

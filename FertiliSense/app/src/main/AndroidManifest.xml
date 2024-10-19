@@ -284,7 +284,7 @@
         </activity> <!-- FileProvider configuration -->
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.fertilisense.fileprovider"
+            android:authorities="com.fertilisense.fertilisense.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
