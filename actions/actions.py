@@ -2077,11 +2077,19 @@ class ActionDeleteMenstrualCycle(Action):
                 updated_cycles = [cycle for cycle in cycles if not (cycle['start_date'] == delete_start_date and cycle['end_date'] == delete_end_date)]
 
                 if len(updated_cycles) < len(cycles):
-                    # Update Firestore with the remaining cycles
-                    doc_ref.update({
-                        'cycles': updated_cycles
-                    })
-                    dispatcher.utter_message(text=f"Cycle from {delete_start_date} to {delete_end_date} has been successfully deleted.")
+                    # Check if the deleted cycle was the only one
+                    if len(cycles) == 1:
+                        # Delete the only cycle and predictions
+                        doc_ref.delete()
+                        dispatcher.utter_message(text=f"The only cycle from {delete_start_date} to {delete_end_date} has been successfully deleted along with its predictions.")
+                    else:
+                        # Update Firestore with the remaining cycles
+                        doc_ref.update({'cycles': updated_cycles})
+                        dispatcher.utter_message(text=f"Cycle from {delete_start_date} to {delete_end_date} has been successfully deleted.")
+                        
+                        # Recalculate predictions based on remaining cycles
+                        self.recalculate_predictions(doc_ref, updated_cycles)
+
                 else:
                     dispatcher.utter_message(text="No cycle found with the provided start and end dates.")
             else:
@@ -2092,5 +2100,41 @@ class ActionDeleteMenstrualCycle(Action):
 
         # Reset the slots after deletion
         return [SlotSet("delete_start_dates", None), SlotSet("delete_end_date", None)]
+    
+    def recalculate_predictions(self, doc_ref, cycles):
+        predictions = []
+        current_start_date = None
+
+        if cycles:
+            last_cycle = cycles[-1]
+            cycle_duration_days = last_cycle['cycle_duration']
+            current_start_date = datetime.strptime(last_cycle['start_date'], "%d/%m/%Y") + timedelta(days=cycle_duration_days)
+
+        for _ in range(4):  # Predict for the next four cycles
+            cycle_end_date_dt = current_start_date + timedelta(days=last_cycle['period_duration'] - 1)
+            cycle_end_date = cycle_end_date_dt.strftime("%d/%m/%Y")
+            next_cycle_start_date_dt = current_start_date + timedelta(days=cycle_duration_days)
+            next_cycle_start_date = next_cycle_start_date_dt.strftime("%d/%m/%Y")
+
+            # Ovulation and fertile window calculations
+            ovulation_date_dt = next_cycle_start_date_dt - timedelta(days=14)
+            ovulation_date = ovulation_date_dt.strftime("%d/%m/%Y")
+            fertile_window_start_dt = ovulation_date_dt - timedelta(days=2)
+            fertile_window_end_dt = ovulation_date_dt + timedelta(days=2)
+            fertile_window_start = fertile_window_start_dt.strftime("%d/%m/%Y")
+            fertile_window_end = fertile_window_end_dt.strftime("%d/%m/%Y")
+
+            predictions.append({
+                'cycle_start_date': current_start_date.strftime("%d/%m/%Y"),
+                'cycle_end_date': cycle_end_date,
+                'fertile_window_start': fertile_window_start,
+                'fertile_window_end': fertile_window_end,
+                'ovulation_date': ovulation_date,
+            })
+
+            current_start_date = next_cycle_start_date_dt  # Move to the next cycle start date
+
+        # Update Firestore with the recalculated predictions
+        doc_ref.update({'predictions': predictions})
 
 # Actions for handling update menstrual cycle
