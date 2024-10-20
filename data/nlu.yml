@@ -1623,3 +1623,16 @@ nlu:
     - 20/04/2023
     - 12/05/2023
     - 19/05/2023
+- intent: show_cycles
+  examples: |
+    - Show me my logged cycles
+    - Can I see my cycles?
+    - Display my menstrual cycles
+    - I want to view my logged periods
+- intent: delete_log_menstrual_cycle
+  examples: |
+    - i want to delete my cycle
+    - i want to delete a cycle
+    - Delete my menstrual cycle
+    - I want to remove a cycle
+    - Remove my menstrual cycle

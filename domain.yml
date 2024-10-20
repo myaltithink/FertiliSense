@@ -131,6 +131,11 @@ actions:
   - action_collect_end_dates
   - action_create_log
   - action_evaluate_symptoms
+  - action_show_cycles
+  - action_delete_log_menstrual_cycle
+  - action_delete_start_date
+  - action_delete_end_date
+  - action_delete_menstrual_cycle
 
 intents:
   - greet
@@ -256,6 +261,8 @@ intents:
   - log_menstrual_cycle
   - log_symptoms
   - inform_symptoms
+  - show_cycles
+  - delete_log_menstrual_cycle
 
 entities:
   - start_dates
@@ -264,6 +271,8 @@ entities:
   - period_duration
   - end_dates
   - symptoms
+  - delete_end_date
+  - delete_start_dates
 
 slots:
   start_dates:
@@ -295,7 +304,17 @@ slots:
     type: text
     mappings:
       - type: from_entity
-        entity: end_date
+        entity: end_dates
+  delete_start_dates:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: delete_start_dates
+  delete_end_date:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: delete_end_date
       
 responses:
   utter_greet:

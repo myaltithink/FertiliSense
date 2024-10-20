@@ -868,24 +868,26 @@ stories:
       - action: utter_did_that_help
 
 # handles create symptoms
-  - story: log symptoms pre defined sickness
+  - story: log symptoms
     steps:
       - intent: log_symptoms
-
       - action: utter_ask_start_symptoms
       - intent: inform
       - action: action_collect_start_dates
-
       - action: utter_ask_end_symptoms
       - intent: inform
       - action: action_collect_end_dates
-
       - action: utter_ask_symptoms
       - intent: inform_symptoms
       - action: action_collect_symptoms
-
       - action: action_create_log
       - action: action_evaluate_symptoms
+
+# handles show logged of cycle
+  - story: show menstrual cycles
+    steps:
+      - intent: show_cycles
+      - action: action_show_cycles
 
 # handles delete symptoms
 
@@ -907,3 +909,12 @@ stories:
       - action: action_create_logs
 
 # handles delete cycle
+  - story: delete menstrual cycle
+    steps:
+      - intent: delete_log_menstrual_cycle
+      - action: action_delete_log_menstrual_cycle
+      - intent: inform_start_date
+      - action: action_delete_start_date
+      - intent: inform_end_date
+      - action: action_delete_end_date
+      - action: action_delete_menstrual_cycle

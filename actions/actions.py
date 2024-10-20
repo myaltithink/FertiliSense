@@ -1528,7 +1528,7 @@ class ActionCollectStartDates(Action):
                 dispatcher.utter_message(text=f"The start date cannot be after today ({current_date}). Please provide a valid start date.")
                 return [SlotSet("start_dates", None), UserUtteranceReverted()]  # Stop and revert the conversation
 
-            dispatcher.utter_message(text=f"Start date recorded: {start_dates}. What is the end date?")
+            dispatcher.utter_message(text=f"Start date recorded: {start_dates}.")
             print(f"Collected start date: {start_dates}")  # Debugging
             return [SlotSet("start_dates", start_dates)]
 
@@ -1557,7 +1557,7 @@ class ActionCollectEndDates(Action):
                 dispatcher.utter_message(text=f"The end date cannot be after today ({current_date}). Please provide a valid end date.")
                 return [SlotSet("end_dates", None), UserUtteranceReverted()]  # Stop and revert the conversation
 
-            dispatcher.utter_message(text=f"End date recorded: {end_dates}. What symptoms are you experiencing?")
+            dispatcher.utter_message(text=f"End date recorded: {end_dates}.")
             print(f"Collected end date: {end_dates}")  # Debugging
             return [SlotSet("end_dates", end_dates)]
 
@@ -1574,7 +1574,6 @@ class ActionCollectSymptoms(Action):
         dispatcher.utter_message(text=f"Symptoms recorded: {symptoms}.")
         print(f"Collected symptoms: {symptoms}")  # Debugging
         return [SlotSet("symptoms", symptoms)]
-
 
 class ActionCreateLog(Action):
     def name(self) -> str:
@@ -1714,7 +1713,6 @@ class ActionCollectStartDate(Action):
         else:
             dispatcher.utter_message(text="Invalid date format. Please provide the date in the format dd/mm/yyyy.")
             return []
-
 
 class ActionCollectEndDate(Action):
     def name(self) -> str:
@@ -1939,9 +1937,160 @@ class ActionLogMenstrualCycle(Action):
         return "action_log_menstrual_cycle"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
-        dispatcher.utter_message(text="Please provide the start date of your cycle?\nExample:\nStart Date: DD/MM/YYYY")
+        dispatcher.utter_message(text="Please provide the start date of your cycle?\n\nExample:\nStart Date: DD/MM/YYYY")
+        return []
+
+# Actions for handling showing logged cycle 
+class ActionShowCycles(Action):
+    def name(self) -> str:
+        return "action_show_cycles"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[EventType]:
+        user_id = tracker.sender_id
+
+        try:
+            # Fetch the user's menstrual cycles from Firestore
+            doc_ref = db.collection('menstrual_cycles').document(user_id)
+            doc = doc_ref.get()
+
+            if doc.exists:
+                cycles = doc.to_dict().get('cycles', [])
+                if cycles:
+                    # Create a message to display the cycles
+                    cycles_message = "Here are your logged menstrual cycles:\n"
+                    for cycle in cycles:
+                        cycles_message += (f"Start Date: {cycle['start_date']}, "
+                                           f"End Date: {cycle['end_date']}, "
+                                           f"Cycle Duration: {cycle['cycle_duration']} days, "
+                                           f"Period Duration: {cycle['period_duration']} days\n")
+                    dispatcher.utter_message(text=cycles_message)
+                    
+                    # Ask if they want to update their cycle
+                    dispatcher.utter_message(text="Do you want to update any of your cycles?")
+                else:
+                    dispatcher.utter_message(text="You have not logged any menstrual cycles yet.")
+            else:
+                dispatcher.utter_message(text="You have not logged any menstrual cycles yet.")
+
+        except Exception as e:
+            dispatcher.utter_message(text="There was an error retrieving your menstrual cycles. Please try again.")
+            print(f"ERROR: {e}")
+
         return []
     
 # Actions for handling delete menstrual cycle
+class ActionDeleteLogMenstrualCycle(Action):
+    def name(self) -> str:
+        return "action_delete_log_menstrual_cycle"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
+        dispatcher.utter_message(text="Please provide the start date of the cycle you want to delete?\n\nExample:\nStart Date: DD/MM/YYYY")
+        return []
+    
+class ActionDeleteStartDate(Action):
+    def name(self) -> str:
+        return "action_delete_start_date"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[EventType]:
+        delete_start_date_input = tracker.latest_message.get('text')  # Get the user's input
+        
+        # Use regex to find date in the format dd/mm/yyyy in the user input
+        date_match = re.search(r'\d{2}/\d{2}/\d{4}', delete_start_date_input)
+        
+        if date_match:
+            delete_start_date_input = date_match.group()  # Extract the actual date part
+            try:
+                # Convert the date string to a datetime object
+                delete_start_date = datetime.strptime(delete_start_date_input, '%d/%m/%Y')
+                current_date = datetime.now()
+
+                # Check if the start date is after today
+                if delete_start_date > current_date:
+                    dispatcher.utter_message(text=f"The start date cannot be after today ({current_date.strftime('%d/%m/%Y')}). Please provide a valid start date.")
+                    return []
+                else:
+                    dispatcher.utter_message(text=f"Start Date recorded: {delete_start_date_input}. What is the end date of the cycle you want to delete?\nExample:\nEnd Date: DD/MM/YYYY")
+                    return [SlotSet("delete_start_dates", delete_start_date_input)]
+
+            except ValueError:
+                dispatcher.utter_message(text="There was an error processing the date. Please try again.")
+                return []
+        else:
+            dispatcher.utter_message(text="Invalid date format. Please provide the date in the format dd/mm/yyyy.")
+            return []
+        
+class ActionDeleteEndDate(Action):
+    def name(self) -> str:
+        return "action_delete_end_date"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[EventType]:
+        delete_end_date_input = tracker.latest_message.get('text')  # Get the user's input
+
+        # Use regex to find date in the format dd/mm/yyyy in the user input
+        date_match = re.search(r'\d{2}/\d{2}/\d{4}', delete_end_date_input)
+
+        if date_match:
+            delete_end_date_input = date_match.group()  # Extract the actual date part
+            try:
+                # Convert the date string to a datetime object
+                delete_end_date = datetime.strptime(delete_end_date_input, '%d/%m/%Y')
+                current_date = datetime.now()
+
+                # Check if the end date is after today
+                if delete_end_date > current_date:
+                    dispatcher.utter_message(text=f"The end date cannot be after today ({current_date.strftime('%d/%m/%Y')}). Please provide a valid end date.")
+                    return []
+                else:
+                    dispatcher.utter_message(text=f"End Date recorded: {delete_end_date_input}.")
+                    return [SlotSet("delete_end_date", delete_end_date_input)]
+
+            except ValueError:
+                dispatcher.utter_message(text="There was an error processing the date. Please try again.")
+                return []
+        else:
+            dispatcher.utter_message(text="Invalid date format. Please provide the date in the format dd/mm/yyyy.")
+            return []
+        
+class ActionDeleteMenstrualCycle(Action):
+    def name(self) -> str:
+        return "action_delete_menstrual_cycle"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[EventType]:
+        # Retrieve the slots with the start and end dates
+        delete_start_date = tracker.get_slot("delete_start_dates")
+        delete_end_date = tracker.get_slot("delete_end_date")
+        user_id = tracker.sender_id  # Get the currently logged-in user's ID
+
+        if not delete_start_date or not delete_end_date:
+            dispatcher.utter_message(text="Please provide both the start date and the end date of the cycle you want to delete.")
+            return []
+
+        try:
+            # Fetch the user's menstrual cycles from Firestore
+            doc_ref = db.collection('menstrual_cycles').document(user_id)
+            doc = doc_ref.get()
+
+            if doc.exists:
+                cycles = doc.to_dict().get('cycles', [])
+
+                # Find and remove the cycle with the matching start and end dates
+                updated_cycles = [cycle for cycle in cycles if not (cycle['start_date'] == delete_start_date and cycle['end_date'] == delete_end_date)]
+
+                if len(updated_cycles) < len(cycles):
+                    # Update Firestore with the remaining cycles
+                    doc_ref.update({
+                        'cycles': updated_cycles
+                    })
+                    dispatcher.utter_message(text=f"Cycle from {delete_start_date} to {delete_end_date} has been successfully deleted.")
+                else:
+                    dispatcher.utter_message(text="No cycle found with the provided start and end dates.")
+            else:
+                dispatcher.utter_message(text="You have not logged any menstrual cycles yet.")
+        except Exception as e:
+            dispatcher.utter_message(text="There was an error deleting your menstrual cycle. Please try again.")
+            print(f"ERROR: {e}")
+
+        # Reset the slots after deletion
+        return [SlotSet("delete_start_dates", None), SlotSet("delete_end_date", None)]
 
 # Actions for handling update menstrual cycle
