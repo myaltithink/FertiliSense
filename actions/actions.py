@@ -1536,7 +1536,6 @@ class ActionCollectStartDates(Action):
             dispatcher.utter_message(text="Invalid date format. Please provide the date in the format dd/mm/yyyy.")
             return [SlotSet("start_dates", None), UserUtteranceReverted()]  # Stop and revert the conversation
 
-
 # Action to collect and validate end dates
 class ActionCollectEndDates(Action):
     def name(self) -> str:
@@ -1921,7 +1920,7 @@ class ActionCreateLogs(Action):
             }, merge=True)
 
              # Send a success message
-            dispatcher.utter_message(text="Your menstrual cycle information has been logged successfully.")
+            dispatcher.utter_message(text="Your menstrual cycle has been successfully recorded. You can now view it in your calendar and check the predicted cycle dates.")
 
             # Reset slots
             return [SlotSet("start_dates", None), SlotSet("end_date", None), SlotSet("cycle_duration", None), SlotSet("period_duration", None)]
