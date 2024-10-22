@@ -1663,3 +1663,9 @@ nlu:
     - I want to delete my menstrual cycle data
     - I want to remove my menstrual cycle data
     - I want to delete my log cycle data
+- intent: delete_symptoms
+  examples: |
+    - I want to delete my symptoms
+    - I want to remove my symptoms
+    - Delete my symptoms
+    - Remove my symptoms

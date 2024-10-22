@@ -1677,6 +1677,45 @@ class ActionEvaluateSymptoms(Action):
         return []
     
 # Actions for handling delete symptoms
+class ActionDeleteLogs(Action):
+    def name(self) -> str:
+        return "action_delete_logs"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
+        # Retrieve user input for start and end dates
+        start_dates = tracker.get_slot("start_dates")
+        end_dates = tracker.get_slot("end_dates")
+        user_id = tracker.sender_id
+
+        if not start_dates or not end_dates:
+            dispatcher.utter_message(text="Please provide both start and end dates to delete the log.")
+            return []
+
+        try:
+            # Fetch existing logs
+            doc_ref = db.collection('symptom_logs').document(user_id)
+            doc = doc_ref.get()
+
+            if doc.exists:
+                historical_logs = doc.to_dict().get('logs', [])
+                # Filter out the log entry that matches the provided start and end dates
+                updated_logs = [
+                    log for log in historical_logs
+                    if not (log.get('start_dates') == start_dates and log.get('end_dates') == end_dates)
+                ]
+
+                # Update Firestore document with the new logs (after deletion)
+                doc_ref.set({'logs': updated_logs}, merge=True)
+
+                dispatcher.utter_message(text="The log has been deleted successfully.")
+            else:
+                dispatcher.utter_message(text="No logs found for this user.")
+
+        except Exception as e:
+            dispatcher.utter_message(text="There was an error deleting the log.")
+            print(f"ERROR: {e}")
+
+        return []
     
 # Actions for handling update symptoms
 

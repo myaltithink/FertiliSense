@@ -884,6 +884,16 @@ stories:
       - action: action_evaluate_symptoms
 
 # handles delete symptoms
+  - story: delete symptoms
+    steps:
+      - intent: delete_symptoms
+      - action: utter_ask_start_symptoms
+      - intent: inform
+      - action: action_collect_start_dates
+      - action: utter_ask_end_symptoms
+      - intent: inform
+      - action: action_collect_end_dates
+      - action: action_delete_logs
 
 # handles update symptoms
 

@@ -136,6 +136,7 @@ actions:
   - action_delete_start_date
   - action_delete_end_date
   - action_delete_menstrual_cycle
+  - action_delete_logs
 
 intents:
   - greet
@@ -263,6 +264,7 @@ intents:
   - inform_symptoms
   - show_cycles
   - delete_log_menstrual_cycle
+  - delete_symptoms
 
 entities:
   - start_dates
