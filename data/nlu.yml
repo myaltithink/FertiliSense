@@ -1618,7 +1618,7 @@ nlu:
     - log symptoms
     - log my symptoms
     - Log a symptoms
-    _ Log my symptoms
+    - Log my symptoms
     - i want to log a symptoms
     - I'm experiencing symptoms log it
     - i want to record my symptoms
