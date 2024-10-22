@@ -67,7 +67,9 @@
             android:text="The epididymis is a long, narrow structure located along the side of the back edge of the testis. It has three parts: the head (or globus major), the body, and the tail (or globus minor), which connects to the ductus deferens. The head is attached to the top of the testis by small ducts, while the tail is linked to the bottom of the testis by connective tissue and a fold of the tunica vaginalis. The sides, head, and tail of the epididymis are covered by a serous membrane, and the body is also covered except along its back edge. There is a small space between the epididymis and the testis called the sinus of the epididymis.\n\nSource: https://www.innerbody.com/image_repo02/repo17.html"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:autoLink="web"
+            android:linksClickable="true" />
     </ScrollView>
 
     <!-- Bottom Navigation View -->

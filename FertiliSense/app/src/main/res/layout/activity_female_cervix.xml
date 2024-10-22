@@ -67,7 +67,9 @@
             android:text=" The cervix extends into the front of the vagina, dividing into two parts: the supravaginal portion, which is above the vagina, and the vaginal portion, which extends into the vagina. The supravaginal part is surrounded by fibrous tissue that connects it to the bladder and the broad ligaments of the pelvis. The uterine arteries run along the edges of this fibrous tissue, and the ureters are nearby. The cervix's back part is covered by peritoneum, which extends onto the rectum, separated by loops of intestines.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/cervix-of-uterus-1541214932?from=2"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:autoLink="web"
+            android:linksClickable="true" />
     </ScrollView>
 
     <!-- Bottom Navigation View -->

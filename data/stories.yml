@@ -860,8 +860,15 @@ stories:
       - action: utter_medication_during_pregnancy
       - action: utter_did_that_help
 
+# handles best time safe sex
+  - story: best time safe sex
+    steps:
+      - intent: best_time_safe_sex
+      - action: utter_best_time_safe_sex
+      - action: utter_did_that_help
+
 # handles create symptoms
-  - story: log symptoms pre defined sickness
+  - story: log symptoms
     steps:
       - intent: log_symptoms
       - action: utter_ask_start_symptoms
@@ -877,3 +884,47 @@ stories:
       - action: action_evaluate_symptoms
 
 # handles delete symptoms
+  - story: delete symptoms
+    steps:
+      - intent: delete_symptoms
+      - action: utter_ask_start_symptoms
+      - intent: inform
+      - action: action_collect_start_dates
+      - action: utter_ask_end_symptoms
+      - intent: inform
+      - action: action_collect_end_dates
+      - action: action_delete_logs
+
+# handles update symptoms
+
+# handles show logged of cycle
+  - story: show menstrual cycles
+    steps:
+      - intent: show_cycles
+      - action: action_show_cycles
+
+# handles create menstrual cycle
+  - story: log menstrual cycle
+    steps:
+      - intent: log_menstrual_cycle
+      - action: action_log_menstrual_cycle
+      - intent: inform_start_date
+      - action: action_collect_start_date
+      - intent: inform_end_date
+      - action: action_collect_end_date
+      - intent: inform_cycle_duration
+      - action: action_collect_cycle_duration
+      - intent: inform_period_duration
+      - action: action_collect_period_duration
+      - action: action_create_logs
+
+# handles delete cycle
+  - story: delete menstrual cycle
+    steps:
+      - intent: delete_log_menstrual_cycle
+      - action: action_delete_log_menstrual_cycle
+      - intent: inform_start_date
+      - action: action_delete_start_date
+      - intent: inform_end_date
+      - action: action_delete_end_date
+      - action: action_delete_menstrual_cycle

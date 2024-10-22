@@ -26,7 +26,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageView3"
             app:layout_constraintWidth_percent="1.0"
-            app:mcv_showOtherDates="all"
             app:mcv_tileHeight="@dimen/calendar_tile_height"
             app:mcv_tileSize="match_parent" />
 

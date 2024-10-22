@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserManualActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        app:titleTextColor="@color/white"
+        android:background="@drawable/top_navigation_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/scroll_view"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/toggle_scroll_button">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/user_manual_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FERTILISENSE USERS MANUAL"
+                android:textSize="20sp"
+                android:textColor="@color/violet"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/register_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="REGISTRATION OF ACCOUNT"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/register_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/register"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/email_verify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="VERIFICATION OF ACCOUNT VIA EMAIL"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/email_verify_img"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/email_verification"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/login_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="LOGIN ACCOUNT"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/login_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/login"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/forgot_password_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="FORGOT PASSWORD VIA EMAIL"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/forgot_password_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/forgot_password"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/female_dashboard_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="FEMALE FERTILISENSE DASHBOARD"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/female_dashboard_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/dashboard_female"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/male_dashboard_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="MALE FERTILISENSE DASHBOARD"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/male_dashboard_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/dashboard_male"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/navigation_bar_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="NAVIGATION BAR (BURGER MENU"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/navigation_bar_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/navigation_bar"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/user_setting_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="USER ACCOUNT SETTINGS"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/user_setting_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/account_profile_setting"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/profile_picture_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="USER CHANGE PROFILE PICTURE SETTING"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/profile_picture_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/profile_picture"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/account_menu_setting_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="ACCOUNT MENU SETTINGS"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/account_menu_setting_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/account_menu_settings"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/update_user_details_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="UPDATE USER DETAILS"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/update_user_details_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/update_user_details"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/change_password_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="USER CHANGE PASSWORD"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/change_password_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/change_password"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/delete_account_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="USER DELETION OF ACCOUNT"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/delete_account_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/delete_account"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/share_us_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="USER SHARING APPLICATION"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/share_us_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/share_us"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/rate_us_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="USER RATING APPLICATION"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/rate_us_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/rate_us"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/feeback_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="USER FEEDBACK FORM"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/feedback_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/feedback"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/privacy_policy_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="FERTILISENSE PRIVACY POLICY"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/privacy_policy_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/privacy_policy"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/disclaimer_content_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="FERTILISENSE DISCLAIMER CONTENT"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/disclaimer_content_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/disclaimer_content"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/terms_condition_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="FERTILISENSE TERMS AND CONDITION"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/terms_condition_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/terms_and_condition"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/logout_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="USER LOGGING OUT ACCOUNT"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/logout_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/logout"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/genital_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="FERTILISENSE HEALTH (FEMALE REPRODUCTIVE SYSTEM)"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/genital_one_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/female_genital_one"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/genital_two_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/female_genital_two"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/genital_three_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/female_genital_three"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/genital_four_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/female_genital_four"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/genital_male_one_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="FERTILISENSE HEALTH (MALE REPRODUCTIVE SYSTEM)"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/genital_male_one_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/male_genital_one"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/genital_male_two_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/male_genital_two"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/calendar_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="FERTILISENSE TRACKER (CALENDAR)"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/calendar_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/calendar"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/report_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="FERTILISENSE REPORT"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/report_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/report"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/chatbot_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:text="FERTILISENSE CHATBOT"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/chatbot_image"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/chatbot"
+                android:scaleType="fitCenter" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/toggle_scroll_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/violet"
+        android:layout_margin="16dp"
+        android:text="Scroll to Bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

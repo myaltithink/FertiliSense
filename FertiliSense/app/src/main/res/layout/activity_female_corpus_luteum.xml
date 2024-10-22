@@ -67,7 +67,9 @@
             android:text="The corpus luteum is a group of cells that forms on your ovary each menstrual cycle after an egg is released (ovulation). Its role is to create a suitable environment in your uterus for a potential pregnancy by producing a hormone called progesterone. If pregnancy doesn’t occur, the corpus luteum eventually breaks down and disappears until the next cycle.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/corpus-luteum-1541215184"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:autoLink="web"
+            android:linksClickable="true" />
     </ScrollView>
 
     <!-- Bottom Navigation View -->

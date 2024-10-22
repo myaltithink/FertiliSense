@@ -1,15 +1,16 @@
 {
   "project_info": {
     "project_number": "821925291832",
+    "firebase_url": "https://fertilisense-f1335-default-rtdb.firebaseio.com",
     "project_id": "fertilisense-f1335",
     "storage_bucket": "fertilisense-f1335.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:821925291832:android:b6a2f5de6363a3989a83cd",
+        "mobilesdk_app_id": "1:821925291832:android:60f76a255b2edac19a83cd",
         "android_client_info": {
-          "package_name": "com.example.fertilisense"
+          "package_name": "com.fertilisense.fertilisense"
         }
       },
       "oauth_client": [],

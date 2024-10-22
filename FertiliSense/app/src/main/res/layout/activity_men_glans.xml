@@ -67,7 +67,9 @@
             android:text="The tip of the penis is called the glans penis, which is the expanded front part of the corpus cavernosum urethrae. It is separated from the main part of the penis by a narrow area known as the neck, and is covered by a ridge called the corona glandis.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/glans-penis-1541222032?from=2"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:autoLink="web"
+            android:linksClickable="true" />
     </ScrollView>
 
     <!-- Bottom Navigation View -->

@@ -20,7 +20,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextColor="@color/white" />
 
-    <!-- Cervix Label -->
     <TextView
         android:id="@+id/cervix_label"
         android:layout_width="wrap_content"
@@ -35,7 +34,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-    <!-- Myometrium Image -->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
@@ -47,7 +45,6 @@
         app:layout_constraintTop_toBottomOf="@id/cervix_label"
         app:srcCompat="@drawable/cervix" />
 
-    <!-- Description Text -->
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
@@ -65,12 +62,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=" The cervix extends into the front of the vagina, dividing into two parts: the supravaginal portion, which is above the vagina, and the vaginal portion, which extends into the vagina. The supravaginal part is surrounded by fibrous tissue that connects it to the bladder and the broad ligaments of the pelvis. The uterine arteries run along the edges of this fibrous tissue, and the ureters are nearby. The cervix's back part is covered by peritoneum, which extends onto the rectum, separated by loops of intestines.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/cervix-of-uterus-1541214932?from=2"
-          android:textAlignment="center"
+            android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:autoLink="web"
+            android:linksClickable="true"/>
     </ScrollView>
 
-    <!-- Bottom Navigation View -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"

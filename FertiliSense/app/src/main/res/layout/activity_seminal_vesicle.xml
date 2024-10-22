@@ -67,7 +67,9 @@
             android:text="The seminal glands, or seminal vesicles, are two lobulated sacs located between the base of the bladder and the rectum. They act as reservoirs for semen and produce a fluid that mixes with the secretion from the testes. Each gland is roughly pyramid-shaped, with the broad end facing backward, upward, and to the side. They are typically about 7.5 cm long, but their size can vary between individuals and between the two sides of the same individual.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/seminal-gland-1541221292?from=2"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:autoLink="web"
+            android:linksClickable="true" />
     </ScrollView>
 
     <!-- Bottom Navigation View -->

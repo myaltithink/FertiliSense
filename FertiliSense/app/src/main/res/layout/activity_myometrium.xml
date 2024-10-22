@@ -67,7 +67,9 @@
             android:text="The myometrium, also known as the muscular coat or tunica muscularis, is the main muscle layer of the uterus. In a virgin, it is dense and firm, with a grayish color, and has a texture similar to cartilage. It is thicker in the middle and at the top (fundus) of the uterus and thinner near the openings of the uterine tubes. The myometrium is made up of smooth muscle fibers arranged in layers, mixed with connective tissue, blood vessels, lymphatic vessels, and nerves. It has three layers: the outer layer, the middle layer, and the inner layer. The outer and middle layers form the main muscular coat, while the inner layer is an enlarged version of the muscularis mucosæ. During pregnancy, the muscle fibers of the myometrium grow and become more developed.\n\nSource: https://www.imaios.com/en/e-anatomy/anatomical-structure/myometrium-1541215808"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:autoLink="web"
+            android:linksClickable="true" />
     </ScrollView>
 
     <!-- Bottom Navigation View -->
